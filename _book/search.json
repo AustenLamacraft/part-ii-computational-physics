@@ -1,0 +1,142 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Part II Computational Physics",
+    "section": "",
+    "text": "Preface\nThere are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge\nTo learn more about Quarto books visit https://quarto.org/docs/books."
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "4  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever."
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+  },
+  {
+    "objectID": "setup.html#setting-up-an-environment",
+    "href": "setup.html#setting-up-an-environment",
+    "title": "2  Getting Going",
+    "section": "2.1 Setting up an environment",
+    "text": "2.1 Setting up an environment\nYou will need\n\nprint(\"Hello world!\")\n1 + 2\n\nHello world!\n\n\n3\n\n\nPython version. Make sure it’s Python3\nIPython code highlighting, help and so on.\nRunning a python program"
+  },
+  {
+    "objectID": "setup.html#notebooks",
+    "href": "setup.html#notebooks",
+    "title": "2  Getting Going",
+    "section": "2.8 Notebooks",
+    "text": "2.8 Notebooks\nWhile software developers write .py files, modules and packages, scientists and others doing more exploratory work tend to favour a Notebook format that mixes code, text, and plots. The dominant option is the Jupyter notebook, which comes with the Anaconda distribution and can be started from the command line with jupyter notebook (or from the Anaconda Navigator application). This will open the notebook as a web page in your browser, where it can be edited and saved. The default extension is .ipynb.\nJupyter notebooks can actually run code in different languages (the processes running a particular language is called a kernel), but the default process is IPython with all the benefits described above.\nThe text cells can be formatted using Markdown and also support \\(\\LaTeX\\) equations, which is pretty handy for us.\nGoogle has their own cloud version of the Jupyter notebook called Colab. You can try it out for free, though you have to pay for significant compute. The “next generation” of the Jupyter notebook is called JupyterLab and can be started with jupyter lab. Notebook files can be opened in either Jupyter Lab or Jupyter Notebook"
+  },
+  {
+    "objectID": "setup.html#plotting",
+    "href": "setup.html#plotting",
+    "title": "2  Getting Going",
+    "section": "2.9 Plotting",
+    "text": "2.9 Plotting\nWithout introducing numpy explicitly at this stage…\n\\(\\alpha = \\beta\\)"
+  },
+  {
+    "objectID": "numpy.html",
+    "href": "numpy.html",
+    "title": "4  Introduction to NumPy",
+    "section": "",
+    "text": "NumPy is the key building block of the Python scientific ecosystem\nUfuncs"
+  },
+  {
+    "objectID": "setup.html#the-python-language",
+    "href": "setup.html#the-python-language",
+    "title": "2  Getting Going",
+    "section": "2.10 The Python Language",
+    "text": "2.10 The Python Language\nObjects\ntwo language problem\nGotchas"
+  },
+  {
+    "objectID": "setup.html#your-coding-environment",
+    "href": "setup.html#your-coding-environment",
+    "title": "2  Getting Going",
+    "section": "2.2 Your coding environment",
+    "text": "2.2 Your coding environment\nTo run Python code on your computer you will need to have installed the Python language. I recommend the Anaconda distribution as it comes with all the parts of the toolkit we’ll need such as Jupyter notebooks and the major libraries NumPy and SciPy.\nTry running python at the command line. You should get something like\nPython 3.9.12 (main, Apr  5 2022, 01:53:17) \n[Clang 12.0.0 ] :: Anaconda, Inc. on darwin\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> \nYou should confirm that you are using Python 3 (the command python3 will also work and guarantee this if you happen to have Python 2 as the default). The prompt >>> indicates that you have started the Python interactive shell or REPL and are good to go:\n\nprint(\"Hello world!\")\n1 + 2\n\nHello world!\n\n\n3\n\n\nTo leave and return to the command line, you can run quit() or exit()."
+  },
+  {
+    "objectID": "setup.html#editors",
+    "href": "setup.html#editors",
+    "title": "2  Getting Going",
+    "section": "2.7 Editors",
+    "text": "2.7 Editors\nModern editors come with a huge number of tools that make writing code much easier, and you would be crazy not to take advantage of them. These range from the visual cues provided by syntax highlighting – which we’ve already met – to code completion, parameter information and documentation popups as you type. These go under the general heading IntelliSense. The latest hotness is GitHub Copilot, which uses AI to make code suggestions. In my view, these are all part of a continuum of productivity enhancements that enable people to write better code faster. Use them (wisely).\nI use Visual Studio Code."
+  },
+  {
+    "objectID": "setup.html#installing-libraries",
+    "href": "setup.html#installing-libraries",
+    "title": "2  Getting Going",
+    "section": "2.6 Installing libraries",
+    "text": "2.6 Installing libraries\n99% of the code 1 you run will have been written by somebody else in the form of a library (a collection of modules or packages). Package installation is handled by the command line utilities pip or conda, the latter being the package manager for the Anaconda distribution. If you have NumPy and SciPy installed you won’t need to worry about this too much in this course."
+  },
+  {
+    "objectID": "setup.html#running-a-python-program",
+    "href": "setup.html#running-a-python-program",
+    "title": "2  Getting Going",
+    "section": "2.4 Running a Python program",
+    "text": "2.4 Running a Python program\nPython code in a file with a .py extension can be run from the command line with python hello_world.py or python -m hello_world. In the latter case the -m option tells the interpreter to look for a module called hello_world. More on modules below.\nFrom the IPython shell you can instead use run hello_world.py or just run hello_world.\nTODO: These magics are normally documented with a %. When is it necessary?"
+  },
+  {
+    "objectID": "setup.html#importing-code",
+    "href": "setup.html#importing-code",
+    "title": "2  Getting Going",
+    "section": "2.5 Importing code",
+    "text": "2.5 Importing code\nA Python module is just a file containing definition and statements. Breaking long code into modules is good practice for writing clear and reusable software. Users may not want to delve into the details of some function you have written in order to be able to us it, and separating the corresponding code into a separate file is a hygienic way to handle this.\nThus if I make the file hello_world.py containing the function:\n\ndef hello():\n    print(\"Hello world!\")\n\nI can run this function by first importing the module:\n\nimport hello_world\nhello_world.hello()\n\nHello world!\n\n\nNotice that the function hello is accessed from the hello_world namespace. This is to avoid any confusion that may arise if more that one imported module has a function of the same name. If you are confident that’s not an issue and want more concise code you can do this:\n\nfrom hello_world import hello\nhello()\n\nHello world!\n\n\nor even:\n\nfrom hello_world import *\nhello()\n\nHello world!\n\n\nThe issue with the latter is that it may introduce a whole bunch of names that may interfere with things you already defined.\nA collection of modules in a folder is called a package. You can import a package in the same way and access all the modules using the same . notation i.e. package.module1, package.module2, etc..\nSince explicit namespaces are preferred to avoid ambiguity it’s common to introduce shorthand names for the package or module you are importing, hence the ubiquitous:\n\nimport numpy as np\nnp.arange(10)\n\narray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])\n\n\n(You can call it what you like, of course!)\nFor details about where the interpreter looks to find modules you try and import are in the documentation."
+  },
+  {
+    "objectID": "setup.html#finding-your-way",
+    "href": "setup.html#finding-your-way",
+    "title": "2  Getting Going",
+    "section": "2.1 Finding your way",
+    "text": "2.1 Finding your way\nEveryone finds their own workflow for coding, depending on their preferred language, editor, how they run their code, and so on. The aim of the sections below is to give a roundup of some popular tools in the Python ecosystem."
+  },
+  {
+    "objectID": "setup.html#codespaces",
+    "href": "setup.html#codespaces",
+    "title": "2  Getting Going",
+    "section": "2.9 Codespaces",
+    "text": "2.9 Codespaces\nNew from Github…"
+  },
+  {
+    "objectID": "setup.html#ipython",
+    "href": "setup.html#ipython",
+    "title": "2  Getting Going",
+    "section": "2.3 IPython",
+    "text": "2.3 IPython\nIf you ran the above command from within python you may have noticed that the nice colour scheme that you see above was absent. This is called syntax highlighting and provides a visual guide to the syntax of the language.\nIPython is an interactive shell that provides syntax highlighting and much more. If you have installed IPython (it comes with Anaconda) you can start it from the command line with ipython.\nAmong the most helpful features of IPython are:\n\nTab completion: hit tab to autocomplete. This is particularly useful for viewing all properties or methods of an object: \nTyping ?word or word? prints detailed information about an object (?? provides additional detail).\nCertain magic commands prefixed by % that provide certain additional functionality. For example, %timeit finds the executation time of a single line statement, which is useful when profiling the performance of code:\n\n\n%timeit L = [n ** 2 for n in range(1000)]\n\n242 µs ± 7.71 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)\n\n\n%timeit automatically runs several times to give some statistics on the execution time. For multiple lines you can use the %%timeit magic.\nYou can find much more exploring the documentation."
+  },
+  {
+    "objectID": "numbers.html",
+    "href": "numbers.html",
+    "title": "3  Floating point and all that",
+    "section": "",
+    "text": "Include RNGs here?"
+  },
+  {
+    "objectID": "numpy.html#plotting",
+    "href": "numpy.html#plotting",
+    "title": "4  Introduction to NumPy and friends",
+    "section": "4.1 Plotting",
+    "text": "4.1 Plotting\nWithout introducing numpy explicitly at this stage…\n\\(\\alpha = \\beta\\)"
+  },
+  {
+    "objectID": "numpy.html#dealing-with-data",
+    "href": "numpy.html#dealing-with-data",
+    "title": "4  Introduction to NumPy and friends",
+    "section": "4.2 Dealing with data",
+    "text": "4.2 Dealing with data\nSaving etc…."
+  }
+]

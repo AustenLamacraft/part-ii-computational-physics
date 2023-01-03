@@ -1,0 +1,23 @@
+{
+  "index.qmd": {
+    "index.html": "99ca7512"
+  },
+  "intro.qmd": {
+    "intro.html": "e8a20816"
+  },
+  "summary.qmd": {
+    "summary.html": "1918c73e"
+  },
+  "references.qmd": {
+    "references.html": "d33ca903"
+  },
+  "setup.qmd": {
+    "setup.html": "96537d71"
+  },
+  "numpy.qmd": {
+    "numpy.html": "2f9bff9f"
+  },
+  "numbers.qmd": {
+    "numbers.html": "39b8c808"
+  }
+}
