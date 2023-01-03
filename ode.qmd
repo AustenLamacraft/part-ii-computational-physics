@@ -1,0 +1,3 @@
+# Solving differential equations with SciPy
+
+SciPy is    

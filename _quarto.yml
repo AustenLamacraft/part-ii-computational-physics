@@ -10,8 +10,9 @@ book:
     - intro.qmd
     - setup.qmd
     - python.qmd
-    - numbers.qmd
     - numpy.qmd
+    - numbers.qmd
+    - ode.qmd
     - summary.qmd
     - references.qmd
 

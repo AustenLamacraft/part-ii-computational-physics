@@ -1,5 +1,10 @@
 # Introduction
 
-This is a book created from markdown and executable code.
 
-See @knuth84 for additional discussion of literate programming.
+Computation is important for experimental physicists for analysing data. For theoretical physics, computation is used to deal with the awkward fact that physical theories are _generally not tractable_. You can't solve Maxwell's equations, the Navier–Stokes equation, or Schrödinger's equation in any but the simplest situations. It's important to understand that this need to apply our mathematical descriptions of nature in more general settings was the principal driving force behind the invention of the computer.
+
+More than this,
+
+Church Turing hypothesis
+
+Turing's cathedral

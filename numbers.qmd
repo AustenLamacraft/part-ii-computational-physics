@@ -1,3 +1,53 @@
 # Floating point and all that
 
-Include RNGs here?
+
+Since physics is all about numbers we had better develop some understanding of how computers represent numbers, and the limitations of this representation. Hopefully this example is sufficiently motiviating:
+
+```{python}
+0.1  + 0.2 == 0.3
+```
+
+Ah...
+
+## Integers
+
+Let's begin with something simpler
+
+```{python}
+1 + 1 == 2
+```
+
+which is a bit more reassuring. Integers can be represented in binary
+
+```{python}
+3 == 0b11
+```
+
+or octal or hexadecimal (with a prefix `0o` or `0h`). You can get the binary string representing an integer using the `bin` function
+
+```{python}
+bin(-2)
+```
+
+Python allows for arbitrarily large integers, so there is no possibility of overflow or rounding error
+
+```{python}
+2**100
+```
+
+The only limitation is the memory required to store it. 
+
+Numpy integers are a different story 
+
+```{python}
+#| error: true
+import numpy as np
+np.int64(2**100)
+```
+
+Since NumPy is using C the types have to play nicely. The range of integers that can be represented with 32 bit `numpy.int32`s is $\approx\pm 2^{31} \approx \pm 2.1 × 10^9$ (one bit is for the sign) and 64 bit `numpy.int64`s is $\approx\pm 2^{63} \approx \pm 9.2 × 10^{18}$.
+
+
+## Floating point numbers
+
+The reason why $0.1 + 0.2 = 0.3$ in Python is that specifying a real number exactly would involve an infinite number of bits, so that any finite representation is necessarily approximate.
