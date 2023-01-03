@@ -1,0 +1,27 @@
+project:
+  type: book
+
+book:
+  title: "Part II Computational Physics"
+  author: "Austen Lamacraft"
+  date: "1/2/2023"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - setup.qmd
+    - python.qmd
+    - numbers.qmd
+    - numpy.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

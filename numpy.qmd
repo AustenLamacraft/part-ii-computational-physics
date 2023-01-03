@@ -1,0 +1,17 @@
+# Introduction to NumPy and friends
+
+NumPy is _the_ key building block of the Python scientific ecosystem
+
+Can base this on tutorial
+
+Ufuncs
+
+## Plotting
+
+
+
+Animation
+
+## Dealing with data
+
+Saving etc....
