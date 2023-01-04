@@ -25,5 +25,20 @@
   },
   "ode.qmd": {
     "ode.html": "8f42a69d"
+  },
+  "random.qmd": {
+    "random.html": "8d1bd42b"
+  },
+  "linear.qmd": {
+    "linear.html": "a6571640"
+  },
+  "dynamic.qmd": {
+    "dynamic.html": "024de489"
+  },
+  "complexity.qmd": {
+    "complexity.html": "9da31131"
+  },
+  "monte-carlo.qmd": {
+    "monte-carlo.html": "a76b5724"
   }
 }

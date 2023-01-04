@@ -101,7 +101,7 @@ Notice that slicing does not change the rank of the array
 my_array[1:, 1:].shape
 ```
 
-but integer indexing (which can be combined with slicing) does
+but integer indexing does
 
 ```{python}
 my_array[1:, 1].shape
@@ -195,6 +195,12 @@ After broadcasting, each array behaves as if it had shape equal to the elementwi
 4. In any dimension where one array had size 1 and the other array had size greater than 1, the first array behaves as if it were copied along that dimension.
 
 [The documentation](https://numpy.org/doc/stable/user/basics.broadcasting.html) has more detail.
+
+### Example: playing with images
+
+Nice example of a 2D array?
+
+TODO
 
 ## Plotting with Matplotlib
 

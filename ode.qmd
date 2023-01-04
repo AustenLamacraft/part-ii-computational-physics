@@ -1,3 +1,15 @@
 # Solving differential equations with SciPy
 
 SciPy is    
+
+Lorenz attractor following Trebst notebooks
+
+Chaos and discretization 
+
+https://stackoverflow.com/questions/60338471/lyapunov-spectrum-for-known-odes-python-3
+
+There is already some discussion in Part IB. There is an exercise based on planets
+
+Of practical value: Experimentally demonstrate order of integration
+
+Fundamental Anagram of Calculus

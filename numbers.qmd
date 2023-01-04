@@ -1,7 +1,7 @@
 # Floating point and all that
 
 
-Since physics is all about numbers we had better develop some understanding of how computers represent numbers, and the limitations of this representation. Hopefully this example is sufficiently motiviating:
+Since physics is all about numbers we had better develop some understanding of how computers represent them, and the limitations of this representation. Hopefully this example is sufficiently motivating:
 
 ```{python}
 0.1  + 0.2 == 0.3
@@ -45,9 +45,114 @@ import numpy as np
 np.int64(2**100)
 ```
 
-Since NumPy is using C the types have to play nicely. The range of integers that can be represented with 32 bit `numpy.int32`s is $\approx\pm 2^{31} \approx \pm 2.1 × 10^9$ (one bit is for the sign) and 64 bit `numpy.int64`s is $\approx\pm 2^{63} \approx \pm 9.2 × 10^{18}$.
+Since NumPy is using C the types have to play nicely. The range of integers that can be represented with 32 bit `numpy.int32`s is $\approx\pm 2^{31} \approx \pm 2.1 × 10^9$ (one bit is for the sign) and 64 bit `numpy.int64`s is $\approx\pm 2^{63} \approx \pm 9.2 × 10^{18}$. Apart from the risk of overflow when working NumPy's integers there are not other gotchas to worry about.
 
 
 ## Floating point numbers
 
-The reason why $0.1 + 0.2 = 0.3$ in Python is that specifying a real number exactly would involve an infinite number of bits, so that any finite representation is necessarily approximate.
+The reason why $0.1 + 0.2 \neq 0.3$ in Python is that specifying a real number exactly would involve an infinite number of bits, so that any finite representation is necessarily approximate.
+
+The representation computers use for the reals is called [floating point arithmetic](https://en.wikipedia.org/wiki/Floating-point_arithmetic). It is essentially a form of scientific notation, in which a [significand](https://en.wikipedia.org/wiki/Significand) (it contains the significant figures) is multiplied by an _exponent_. The name _floating point_ reflects the fact that the number of digits after the decimal point is not fixed (I'm using the base ten terms for convenience)
+
+This representation requires the choice of a base, and Python's floating point numbers use binary. Numbers with finite binary representations therefore behave nicely
+
+```{python}
+0.125 + 0.25 == 0.375
+```
+
+For decimal numbers to be represented exactly we'd have to use base ten. This can be achieved with the `decimal` module. Our $0.1+0.2$ example then works as expected
+
+```{python}
+from decimal import *
+Decimal('0.1') + Decimal('0.2')
+```
+
+Since there is nothing to single out the decimal representation in physics (as opposed to, say, finance) we won't have any need for it.
+
+A specification for floating point numbers must give
+
+1. A base (or _radix_) $b$
+2. A precision $p$, the number of digits in the significand $c$. Thus $0\leq c \leq b^{p}-1$.
+3. A range of exponents $q$ specifed by $\text{emin}$ and $\text{emax}$ with $\text{emin}\leq q+p-1 \leq \text{emax}$.
+
+Including one bit $s$ for the overall sign, a number then has the form $(-1)^s\times c \times b^q$. The smallest positive nonzero number that can be represented is therefore $b^{1 + \text{emin} - p}$ (corresponding to the smallest value of the exponent) and the largest is $b^{1 + \text{emax}} - 1$. 
+
+The above representation isn't unique: for some numbers you could make the significand smaller and the exponent bigger. A unique representation is fixed by choosing the exponent to be as small as possible.
+
+Representing numbers smaller than $b^{\text{emin}}$ involves a loss of precision, as the number of digits in the significand falls below $p$ and the exponent has taken its minimum value . These are called [subnormal numbers](https://en.wikipedia.org/wiki/Subnormal_number). For binary floats, if we stick with the normal numbers and a $p$-bit significand the leading bit will be 1 and so can be dropped from the representation, which then only requires $p-1$ bits.    
+ 
+The specification for the floating point numbers used by Python (and many other languages) is contained in the IEEE Standard for Floating Point Arithmetic [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754). The default Python `float` uses the 64 bit _binary64_ representation (often called _double precision_). Here's how those 64 bits are used
+
+- $p=53$ for the significand, encoded in 52 bits
+- 11 bits for the exponent
+- 1 bit for the sign
+
+Another common representation is the 32 bit _binary32_ (_single precision_) with 
+
+- $p=24$ for the significand, encoded in 23 bits
+- 8 bits for the exponent
+- 1 bit for the sign
+
+### Floating point numbers in NumPy
+
+If this all a bit theoretical you can just get NumPy's [finfo](https://numpy.org/doc/stable/reference/generated/numpy.finfo.html) function to tell all about the [machine precision](https://en.wikipedia.org/wiki/Machine_epsilon)
+
+```{python}
+np.finfo(np.float64)
+```
+
+Note that $2^{-52}=2.22\times 10^{-16}$ which accounts for the value $10^{-15}$ of the resolution. This can be checked by finding when a number is close enough to treated as 1.0.
+
+```{python}
+x=1.0
+while 1.0 + x != 1.0:
+    x /= 1.01 
+print(x)
+```
+
+For binary32 we have a resolution of $10^{-6}$.
+
+```{python}
+np.finfo(np.float32)
+```
+
+One lesson from this is that taking small differences between numbers is a potential source of rounding error, as in this somewhat mean exam question
+
+![](assets/ia-question.png)
+
+::: {.callout-tip collapse="true"}
+## Solution
+Solution: $x-x'=x(1-\gamma^{-1})\sim x\beta^2/2\sim 4.2\text{mm}$. 
+
+```{python}
+import numpy as np
+from scipy.constants import c
+beta = 384400e3 / (76 * 3600) / c
+gamma = 1/np.sqrt(1 - beta**2)
+print(1 - np.float32(1/gamma), 1 - np.float64(1/gamma))
+```
+:::
+
+### The dreaded NaN
+
+As well as a floating point system, IEEE 754 defines Infinity and NaN (Not a Number)
+
+```{python}
+np.array([1, -1, 0]) / 0
+```
+
+They behave as you might guess
+
+```{python}
+2 * np.inf, 0 * np.inf, np.inf > np.nan
+```
+
+NaNs propagate through subsequent operations
+
+```{python}
+2 * np.nan
+```
+
+which means that if you get a NaN somewhere in your calculation, you'll probably end up seeing it somewhere in the output (which is the idea). 
+
+  

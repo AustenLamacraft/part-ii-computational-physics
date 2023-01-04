@@ -1,0 +1,5 @@
+# Random algorithms
+
+Simplest examples...
+
+How to estimate errors 

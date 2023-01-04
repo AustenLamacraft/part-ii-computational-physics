@@ -194,7 +194,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./monte-carlo.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random algorithms</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complexity.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Computational complexity</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linear.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear algebra</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Dynamic Programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -212,7 +232,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#integers" id="toc-integers" class="nav-link active" data-scroll-target="#integers"><span class="toc-section-number">5.1</span>  Integers</a></li>
-  <li><a href="#floating-point-numbers" id="toc-floating-point-numbers" class="nav-link" data-scroll-target="#floating-point-numbers"><span class="toc-section-number">5.2</span>  Floating point numbers</a></li>
+  <li><a href="#floating-point-numbers" id="toc-floating-point-numbers" class="nav-link" data-scroll-target="#floating-point-numbers"><span class="toc-section-number">5.2</span>  Floating point numbers</a>
+  <ul class="collapse">
+  <li><a href="#floating-point-numbers-in-numpy" id="toc-floating-point-numbers-in-numpy" class="nav-link" data-scroll-target="#floating-point-numbers-in-numpy"><span class="toc-section-number">5.2.1</span>  Floating point numbers in NumPy</a></li>
+  <li><a href="#the-dreaded-nan" id="toc-the-dreaded-nan" class="nav-link" data-scroll-target="#the-dreaded-nan"><span class="toc-section-number">5.2.2</span>  The dreaded NaN</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -236,10 +260,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Since physics is all about numbers we had better develop some understanding of how computers represent numbers, and the limitations of this representation. Hopefully this example is sufficiently motiviating:</p>
+<p>Since physics is all about numbers we had better develop some understanding of how computers represent them, and the limitations of this representation. Hopefully this example is sufficiently motivating:</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1</span>  <span class="op">+</span> <span class="fl">0.2</span> <span class="op">==</span> <span class="fl">0.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="129">
 <pre><code>False</code></pre>
 </div>
 </div>
@@ -249,28 +273,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s begin with something simpler</p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">==</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="130">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p>which is a bit more reassuring. Integers can be represented in binary</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">==</span> <span class="bn">0b11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="131">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p>or octal or hexadecimal (with a prefix <code>0o</code> or <code>0h</code>). You can get the binary string representing an integer using the <code>bin</code> function</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">bin</span>(<span class="op">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="132">
 <pre><code>'-0b10'</code></pre>
 </div>
 </div>
 <p>Python allows for arbitrarily large integers, so there is no possibility of overflow or rounding error</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="op">**</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="133">
 <pre><code>1267650600228229401496703205376</code></pre>
 </div>
 </div>
@@ -283,13 +307,141 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>OverflowError: Python int too large to convert to C long</code></pre>
 </div>
 </div>
-<p>Since NumPy is using C the types have to play nicely. The range of integers that can be represented with 32 bit <code>numpy.int32</code>s is <span class="math inline">\(\approx\pm 2^{31} \approx \pm 2.1 × 10^9\)</span> (one bit is for the sign) and 64 bit <code>numpy.int64</code>s is <span class="math inline">\(\approx\pm 2^{63} \approx \pm 9.2 × 10^{18}\)</span>.</p>
+<p>Since NumPy is using C the types have to play nicely. The range of integers that can be represented with 32 bit <code>numpy.int32</code>s is <span class="math inline">\(\approx\pm 2^{31} \approx \pm 2.1 × 10^9\)</span> (one bit is for the sign) and 64 bit <code>numpy.int64</code>s is <span class="math inline">\(\approx\pm 2^{63} \approx \pm 9.2 × 10^{18}\)</span>. Apart from the risk of overflow when working NumPy’s integers there are not other gotchas to worry about.</p>
 </section>
 <section id="floating-point-numbers" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="floating-point-numbers"><span class="header-section-number">5.2</span> Floating point numbers</h2>
-<p>The reason why <span class="math inline">\(0.1 + 0.2 = 0.3\)</span> in Python is that specifying a real number exactly would involve an infinite number of bits, so that any finite representation is necessarily approximate.</p>
+<p>The reason why <span class="math inline">\(0.1 + 0.2 \neq 0.3\)</span> in Python is that specifying a real number exactly would involve an infinite number of bits, so that any finite representation is necessarily approximate.</p>
+<p>The representation computers use for the reals is called <a href="https://en.wikipedia.org/wiki/Floating-point_arithmetic">floating point arithmetic</a>. It is essentially a form of scientific notation, in which a <a href="https://en.wikipedia.org/wiki/Significand">significand</a> (it contains the significant figures) is multiplied by an <em>exponent</em>. The name <em>floating point</em> reflects the fact that the number of digits after the decimal point is not fixed (I’m using the base ten terms for convenience)</p>
+<p>This representation requires the choice of a base, and Python’s floating point numbers use binary. Numbers with finite binary representations therefore behave nicely</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.125</span> <span class="op">+</span> <span class="fl">0.25</span> <span class="op">==</span> <span class="fl">0.375</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="135">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>For decimal numbers to be represented exactly we’d have to use base ten. This can be achieved with the <code>decimal</code> module. Our <span class="math inline">\(0.1+0.2\)</span> example then works as expected</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> decimal <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>Decimal(<span class="st">'0.1'</span>) <span class="op">+</span> Decimal(<span class="st">'0.2'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="136">
+<pre><code>Decimal('0.3')</code></pre>
+</div>
+</div>
+<p>Since there is nothing to single out the decimal representation in physics (as opposed to, say, finance) we won’t have any need for it.</p>
+<p>A specification for floating point numbers must give</p>
+<ol type="1">
+<li>A base (or <em>radix</em>) <span class="math inline">\(b\)</span></li>
+<li>A precision <span class="math inline">\(p\)</span>, the number of digits in the significand <span class="math inline">\(c\)</span>. Thus <span class="math inline">\(0\leq c \leq b^{p}-1\)</span>.</li>
+<li>A range of exponents <span class="math inline">\(q\)</span> specifed by <span class="math inline">\(\text{emin}\)</span> and <span class="math inline">\(\text{emax}\)</span> with <span class="math inline">\(\text{emin}\leq q+p-1 \leq \text{emax}\)</span>.</li>
+</ol>
+<p>Including one bit <span class="math inline">\(s\)</span> for the overall sign, a number then has the form <span class="math inline">\((-1)^s\times c \times b^q\)</span>. The smallest positive nonzero number that can be represented is therefore <span class="math inline">\(b^{1 + \text{emin} - p}\)</span> (corresponding to the smallest value of the exponent) and the largest is <span class="math inline">\(b^{1 + \text{emax}} - 1\)</span>.</p>
+<p>The above representation isn’t unique: for some numbers you could make the significand smaller and the exponent bigger. A unique representation is fixed by choosing the exponent to be as small as possible.</p>
+<p>Representing numbers smaller than <span class="math inline">\(b^{\text{emin}}\)</span> involves a loss of precision, as the number of digits in the significand falls below <span class="math inline">\(p\)</span> and the exponent has taken its minimum value . These are called <a href="https://en.wikipedia.org/wiki/Subnormal_number">subnormal numbers</a>. For binary floats, if we stick with the normal numbers and a <span class="math inline">\(p\)</span>-bit significand the leading bit will be 1 and so can be dropped from the representation, which then only requires <span class="math inline">\(p-1\)</span> bits.</p>
+<p>The specification for the floating point numbers used by Python (and many other languages) is contained in the IEEE Standard for Floating Point Arithmetic <a href="https://en.wikipedia.org/wiki/IEEE_754">IEEE 754</a>. The default Python <code>float</code> uses the 64 bit <em>binary64</em> representation (often called <em>double precision</em>). Here’s how those 64 bits are used</p>
+<ul>
+<li><span class="math inline">\(p=53\)</span> for the significand, encoded in 52 bits</li>
+<li>11 bits for the exponent</li>
+<li>1 bit for the sign</li>
+</ul>
+<p>Another common representation is the 32 bit <em>binary32</em> (<em>single precision</em>) with</p>
+<ul>
+<li><span class="math inline">\(p=24\)</span> for the significand, encoded in 23 bits</li>
+<li>8 bits for the exponent</li>
+<li>1 bit for the sign</li>
+</ul>
+<section id="floating-point-numbers-in-numpy" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="floating-point-numbers-in-numpy"><span class="header-section-number">5.2.1</span> Floating point numbers in NumPy</h3>
+<p>If this all a bit theoretical you can just get NumPy’s <a href="https://numpy.org/doc/stable/reference/generated/numpy.finfo.html">finfo</a> function to tell all about the <a href="https://en.wikipedia.org/wiki/Machine_epsilon">machine precision</a></p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>np.finfo(np.float64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="137">
+<pre><code>finfo(resolution=1e-15, min=-1.7976931348623157e+308, max=1.7976931348623157e+308, dtype=float64)</code></pre>
+</div>
+</div>
+<p>Note that <span class="math inline">\(2^{-52}=2.22\times 10^{-16}\)</span> which accounts for the value <span class="math inline">\(10^{-15}\)</span> of the resolution. This can be checked by finding when a number is close enough to treated as 1.0.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="fl">1.0</span> <span class="op">+</span> x <span class="op">!=</span> <span class="fl">1.0</span>:</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">/=</span> <span class="fl">1.01</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.099427563084686e-16</code></pre>
+</div>
+</div>
+<p>For binary32 we have a resolution of <span class="math inline">\(10^{-6}\)</span>.</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>np.finfo(np.float32)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="139">
+<pre><code>finfo(resolution=1e-06, min=-3.4028235e+38, max=3.4028235e+38, dtype=float32)</code></pre>
+</div>
+</div>
+<p>One lesson from this is that taking small differences between numbers is a potential source of rounding error, as in this somewhat mean exam question</p>
+<p><img src="assets/ia-question.png" class="img-fluid"></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Solution: <span class="math inline">\(x-x'=x(1-\gamma^{-1})\sim x\beta^2/2\sim 4.2\text{mm}\)</span>.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.constants <span class="im">import</span> c</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">384400e3</span> <span class="op">/</span> (<span class="dv">76</span> <span class="op">*</span> <span class="dv">3600</span>) <span class="op">/</span> c</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">1</span> <span class="op">-</span> beta<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">-</span> np.float32(<span class="dv">1</span><span class="op">/</span>gamma), <span class="dv">1</span> <span class="op">-</span> np.float64(<span class="dv">1</span><span class="op">/</span>gamma))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.0 1.0981660025777273e-11</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-dreaded-nan" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="the-dreaded-nan"><span class="header-section-number">5.2.2</span> The dreaded NaN</h3>
+<p>As well as a floating point system, IEEE 754 defines Infinity and NaN (Not a Number)</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>np.array([<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]) <span class="op">/</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/xs/y8sn45v943s2_62flnxw0p940000gn/T/ipykernel_30532/2604490398.py:1: RuntimeWarning:
+
+divide by zero encountered in true_divide
+
+/var/folders/xs/y8sn45v943s2_62flnxw0p940000gn/T/ipykernel_30532/2604490398.py:1: RuntimeWarning:
+
+invalid value encountered in true_divide
+</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="141">
+<pre><code>array([ inf, -inf,  nan])</code></pre>
+</div>
+</div>
+<p>They behave as you might guess</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">*</span> np.inf, <span class="dv">0</span> <span class="op">*</span> np.inf, np.inf <span class="op">&gt;</span> np.nan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="142">
+<pre><code>(inf, nan, False)</code></pre>
+</div>
+</div>
+<p>NaNs propagate through subsequent operations</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">*</span> np.nan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="143">
+<pre><code>nan</code></pre>
+</div>
+</div>
+<p>which means that if you get a NaN somewhere in your calculation, you’ll probably end up seeing it somewhere in the output (which is the idea).</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

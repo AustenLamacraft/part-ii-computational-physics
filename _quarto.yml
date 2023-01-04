@@ -13,6 +13,10 @@ book:
     - numpy.qmd
     - numbers.qmd
     - ode.qmd
+    - monte-carlo.qmd
+    - complexity.qmd
+    - linear.qmd
+    - dynamic.qmd
     - summary.qmd
     - references.qmd
 

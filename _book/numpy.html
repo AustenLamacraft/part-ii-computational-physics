@@ -193,7 +193,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./random.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Random algorithms</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complexity.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Computational complexity</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linear.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear algebra</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Dynamic Programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -215,6 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#mathematical-operations-with-arrays" id="toc-mathematical-operations-with-arrays" class="nav-link" data-scroll-target="#mathematical-operations-with-arrays"><span class="toc-section-number">4.3</span>  Mathematical operations with arrays</a>
   <ul class="collapse">
   <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting"><span class="toc-section-number">4.3.1</span>  Broadcasting</a></li>
+  <li><a href="#example-playing-with-images" id="toc-example-playing-with-images" class="nav-link" data-scroll-target="#example-playing-with-images"><span class="toc-section-number">4.3.2</span>  Example: playing with images</a></li>
   </ul></li>
   <li><a href="#plotting-with-matplotlib" id="toc-plotting-with-matplotlib" class="nav-link" data-scroll-target="#plotting-with-matplotlib"><span class="toc-section-number">4.4</span>  Plotting with Matplotlib</a></li>
   <li><a href="#saving-and-loading-data" id="toc-saving-and-loading-data" class="nav-link" data-scroll-target="#saving-and-loading-data"><span class="toc-section-number">4.5</span>  Saving and loading data</a></li>
@@ -402,7 +423,7 @@ Dunder methods
 <pre><code>(3, 2)</code></pre>
 </div>
 </div>
-<p>but integer indexing (which can be combined with slicing) does</p>
+<p>but integer indexing does</p>
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>my_array[<span class="dv">1</span>:, <span class="dv">1</span>].shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
@@ -429,8 +450,8 @@ Dunder methods
  [1. 1.]]
 [[5 5]
  [5 5]]
-[[0.80272808 0.64242486]
- [0.85253662 0.9894535 ]]</code></pre>
+[[0.31490012 0.95660293]
+ [0.98122772 0.72159096]]</code></pre>
 </div>
 </div>
 <p>A NumPy array has a <code>dtype</code> property that gives the datatype. If the array was created from data, this will be inferred</p>
@@ -512,6 +533,11 @@ Dunder methods
 <li><p>In any dimension where one array had size 1 and the other array had size greater than 1, the first array behaves as if it were copied along that dimension.</p></li>
 </ol>
 <p><a href="https://numpy.org/doc/stable/user/basics.broadcasting.html">The documentation</a> has more detail.</p>
+</section>
+<section id="example-playing-with-images" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="example-playing-with-images"><span class="header-section-number">4.3.2</span> Example: playing with images</h3>
+<p>Nice example of a 2D array?</p>
+<p>TODO</p>
 </section>
 </section>
 <section id="plotting-with-matplotlib" class="level2" data-number="4.4">

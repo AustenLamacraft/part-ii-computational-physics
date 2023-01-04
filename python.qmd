@@ -1,5 +1,7 @@
 # The Python Language
 
+Extensive intro in Part IB
+
 Objects
 
 two language problem
@@ -7,3 +9,7 @@ two language problem
 Gotchas
 
 Mutable and immutable
+
+Python pass by reference
+
+https://docs.python-guide.org/writing/gotchas/

@@ -1,5 +1,47 @@
 # Preface {.unnumbered}
 
-There are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge
+There are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
+
+Topics
+
+1. Setup. Running Python. Notebooks. Language overview
+2. Representation of numbers and floating point
+3. Numpy. Use for simple numerics. Plotting. Dealing with data
+4. Numerical algos. SciPy
+5. Other libraries. Pandas and scikit-learn. Kaggle
+6. Algorithms and complexity. Simple Examples. FFT? Importance of...(see https://ieeexplore.ieee.org/document/814652). Matrix multiplication. Strassen and Alpha Tensor. Nice discussion in Nature of Computation
+7. Types of algorithm e.g. divide and conquer, dynamic programming (at level of grokking algos book). Recursion. 
+8. Random algorithms e.g. Monte Carlo. Inference.
+9. Fun. Machine learning. Diffusion models
+10. Software engineering principles. Version control. Tests
+
+Trebst's applications:
+ODE, Monte Carlo simulation, data analysis, QM scattering, Linear algebra, Neural Nets
+
+Refer to French book for more examples.
+
+PCA as application of linear algebra and quantum mechanics
+
+Random matrix theory
+Linear regression
+
+Garth Wells has nice material about algos and complexity
+
+Hashing
+
+
+Numpy. Basics of ufuncs and vectorization 
+2. Loading and saving data
+3. Data types. Floating point. Machine precision
+4. Implementing algos using vectorization (ODEs)
+5. Numerical techniques: ODS, optimization
+6. Computational complexity
+	1. Complexity of simple algos. Division algorithm as binary search (Ryan O'Donnell tweet)
+	2. Euler algorithm
+	3. Complexity of linear algebra operations. Matrix-matrix and matrix-vector. Solving equations can be easier if matrices have structure see e.g. https://martin-thoma.com/solving-equations-of-upper-triangular-matrices/. This is forward   / backward substitution. 
+	4. Strategies: divide and conquer (examples: exponentiation, Strassen, FFT)
+	5. Monte Carlo and probabilistic methods
+	6. Dynamic programming
+7. Version control. GitHub. Pull requests. Code review. Look up some code in `scipy`
