@@ -1,5 +1,19 @@
-# Random algorithms
+# Monte Carlo methods
 
 Simplest examples...
 
 How to estimate errors 
+
+
+
+Some curve fitting here to extract something?
+
+Google pagerank
+
+MCMC in Bayesian inference
+
+Relation to Ising models. Community detection. Why not?
+
+## Random number generators
+
+Does recompile go slow? No it's fast

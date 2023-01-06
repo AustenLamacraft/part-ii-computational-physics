@@ -4,7 +4,7 @@ project:
 book:
   title: "Part II Computational Physics"
   author: "Austen Lamacraft"
-  date: "1/2/2023"
+  date: "1/17/2023"
   chapters:
     - index.qmd
     - intro.qmd
@@ -16,6 +16,7 @@ book:
     - monte-carlo.qmd
     - complexity.qmd
     - linear.qmd
+    - divide.qmd
     - dynamic.qmd
     - summary.qmd
     - references.qmd

@@ -1,5 +1,6 @@
 # Introduction
 
+Not a course on numerical analysis but computational physics
 
 Computation is important for experimental physicists for analysing data. For theoretical physics, computation is used to deal with the awkward fact that physical theories are _generally not tractable_. You can't solve Maxwell's equations, the Navier–Stokes equation, or Schrödinger's equation in any but the simplest situations. 
 

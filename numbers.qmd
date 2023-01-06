@@ -93,7 +93,7 @@ Another common representation is the 32 bit _binary32_ (_single precision_) with
 - 8 bits for the exponent
 - 1 bit for the sign
 
-### Floating point numbers in NumPy
+### Floating point numbers in NumPy {#sec-fp-numpy}
 
 If this all a bit theoretical you can just get NumPy's [finfo](https://numpy.org/doc/stable/reference/generated/numpy.finfo.html) function to tell all about the [machine precision](https://en.wikipedia.org/wiki/Machine_epsilon)
 

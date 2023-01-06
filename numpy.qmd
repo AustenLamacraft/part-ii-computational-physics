@@ -1,4 +1,4 @@
-# Introduction to NumPy and friends
+# NumPy and friends
 
 The [NumPy](https://numpy.org/) package is _the_ key building block of the Python scientific ecosystem.
 
@@ -107,6 +107,8 @@ but integer indexing does
 my_array[1:, 1].shape
 ```
 
+
+
 NumPy has lots of methods to create arrays with a given shape and populated in different ways:
 
 ```{python}
@@ -122,6 +124,14 @@ print(c)
 d = np.random.random((2,2)) # random numbers uniformly in [0.0, 1.0)
 print(d)
 ```
+
+There are also lots of methods to change the shape of arrays, for example
+
+- [numpy.reshape](https://numpy.org/doc/stable/reference/generated/numpy.reshape.html#numpy-reshape) to change the shape of an array.
+
+- [numpy.expand_dims](https://numpy.org/doc/stable/reference/generated/numpy.expand_dims.html) to insert new axes of length one.
+
+- [numpy.squeeze](https://numpy.org/doc/stable/reference/generated/numpy.squeeze.html#numpy.squeeze) (the opposite) to remove new axes of length one.
 
 A NumPy array has a `dtype` property that gives the datatype. If the array was created from data, this will be inferred
 

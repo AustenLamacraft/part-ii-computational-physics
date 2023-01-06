@@ -1,6 +1,8 @@
 # Linear algebra
 
-SVD and quantum mechanics
+Krylov subspaces
+
+SVD and quantum mechanics. Quantum entanglement.
 
 Image compression using SVD 
 

@@ -2,6 +2,8 @@
 
 There are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge.
 
+Thanks to David Buscher for the earlier version
+
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
 
 Topics
@@ -16,6 +18,7 @@ Topics
 8. Random algorithms e.g. Monte Carlo. Inference.
 9. Fun. Machine learning. Diffusion models
 10. Software engineering principles. Version control. Tests
+11. Acceleration. Numba, CuPy, etc.
 
 Trebst's applications:
 ODE, Monte Carlo simulation, data analysis, QM scattering, Linear algebra, Neural Nets
@@ -26,6 +29,8 @@ PCA as application of linear algebra and quantum mechanics
 
 Random matrix theory
 Linear regression
+
+Linear programming.
 
 Garth Wells has nice material about algos and complexity
 
@@ -45,3 +50,16 @@ Numpy. Basics of ufuncs and vectorization
 	5. Monte Carlo and probabilistic methods
 	6. Dynamic programming
 7. Version control. GitHub. Pull requests. Code review. Look up some code in `scipy`
+
+A note about the format of the notes. Each chapter should be thought of as a notebook, so you'll only see `import numpy as np` once in each chapter, for example. 
+
+## Schedule
+
+The course of eight Lectures will take place at 10:00 on Mondays and Fridays in the Pippard Lecture Theatre.
+
+- First lecture: Monday 23th January
+- Last lecture: Friday 17th February
+- First assignment: Friday 17th February – Friday 24th February
+- Second assignment: Friday 24th February – Friday 3rd March
+- Third assignment: Friday 3rd March – Friday 10th March
+- Fourth assignment: Friday 10th March – Friday 17th March (last day of full Lent term)
