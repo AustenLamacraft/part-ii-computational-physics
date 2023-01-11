@@ -20,6 +20,88 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -61,6 +143,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -172,7 +255,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#random-number-generators" id="toc-random-number-generators" class="nav-link active" data-scroll-target="#random-number-generators"><span class="toc-section-number">7.1</span>  Random number generators</a></li>
+  <li><a href="#sampling-from-a-distribution" id="toc-sampling-from-a-distribution" class="nav-link active" data-scroll-target="#sampling-from-a-distribution"><span class="toc-section-number">7.1</span>  Sampling from a distribution</a></li>
+  <li><a href="#the-monte-carlo-method" id="toc-the-monte-carlo-method" class="nav-link" data-scroll-target="#the-monte-carlo-method"><span class="toc-section-number">7.2</span>  The Monte Carlo method</a>
+  <ul class="collapse">
+  <li><a href="#monte-carlo-integration" id="toc-monte-carlo-integration" class="nav-link" data-scroll-target="#monte-carlo-integration"><span class="toc-section-number">7.2.1</span>  Monte Carlo integration</a></li>
+  <li><a href="#sec-mcmc" id="toc-sec-mcmc" class="nav-link" data-scroll-target="#sec-mcmc"><span class="toc-section-number">7.2.2</span>  Markov chain Monte Carlo</a></li>
+  <li><a href="#relaxation-to-equilibrium" id="toc-relaxation-to-equilibrium" class="nav-link" data-scroll-target="#relaxation-to-equilibrium"><span class="toc-section-number">7.2.3</span>  Relaxation to equilibrium</a></li>
+  <li><a href="#importance-sampling" id="toc-importance-sampling" class="nav-link" data-scroll-target="#importance-sampling"><span class="toc-section-number">7.2.4</span>  Importance sampling</a></li>
+  </ul></li>
+  <li><a href="#sec-statmech" id="toc-sec-statmech" class="nav-link" data-scroll-target="#sec-statmech"><span class="toc-section-number">7.3</span>  Statistical mechanics</a>
+  <ul class="collapse">
+  <li><a href="#mcmc-updates-for-the-ising-model" id="toc-mcmc-updates-for-the-ising-model" class="nav-link" data-scroll-target="#mcmc-updates-for-the-ising-model"><span class="toc-section-number">7.3.1</span>  MCMC updates for the Ising model</a></li>
+  <li><a href="#summary-of-issues" id="toc-summary-of-issues" class="nav-link" data-scroll-target="#summary-of-issues"><span class="toc-section-number">7.3.2</span>  Summary of issues</a></li>
+  </ul></li>
+  <li><a href="#sec-rng" id="toc-sec-rng" class="nav-link" data-scroll-target="#sec-rng"><span class="toc-section-number">7.4</span>  Random number generators</a></li>
   </ul>
 </nav>
     </div>
@@ -196,17 +292,313 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Simplest examples…</p>
-<p>How to estimate errors</p>
-<p>Some curve fitting here to extract something?</p>
-<p>Google pagerank</p>
+<p>Many physical phenomena, notably those falling within the domains of statistical mechanics and quantum theory, depend in an essential way on <em>randomness</em>. The simulation of these phenomena therefore requires algorithms that incorporate random (or pseudo-random) elements in the most efficient way.</p>
+<section id="sampling-from-a-distribution" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="sampling-from-a-distribution"><span class="header-section-number">7.1</span> Sampling from a distribution</h2>
+<p>Let’s suppose that we have a source of samples of a real valued random variable <span class="math inline">\(X\)</span> that follows a particular probability density function <span class="math inline">\(p_X\)</span> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (more about where they might come from in <a href="#sec-rng"><span>Section&nbsp;7.4</span></a>). This means that the probability of drawing a sample in the region <span class="math inline">\([x, x+dx]\)</span> is <span class="math inline">\(p_X(x)dx\)</span>. If we now map the samples using a function <span class="math inline">\(f\)</span>, what is the probability density <span class="math inline">\(p_Y\)</span> of <span class="math inline">\(y=f(x)\)</span>? The new probability density is defined in just the same way: the probability of <span class="math inline">\(y\)</span> lying in the region <span class="math inline">\([y, y+dy]\)</span> is <span class="math inline">\(p_Y(y)dy\)</span>. Since <span class="math inline">\(x\)</span> is being mapped deterministically to <span class="math inline">\(y\)</span> these two probabilities are therefore the same</p>
+<p><span class="math display">\[
+p_X(x)dx = p_Y(y)dy
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+p_Y(y)=p_X(x)\Bigg\lvert \frac{dx}{dy}\Bigg\rvert= \frac{p_X(x)}{|f'(x)|},\qquad x=f^{-1}(y)
+\]</span></p>
+<p>This formula shows that we can create samples from an arbitrary probability distribution by choosing an invertible map <span class="math inline">\(f\)</span> appropriately. If <span class="math inline">\(p_X\)</span> is a <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">standard uniform distribution</a> on <span class="math inline">\([0,1]\)</span> then <span class="math inline">\(f(x)\)</span> is the inverse of the cummulative probability distribution of <span class="math inline">\(Y\)</span> i.e.</p>
+<p><span class="math display">\[
+f^{-1}(y) = \int^y_{-\infty} p_Y(y')dy'
+\]</span></p>
+<p>The same approach works in higher dimensions: <span class="math inline">\(\big\lvert \frac{dx}{dy}\big\rvert\)</span> is replaced by the inverse of the Jacobian determinant.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box–Muller transform</a> is one example of this idea. Take two independent samples from a standard uniform distribution <span class="math inline">\(u_{1,2}\)</span> and form</p>
+<p><span class="math display">\[
+\begin{align}
+x &amp;= \sqrt{-2\log u_1}\cos(2\pi u_2)\\
+y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
+\end{align}
+\]</span></p>
+<p><span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are independent samples from a <a href="https://en.wikipedia.org/wiki/Standard_normal_distribution">standard normal distribution</a>.</p>
+<p>Various functions are available in the <a href="https://numpy.org/doc/stable/reference/random/index.html#module-numpy.random"><code>numpy.random</code></a> module to generate random arrays drawn from a variety of distributions. Box–Muller has now been retired in favour of the <a href="https://en.wikipedia.org/wiki/Ziggurat_algorithm">Ziggurat algorithm</a>.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy.random <span class="im">as</span> random</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mu, sigma <span class="op">=</span> <span class="dv">0</span>, <span class="fl">0.1</span> <span class="co"># mean and standard deviation</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> random.normal(mu, sigma, size<span class="op">=</span><span class="dv">10000</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>count, bins, ignored <span class="op">=</span> plt.hist(s, <span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.plot(bins, <span class="dv">1</span><span class="op">/</span>(sigma <span class="op">*</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> np.pi)) <span class="op">*</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>               np.exp( <span class="op">-</span> (bins <span class="op">-</span> mu)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span>) ),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>         linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Value"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="monte-carlo_files/figure-html/cell-2-output-1.png" width="589" height="422"></p>
+</div>
+</div>
+<p>For complex multivariate (i.e.&nbsp;high dimensional) distributions there is no general recipe to construct an appropriate <span class="math inline">\(f\)</span>. One very recent application of these ideas is in machine learning models called <a href="https://arxiv.org/abs/1908.09257">normalizing flows</a> that use a mapping <span class="math inline">\(f\)</span> parameterized by a neural network. The workhorse for sampling from complicated distributions is Markov chain Monte Carlo, as we discuss in <a href="#sec-mcmc"><span>Section&nbsp;7.2.2</span></a>.</p>
+</section>
+<section id="the-monte-carlo-method" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="the-monte-carlo-method"><span class="header-section-number">7.2</span> The Monte Carlo method</h2>
+<p><em>Monte Carlo</em> is the general prefix applied to variety of numerical methods that use randomness in some way. Two of the main classes of problem encountered in physics that come under this heading are:</p>
+<ol type="1">
+<li><p>Interpret a numerical evaluation as an expectation value of some random variable and use sampling to estimate it. <a href="https://en.wikipedia.org/wiki/Monte_Carlo_integration">Monte Carlo integration</a> is an example of this idea.</p></li>
+<li><p>Sampling from a complex probability distribution (which may include taking expectation values). Example: <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov chain Monte Carlo</a>.</p></li>
+</ol>
+<section id="monte-carlo-integration" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="monte-carlo-integration"><span class="header-section-number">7.2.1</span> Monte Carlo integration</h3>
+<p>The technique is exemplified by the following fairly dumb way of estimating <span class="math inline">\(\pi\)</span></p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>max_samples <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>inside <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> []</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sample <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, max_samples <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> y <span class="op">**</span> <span class="dv">2</span> <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        inside <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    areas.append(<span class="dv">4</span> <span class="op">*</span> inside <span class="op">/</span> sample)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, max_samples <span class="op">+</span> <span class="dv">1</span>), areas)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, max_samples <span class="op">+</span> <span class="dv">1</span>), np.pi <span class="op">*</span> np.ones(max_samples), linestyle<span class="op">=</span><span class="st">'dashed'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="monte-carlo_files/figure-html/cell-3-output-1.png" width="571" height="404"></p>
+</div>
+</div>
+<p>In terms of integration, you can think of this as a way to compute the integral of a function which is one inside the unit disc, and zero outside it.</p>
+<p>Although it’s a silly method, this does illustrate one important feature of Monte Carlo methods in general: that the relative error with <span class="math inline">\(N\)</span> samples is typically <span class="math inline">\(\propto N^{-1/2}\)</span> (thus at the 1% level for <span class="math inline">\(10^4\)</span> samples) because the variance of a sum of <span class="math inline">\(N\)</span> <a href="https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables">iid</a> variables is <span class="math inline">\(\propto N^{1/2}\)</span>.</p>
+<p>Monte Carlo integration comes into its own for high dimensional problems. For low dimensional integrals the quadrature methods in <a href="https://docs.scipy.org/doc/scipy/tutorial/integrate.html"><code>scipy.integrate</code></a> are preferable.</p>
+</section>
+<section id="sec-mcmc" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="sec-mcmc"><span class="header-section-number">7.2.2</span> Markov chain Monte Carlo</h3>
+<p>Suppose you want to generate configurations at random (i.e.&nbsp;with a uniform distribution) from a “gas” of hard disks <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/hard-spheres.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Coins in a shoe box (gas of hard disks). From <span class="citation" data-cites="krauth1998introduction">Krauth (<a href="references.html#ref-krauth1998introduction" role="doc-biblioref">1998</a>)</span></figcaption><p></p>
+</figure>
+</div>
+<p>It’s harder than it looks! The first guess you might have is to start adding coins at random, and if you get an overlap, try again until you don’t. Obviously this will become inefficient as the box fills up, and most attempts fail. <em>Worse, it doesn’t in fact yield a uniform distribution!</em></p>
+<p>TODO Why not? See <span class="citation" data-cites="widom1966random">Widom (<a href="references.html#ref-widom1966random" role="doc-biblioref">1966</a>)</span> for an explanation</p>
+<p>Here’s an approach that works:</p>
+<div id="exm-metropolis" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7.1 (Metropolis algorithm for hard disks) </strong></span>&nbsp;</p>
+<ol type="1">
+<li>Fix the number of disks and an initial configuration (some regular lattice configuration, say).</li>
+<li>Pick a disk at random and attempt (or <em>propose</em>) to move it by a small random amount (i.e.&nbsp;random direction; random small magnitude).</li>
+<li>If this results in the moved disk intersecting another, <em>reject</em> the move, leaving the disk where it is. Otherwise, <em>accept</em> the move.</li>
+<li>Repeat 2. and 3. many times.</li>
+</ol>
+</div>
+<p><img src="assets/metropolis.png" class="img-fluid" alt="Accepted and rejected moves for hard disks. From Kapfer and Krauth (2013)">.</p>
+<p>TODO js demo</p>
+<p>This is the simplest example of the <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis–Hastings algorithm</a>, the first Markov chain Monte Carlo (MCMC) algorithm.</p>
+<p>More generally, the goal of MCMC is to come up with a sequential random process (a <strong>Markov chain</strong>) that generates (usually after many steps) a sample from a particular distribution.</p>
+<p>You’ve all heard of a <a href="https://en.wikipedia.org/wiki/Random_walk">random walk</a>, perhaps as a model for diffusion. At each step you make a move in a random direction, independently of your earlier moves. After many steps these random moves gives rise to a distribution of possible locations. A random walk is the simplest example of a Markov chain.</p>
+<p>More generally, a <a href="https://en.wikipedia.org/wiki/Markov_chain">Markov chain</a> is a sequence of random variables <span class="math inline">\(X_n\)</span> with each having a distribution that is is conditional on the value of the previous one, and so is defined in terms of <strong>transition probabilities</strong> <span class="math inline">\(p(X_{n}=x_n|X_{n-1}=x_{n-1})\)</span> (hence they form a “chain”). I’m going to immediately drop this cumbersome notation in favour of <span class="math inline">\(p(x_n|x_{n-1})\)</span>, a function of <span class="math inline">\(x_n\)</span> and <span class="math inline">\(x_{n-1}\)</span>, but in general the function giving the transition probabilities can be different at each step (the random variables could all be different).</p>
+<p>The probability of a particular sequence <span class="math inline">\(X_1=x_1\ldots X_n=x_n\)</span> is therefore</p>
+<p><span class="math display">\[
+p(x_n|x_{n-1})p(x_{n-1}|x_{n-2})\cdots p(x_2|x_{1})p^{(1)}(x_1)
+\]</span></p>
+<p><span class="math inline">\(X_1\)</span> has no “parent” so is not conditional on any other value.</p>
+<p>Suppose we don’t care about the earlier values and just want to know the <strong>marginal distribution</strong> <span class="math inline">\(p^{(n)}(x_n)\)</span> of the final variable. For a random walk this is easy, as <span class="math inline">\(x_n\)</span> typically represents a displacement that is a sum of iid increments. In general this is not the case, however, as the marginal distribution is</p>
+<p><span class="math display">\[
+p^{(n)}(x_n)=\sum_{x_{n-1},\ldots x_1}p(x_n|x_{n-1})p(x_{n-1}|x_{n-2})\cdots p(x_2|x_{1})p^{(1)}(x_1)
+\]</span></p>
+<p>(I’m writing all these expressions for discrete random variables, but the continuous version involving probability density functions is straightforward)</p>
+<p>The sums are over all possible values that the random variables might take in the <strong>state space</strong> of the problem. These could be finite or infinite in number.</p>
+<p>Things are not as bad as they appear, however, as the marginal distribution can be interpreted as the result of acting <span class="math inline">\(n-1\)</span> times on the vector of values of <span class="math inline">\(p^{(1)}_j\equiv p^{(1)}(j)\)</span> with the <strong>transition matrix</strong> with elements <span class="math inline">\(\mathsf{P}_{jk}=p(j|k)\)</span></p>
+<p><span class="math display">\[
+\mathbf{p}^{(n)} = \mathsf{P}^{n-1}\mathbf{p}^{(1)}.
+\]</span></p>
+<p>In a single step the marginal probabilities are updated as</p>
+<p><span class="math display">\[
+\mathbf{p}^{(n)} = \mathsf{P}^{n}\mathbf{p}^{(n-1)}.
+\]</span></p>
+<p><span class="math inline">\(\mathsf{P}\)</span> has some structure. The matrix elements are positive, as they represent probabilities, and each row sums to one</p>
+<p><span class="math display">\[
+\sum_j \mathsf{P}_{jk} = 1.
+\]</span></p>
+<p>Such matrices are called <a href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic</a>.</p>
+<p>Although <span class="math inline">\(p^{(n)}\)</span> – the probability distribution at the <span class="math inline">\(n\)</span>th step – changes from step to step, you might expect that after many steps it tends to converge to a <strong>stationary distribution</strong> <span class="math inline">\(p^{(n)}\to\boldsymbol{\pi}\)</span>. If it exists, this distribution must satisfy</p>
+<p><span id="eq-stat"><span class="math display">\[
+\boldsymbol{\pi} = \mathsf{P}\boldsymbol{\pi}.
+\tag{7.1}\]</span></span></p>
+<p>In other words, it is an eigenvector of <span class="math inline">\(\mathsf{P}\)</span> with eigenvalue one. This property is guaranteed by the <a href="https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem">Perron–Frobenius theorem</a> <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p>Thus <span class="math inline">\(\mathsf{P}\)</span> determines <span class="math inline">\(\boldsymbol{\pi}\)</span>. MCMC turns this idea on its head and asks: if there is some <span class="math inline">\(\boldsymbol{\pi}\)</span> that I would like to generate samples from, can I find a <span class="math inline">\(\mathsf{P}\)</span> that has it as a stationary distribution?</p>
+<p>There is a trivial answer to this question. Sure, take <span class="math inline">\(\mathsf{P}_{jk}=\boldsymbol{\pi}_j\)</span>. That is, jump straight to the stationary distribution no matter what the starting state. But we are interested in highly complicated distributions over large state spaces (think the Boltzmann distribution for a statistical mechanical system comprised of billions of particles). Thus what we really want is to be able to approach such a complicated distribution by making many transitions with <em>simple</em> distributions.</p>
+<p>One more idea is useful before returning to concrete algorithms. The quantity</p>
+<p><span class="math display">\[
+\mathsf{P}_{jk}\pi_k = p(j|k)\pi_k = p(j,k)
+\]</span></p>
+<p>is the joint distribution of seeing state <span class="math inline">\(k\)</span> followed by state <span class="math inline">\(j\)</span> in the stationary distribution. A <em>reversible</em> Markov chain is one where <span class="math inline">\(p(j,k)=p(k,j)\)</span>. Roughly, you can’t tell the direction of time because any transition is equally likely to happen forward in time as backward. Random physical processes that respect time reversal symmetry are often modeled as reversible Markov processes.</p>
+<p>Combining reversibility with the definition of the stationary state yields the condition of <a href="https://en.wikipedia.org/wiki/Detailed_balance">detailed balance</a></p>
+<p><span id="eq-detailed"><span class="math display">\[
+\mathsf{P}_{jk}\pi_k = \pi_j\mathsf{P}_{kj}.
+\tag{7.2}\]</span></span></p>
+<p>This condition is stronger than the condition <a href="#eq-stat">Equation&nbsp;<span>7.1</span></a> for a stationary state. This makes it easier to check: you don’t have to do a sum over a state space index. The Metropolis algorithm <a href="#exm-metropolis">Example&nbsp;<span>7.1</span></a> for the hard disk problem satisfies detailed balance for a stationary distribution that is constant when disks don’t intersect and zero when they do.</p>
+<p>When the stationary distribution <span class="math inline">\(\boldsymbol{\pi}\)</span> has more structure, designing an appropriate transition matrix is harder. The idea is to generalize the hard disk approach by separating the transition into a <em>proposal</em> distribution <span class="math inline">\(p_\text{prop}(j|k)\)</span> and an <em>acceptance</em> distribution <span class="math inline">\(p_\text{acc}(a=0,1|j\leftarrow k)\)</span> that gives the probability of a move from <span class="math inline">\(k\)</span> to <span class="math inline">\(j\)</span> being accepted (<span class="math inline">\(a=1\)</span>) or rejected (<span class="math inline">\(a=0\)</span>). The probability of moving from <span class="math inline">\(k\)</span> to <span class="math inline">\(j\)</span> is then</p>
+<p><span class="math display">\[
+p(j|k) = p_\text{acc}(a=1|j\leftarrow k) p_\text{prop}(j|k).
+\]</span></p>
+<p>Substituting this into the detailed balance condition <a href="#eq-detailed">Equation&nbsp;<span>7.2</span></a> gives <span class="math display">\[
+\frac{p_\text{acc}(a=1|j\leftarrow k)}{p_\text{acc}(a=1|k\leftarrow j)} = \frac{\pi_j}{\pi_k}\frac{p_\text{prop}(k|j)}{p_\text{prop}(j|k)}.
+\]</span></p>
+<p>Any <span class="math inline">\(p_\text{acc}\)</span> that satisfies this relation for all <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span> will do the job. The Metropolis choice is</p>
+<p><span id="eq-metropolis"><span class="math display">\[
+p_\text{acc}(a=1|j \leftarrow k) = \min\left(1,  \frac{\pi_j}{\pi_k}\frac{p_\text{prop}(k|j)}{p_\text{prop}(j|k)}\right).
+\tag{7.3}\]</span></span></p>
+<p>This gives an extremely general algorithm, one of the top ten in applied mathematics, according to <a href="https://nhigham.com/2016/03/29/the-top-10-algorithms-in-applied-mathematics/">one list</a>:</p>
+<div id="exm-metropolis-gen" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7.2 (Metropolis algorithm) </strong></span>&nbsp;</p>
+<ol type="1">
+<li>Starting from state <span class="math inline">\(k\)</span> sample a next state <span class="math inline">\(j\)</span> from the proposal distribution <span class="math inline">\(p_\text{prop}(j|k)\)</span>.</li>
+<li>Accept the proposal with probability <span class="math inline">\(p_\text{acc}(a=1|j \leftarrow k)\)</span> and move to state <span class="math inline">\(j\)</span>. Otherwise reject and stay in state <span class="math inline">\(k\)</span>.</li>
+<li>Repeat 1. and 2. many times.</li>
+</ol>
+</div>
+<p>MCMC has the benefit of being <a href="https://en.wikipedia.org/wiki/Embarrassingly_parallel">embarrassingly parallel</a>. If you want to average something over <span class="math inline">\(\boldsymbol{\pi}\)</span>, just run the algorithm many times independently and average the results. This is perfect for parallel computing.</p>
+<p>The Metropolis algorithm has an Achilles’ heel, however. To perform a move one has to sample from <span class="math inline">\(p_\text{prop}(j|k)\)</span> and from <span class="math inline">\(p_\text{acc}(a|j \leftarrow k)\)</span>. The proposal therefore has to be tractable, like the small shift in position for the hard disk case. This may however, mean that that many of the <span class="math inline">\(j\)</span>s suggested correspond to very small <span class="math inline">\(\pi_j\)</span>, and therefore a very low acceptance probability (c.f. <a href="#eq-metropolis">Equation&nbsp;<span>7.3</span></a>). For example, in the hard disk case at high density many proposed moves will give rise to overlap of disks and be rejected. This means that many steps are required to have one successful update of the simulation. This kind of slowdown is a common feature of MCMC methods applied to complex distributions.</p>
+<p>We’ll see some more examples of MCMC algorithms for statistical mechanical problems in <a href="#sec-statmech"><span>Section&nbsp;7.3</span></a>, and ways in which this problem can be avoided.</p>
+</section>
+<section id="relaxation-to-equilibrium" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="relaxation-to-equilibrium"><span class="header-section-number">7.2.3</span> Relaxation to equilibrium</h3>
+<p>Eigenvalues</p>
+<p>Master equation</p>
+<p>Transition matrix</p>
+<p>Marginalise over earlier variables</p>
+</section>
+<section id="importance-sampling" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="importance-sampling"><span class="header-section-number">7.2.4</span> Importance sampling</h3>
+<p>MC methods can be elaborated in lots of ways</p>
+</section>
+</section>
+<section id="sec-statmech" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="sec-statmech"><span class="header-section-number">7.3</span> Statistical mechanics</h2>
+<p>Statistical mechanics is a natural source of such complex distributions in physics. Remember the fundamental principle that the probability of finding a statistical mechanical system in a microstate <span class="math inline">\(\mathbf{x}\)</span> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> with energy <span class="math inline">\(\mathcal{E}(\mathbf{x})\)</span> is</p>
+<p><span id="eq-boltzmann"><span class="math display">\[
+p(\mathbf{x})=\frac{\exp\left[-\beta \mathcal{E}(\mathbf{x})\right]}{Z},
+\tag{7.4}\]</span></span></p>
+<p>where <span class="math inline">\(Z\)</span> is a normalizing constant called the partition function and <span class="math inline">\(\beta=1/k_\text{B}T\)</span>, where <span class="math inline">\(T\)</span> is the temperature and <span class="math inline">\(k_\text{B}\)</span> is Boltzmann’s constant.</p>
+<p>The <em>central problem</em> of statistical mechanics is computing ensemble averages of physical quantities, and the <em>principle difficulty</em> is the intractability of those averages for large systems. For example, if we are dealing with a classical gas, the configuration space point <span class="math inline">\(\mathbf{x}\)</span> corresponds to the positions of each of the gas molecules <span class="math inline">\(\mathbf{x}=(\mathbf{x}_1,\ldots \mathbf{x}_N)\)</span> and an average is a <span class="math inline">\(3N\)</span>-dimensional integral. The only situation in which this integral is tractable is when the gas is noninteracting (ideal), in which case the energy function takes the form</p>
+<p><span class="math display">\[
+\mathcal{E}(\mathbf{x}) = \sum_{n=1}^N \mathcal{E}_1(\mathbf{x}_n)
+\]</span></p>
+<p>where <span class="math inline">\(\mathcal{E}_1(\mathbf{x})\)</span> is the single particle energy. In this case the integral factorizes. As soon as we introduce interactions between particles of the form</p>
+<p><span class="math display">\[
+\mathcal{E}(\mathbf{x}) = \sum_{n&lt;m}^N \mathcal{E}_2(\mathbf{x}_n,\mathbf{x}_m)
+\]</span></p>
+<p>things get a lot harder. The same issue arises in models involving discrete random variables. The canonical example is the <a href="https://en.wikipedia.org/wiki/Ising_model">Ising model</a>, in which a configuration corresponds to fixing the values of <span class="math inline">\(N\)</span> “spins” <span class="math inline">\(\sigma_n=\pm 1\)</span> with an energy function of the form</p>
+<p><span class="math display">\[
+\mathcal{E}(\sigma)=\sum_n h_n\sigma_n + \sum_{m&lt;n} J_{mn}\sigma_m\sigma_n.
+\]</span></p>
+<p>The two terms correspond to a (magnetic) field that acts on each spin and a coupling between spins. As in the gas, it’s the latter that causes problems / interest.</p>
+<p>The Ising model comes in a great many flavours according to how the fields and couplings are chosen. They may reflect a lattice structure: <span class="math inline">\(J_{mn}\neq 0\)</span> for nearest neighbours, say, or longer range. They may be fixed or random, defining an ensemble of models.</p>
+<p>The most pessimistic assessment is that to calculate an average we are going to have sum over <span class="math inline">\(2^N\)</span> configurations. Computing the partition function <span class="math inline">\(Z\)</span> that normalizes the average (or which gives the free energy via <span class="math inline">\(F=-k_\text{B}T\log Z\)</span>) is another such sum.</p>
+<p>Monte Carlo simulation is a much more attractive alternative. MCMC can be used to generate samples from <span class="math inline">\(p(\sigma)\)</span> which are then used to estimate the averages of interest (e.g.&nbsp;average energy <span class="math inline">\(\langle\mathcal{E}(\sigma)\rangle\)</span>, average magnetization <span class="math inline">\(\langle\sum_n \sigma_n\rangle\)</span>, etc.).</p>
+<section id="mcmc-updates-for-the-ising-model" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="mcmc-updates-for-the-ising-model"><span class="header-section-number">7.3.1</span> MCMC updates for the Ising model</h3>
+<p>How does MCMC work in practice for the Ising model? To apply the Metropolis alogorithm <a href="#exm-metropolis-gen">Example&nbsp;<span>7.2</span></a> we can use a simple proposal: pick each spin in turn in some order and try to flip it.</p>
+<p>The form of <span class="math inline">\(p(\sigma)\)</span> means that, although we cannot compute the probabilities explicitly, we can calculate <em>ratios</em>, which is all we need for Metropolis. For two configurations that differ only by <span class="math inline">\(\sigma_n=\pm 1\)</span> we have</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{p(\sigma_n=1|\sigma_{m\neq n})}{p(\sigma_n=-1|\sigma_{m\neq n})} &amp;= \exp\left[-2\beta \left(h_n+\sum_{m\neq n} J_{mn}\sigma_m\right)\right]\\
+&amp;\equiv \exp\left[-\beta\Delta \mathcal{E}\right],
+\end{align}
+\]</span></p>
+<p>where <span class="math inline">\(\Delta \mathcal{E}\)</span> is the energy difference between two configurations.</p>
+<p>One alternative to Metropolis is the <strong>Heat bath algorithm</strong> (or <a href="https://en.wikipedia.org/wiki/Glauber_dynamics">Glauber dynamics</a> or <a href="https://en.wikipedia.org/wiki/Gibbs_sampling">Gibbs sampling</a>) <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. The idea behind the name is that, since we can calculate the influence of the spin’s environment (the “bath”), we can just choose the spin’s orientation with the corresponding probabilities. Since there are only two probabilities the ratio is all we need and we get</p>
+<p><span id="eq-heat-bath"><span class="math display">\[
+p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}}.
+\tag{7.5}\]</span></span></p>
+<p>The algorithm is then:</p>
+<div id="exm-heat-bath" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7.3 (Heat bath algorithm) </strong></span>&nbsp;</p>
+<ol type="1">
+<li>Pick a spin <span class="math inline">\(n\)</span>. <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+<li>Compute <span class="math inline">\(\Delta E\)</span>, the energy difference between <span class="math inline">\(\sigma_n=\pm 1\)</span>.</li>
+<li>Set <span class="math inline">\(\sigma_n=\pm 1\)</span> with probabilities given by <a href="#eq-heat-bath">Equation&nbsp;<span>7.5</span></a>.</li>
+<li>Repeat 1-3 many times</li>
+</ol>
+</div>
+<p>What happens if we try and come up with more complicated proposals, flipping many spins at once? For Metropolis, the problem is that without a cleverly designed proposal we will be suggesting moves that are likely to be rejected. For the heat bath algorithm, the more spins we flip, the more complicated the evaluation of the corresponding probabilities (<span class="math inline">\(2^n\)</span> outcomes if we flip <span class="math inline">\(n\)</span> spins).</p>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
+<script src="assets/ising.js"></script>
+<div id="ising-simulation">
+
+</div>
+</section>
+<section id="summary-of-issues" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="summary-of-issues"><span class="header-section-number">7.3.2</span> Summary of issues</h3>
+<p>https://en.wikipedia.org/wiki/Swendsen%E2%80%93Wang_algorithm</p>
+<p>https://en.wikipedia.org/wiki/Wolff_algorithm</p>
+<ol type="1">
+<li>Finite size effects</li>
+<li>Approach to equilibrium</li>
+<li>Critical slowing down / loss of ergodicity</li>
+<li>Bias of estimators</li>
+</ol>
+<p>Hamiltonian Monte Carlo.</p>
+<p>Gibbs sampling</p>
+<p>https://leftasexercise.com/2018/03/12/the-ising-model-and-gibbs-sampling/</p>
+<p>Multispin encoding: 32 or 64 simulations <span class="citation" data-cites="jacobs1981multi">Jacobs and Rebbi (<a href="references.html#ref-jacobs1981multi" role="doc-biblioref">1981</a>)</span></p>
+<p>https://en.wikipedia.org/wiki/Gibbs_sampling</p>
+<p>Other updates</p>
+<p>A huge topic, see <span class="citation" data-cites="krauth2006statistical">Krauth (<a href="references.html#ref-krauth2006statistical" role="doc-biblioref">2006</a>)</span> for much more</p>
+<p>Also Chapter 29 of <span class="citation" data-cites="mackay2003information">MacKay (<a href="references.html#ref-mackay2003information" role="doc-biblioref">2003</a>)</span></p>
+<p>Comment at the end about typicality</p>
 <p>MCMC in Bayesian inference</p>
 <p>Relation to Ising models. Community detection. Why not?</p>
-<section id="random-number-generators" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="random-number-generators"><span class="header-section-number">7.1</span> Random number generators</h2>
-<p>Does recompile go slow? No it’s fast</p>
+<p>https://arxiv.org/pdf/cond-mat/0005264.pdf</p>
+<p>Bayesian inference</p>
+</section>
+</section>
+<section id="sec-rng" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="sec-rng"><span class="header-section-number">7.4</span> Random number generators</h2>
+<p>Computers are deterministic</p>
+<p>This is a subject dealt with already</p>
+<p>RNGs in Trebst?</p>
+<p>Further reading: refer to <a href="https://arxiv.org/pdf/cond-mat/9612186.pdf">Krauth notes</a> or book</p>
+<p>Other suggestions from Twitter</p>
+<p>https://roomno308.github.io/blog/MCMC.html https://maximilianrohde.com/posts/code-breaking-with-metropolis/</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-jacobs1981multi" class="csl-entry" role="doc-biblioentry">
+Jacobs, Laurence, and Claudio Rebbi. 1981. <span>“Multi-Spin Coding: A Very Efficient Technique for Monte Carlo Simulations of Spin Systems.”</span> <em>Journal of Computational Physics</em> 41 (1): 203–10.
+</div>
+<div id="ref-kapfer2013sampling" class="csl-entry" role="doc-biblioentry">
+Kapfer, Sebastian C, and Werner Krauth. 2013. <span>“Sampling from a Polytope and Hard-Disk Monte Carlo.”</span> In <em>Journal of Physics: Conference Series</em>, 454:012031. 1. IOP Publishing.
+</div>
+<div id="ref-krauth1998introduction" class="csl-entry" role="doc-biblioentry">
+Krauth, Werner. 1998. <span>“Introduction to Monte Carlo Algorithms.”</span> In <em>Advances in Computer Simulation</em>, 1–35. Springer.
+</div>
+<div id="ref-krauth2006statistical" class="csl-entry" role="doc-biblioentry">
+———. 2006. <em>Statistical Mechanics: Algorithms and Computations</em>. Vol. 13. OUP Oxford.
+</div>
+<div id="ref-mackay2003information" class="csl-entry" role="doc-biblioentry">
+MacKay, David JC. 2003. <em>Information Theory, Inference and Learning Algorithms</em>. Cambridge university press.
+</div>
+<div id="ref-metropolis1953equation" class="csl-entry" role="doc-biblioentry">
+Metropolis, Nicholas, Arianna W Rosenbluth, Marshall N Rosenbluth, Augusta H Teller, and Edward Teller. 1953. <span>“Equation of State Calculations by Fast Computing Machines.”</span> <em>The Journal of Chemical Physics</em> 21 (6): 1087–92.
+</div>
+<div id="ref-widom1966random" class="csl-entry" role="doc-biblioentry">
+Widom, B. 1966. <span>“Random Sequential Addition of Hard Spheres to a Volume.”</span> <em>The Journal of Chemical Physics</em> 44 (10): 3888–94.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>A common shorthand notation is <span class="math inline">\(x\sim p_X\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This is in fact the original motivation for the development of the technique, see <span class="citation" data-cites="metropolis1953equation">Metropolis et al. (<a href="references.html#ref-metropolis1953equation" role="doc-biblioref">1953</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>There is an important caveat. If there are two or more subsets of the state space that are not connected by finite transition probabilities, the probability distribution in each subset evolves independently and there is not a unique stationary distribution. When there <em>is</em>, we say that the Markov chain is <strong>ergodic</strong> and the corresponding transition matrix is <strong>irreducible</strong>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>For a classical gas of point particles this would correspond to specifying all the positions and velocities, for example.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Multiple names are sign that a technique was re-discovered by different communities who don’t talk to each other.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>This can be done deterministically (e.g.&nbsp;sequentially or in alternating blocks when the model is defined on a <a href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a>) – which is what is normally called Gibbs sampling – or at random, which corresponds to Glauber dynamics.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

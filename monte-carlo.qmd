@@ -1,3 +1,8 @@
+---
+resources:
+  - "assets/ising.py"
+---
+
 # Monte Carlo methods
 
 Many physical phenomena, notably those falling within the domains of statistical mechanics and quantum theory, depend in an essential way on _randomness_. The simulation of these phenomena therefore requires algorithms that incorporate random (or pseudo-random) elements in the most efficient way. 
@@ -109,13 +114,17 @@ TODO Why not? See @widom1966random for an explanation
 Here's an approach that works:
 
 ::: {#exm-metropolis}
-1. Fix the number of disks and an initial starting configuration (some regular lattice configuration, say).
-2. Pick a disk at random and attempt to move it by a small random amount.
+## Metropolis algorithm for hard disks
+
+1. Fix the number of disks and an initial configuration (some regular lattice configuration, say).
+2. Pick a disk at random and attempt (or _propose_) to move it by a small random amount (i.e. random direction; random small magnitude).
 3. If this results in the moved disk intersecting another, _reject_ the move, leaving the disk where it is. Otherwise, _accept_ the move.
 4. Repeat 2. and 3. many times.
 :::
 
 ![Accepted and rejected moves for hard disks. From @kapfer2013sampling](assets/metropolis.png).
+
+TODO js demo
 
 This is the simplest example of the [Metropolis–Hastings algorithm](https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm), the first Markov chain Monte Carlo (MCMC) algorithm. 
 
@@ -189,12 +198,42 @@ Combining reversibility with the definition of the stationary state yields the c
 
 $$
  \mathsf{P}_{jk}\pi_k = \pi_j\mathsf{P}_{kj}.
+$$ {#eq-detailed}
+
+This condition is stronger than the condition @eq-stat for a stationary state. This makes it easier to check: you don't have to do a sum over a state space index. The Metropolis algorithm @exm-metropolis for the hard disk problem satisfies detailed balance for a stationary distribution that is constant when disks don't intersect and zero when they do.
+
+When the stationary distribution $\boldsymbol{\pi}$ has more structure, designing an appropriate transition matrix is harder. The idea is to generalize the hard disk approach by separating the transition into a _proposal_ distribution $p_\text{prop}(j|k)$ and an _acceptance_ distribution $p_\text{acc}(a=0,1|j\leftarrow k)$ that gives the probability of a move from $k$ to $j$ being accepted ($a=1$) or rejected ($a=0$). The probability of moving from $k$ to $j$ is then
+
+$$
+p(j|k) = p_\text{acc}(a=1|j\leftarrow k) p_\text{prop}(j|k).
 $$
 
-This condition is stronger than the condition @eq-stat for a stationary state. This makes it easier to check: you don't have to do a sum over a state space index. The Metropolis algorithm @exm-metropolis for the hard disk problem is easily seen to satisfy detailed balance for a stationary distribution that is constant when disks don't intersect and zero when they do.
+Substituting this into the detailed balance condition @eq-detailed gives
+$$
+\frac{p_\text{acc}(a=1|j\leftarrow k)}{p_\text{acc}(a=1|k\leftarrow j)} = \frac{\pi_j}{\pi_k}\frac{p_\text{prop}(k|j)}{p_\text{prop}(j|k)}.
+$$
 
-We'll see some more examples of MCMC algorithms for statistical mechanical problems in @sec-statmech.
+Any $p_\text{acc}$ that satisfies this relation for all $j$ and $k$ will do the job. The Metropolis choice is
 
+$$
+p_\text{acc}(a=1|j \leftarrow k) = \min\left(1,  \frac{\pi_j}{\pi_k}\frac{p_\text{prop}(k|j)}{p_\text{prop}(j|k)}\right).
+$$ {#eq-metropolis}
+
+This gives an extremely general algorithm, one of the top ten in applied mathematics, according to [one list](https://nhigham.com/2016/03/29/the-top-10-algorithms-in-applied-mathematics/):
+
+::: {#exm-metropolis-gen}
+## Metropolis algorithm
+
+1. Starting from state $k$ sample a next state $j$ from the proposal distribution $p_\text{prop}(j|k)$. 
+2. Accept the proposal with probability $p_\text{acc}(a=1|j \leftarrow k)$ and move to state $j$. Otherwise reject and stay in state $k$.
+3. Repeat 1. and 2. many times.
+:::
+
+MCMC has the benefit of being [embarrassingly parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel). If you want to average something over $\boldsymbol{\pi}$, just run the algorithm many times independently and average the results. This is perfect for parallel computing.
+
+The Metropolis algorithm has an Achilles' heel, however. To perform a move one has to sample from $p_\text{prop}(j|k)$ and from $p_\text{acc}(a|j \leftarrow k)$. The proposal therefore has to be tractable, like the small shift in position for the hard disk case. This may however, mean that that many of the $j$s suggested correspond to very small $\pi_j$, and therefore a very low acceptance probability (c.f. @eq-metropolis). For example, in the hard disk case at high density many proposed moves will give rise to overlap of disks and be rejected. This means that many steps are required to have one successful update of the simulation. This kind of slowdown is a common feature of MCMC methods applied to complex distributions.
+
+We'll see some more examples of MCMC algorithms for statistical mechanical problems in @sec-statmech, and ways in which this problem can be avoided.
 
 ### Relaxation to equilibrium
 
@@ -212,45 +251,128 @@ MC methods can be elaborated in lots of ways
 
 ## Statistical mechanics {#sec-statmech}
 
-Original paper treated hard spheres:
-
-https://aip.scitation.org/doi/10.1063/1.1699114
-
-How to you get thermodynamics out of hard sphere samples?
-
-Statistical mechanics is a natural source of such complex distributions in physics. Remember the fundamental principle that the probability of finding a statistical mechanical system in a microstate $x$ [^4] with energy $E(x)$ is
+Statistical mechanics is a natural source of such complex distributions in physics. Remember the fundamental principle that the probability of finding a statistical mechanical system in a microstate $\mathbf{x}$ [^4] with energy $\mathcal{E}(\mathbf{x})$ is
 
 $$
-p_X(x) = \frac{\exp(-\beta E(x))}{Z}
-$$
+p(\mathbf{x})=\frac{\exp\left[-\beta \mathcal{E}(\mathbf{x})\right]}{Z},
+$$ {#eq-boltzmann}
 
 where $Z$ is a normalizing constant called the partition function and $\beta=1/k_\text{B}T$, where $T$ is the temperature and $k_\text{B}$ is Boltzmann's constant.  
 
 [^4]: For a classical gas of point particles this would correspond to specifying all the positions and velocities, for example.
 
-Metropolis m
+The *central problem* of statistical mechanics is computing ensemble averages of physical quantities, and the *principle difficulty* is the intractability of those averages for large systems. For example, if we are dealing with a classical gas, the configuration space point $\mathbf{x}$ corresponds to the positions of each of the gas molecules $\mathbf{x}=(\mathbf{x}_1,\ldots \mathbf{x}_N)$ and an average is a $3N$-dimensional integral. The only situation in which this integral is tractable is when the gas is noninteracting (ideal), in which case the energy function takes the form
 
-### The Ising model
+$$
+\mathcal{E}(\mathbf{x}) = \sum_{n=1}^N \mathcal{E}_1(\mathbf{x}_n)
+$$
 
-Background on Markov processes. Transition kernel. Stochastic matrices
+where $\mathcal{E}_1(\mathbf{x})$ is the single particle energy. In this case the integral factorizes. As soon as we introduce interactions between particles of the form
 
-Example of SEP
+$$
+\mathcal{E}(\mathbf{x}) = \sum_{n<m}^N \mathcal{E}_2(\mathbf{x}_n,\mathbf{x}_m)
+$$
 
-Simplest examples...
+things get a lot harder. The same issue arises in models involving discrete random variables. The canonical example is the [Ising model](https://en.wikipedia.org/wiki/Ising_model), in which a configuration corresponds to fixing the values of $N$ "spins" $\sigma_n=\pm 1$ with an energy function of the form
 
-How to estimate errors 
+$$
+\mathcal{E}(\sigma)=\sum_n h_n\sigma_n + \sum_{m<n} J_{mn}\sigma_m\sigma_n.
+$$
+
+The two terms correspond to a (magnetic) field that acts on each spin and a coupling between spins. As in the gas, it's the latter that causes problems / interest. 
+
+The Ising model comes in a great many flavours according to how the fields and couplings are chosen. They may reflect a lattice structure: $J_{mn}\neq 0$ for nearest neighbours, say, or longer range. They may be fixed or random, defining an ensemble of models. 
+
+The most pessimistic assessment is that to calculate an average we are going to have sum over $2^N$ configurations. Computing the partition function $Z$ that normalizes the average (or which gives the free energy via $F=-k_\text{B}T\log Z$) is another such sum.
+
+Monte Carlo simulation is a much more attractive alternative. MCMC can be used to generate samples from $p(\sigma)$ which are then used to estimate the averages of interest (e.g. average energy $\langle\mathcal{E}(\sigma)\rangle$, average magnetization $\langle\sum_n \sigma_n\rangle$, etc.).
+
+### MCMC updates for the Ising model
+
+How does MCMC work in practice for the Ising model? To apply the Metropolis alogorithm @exm-metropolis-gen we can use a simple proposal: pick each spin in turn in some order and try to flip it. 
+
+The form of $p(\sigma)$ means that, although we cannot compute the probabilities explicitly, we can calculate _ratios_, which is all we need for Metropolis. For two configurations that differ only by $\sigma_n=\pm 1$ we have
+
+$$
+\begin{align}
+\frac{p(\sigma_n=1|\sigma_{m\neq n})}{p(\sigma_n=-1|\sigma_{m\neq n})} &= \exp\left[-2\beta \left(h_n+\sum_{m\neq n} J_{mn}\sigma_m\right)\right]\\
+&\equiv \exp\left[-\beta\Delta \mathcal{E}\right],
+\end{align}
+$$
+
+where $\Delta \mathcal{E}$ is the energy difference between two configurations.
+
+One alternative to Metropolis is the __Heat bath algorithm__ (or [Glauber dynamics](https://en.wikipedia.org/wiki/Glauber_dynamics) or [Gibbs sampling](https://en.wikipedia.org/wiki/Gibbs_sampling)) [^5]. The idea behind the name is that, since we can calculate the influence of the spin's environment (the "bath"), we can just choose the spin's orientation with the corresponding probabilities. Since there are only two probabilities the ratio is all we need and we get
+
+[^5]: Multiple names are sign that a technique was re-discovered by different communities who don't talk to each other.
+
+$$
+p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}}.
+$$ {#eq-heat-bath}
+
+The algorithm is then:
+
+::: {#exm-heat-bath}
+
+## Heat bath algorithm
+
+1. Pick a spin $n$. [^6]
+2. Compute $\Delta E$, the energy difference between $\sigma_n=\pm 1$.
+3. Set $\sigma_n=\pm 1$ with probabilities given by @eq-heat-bath. 
+4. Repeat 1-3 many times
+
+:::
+
+[^6]: This can be done deterministically (e.g. sequentially or in alternating blocks when the model is defined on a [bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph)) – which is what is normally called Gibbs sampling – or at random, which corresponds to Glauber dynamics.
+
+What happens if we try and come up with more complicated proposals, flipping many spins at once? For Metropolis, the problem is that without a cleverly designed proposal we will be suggesting moves that are likely to be rejected. For the heat bath algorithm, the more spins we flip, the more complicated the evaluation of the corresponding probabilities ($2^n$ outcomes if we flip $n$ spins).
+
+<script src = "https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script> 
+<script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
+<script src = "assets/ising.js"></script> 
+
+<div id="ising-simulation"></div>
 
 
+### Summary of issues
 
-Some curve fitting here to extract something?
+https://en.wikipedia.org/wiki/Swendsen%E2%80%93Wang_algorithm
 
-Google pagerank
+https://en.wikipedia.org/wiki/Wolff_algorithm
+
+1. Finite size effects
+2. Approach to equilibrium
+2. Critical slowing down / loss of ergodicity
+3. Bias of estimators
+
+Hamiltonian Monte Carlo.
+
+Gibbs sampling
+
+https://leftasexercise.com/2018/03/12/the-ising-model-and-gibbs-sampling/
+
+Multispin encoding: 32 or 64 simulations @jacobs1981multi
+
+https://en.wikipedia.org/wiki/Gibbs_sampling
+
+Other updates
+
+
+A huge topic, see @krauth2006statistical for much more
+
+Also Chapter 29 of @mackay2003information
+
+Comment at the end about typicality
+
+
 
 MCMC in Bayesian inference
 
 Relation to Ising models. Community detection. Why not?
 
 https://arxiv.org/pdf/cond-mat/0005264.pdf
+
+Bayesian inference
 
 ## Random number generators {#sec-rng}
 

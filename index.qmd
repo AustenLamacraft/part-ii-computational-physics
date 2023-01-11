@@ -32,7 +32,10 @@ Linear regression
 
 Linear programming.
 
+FFT invented before Fourier
+
 Garth Wells has nice material about algos and complexity
+https://github.com/CambridgeEngineering/PartIA-Computing-Michaelmas/
 
 Hashing
 
