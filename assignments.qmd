@@ -1,0 +1,12 @@
+# Assignments
+
+## 1. PDEs
+
+## 2. Linear Algebra and Quantum
+
+## 3. Dynamic Programming
+
+## 4. Ising model
+
+Autocorrelation times of various algorithms. Scaling with system size.
+

@@ -1,10 +1,37 @@
-# Computational complexity
+# Algorithms and computational complexity
 
 Simple example from Leetcode
 
 Analaysis of algorithms
 
+Example of finding a unique item in list
+
 Nice examples from Garth Wells
 
 https://github.com/CambridgeEngineering/PartIA-Computing-Michaelmas/blob/main/11%20Complexity.ipynb
 
+Examples of multiplication
+
+
+
+Breadth first and depth first
+
+Importance of choosing a data structure to match algorithm
+
+Examples: queue in Wolff. Was there a Numpy-ish way to do this faster? Priority queue in waiting time algo
+
+FFT uses
+
+https://en.wikipedia.org/wiki/Orthogonal_frequency-division_multiplexing
+
+Needleman-Wunsch 
+
+Examples
+
+1. Multiplication [Karatsuba](https://en.wikipedia.org/wiki/Multiplication_algorithm#Karatsuba_multiplication)
+2. Binary search
+3. Linear algebra
+4. Sorting
+5. FFT
+6. Taking powers (SICP)
+7. Euclidean algorithm (GCD) (SICP)

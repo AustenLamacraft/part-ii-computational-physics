@@ -2,9 +2,15 @@
 
 There are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge.
 
+## Prerequisites
+
+This course assumes a basic knowledge of the Python language, including variables, control flow, and writing and using functions, at the level of last year's IB course. 
+
 Thanks to David Buscher for the earlier version
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
+
+## Outline 
 
 Topics
 

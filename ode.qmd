@@ -256,6 +256,9 @@ plt.show()
 
 TODO Leapfrog?
 
+[Nice demo on Poincaré sections](https://duetosymmetry.com/tool/poincare-section-clicker-toy/)
+
+
 Symplectic integrator see e.g. 
 
 Look at leapfrog?

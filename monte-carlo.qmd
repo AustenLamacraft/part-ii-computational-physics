@@ -97,6 +97,8 @@ In terms of integration, you can think of this as a way to compute the integral 
 
 Although it's a silly method, this does illustrate one important feature of Monte Carlo methods in general: that the relative error with $N$ samples is typically $\propto N^{-1/2}$ (thus at the 1% level for $10^4$ samples) because the variance of a sum of $N$ [iid](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables) variables is $\propto N^{1/2}$.
 
+TODO General setting. Importance sampling
+
 Monte Carlo integration comes into its own for high dimensional problems. For low dimensional integrals the quadrature methods in [`scipy.integrate`](https://docs.scipy.org/doc/scipy/tutorial/integrate.html) are preferable.
 
 ### Markov chain Monte Carlo {#sec-mcmc}
@@ -172,7 +174,7 @@ $$
 
 Such matrices are called [stochastic](https://en.wikipedia.org/wiki/Stochastic_matrix).
 
-Although $p^{(n)}$ – the probability distribution at the $n$th step – changes from step to step, you might expect that after many steps it tends to converge to a __stationary distribution__ $p^{(n)}\to\boldsymbol{\pi}$. If it exists, this distribution must satisfy
+Although $p^{(n)}$ — the probability distribution at the $n$th step — changes from step to step, you might expect that after many steps it tends to converge to a __stationary distribution__ $p^{(n)}\to\boldsymbol{\pi}$. If it exists, this distribution must satisfy
 
 $$
 \boldsymbol{\pi} = \mathsf{P}\boldsymbol{\pi}.
@@ -225,7 +227,7 @@ This gives an extremely general algorithm, one of the top ten in applied mathema
 ## Metropolis algorithm
 
 1. Starting from state $k$ sample a next state $j$ from the proposal distribution $p_\text{prop}(j|k)$. 
-2. Accept the proposal with probability $p_\text{acc}(a=1|j \leftarrow k)$ and move to state $j$. Otherwise reject and stay in state $k$.
+2. Accept the proposal with probability $p_\text{acc}(a=1|j \leftarrow k)$ and move to state $j$. Otherwise reject the proposal and stay in state $k$.
 3. Repeat 1. and 2. many times.
 :::
 
@@ -243,11 +245,6 @@ Master equation
 
 Transition matrix
 
-Marginalise over earlier variables
-
-### Importance sampling
-
-MC methods can be elaborated in lots of ways
 
 ## Statistical mechanics {#sec-statmech}
 
@@ -323,33 +320,89 @@ The algorithm is then:
 
 :::
 
-[^6]: This can be done deterministically (e.g. sequentially or in alternating blocks when the model is defined on a [bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph)) – which is what is normally called Gibbs sampling – or at random, which corresponds to Glauber dynamics.
+[^6]: This can be done deterministically (e.g. sequentially or in alternating blocks when the model is defined on a [bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph)) — which is what is normally called Gibbs sampling — or at random, which corresponds to Glauber dynamics.
 
 What happens if we try and come up with more complicated proposals, flipping many spins at once? For Metropolis, the problem is that without a cleverly designed proposal we will be suggesting moves that are likely to be rejected. For the heat bath algorithm, the more spins we flip, the more complicated the evaluation of the corresponding probabilities ($2^n$ outcomes if we flip $n$ spins).
+
+The good news is that we _can_ do better — much better — than the above algorithms. The [Wolff algorithm](https://en.wikipedia.org/wiki/Wolff_algorithm) is one example. This proposes a cluster of spins of the same orientation to be flipped by adding adjacent spins to an initially random chosen spin with probability $p_\text{add}$. It turns out that for the nearest neighbour Ising model with Ferromagnetic coupling $J<0$ the "magic" value $p_\text{add}=1-e^{2\beta J}$ is _rejection free_: the probability to flip the whole cluster is always one. This makes for an extremely fast algorithm that is not subject to the usual _critical slowing down_ at phase transitions.
+
+
+```{python}
+#| code-fold: true
+#| code-summary: "Ising model code"
+class IsingModel:
+    def __init__(self, L):
+        self.L = L
+        self.spins = np.random.choice(a=[1, -1], size=(L, L))
+        stagger = np.empty(self.L, dtype = bool)
+        stagger[::2] = True
+        stagger[1::2] = False
+        self.mask = np.logical_xor(stagger[:, np.newaxis], stagger[np.newaxis, :])
+
+    def gibbs_update(self, beta, sublattice):
+        fields = np.roll(self.spins, 1, 0) + np.roll(self.spins, -1, 0) + np.roll(self.spins, 1, 1) + np.roll(self.spins, -1, 1)
+        delta_E = 2 * fields
+        spin_up_probabilities = 1 / (1 + np.exp(- beta * delta_E))
+        new_spins = 2 * (np.random.rand(self.L, self.L) < spin_up_probabilities) - 1
+        self.spins = np.choose(np.logical_xor(sublattice, self.mask), [self.spins, new_spins])
+
+    def glauber_update(self, beta):
+        x, y = np.random.randint(self.L, size=2)
+        fields = 0
+        for neighbour in [((x + 1) % self.L, y), ((x - 1) % self.L, y), (x, (y + 1) % self.L), (x, (y - 1) % self.L)]:
+            fields += self.spins[neighbour]
+        delta_E = 2 * fields
+        spin_up_probability = 1 / (1 + np.exp(- beta * delta_E))        
+        if np.random.rand() < spin_up_probability:
+            self.spins[x, y] = 1
+        else:
+            self.spins[x, y] = -1
+
+    def wolff_update(self, beta):
+        initial_x, initial_y = np.random.randint(self.L, size=2)
+        initial_spin = self.spins[initial_x, initial_y]
+        cluster = deque([(initial_x, initial_y)])
+        add_prob = 1 - np.exp(-2 * beta)
+
+        while len(cluster) != 0:
+            x, y = cluster.popleft()
+            if self.spins[x, y] == initial_spin:
+                self.spins[x, y] *= -1
+                for neighbour in (((x + 1) % self.L, y), ((x - 1) % self.L, y), (x, (y + 1) % self.L), (x, (y - 1) % self.L)):
+                    if self.spins[neighbour] == initial_spin:
+                        if np.random.rand() < add_prob:
+                            cluster.append(neighbour)
+```
 
 <script src = "https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script> 
 <script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
 <script src = "assets/ising.js"></script> 
 
-<div id="ising-simulation"></div>
+::: {#fig-ising}
+<div id="ising-simulation" align="center"></div>
+
+Glauber dynamics, Block Gibbs sampling and Wolff updates compared. Change the temperature using the slider. The centre of the slider corresponds to the critical temperature $k_\text{B}T = 2|J|/\log(1+\sqrt{2})\sim 2.269|J|$.
+:::
 
 
-### Summary of issues
+## The universe of Monte Carlo methods
 
-https://en.wikipedia.org/wiki/Swendsen%E2%80%93Wang_algorithm
+Monte Carlo simulation is a vast field with practitioners and specialists across the natural sciences, engineering, machine learning, and statistics. In this section I'll mention a few important topics to give a taste of what's out there. For much more detail take a look at @krauth2006statistical and / or @mackay2003information.
 
-https://en.wikipedia.org/wiki/Wolff_algorithm
+Probably the biggest single issue is: how do you kow when your MCMC simulation has reached the stationary distribution $\boldsymbol{\pi}$? The pragmatic approach is to monitor the averages of interest (magnetization, say, in the case of the Ising model) over different simulations or over a time interval and see when they stop changing. 
+
+
+We've touched on the issue of the [mixing time](https://en.wikipedia.org/wiki/Markov_chain_mixing_time) in a Markov chain.
 
 1. Finite size effects
 2. Approach to equilibrium
 2. Critical slowing down / loss of ergodicity
-3. Bias of estimators
+3. Bias of estimators. Importance sampling
 
-Hamiltonian Monte Carlo.
+Exact sampling
 
-Gibbs sampling
+[Hamiltonian Monte Carlo](https://en.wikipedia.org/wiki/Hamiltonian_Monte_Carlo).
 
-https://leftasexercise.com/2018/03/12/the-ising-model-and-gibbs-sampling/
 
 Multispin encoding: 32 or 64 simulations @jacobs1981multi
 
@@ -378,6 +431,7 @@ Bayesian inference
 
 Computers are deterministic 
 
+This is covered in some detail in the Nature of Computation
 
 This is a subject dealt with already
 

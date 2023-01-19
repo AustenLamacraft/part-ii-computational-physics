@@ -218,7 +218,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./complexity.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Computational complexity</span></a>
+  <a href="./complexity.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms and computational complexity</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -261,14 +261,13 @@ div.csl-indent {
   <li><a href="#monte-carlo-integration" id="toc-monte-carlo-integration" class="nav-link" data-scroll-target="#monte-carlo-integration"><span class="toc-section-number">7.2.1</span>  Monte Carlo integration</a></li>
   <li><a href="#sec-mcmc" id="toc-sec-mcmc" class="nav-link" data-scroll-target="#sec-mcmc"><span class="toc-section-number">7.2.2</span>  Markov chain Monte Carlo</a></li>
   <li><a href="#relaxation-to-equilibrium" id="toc-relaxation-to-equilibrium" class="nav-link" data-scroll-target="#relaxation-to-equilibrium"><span class="toc-section-number">7.2.3</span>  Relaxation to equilibrium</a></li>
-  <li><a href="#importance-sampling" id="toc-importance-sampling" class="nav-link" data-scroll-target="#importance-sampling"><span class="toc-section-number">7.2.4</span>  Importance sampling</a></li>
   </ul></li>
   <li><a href="#sec-statmech" id="toc-sec-statmech" class="nav-link" data-scroll-target="#sec-statmech"><span class="toc-section-number">7.3</span>  Statistical mechanics</a>
   <ul class="collapse">
   <li><a href="#mcmc-updates-for-the-ising-model" id="toc-mcmc-updates-for-the-ising-model" class="nav-link" data-scroll-target="#mcmc-updates-for-the-ising-model"><span class="toc-section-number">7.3.1</span>  MCMC updates for the Ising model</a></li>
-  <li><a href="#summary-of-issues" id="toc-summary-of-issues" class="nav-link" data-scroll-target="#summary-of-issues"><span class="toc-section-number">7.3.2</span>  Summary of issues</a></li>
   </ul></li>
-  <li><a href="#sec-rng" id="toc-sec-rng" class="nav-link" data-scroll-target="#sec-rng"><span class="toc-section-number">7.4</span>  Random number generators</a></li>
+  <li><a href="#the-universe-of-monte-carlo-methods" id="toc-the-universe-of-monte-carlo-methods" class="nav-link" data-scroll-target="#the-universe-of-monte-carlo-methods"><span class="toc-section-number">7.4</span>  The universe of Monte Carlo methods</a></li>
+  <li><a href="#sec-rng" id="toc-sec-rng" class="nav-link" data-scroll-target="#sec-rng"><span class="toc-section-number">7.5</span>  Random number generators</a></li>
   </ul>
 </nav>
     </div>
@@ -295,7 +294,7 @@ div.csl-indent {
 <p>Many physical phenomena, notably those falling within the domains of statistical mechanics and quantum theory, depend in an essential way on <em>randomness</em>. The simulation of these phenomena therefore requires algorithms that incorporate random (or pseudo-random) elements in the most efficient way.</p>
 <section id="sampling-from-a-distribution" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="sampling-from-a-distribution"><span class="header-section-number">7.1</span> Sampling from a distribution</h2>
-<p>Let’s suppose that we have a source of samples of a real valued random variable <span class="math inline">\(X\)</span> that follows a particular probability density function <span class="math inline">\(p_X\)</span> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (more about where they might come from in <a href="#sec-rng"><span>Section&nbsp;7.4</span></a>). This means that the probability of drawing a sample in the region <span class="math inline">\([x, x+dx]\)</span> is <span class="math inline">\(p_X(x)dx\)</span>. If we now map the samples using a function <span class="math inline">\(f\)</span>, what is the probability density <span class="math inline">\(p_Y\)</span> of <span class="math inline">\(y=f(x)\)</span>? The new probability density is defined in just the same way: the probability of <span class="math inline">\(y\)</span> lying in the region <span class="math inline">\([y, y+dy]\)</span> is <span class="math inline">\(p_Y(y)dy\)</span>. Since <span class="math inline">\(x\)</span> is being mapped deterministically to <span class="math inline">\(y\)</span> these two probabilities are therefore the same</p>
+<p>Let’s suppose that we have a source of samples of a real valued random variable <span class="math inline">\(X\)</span> that follows a particular probability density function <span class="math inline">\(p_X\)</span> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (more about where they might come from in <a href="#sec-rng"><span>Section&nbsp;7.5</span></a>). This means that the probability of drawing a sample in the region <span class="math inline">\([x, x+dx]\)</span> is <span class="math inline">\(p_X(x)dx\)</span>. If we now map the samples using a function <span class="math inline">\(f\)</span>, what is the probability density <span class="math inline">\(p_Y\)</span> of <span class="math inline">\(y=f(x)\)</span>? The new probability density is defined in just the same way: the probability of <span class="math inline">\(y\)</span> lying in the region <span class="math inline">\([y, y+dy]\)</span> is <span class="math inline">\(p_Y(y)dy\)</span>. Since <span class="math inline">\(x\)</span> is being mapped deterministically to <span class="math inline">\(y\)</span> these two probabilities are therefore the same</p>
 <p><span class="math display">\[
 p_X(x)dx = p_Y(y)dy
 \]</span></p>
@@ -368,6 +367,7 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 </div>
 <p>In terms of integration, you can think of this as a way to compute the integral of a function which is one inside the unit disc, and zero outside it.</p>
 <p>Although it’s a silly method, this does illustrate one important feature of Monte Carlo methods in general: that the relative error with <span class="math inline">\(N\)</span> samples is typically <span class="math inline">\(\propto N^{-1/2}\)</span> (thus at the 1% level for <span class="math inline">\(10^4\)</span> samples) because the variance of a sum of <span class="math inline">\(N\)</span> <a href="https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables">iid</a> variables is <span class="math inline">\(\propto N^{1/2}\)</span>.</p>
+<p>TODO General setting. Importance sampling</p>
 <p>Monte Carlo integration comes into its own for high dimensional problems. For low dimensional integrals the quadrature methods in <a href="https://docs.scipy.org/doc/scipy/tutorial/integrate.html"><code>scipy.integrate</code></a> are preferable.</p>
 </section>
 <section id="sec-mcmc" class="level3" data-number="7.2.2">
@@ -421,7 +421,7 @@ p^{(n)}(x_n)=\sum_{x_{n-1},\ldots x_1}p(x_n|x_{n-1})p(x_{n-1}|x_{n-2})\cdots p(x
 \sum_j \mathsf{P}_{jk} = 1.
 \]</span></p>
 <p>Such matrices are called <a href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic</a>.</p>
-<p>Although <span class="math inline">\(p^{(n)}\)</span> – the probability distribution at the <span class="math inline">\(n\)</span>th step – changes from step to step, you might expect that after many steps it tends to converge to a <strong>stationary distribution</strong> <span class="math inline">\(p^{(n)}\to\boldsymbol{\pi}\)</span>. If it exists, this distribution must satisfy</p>
+<p>Although <span class="math inline">\(p^{(n)}\)</span> — the probability distribution at the <span class="math inline">\(n\)</span>th step — changes from step to step, you might expect that after many steps it tends to converge to a <strong>stationary distribution</strong> <span class="math inline">\(p^{(n)}\to\boldsymbol{\pi}\)</span>. If it exists, this distribution must satisfy</p>
 <p><span id="eq-stat"><span class="math display">\[
 \boldsymbol{\pi} = \mathsf{P}\boldsymbol{\pi}.
 \tag{7.1}\]</span></span></p>
@@ -454,7 +454,7 @@ p_\text{acc}(a=1|j \leftarrow k) = \min\left(1,  \frac{\pi_j}{\pi_k}\frac{p_\tex
 <p><span class="theorem-title"><strong>Example 7.2 (Metropolis algorithm) </strong></span>&nbsp;</p>
 <ol type="1">
 <li>Starting from state <span class="math inline">\(k\)</span> sample a next state <span class="math inline">\(j\)</span> from the proposal distribution <span class="math inline">\(p_\text{prop}(j|k)\)</span>.</li>
-<li>Accept the proposal with probability <span class="math inline">\(p_\text{acc}(a=1|j \leftarrow k)\)</span> and move to state <span class="math inline">\(j\)</span>. Otherwise reject and stay in state <span class="math inline">\(k\)</span>.</li>
+<li>Accept the proposal with probability <span class="math inline">\(p_\text{acc}(a=1|j \leftarrow k)\)</span> and move to state <span class="math inline">\(j\)</span>. Otherwise reject the proposal and stay in state <span class="math inline">\(k\)</span>.</li>
 <li>Repeat 1. and 2. many times.</li>
 </ol>
 </div>
@@ -467,11 +467,6 @@ p_\text{acc}(a=1|j \leftarrow k) = \min\left(1,  \frac{\pi_j}{\pi_k}\frac{p_\tex
 <p>Eigenvalues</p>
 <p>Master equation</p>
 <p>Transition matrix</p>
-<p>Marginalise over earlier variables</p>
-</section>
-<section id="importance-sampling" class="level3" data-number="7.2.4">
-<h3 data-number="7.2.4" class="anchored" data-anchor-id="importance-sampling"><span class="header-section-number">7.2.4</span> Importance sampling</h3>
-<p>MC methods can be elaborated in lots of ways</p>
 </section>
 </section>
 <section id="sec-statmech" class="level2" data-number="7.3">
@@ -523,26 +518,80 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 </ol>
 </div>
 <p>What happens if we try and come up with more complicated proposals, flipping many spins at once? For Metropolis, the problem is that without a cleverly designed proposal we will be suggesting moves that are likely to be rejected. For the heat bath algorithm, the more spins we flip, the more complicated the evaluation of the corresponding probabilities (<span class="math inline">\(2^n\)</span> outcomes if we flip <span class="math inline">\(n\)</span> spins).</p>
+<p>The good news is that we <em>can</em> do better — much better — than the above algorithms. The <a href="https://en.wikipedia.org/wiki/Wolff_algorithm">Wolff algorithm</a> is one example. This proposes a cluster of spins of the same orientation to be flipped by adding adjacent spins to an initially random chosen spin with probability <span class="math inline">\(p_\text{add}\)</span>. It turns out that for the nearest neighbour Ising model with Ferromagnetic coupling <span class="math inline">\(J&lt;0\)</span> the “magic” value <span class="math inline">\(p_\text{add}=1-e^{2\beta J}\)</span> is <em>rejection free</em>: the probability to flip the whole cluster is always one. This makes for an extremely fast algorithm that is not subject to the usual <em>critical slowing down</em> at phase transitions.</p>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Ising model code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> IsingModel:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, L):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> L</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.spins <span class="op">=</span> np.random.choice(a<span class="op">=</span>[<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>], size<span class="op">=</span>(L, L))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        stagger <span class="op">=</span> np.empty(<span class="va">self</span>.L, dtype <span class="op">=</span> <span class="bu">bool</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        stagger[::<span class="dv">2</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        stagger[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mask <span class="op">=</span> np.logical_xor(stagger[:, np.newaxis], stagger[np.newaxis, :])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> gibbs_update(<span class="va">self</span>, beta, sublattice):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> np.roll(<span class="va">self</span>.spins, <span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        delta_E <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> fields</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        spin_up_probabilities <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span> beta <span class="op">*</span> delta_E))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        new_spins <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (np.random.rand(<span class="va">self</span>.L, <span class="va">self</span>.L) <span class="op">&lt;</span> spin_up_probabilities) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.spins <span class="op">=</span> np.choose(np.logical_xor(sublattice, <span class="va">self</span>.mask), [<span class="va">self</span>.spins, new_spins])</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> glauber_update(<span class="va">self</span>, beta):</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> np.random.randint(<span class="va">self</span>.L, size<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> neighbour <span class="kw">in</span> [((x <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), ((x <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), (x, (y <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L), (x, (y <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L)]:</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            fields <span class="op">+=</span> <span class="va">self</span>.spins[neighbour]</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        delta_E <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> fields</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        spin_up_probability <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span> beta <span class="op">*</span> delta_E))        </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> spin_up_probability:</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.spins[x, y] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.spins[x, y] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wolff_update(<span class="va">self</span>, beta):</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        initial_x, initial_y <span class="op">=</span> np.random.randint(<span class="va">self</span>.L, size<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        initial_spin <span class="op">=</span> <span class="va">self</span>.spins[initial_x, initial_y]</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        cluster <span class="op">=</span> deque([(initial_x, initial_y)])</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        add_prob <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> beta)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="bu">len</span>(cluster) <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>            x, y <span class="op">=</span> cluster.popleft()</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="va">self</span>.spins[x, y] <span class="op">==</span> initial_spin:</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.spins[x, y] <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> neighbour <span class="kw">in</span> (((x <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), ((x <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), (x, (y <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L), (x, (y <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L)):</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="va">self</span>.spins[neighbour] <span class="op">==</span> initial_spin:</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> add_prob:</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>                            cluster.append(neighbour)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
 <script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
 <script src="assets/ising.js"></script>
-<div id="ising-simulation">
+<div id="fig-ising" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ising-simulation" data-align="center">
 
 </div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;7.1: Glauber dynamics, Block Gibbs sampling and Wolff updates compared. Change the temperature using the slider. The centre of the slider corresponds to the critical temperature <span class="math inline">\(k_\text{B}T = 2|J|/\log(1+\sqrt{2})\sim 2.269|J|\)</span>.</figcaption><p></p>
+</figure>
+</div>
 </section>
-<section id="summary-of-issues" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="summary-of-issues"><span class="header-section-number">7.3.2</span> Summary of issues</h3>
-<p>https://en.wikipedia.org/wiki/Swendsen%E2%80%93Wang_algorithm</p>
-<p>https://en.wikipedia.org/wiki/Wolff_algorithm</p>
+</section>
+<section id="the-universe-of-monte-carlo-methods" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="the-universe-of-monte-carlo-methods"><span class="header-section-number">7.4</span> The universe of Monte Carlo methods</h2>
+<p>Monte Carlo simulation is a vast field with practitioners and specialists across the natural sciences, engineering, machine learning, and statistics. In this section I’ll mention a few important topics to give a taste of what’s out there. For much more detail take a look at <span class="citation" data-cites="krauth2006statistical">Krauth (<a href="references.html#ref-krauth2006statistical" role="doc-biblioref">2006</a>)</span> and / or <span class="citation" data-cites="mackay2003information">MacKay (<a href="references.html#ref-mackay2003information" role="doc-biblioref">2003</a>)</span>.</p>
+<p>Probably the biggest single issue is: how do you kow when your MCMC simulation has reached the stationary distribution <span class="math inline">\(\boldsymbol{\pi}\)</span>? The pragmatic approach is to monitor the averages of interest (magnetization, say, in the case of the Ising model) over different simulations or over a time interval and see when they stop changing.</p>
+<p>We’ve touched on the issue of the <a href="https://en.wikipedia.org/wiki/Markov_chain_mixing_time">mixing time</a> in a Markov chain.</p>
 <ol type="1">
 <li>Finite size effects</li>
 <li>Approach to equilibrium</li>
 <li>Critical slowing down / loss of ergodicity</li>
-<li>Bias of estimators</li>
+<li>Bias of estimators. Importance sampling</li>
 </ol>
-<p>Hamiltonian Monte Carlo.</p>
-<p>Gibbs sampling</p>
-<p>https://leftasexercise.com/2018/03/12/the-ising-model-and-gibbs-sampling/</p>
+<p>Exact sampling</p>
+<p><a href="https://en.wikipedia.org/wiki/Hamiltonian_Monte_Carlo">Hamiltonian Monte Carlo</a>.</p>
 <p>Multispin encoding: 32 or 64 simulations <span class="citation" data-cites="jacobs1981multi">Jacobs and Rebbi (<a href="references.html#ref-jacobs1981multi" role="doc-biblioref">1981</a>)</span></p>
 <p>https://en.wikipedia.org/wiki/Gibbs_sampling</p>
 <p>Other updates</p>
@@ -554,10 +603,10 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 <p>https://arxiv.org/pdf/cond-mat/0005264.pdf</p>
 <p>Bayesian inference</p>
 </section>
-</section>
-<section id="sec-rng" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="sec-rng"><span class="header-section-number">7.4</span> Random number generators</h2>
+<section id="sec-rng" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="sec-rng"><span class="header-section-number">7.5</span> Random number generators</h2>
 <p>Computers are deterministic</p>
+<p>This is covered in some detail in the Nature of Computation</p>
 <p>This is a subject dealt with already</p>
 <p>RNGs in Trebst?</p>
 <p>Further reading: refer to <a href="https://arxiv.org/pdf/cond-mat/9612186.pdf">Krauth notes</a> or book</p>
@@ -597,7 +646,7 @@ Widom, B. 1966. <span>“Random Sequential Addition of Hard Spheres to a Volume.
 <li id="fn3"><p>There is an important caveat. If there are two or more subsets of the state space that are not connected by finite transition probabilities, the probability distribution in each subset evolves independently and there is not a unique stationary distribution. When there <em>is</em>, we say that the Markov chain is <strong>ergodic</strong> and the corresponding transition matrix is <strong>irreducible</strong>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>For a classical gas of point particles this would correspond to specifying all the positions and velocities, for example.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>Multiple names are sign that a technique was re-discovered by different communities who don’t talk to each other.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>This can be done deterministically (e.g.&nbsp;sequentially or in alternating blocks when the model is defined on a <a href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a>) – which is what is normally called Gibbs sampling – or at random, which corresponds to Glauber dynamics.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>This can be done deterministically (e.g.&nbsp;sequentially or in alternating blocks when the model is defined on a <a href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a>) — which is what is normally called Gibbs sampling — or at random, which corresponds to Glauber dynamics.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -743,7 +792,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./complexity.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Computational complexity</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms and computational complexity</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
