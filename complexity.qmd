@@ -1,5 +1,17 @@
 # Algorithms and computational complexity
 
+
+## First example: multiplication
+
+How hard is it to multiply numbers? The bigger they are, the harder it is, as you well know. You also know that computers are very good at multiplying, so once you've switched from multiplying numbers yourself to multiplying them on a computer, you may well be tempted to forget 
+
+
+## Defining complexity
+
+XKCD plots
+
+Big O
+
 Simple example from Leetcode
 
 Analaysis of algorithms

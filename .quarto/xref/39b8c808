@@ -1,1 +1,1 @@
-{"options":{"chapters":true},"entries":[{"key":"sec-fp-numpy","caption":"5.2.1 Floating point numbers in NumPy","order":{"section":[5,2,1,0,0,0,0],"number":1}}],"headings":["integers","floating-point-numbers","sec-fp-numpy","the-dreaded-nan"]}
+{"options":{"chapters":true},"entries":[{"key":"sec-fp-numpy","order":{"number":1,"section":[5,2,1,0,0,0,0]},"caption":"5.2.1 Floating point numbers in NumPy"}],"headings":["integers","floating-point-numbers","sec-fp-numpy","the-dreaded-nan"]}

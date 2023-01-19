@@ -18,6 +18,7 @@ book:
     - linear.qmd
     - divide.qmd
     - dynamic.qmd
+    - autograd.qmd
     - summary.qmd
     - references.qmd
 

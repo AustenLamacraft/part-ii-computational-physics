@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -342,7 +342,7 @@ x_{j+1} = x_j + hf(x_{j+1}, t_{j+1})
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ode_files/figure-html/cell-2-output-1.png" width="569" height="424"></p>
+<p><img src="ode_files/figure-html/cell-2-output-1.png" width="569" height="431"></p>
 </div>
 </div>
 <p>For a linear equation the Euler update <a href="#eq-euler-update">Equation&nbsp;<span>6.3</span></a> is a simple rescaling</p>
@@ -414,7 +414,7 @@ E(\theta, l) = \frac{1}{2}l^2 - \cos\theta
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="ode_files/figure-html/cell-5-output-1.png" width="600" height="427"></p>
+<p><img src="ode_files/figure-html/cell-5-output-1.png" width="600" height="434"></p>
 </div>
 </div>
 <p>The thickness of the blue line is due to the variation of the energy over the <span class="math inline">\(t=1000\)</span> trajectory (measured in units where the frequency of linear oscillation is <span class="math inline">\(2\pi\)</span>). Notice that we did not have to specify a time step: this is determined <em>adaptively</em> by the solver to keep the estimate of the local error below <code>atol + rtol * abs(y)</code>, where <code>atol</code> and <code>rtol</code> are optional arguments that correspond to the absolute and relative tolerances, with default values of <span class="math inline">\(10^{-6}\)</span> and <span class="math inline">\(10^{-3}\)</span> respectively. The global error is of course much larger. In general, monitoring conserved quantities is a good experimental method for assessing the accuracy of integration.</p>
@@ -471,7 +471,7 @@ p_x = \sqrt{2E-y^2-p_y^2 + \frac{2\lambda}{3}y^3}
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="ode_files/figure-html/cell-7-output-1.png" width="603" height="442"></p>
+<p><img src="ode_files/figure-html/cell-7-output-1.png" width="603" height="449"></p>
 </div>
 </div>
 <p>TODO Leapfrog?</p>

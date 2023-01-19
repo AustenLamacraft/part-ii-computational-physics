@@ -43,5 +43,8 @@
   },
   "divide.qmd": {
     "divide.html": "70910e55"
+  },
+  "autograd.qmd": {
+    "autograd.html": "63e3696d"
   }
 }

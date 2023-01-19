@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -156,7 +156,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./autograd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">autograd.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -175,9 +180,11 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
   <ul class="collapse">
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
-  <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a></li>
   <li><a href="#schedule" id="toc-schedule" class="nav-link" data-scroll-target="#schedule">Schedule</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a></li>
+  <li><a href="#these-notes" id="toc-these-notes" class="nav-link" data-scroll-target="#these-notes">These notes…</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -216,51 +223,93 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p>There are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge.</p>
-<section id="prerequisites" class="level2">
-<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
-<p>This course assumes a basic knowledge of the Python language, including variables, control flow, and writing and using functions, at the level of last year’s IB course.</p>
-<p>Thanks to David Buscher for the earlier version</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
-</section>
-<section id="outline" class="level2">
-<h2 class="anchored" data-anchor-id="outline">Outline</h2>
-<p>Topics</p>
-<ol type="1">
-<li>Setup. Running Python. Notebooks. Language overview</li>
-<li>Representation of numbers and floating point</li>
-<li>Numpy. Use for simple numerics. Plotting. Dealing with data</li>
-<li>Numerical algos. SciPy</li>
-<li>Other libraries. Pandas and scikit-learn. Kaggle</li>
-<li>Algorithms and complexity. Simple Examples. FFT? Importance of…(see https://ieeexplore.ieee.org/document/814652). Matrix multiplication. Strassen and Alpha Tensor. Nice discussion in Nature of Computation</li>
-<li>Types of algorithm e.g.&nbsp;divide and conquer, dynamic programming (at level of grokking algos book). Recursion.</li>
-<li>Random algorithms e.g.&nbsp;Monte Carlo. Inference.</li>
-<li>Fun. Machine learning. Diffusion models</li>
-<li>Software engineering principles. Version control. Tests</li>
-<li>Acceleration. Numba, CuPy, etc.</li>
-</ol>
-<p>Trebst’s applications: ODE, Monte Carlo simulation, data analysis, QM scattering, Linear algebra, Neural Nets</p>
-<p>Refer to French book for more examples.</p>
-<p>PCA as application of linear algebra and quantum mechanics</p>
-<p>Random matrix theory Linear regression</p>
-<p>Linear programming.</p>
-<p>FFT invented before Fourier</p>
-<p>Garth Wells has nice material about algos and complexity https://github.com/CambridgeEngineering/PartIA-Computing-Michaelmas/</p>
-<p>Hashing</p>
-<p>Numpy. Basics of ufuncs and vectorization 2. Loading and saving data 3. Data types. Floating point. Machine precision 4. Implementing algos using vectorization (ODEs) 5. Numerical techniques: ODS, optimization 6. Computational complexity 1. Complexity of simple algos. Division algorithm as binary search (Ryan O’Donnell tweet) 2. Euler algorithm 3. Complexity of linear algebra operations. Matrix-matrix and matrix-vector. Solving equations can be easier if matrices have structure see e.g.&nbsp;https://martin-thoma.com/solving-equations-of-upper-triangular-matrices/. This is forward / backward substitution. 4. Strategies: divide and conquer (examples: exponentiation, Strassen, FFT) 5. Monte Carlo and probabilistic methods 6. Dynamic programming 7. Version control. GitHub. Pull requests. Code review. Look up some code in <code>scipy</code></p>
-<p>A note about the format of the notes. Each chapter should be thought of as a notebook, so you’ll only see <code>import numpy as np</code> once in each chapter, for example.</p>
-</section>
+<p>These are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge.</p>
 <section id="schedule" class="level2">
 <h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
-<p>The course of eight Lectures will take place at 10:00 on Mondays and Fridays in the Pippard Lecture Theatre.</p>
+<p>The course of eight Lectures will take place at 10.00 on Mondays and Fridays in the Pippard Lecture Theatre. After the lectures there will be four computing exercises to be completed in the last four weeks of full Lent term; one per week. Remember that the exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours.</p>
+<p>The schedule is as follows</p>
 <ul>
 <li>First lecture: Monday 23th January</li>
 <li>Last lecture: Friday 17th February</li>
-<li>First assignment: Friday 17th February – Friday 24th February</li>
-<li>Second assignment: Friday 24th February – Friday 3rd March</li>
-<li>Third assignment: Friday 3rd March – Friday 10th March</li>
-<li>Fourth assignment: Friday 10th March – Friday 17th March (last day of full Lent term)</li>
+<li>First exercise: Friday 17th February – Friday 24th February</li>
+<li>Second exercise: Friday 24th February – Friday 3rd March</li>
+<li>Third exercise: Friday 3rd March – Friday 10th March</li>
+<li>Fourth exercise: Friday 10th March – Friday 17th March (last day of full Lent term)</li>
 </ul>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<p>This course assumes a basic knowledge of the Python language, including variables, control flow, and writing and using functions, at the level of last year’s IB course.</p>
+</section>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<p>In this course you will learn</p>
+<ol type="1">
+<li>About the Python scientific stack (based on the NumPy library)</li>
+<li>Its use in implementing some common algorithms in computational physics.</li>
+<li>Basic ideas of computational complexity used in the analysis of algorithms</li>
+</ol>
+</section>
+<section id="outline" class="level2">
+<h2 class="anchored" data-anchor-id="outline">Outline</h2>
+<p>Here’s a list of topics that I’d like to cover. We make not have time for all of them.</p>
+<ol type="1">
+<li>Setup. Running Python. Notebooks. Language overview</li>
+<li>NumPy and friends</li>
+<li>Floating point and all that</li>
+<li>Soving differential equations with SciPy</li>
+<li>Monte Carlo methods</li>
+<li>Linear algebra with NumPy</li>
+<li>Introduction to algorithms and complexity</li>
+<li>The fast Fourier transform</li>
+<li>Automatic differentiation</li>
+</ol>
+<!-- 4. Numerical algos. SciPy
+5. Other libraries. Pandas and scikit-learn. Kaggle
+6. Algorithms and complexity. Simple Examples. FFT? Importance of...(see https://ieeexplore.ieee.org/document/814652). Matrix multiplication. Strassen and Alpha Tensor. Nice discussion in Nature of Computation
+7. Types of algorithm e.g. divide and conquer, dynamic programming (at level of grokking algos book). Recursion. 
+8. Random algorithms e.g. Monte Carlo. Inference.
+9. Fun. Machine learning. Diffusion models
+10. Software engineering principles. Version control. Tests
+11. Acceleration. Numba, CuPy, etc. -->
+<!-- Trebst's applications:
+ODE, Monte Carlo simulation, data analysis, QM scattering, Linear algebra, Neural Nets
+
+Refer to French book for more examples.
+
+PCA as application of linear algebra and quantum mechanics
+
+Random matrix theory
+Linear regression
+
+Linear programming.
+
+FFT invented before Fourier
+
+Garth Wells has nice material about algos and complexity
+https://github.com/CambridgeEngineering/PartIA-Computing-Michaelmas/
+
+Hashing
+
+
+Numpy. Basics of ufuncs and vectorization 
+2. Loading and saving data
+3. Data types. Floating point. Machine precision
+4. Implementing algos using vectorization (ODEs)
+5. Numerical techniques: ODS, optimization
+6. Computational complexity
+    1. Complexity of simple algos. Division algorithm as binary search (Ryan O'Donnell tweet)
+    2. Euler algorithm
+    3. Complexity of linear algebra operations. Matrix-matrix and matrix-vector. Solving equations can be easier if matrices have structure see e.g. https://martin-thoma.com/solving-equations-of-upper-triangular-matrices/. This is forward   / backward substitution. 
+    4. Strategies: divide and conquer (examples: exponentiation, Strassen, FFT)
+    5. Monte Carlo and probabilistic methods
+    6. Dynamic programming
+7. Version control. GitHub. Pull requests. Code review. Look up some code in `scipy` -->
+</section>
+<section id="these-notes" class="level2">
+<h2 class="anchored" data-anchor-id="these-notes">These notes…</h2>
+<p>…were prepared using <a href="https://quarto.org/">Quarto</a>. Each chapter should be thought of as a Jupyter notebook (actually, they <em>are</em> Jupyter notebooks), so you’ll only see <code>import numpy as np</code> once in each chapter, for example.</p>
+<p>In several places I’ve used examples from an earlier version of the course by David Buscher.</p>
 
 
 </section>
