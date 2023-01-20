@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.2.280">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -218,7 +218,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./autograd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Automatic Differentiation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -289,7 +294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>With IPython you can see all the available methods by hitting tab:</p>
-<p><img src="assets/tab-complete.gif" class="img-fluid"></p>
+<p><img src="assets/tab-complete.png" class="img-fluid"></p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -455,8 +460,8 @@ Dunder methods
  [1. 1.]]
 [[5 5]
  [5 5]]
-[[0.39132314 0.35116356]
- [0.74468628 0.91228837]]</code></pre>
+[[0.84180888 0.72936887]
+ [0.67738016 0.62080392]]</code></pre>
 </div>
 </div>
 <p>There are also lots of methods to change the shape of arrays, for example</p>
@@ -567,7 +572,7 @@ Dunder methods
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="numpy_files/figure-html/cell-25-output-1.png" width="590" height="411"></p>
+<p><img src="numpy_files/figure-html/cell-25-output-1.png" width="590" height="404"></p>
 </div>
 </div>
 <p><strong>Note</strong>: you must call plt.show() to make graphics appear. Here’s a fancier example with some labelling</p>
@@ -586,7 +591,7 @@ Dunder methods
 <span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'Sine'</span>, <span class="st">'Cosine'</span>])</span>
 <span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="numpy_files/figure-html/cell-26-output-1.png" width="609" height="449"></p>
+<p><img src="numpy_files/figure-html/cell-26-output-1.png" width="609" height="442"></p>
 </div>
 </div>
 <p>Often you’ll want to make several related plots and present them together, which can be achieved using the <code>subplot</code> function</p>
@@ -615,7 +620,7 @@ Dunder methods
 <span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the figure.</span></span>
 <span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="numpy_files/figure-html/cell-27-output-1.png" width="582" height="431"></p>
+<p><img src="numpy_files/figure-html/cell-27-output-1.png" width="582" height="424"></p>
 </div>
 </div>
 </section>

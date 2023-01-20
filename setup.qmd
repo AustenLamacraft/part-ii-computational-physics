@@ -35,7 +35,7 @@ If you ran the above command from within `python` you may have noticed that the 
 Among the most helpful features of IPython are: 
 
 1. Tab completion: hit `tab` to autocomplete. This is particularly useful for viewing all properties or methods of an object:
-![](assets/tab-complete.gif)
+![](assets/tab-complete.png)
 2. Typing `?word` or `word?` prints detailed information about an object (`??` provides additional detail). 
 3. Certain _magic commands_ prefixed by `%` that provide certain additional functionality. For example, `%timeit` finds the executation time of a single line statement, which is useful when profiling the performance of code:
 ```{python}
@@ -124,5 +124,7 @@ The text cells can be formatted using [Markdown](https://jupyter-notebook.readth
 Google has their own cloud version of the Jupyter notebook called [Colab](https://colab.research.google.com/). You can try it out for free, though you have to pay for significant compute. The "next generation" of the Jupyter notebook is called JupyterLab and can be started with `jupyter lab`. Notebook files can be opened in either Jupyter Lab or Jupyter Notebook
 
 ## Codespaces
+
+TODO 
 
 New from Github...

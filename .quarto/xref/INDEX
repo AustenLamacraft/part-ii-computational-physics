@@ -39,12 +39,20 @@
     "complexity.html": "9da31131"
   },
   "monte-carlo.qmd": {
-    "monte-carlo.html": "a76b5724"
+    "monte-carlo.html": "a76b5724",
+    "monte-carlo.tex": "f1019668"
   },
   "divide.qmd": {
     "divide.html": "70910e55"
   },
   "autograd.qmd": {
     "autograd.html": "63e3696d"
+  },
+  "assignments.qmd": {
+    "assignments.html": "6d62fa21",
+    "assignments.tex": "23102872"
+  },
+  "autodiff.qmd": {
+    "autodiff.html": "d6e8102d"
   }
 }

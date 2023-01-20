@@ -1,5 +1,10 @@
 project:
   type: book
+  preview:
+    port: 3000
+    browser: false
+    watch-inputs: true
+
 
 book:
   title: "Part II Computational Physics"

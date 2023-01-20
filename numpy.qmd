@@ -24,7 +24,7 @@ my_list
 
 With IPython you can see all the available methods by hitting tab:
 
-![](assets/tab-complete.gif)
+![](assets/tab-complete.png)
 
 ::: {.callout-tip collapse="true"}
 ## Dunder methods

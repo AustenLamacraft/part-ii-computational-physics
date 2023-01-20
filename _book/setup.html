@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.2.280">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -219,7 +219,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./autograd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Automatic Differentiation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -299,14 +304,14 @@ Type "help", "copyright", "credits" or "license" for more information.
 <p><a href="https://ipython.readthedocs.io/en/stable/">IPython</a> is an interactive shell that provides syntax highlighting and much more. If you have installed IPython (it comes with Anaconda) you can start it from the command line with <code>ipython</code>.</p>
 <p>Among the most helpful features of IPython are:</p>
 <ol type="1">
-<li>Tab completion: hit <code>tab</code> to autocomplete. This is particularly useful for viewing all properties or methods of an object: <img src="assets/tab-complete.gif" class="img-fluid"></li>
+<li>Tab completion: hit <code>tab</code> to autocomplete. This is particularly useful for viewing all properties or methods of an object: <img src="assets/tab-complete.png" class="img-fluid"></li>
 <li>Typing <code>?word</code> or <code>word?</code> prints detailed information about an object (<code>??</code> provides additional detail).</li>
 <li>Certain <em>magic commands</em> prefixed by <code>%</code> that provide certain additional functionality. For example, <code>%timeit</code> finds the executation time of a single line statement, which is useful when profiling the performance of code:</li>
 </ol>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit L <span class="op">=</span> [n <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>227 µs ± 3.97 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
+<pre><code>217 µs ± 4.7 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
 </div>
 </div>
 <p><code>%timeit</code> automatically runs several times to give some statistics on the execution time. For multiple lines you can use the <code>%%timeit</code> magic.</p>
@@ -381,6 +386,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 </section>
 <section id="codespaces" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="codespaces"><span class="header-section-number">2.9</span> Codespaces</h2>
+<p>TODO</p>
 <p>New from Github…</p>
 
 
