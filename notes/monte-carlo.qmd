@@ -235,13 +235,15 @@ The Metropolis algorithm has an Achilles' heel, however. To perform a move one h
 
 We'll see some more examples of MCMC algorithms for statistical mechanical problems in @sec-statmech, and ways in which this problem can be avoided.
 
-### Relaxation to equilibrium
+<!-- ### Relaxation to equilibrium
+
+TODO
 
 Eigenvalues
 
 Master equation
 
-Transition matrix
+Transition matrix -->
 
 
 ## Statistical mechanics {#sec-statmech}
@@ -382,11 +384,11 @@ class IsingModel:
 Glauber dynamics, Block Gibbs sampling and Wolff updates compared. Change the temperature using the slider. The centre of the slider corresponds to the critical temperature $k_\text{B}T = 2|J|/\log(1+\sqrt{2})\sim 2.269|J|$.
 :::
 
-<!-- ## The universe of Monte Carlo methods
+## The universe of Monte Carlo methods
 
-Monte Carlo simulation is a vast field with practitioners and specialists across the natural sciences, engineering, machine learning, and statistics. In this section I'll mention a few important topics to give a taste of what's out there. For much more detail take a look at @krauth2006statistical and / or @mackay2003information.
+Monte Carlo simulation is a vast field with practitioners and specialists across the natural sciences, engineering, machine learning, and statistics. In this section I'll mention a few important topics to give a taste of what's out there. For much more detail take a look at @krauth2006statistical and / or @mackay2003information. The recent set of lectures [Monte Carlo Techniques](https://hef.ru.nl/~tbudd/mct/intro.html) by Timothy Budd also look fantastic.
 
-Probably the biggest single issue is: how do you kow when your MCMC simulation has reached the stationary distribution $\boldsymbol{\pi}$? The pragmatic approach is to monitor the averages of interest (magnetization, say, in the case of the Ising model) over different simulations or over a time interval and see when they stop changing. 
+<!-- Probably the biggest single issue is: how do you kow when your MCMC simulation has reached the stationary distribution $\boldsymbol{\pi}$? The pragmatic approach is to monitor the averages of interest (magnetization, say, in the case of the Ising model) over different simulations or over a time interval and see when they stop changing. 
 
 
 We've touched on the issue of the [mixing time](https://en.wikipedia.org/wiki/Markov_chain_mixing_time) in a Markov chain.
