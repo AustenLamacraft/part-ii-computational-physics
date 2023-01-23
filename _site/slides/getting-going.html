@@ -431,7 +431,7 @@
 <p>In this course you will learn</p>
 <ol type="1">
 <li>About the Python scientific stack (based on NumPy)</li>
-<li>Its use in implementing some common algorithms in computational physics.</li>
+<li>Its use in implementing some common algorithms in computational physics</li>
 <li>Basic ideas of computational complexity used in the analysis of algorithms</li>
 </ol>
 </section>
@@ -441,6 +441,7 @@
 <li><p>Assume a knowledge of the Python language, including variables, control flow, and writing and using functions</p></li>
 <li><p>Refer to last year’s IB course (which had an excellent handout)…</p></li>
 <li><p>…and of course the internet</p></li>
+<li><p>For an absolutely bare bones intro to Python try the first half of <a href="https://cs231n.github.io/python-numpy-tutorial/">this tutorial</a></p></li>
 </ul>
 </section>
 <section id="computational-physics.tripos.org" class="slide level2 center">
@@ -527,7 +528,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <div class="cell-output cell-output-stdout">
 <pre><code>Hello world!</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>3</code></pre>
 </div>
 </div>
@@ -539,7 +540,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <h2>IPython</h2>
 <ul>
 <li><p>If you the above with <code>python</code> nice colour scheme is absent</p></li>
-<li><p>This is called <a href="https://en.wikipedia.org/wiki/Syntax_highlighting">syntax highlighting</a> and provides a visual guide to the syntax of the language.</p></li>
+<li><p>This is called <a href="https://en.wikipedia.org/wiki/Syntax_highlighting">syntax highlighting</a> and provides a visual guide to the syntax of the language</p></li>
 <li><p><a href="https://ipython.readthedocs.io/en/stable/">IPython</a> is an interactive shell that provides syntax highlighting and much more</p></li>
 <li><p>If you have installed IPython (it comes with Anaconda) you can start it from the command line with <code>ipython</code></p></li>
 </ul>
@@ -551,7 +552,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 </ul>
 <p><img data-src="assets/tab-complete.gif" class="border"></p>
 <ul>
-<li>Typing <code>?obj</code> or <code>obj?</code> prints detailed information about the object <code>obj</code> (<code>??</code> provides additional detail).</li>
+<li>Typing <code>?obj</code> or <code>obj?</code> prints detailed information about the object <code>obj</code> (<code>??</code> provides additional detail)</li>
 </ul>
 </section>
 <section class="slide level2 center">
@@ -563,7 +564,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="op">%</span>timeit L <span class="op">=</span> [n <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>250 µs ± 15.1 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
+<pre><code>239 µs ± 9.9 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
 </div>
 </div>
 <ul>
@@ -580,8 +581,13 @@ Type "help", "copyright", "credits" or "license" for more information.
 <p>or</p>
 <pre><code>python -m hello_world</code></pre>
 <ul>
-<li><p>In the latter case <code>-m</code> option tells interpreter to look for a <em>module</em> called <code>hello_world</code></p></li>
-<li><p>From the IPython shell you can instead use</p></li>
+<li>In the latter case <code>-m</code> option tells interpreter to look for a <em>module</em> called <code>hello_world</code></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li>From the IPython shell you can instead use</li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>run hello_world.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or just</p>
@@ -632,7 +638,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 </div>
 </div>
 <ul>
-<li>or even:</li>
+<li>or even import everything with the wildcard <code>*</code>:</li>
 </ul>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">from</span> hello_world <span class="im">import</span> <span class="op">*</span></span>
@@ -655,7 +661,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb18-2"><a href="#cb18-2"></a>np.arange(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre>
 </div>
 </div>

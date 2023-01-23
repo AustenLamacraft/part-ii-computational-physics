@@ -25,6 +25,8 @@ Students may start their project work once the project list is published by 17th
 
 This course assumes a basic knowledge of the Python language, including variables, control flow, and writing and using functions, at the level of last year's IB course (which had an excellent handout). 
 
+If you want an absolute bare bones intro to Python try the first half of [this tutorial](https://cs231n.github.io/python-numpy-tutorial/) (which then goes on to introduce NumPy).
+
 ## Learning outcomes
 
 In this course you will learn

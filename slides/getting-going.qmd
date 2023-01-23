@@ -44,7 +44,7 @@ format:
 In this course you will learn
 
 1. About the Python scientific stack (based on NumPy)
-2. Its use in implementing some common algorithms in computational physics.
+2. Its use in implementing some common algorithms in computational physics
 3. Basic ideas of computational complexity used in the analysis of algorithms
 
 ---
@@ -56,6 +56,8 @@ In this course you will learn
 - Refer to last year's IB course (which had an excellent handout)...
 
 - ...and of course the internet
+
+- For an absolutely bare bones intro to Python try the first half of [this tutorial](https://cs231n.github.io/python-numpy-tutorial/)
 
 ---
 
@@ -154,7 +156,7 @@ print("Hello world!")
 
 - If you the above with `python` nice colour scheme is absent
 
-- This is called [syntax highlighting](https://en.wikipedia.org/wiki/Syntax_highlighting) and provides a visual guide to the syntax of the language.
+- This is called [syntax highlighting](https://en.wikipedia.org/wiki/Syntax_highlighting) and provides a visual guide to the syntax of the language
 
 - [IPython](https://ipython.readthedocs.io/en/stable/) is an interactive shell that provides syntax highlighting and much more
 
@@ -168,7 +170,7 @@ print("Hello world!")
 
 ![](assets/tab-complete.gif){.border}
 
-- Typing `?obj` or `obj?` prints detailed information about the object `obj` (`??` provides additional detail). 
+- Typing `?obj` or `obj?` prints detailed information about the object `obj` (`??` provides additional detail)
 
 ---
 
@@ -200,6 +202,8 @@ python -m hello_world
 
 - In the latter case `-m` option tells interpreter to look for a _module_ called `hello_world`
 
+---
+
 - From the IPython shell you can instead use 
 
 ```python
@@ -211,6 +215,7 @@ or just
 run hello_world
 ```
 
+---
 
 ## Importing code
 
@@ -252,7 +257,7 @@ from hello_world import hello
 hello()
 ```
 
-- or even:
+- or even import everything with the wildcard `*`:
 
 ```{python}
 #| echo: true
