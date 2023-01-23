@@ -1,0 +1,5 @@
+#TODO: These really should have version constraints to guarantee reproducibility
+numpy
+jupyter
+matplotlib
+scipy
