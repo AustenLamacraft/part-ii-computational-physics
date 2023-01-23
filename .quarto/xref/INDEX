@@ -54,5 +54,71 @@
   },
   "autodiff.qmd": {
     "autodiff.html": "d6e8102d"
+  },
+  "fourier.qmd": {
+    "fourier.html": "e15c0157"
+  },
+  "setup-slides.qmd": {
+    "setup-slides.html": "9ccf3e4d"
+  },
+  "slides/setup-slides.qmd": {
+    "setup-slides.html": "6ddd0c85"
+  },
+  "notes/intro.qmd": {
+    "intro.html": "6e1e7e36"
+  },
+  "notes/setup.qmd": {
+    "setup.html": "d893b4d2"
+  },
+  "notes/numpy.qmd": {
+    "numpy.html": "5f30c4b6"
+  },
+  "notes/numbers.qmd": {
+    "numbers.html": "30686389"
+  },
+  "notes/ode.qmd": {
+    "ode.html": "02191e7c"
+  },
+  "notes/monte-carlo.qmd": {
+    "monte-carlo.html": "23ebf8cb"
+  },
+  "notes/complexity.qmd": {
+    "complexity.html": "e9a42a8d"
+  },
+  "notes/fourier.qmd": {
+    "fourier.html": "1342d3fc"
+  },
+  "notes/linear.qmd": {
+    "linear.html": "7fab56af"
+  },
+  "notes/divide.qmd": {
+    "divide.html": "604e7dfc"
+  },
+  "notes/dynamic.qmd": {
+    "dynamic.html": "bafc190a"
+  },
+  "notes/autograd.qmd": {
+    "autograd.html": "323f88f0"
+  },
+  "notes/summary.qmd": {
+    "summary.html": "c2a9dcc6"
+  },
+  "notes/references.qmd": {
+    "references.html": "5719cf37"
+  },
+  "notes/getting-going.qmd": {
+    "getting-going.html": "7836b370"
+  },
+  "slides/getting-going.qmd": {
+    "getting-going.html": "ddf59218"
+  },
+  "notes/assignments.qmd": {
+    "assignments.html": "128629ad"
+  },
+  "notes/autodiff.qmd": {
+    "autodiff.html": "e1a3f293"
+  },
+  "notes/python.qmd": {
+    "python.html": "68e46e73"
   }
 }

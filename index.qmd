@@ -1,10 +1,10 @@
-# Preface {.unnumbered}
+# Course outline {.unnumbered}
 
 These are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge. 
 
 ## Schedule
 
-The course of eight Lectures will take place at 10.00 on Mondays and Fridays in the Pippard Lecture Theatre. After the lectures there will be four computing exercises to be completed in the last four weeks of full Lent term; one per week. Remember that the exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. 
+The course of eight Lectures will take place at 10.00 on Mondays and Fridays in the Pippard Lecture Theatre. After the lectures there will be __four computing exercises__ to be completed in the last four weeks of full Lent term; one per week. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. 
 
 The schedule is as follows
 
@@ -15,9 +15,15 @@ The schedule is as follows
 - Third exercise: Friday 3rd March – Friday 10th March
 - Fourth exercise: Friday 10th March – Friday 17th March (last day of full Lent term)
 
+### Computing Project
+
+Additionally, you may choose to offer a Computational Physics project for one unit of further work. This involves choosing a problem from the project list. You will analyse the problem, write and test Python code to investigate it, then write up your work in a report. 
+
+Students may start their project work once the project list is published by 17th February. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (1st May 2023)__.
+
 ## Prerequisites
 
-This course assumes a basic knowledge of the Python language, including variables, control flow, and writing and using functions, at the level of last year's IB course. 
+This course assumes a basic knowledge of the Python language, including variables, control flow, and writing and using functions, at the level of last year's IB course (which had an excellent handout). 
 
 ## Learning outcomes
 
@@ -36,9 +42,9 @@ Here's a list of topics that I'd like to cover. We make not have time for all of
 3. Floating point and all that
 4. Soving differential equations with SciPy
 5. Monte Carlo methods
-6. Linear algebra with NumPy
-7. Introduction to algorithms and complexity
-8. The fast Fourier transform
+6. Introduction to algorithms and complexity
+7. The fast Fourier transform
+8. Linear algebra with NumPy
 9. Automatic differentiation 
 
 <!-- 4. Numerical algos. SciPy
@@ -69,6 +75,19 @@ https://github.com/CambridgeEngineering/PartIA-Computing-Michaelmas/
 
 Hashing
 
+Books
+
+Part IB notes are very good
+
+Garth Wells
+
+https://github.com/CambridgeEngineering/PartIA-Computing-Michaelmas/
+
+Rougier
+
+https://www.labri.fr/perso/nrougier/from-python-to-numpy/
+https://github.com/rougier/scientific-visualization-book
+
 
 Numpy. Basics of ufuncs and vectorization 
 2. Loading and saving data
@@ -86,7 +105,9 @@ Numpy. Basics of ufuncs and vectorization
 
 ## These notes...
 
-...were prepared using [Quarto](https://quarto.org/). Each chapter should be thought of as a Jupyter notebook (actually, they _are_ Jupyter notebooks), so you'll only see `import numpy as np` once in each chapter, for example. 
+...were prepared using [Quarto](https://quarto.org/). Each chapter should be thought of as a Jupyter notebook (actually, they _are_ Jupyter notebooks), so you'll probably only see `import numpy as np` once in each chapter, for example. 
+
+The code used to generate this site is in [this GitHub repo](https://github.com/AustenLamacraft/part-ii-computational-physics). Please use [issues](https://github.com/AustenLamacraft/part-ii-computational-physics/issues) to submit any typos and [discussions](https://github.com/AustenLamacraft/part-ii-computational-physics/discussions) to discuss the content.
 
 In several places I've used examples from an earlier version of the course by David Buscher.
 

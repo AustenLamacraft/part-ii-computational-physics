@@ -1,0 +1,33 @@
+# Introduction
+
+> Science is what we understand well enough to explain to a computer. Art is everything else we do.
+>
+> Donald Knuth
+
+Computation saturates every corner of physics these days, much as it saturates every corner of everything. Even if we restrict ourselves to the senses most relevant to physicists, the word _computation_ covers a terrific variety of ideas. From the prosaic to the lofty, I could be talking about:
+
+1. The _tools_ we use to do computation. Physical hardware, editors, notebooks, etc.
+
+2. The languages we use to write code in order to perform computations.  
+
+3. The use of tools to generate documents (e.g. using $\LaTeX$) or disseminate knowledge (online).
+
+3. The automated gathering and analysis of experimental data. 
+
+4. The numerical techniques that we use to solve particular problems in theoretical physics and mathematics.
+
+5. The limits of what we can achieve with finite resources including time and space (memory). That is, how _hard_ — or _complex_ — are the computational tasks we wish to perform? Can we quantify this?
+
+6. The question of whether physical processes are _really_ the same things as computations. That is: are all processes that happen in the physical universe computable _in principal_ (perhaps on a quantum computer)? This is roughly what is meant by [(physical) Church–Turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis#Variations). This brings us full circle to the first item on the list.
+
+In this course we'll have to touch on all of these, except the last one (it's only eight lectures). Most of the concrete techniques we'll look at will come from computational physics (i.e. mathematical modelling of physical processes), rather than data analysis, but that's mostly because of my background.
+
+For theoretical physics, computation is used to deal with the awkward fact that physical theories are _generally not tractable_. You can't solve Maxwell's equations, the Navier–Stokes equation, or Schrödinger's equation in any but the simplest situations. To be blunt, this means that your knowledge of physics, while very nice, is of _not all that useful_ unless you can write a program to solve more complicated problems. Sorry.
+
+On the plus side — as the above quote from Donald Knuth suggests — thinking about how to put a piece of physics you think you know into functioning code is a fantastic way to deepen your understanding of the physics itself. Every symbol and every operation has to mean and do exactly what it should for you to succeed. 
+
+It's important to understand that this need to apply our mathematical descriptions of nature in more general settings was the principal driving force behind the invention of the computer in the first place. If you'd like to learn more about the early history of electronic computers I'd recommend @dyson2012turing.
+
+If you'd like to get into the theory of computation more deeply, I can't recommend @moore2011nature highly enough.
+
+

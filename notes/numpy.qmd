@@ -1,0 +1,306 @@
+# NumPy and friends
+
+The [NumPy](https://numpy.org/) package is _the_ key building block of the Python scientific ecosystem.
+
+In this chapter we introduce a few of the key concepts. You should refer to the [documentation](https://numpy.org/doc/stable/user/index.html) for details. As with any mature software ecosystem, you should first __assume that what you want to achieve _can_ be achieved in a highly optimised way within the existing framework__, and only resort to creating your own solution if and when you satisfy yourself that this is not the case.
+
+There are a huge number of resources for learning NumPy online. [This](https://cs231n.github.io/python-numpy-tutorial/) is one particular nice and compact tutorial.
+
+## Preamble: objects in Python
+
+Everything in Python is an _object_. For example `[1,2,3]` is a `list`:
+
+```{python}
+my_list = [1, 2, 3]
+type(my_list)
+```
+
+You can think of an object as a container for _properties_ and _methods_, the latter being functions associated with the object. Properties and methods are accessed with the `.` syntax. For example, lists have the `append` method, which adds an element to the end of the list:
+
+```{python}
+my_list.append("boop")
+my_list
+```
+
+With IPython you can see all the available methods by hitting tab:
+
+![](assets/tab-complete.gif)
+
+::: {.callout-tip collapse="true"}
+## Dunder methods
+
+You can list all of an objects properties and methods using `dir`:
+
+```{python}
+dir(my_list)
+```
+
+Notice that lots of these are methods have a name sandwiched between double underscores and for this reason are called _dunder methods_ (or _magic methods_, or just _special methods_). This is to indicate that they are not to be used by you, but by the Python interpreter to implement certain standard functions that apply to many different classes of objects. For instance, when you write `len(my_list)` to find the length of `my_list` Python is actually calling the dunder method `my_list.__len__` which does the job of actually finding the length.
+
+```{python}
+my_list.__len__()
+```
+
+In this way the same function (`len` in this case) can operate on many different objects, an example of what is called [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) in object oriented programming.
+
+:::
+
+## Arrays
+
+The fundamental object in NumPy is the _Array_, which you can think of as a multidimensional version of a list. Let's start with two dimensions to demonstrate:
+
+```{python}
+import numpy as np
+my_array = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
+```
+
+```{python}
+type(my_array)
+```
+
+Arrays can be indexed, similar to lists
+
+```{python}
+print(my_array[0], my_array[1], my_array[3][1])
+```
+
+but – different from a ordinary list of lists – the last one can be much more pleasantly achieved with the syntax
+
+```{python}
+my_array[3,1]
+```
+
+We also have a generalization of the slice syntax 
+
+```{python}
+my_array[1:, 1:]
+```
+
+Slicing can be mixed with integer indexing
+
+```{python}
+my_array[1:, 1]
+```
+
+NumPy offers all sorts of fancy indexing options for slicing and dicing your data: see the [documentation](https://numpy.org/doc/stable/user/basics.indexing.html) for details.
+
+A fundamental property of an array is its `shape`:
+
+```{python}
+# [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
+my_array.shape
+```
+
+The way to read off the shape of an array is as follows. To begin with you encounter a number of `[` corresponding to the rank of the array (two in the above example). You then scan over a number of entries that give the rightmost (innermost) dimension in the shape tuple before closing `]` (3 here). After a number of 1D arrays `[...]` equal to the next innermost dimension (4 here), we have another closing `]`, and so on.
+  
+It's definitely something that will take a bit of time getting used to!
+
+Notice that slicing does not change the rank of the array
+
+```{python}
+my_array[1:, 1:].shape
+```
+
+but integer indexing does
+
+```{python}
+my_array[1:, 1].shape
+```
+
+
+
+NumPy has lots of methods to create arrays with a given shape and populated in different ways:
+
+```{python}
+a = np.zeros((2,2))
+print(a)
+
+b = np.ones((2,2))
+print(b)
+
+c = np.full((2,2), 5)
+print(c)
+
+d = np.random.random((2,2)) # random numbers uniformly in [0.0, 1.0)
+print(d)
+```
+
+There are also lots of methods to change the shape of arrays, for example
+
+- [numpy.reshape](https://numpy.org/doc/stable/reference/generated/numpy.reshape.html#numpy-reshape) to change the shape of an array.
+
+- [numpy.expand_dims](https://numpy.org/doc/stable/reference/generated/numpy.expand_dims.html) to insert new axes of length one.
+
+- [numpy.squeeze](https://numpy.org/doc/stable/reference/generated/numpy.squeeze.html#numpy.squeeze) (the opposite) to remove new axes of length one.
+
+A NumPy array has a `dtype` property that gives the datatype. If the array was created from data, this will be inferred
+
+```{python}
+my_array.dtype
+```
+
+Functions that construct arrays also have an optional argument to specify the datatype
+
+```{python}
+my_float_array = np.array([1,2,3], dtype=np.float64)
+my_float_array.dtype
+```
+
+
+## Mathematical operations with arrays
+
+Now here comes the payoff. On lists, multiplication by an integer concatentates multiple copies
+
+```{python}
+2 * [1, 2, 3]
+```
+
+which is sometimes useful. But in numerical applications what we really want is this
+
+```{python}
+2 * np.array([1, 2, 3])
+```
+
+This illustrates a general feature of NumPy that __all mathematical operations are performed elementwise on arrays!__
+
+```{python}
+print(np.array([1, 2, 3]) + np.array([4, 5, 6]))
+print(np.array([1, 2, 3])**2)
+print(np.sqrt(np.array([1, 2, 3])))
+```
+
+This avoids the need to write nested loops to perform some operation on each element of some multidimensional data. Of course, the loops are still there, it's just that NumPy handles them in highly optimized C rather than Python. Code which operates in this way – rather than with explicit loops – is often described as _vectorized_, and in NumPy-speak vectorized functions are called _ufuncs_, short for _universal functions_ (you can [write your own](https://numpy.org/doc/stable/reference/ufuncs.html) if you need to). As a basic principle you should _never_ use a Python loop to access your data in NumPy code. Loops may appear at a high level in stepping through time steps in a simulation, for example.
+
+### Broadcasting
+
+Vectorization is even more versatile than the above examples might suggest. _Broadcasting_ is a powerful protocol that allows us to combine arrays of different shapes. Thus we can add a number to an array
+
+```{python}
+np.array([1, 2, 3]) + 2.3
+```
+
+More generally, elementwise operations can be performed on two arrays of the same rank if in each dimension the sizes either match or one array has size 1.
+
+```{python}
+# These have shape (2, 3) and (1, 3)
+np.array([[1, 2, 3], [4, 5, 6]]) + np.array([[4, 3, 2]])
+```
+
+In fact, we can simplify this last example
+
+```{python}
+# These have shape (2, 3) and (3,)
+np.array([[1, 2, 3], [4, 5, 6]]) + np.array([4, 3, 2])
+```
+
+Broadcasting two arrays follows these rules:
+
+1. If the arrays do not have the same rank, prepend the shape of the lower rank array with 1s until both shapes have the same length.
+
+2. The two arrays are said to be compatible in a dimension if they have the same size in the dimension, or if one of the arrays has size 1 in that dimension.
+
+3. The arrays can be broadcast together if they are compatible in all dimensions.
+After broadcasting, each array behaves as if it had shape equal to the elementwise maximum of shapes of the two input arrays.
+
+4. In any dimension where one array had size 1 and the other array had size greater than 1, the first array behaves as if it were copied along that dimension.
+
+[The documentation](https://numpy.org/doc/stable/user/basics.broadcasting.html) has more detail.
+
+## Plotting with Matplotlib
+
+There are various specialized Python plotting libraries but the entry-level option is the catchily named [Matplotlib](https://matplotlib.org/). The `pyplot` module provides a plotting system that is similar to MATLAB (I'm told)
+
+```{python}
+import matplotlib.pyplot as plt
+```
+
+Here's a simple example of the `plot` function, used to plot 2D data
+
+```{python}
+# Compute the x and y coordinates for points on a sine curve
+x = np.arange(0, 3 * np.pi, 0.1)
+y = np.sin(x)
+
+# Plot the points using matplotlib
+plt.plot(x, y)
+plt.show()
+```
+
+__Note__: you must call plt.show() to make graphics appear. Here's a fancier example with some labelling
+
+```{python}
+# Compute the x and y coordinates for points on sine and cosine curves
+x = np.arange(0, 3 * np.pi, 0.1)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+
+# Plot the points using matplotlib
+plt.plot(x, y_sin)
+plt.plot(x, y_cos)
+plt.xlabel('x axis label')
+plt.ylabel('y axis label')
+plt.title('Sine and Cosine')
+plt.legend(['Sine', 'Cosine'])
+plt.show()
+```
+
+Often you'll want to make several related plots and present them together, which can be achieved using the `subplot` function
+
+```{python}
+import matplotlib.pyplot as plt
+
+# Compute the x and y coordinates for points on sine and cosine curves
+x = np.arange(0, 3 * np.pi, 0.1)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+
+# Set up a subplot grid that has height 2 and width 1,
+# and set the first such subplot as active.
+plt.subplot(2, 1, 1)
+
+# Make the first plot
+plt.plot(x, y_sin)
+plt.title('Sine')
+
+# Set the second subplot as active, and make the second plot.
+plt.subplot(2, 1, 2)
+plt.plot(x, y_cos)
+plt.title('Cosine')
+
+# Show the figure.
+plt.show()
+```
+
+### Example: playing with images
+
+Pixels in an image are encoded as a triple of RGB values in the range [0,255] i.e. 8 bits of type `uint8` (the "u" is for "unsigned"). Tinting an image gives us a nice example of broadcasting
+
+```{python}
+img = plt.imread('assets/lucian.jpeg')
+
+img_tinted = img * [1, 0.55, 1]
+
+# Show the original image
+plt.subplot(1, 2, 1)
+plt.imshow(img)
+plt.title("Lucian")
+
+# Show the tinted image
+plt.subplot(1, 2, 2)
+plt.title("Pink Panther")
+# Having multiplied by floats, 
+# we must cast the image to uint8 before displaying it.
+plt.imshow(np.uint8(img_tinted))
+
+plt.show()
+img.shape, img.dtype
+```
+
+
+## Saving and loading data
+
+In the course of your work you are likely to produce, as well as consume lots of data. While it's good practice to keep notebooks capable of reproducing any of your analyses, this could be time consuming and resource heavy for larger computations. Thus at some point you'll probably want to save and load data. For example, after saving the data of a large scale simulation you'd like to load it and perform some analysis.
+
+NumPy comes with its own [save](https://numpy.org/doc/stable/reference/generated/numpy.save.html) and [load](https://numpy.org/doc/stable/reference/generated/numpy.load.html) functions and associated binary format `.npy`. The benefit of using these is that after loading you get back a NumPy array ready to be used.
+
+A related function [savez](https://numpy.org/doc/stable/reference/generated/numpy.savez.html) allows several arrays to be saved and then loaded as a dictionary-like object.

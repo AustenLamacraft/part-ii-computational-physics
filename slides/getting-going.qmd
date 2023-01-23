@@ -1,0 +1,13 @@
+---
+title: "Getting going"
+format:
+  revealjs: 
+    slide-number: true
+    hash: true
+---
+
+## My first slide
+
+---
+
+## Next slide

@@ -1,39 +1,46 @@
 project:
-  type: book
+  type: website
   preview:
     port: 3000
     browser: false
     watch-inputs: true
 
 
-book:
+website:
   title: "Part II Computational Physics"
-  author: "Austen Lamacraft"
-  date: "1/17/2023"
-  chapters:
-    - index.qmd
-    - intro.qmd
-    - setup.qmd
-    - python.qmd
-    - numpy.qmd
-    - numbers.qmd
-    - ode.qmd
-    - monte-carlo.qmd
-    - complexity.qmd
-    - linear.qmd
-    - divide.qmd
-    - dynamic.qmd
-    - autograd.qmd
-    - summary.qmd
-    - references.qmd
+  page-navigation: true
+  sidebar:
+    # contents: auto
+    contents:
+      - section: "Notes"
+        contents:
+          - index.qmd
+          - notes/intro.qmd
+          - notes/getting-going.qmd
+          - notes/numpy.qmd
+          - notes/numbers.qmd
+          - notes/ode.qmd
+          - notes/monte-carlo.qmd
+          # - notes/complexity.qmd
+          # # - notes/fourier.qmd
+          # # - notes/linear.qmd
+          # # - notes/divide.qmd
+          # # - notes/dynamic.qmd
+          # # - notes/autograd.qmd
+          - notes/references.qmd
+
+      - section: "Slides"
+        contents:
+          - slides/getting-going.qmd
 
 bibliography: references.bib
 
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
+    toc: true
+  # pdf:
+  #   documentclass: scrreprt
 
 
 

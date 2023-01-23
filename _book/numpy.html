@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Part II Computational Physics - 4&nbsp; NumPy and friends</title>
+<title>Part II Computational Physics - 3&nbsp; NumPy and friends</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./numbers.html" rel="next">
-<link href="./python.html" rel="prev">
+<link href="./setup.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy and friends</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">NumPy and friends</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -173,32 +173,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Python Language</span></a>
+  <a href="./numpy.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">NumPy and friends</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./numpy.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy and friends</span></a>
+  <a href="./numbers.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Floating point and all that</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./numbers.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Floating point and all that</span></a>
+  <a href="./ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Solving differential equations with SciPy</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Solving differential equations with SciPy</span></a>
+  <a href="./monte-carlo.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Monte Carlo methods</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./monte-carlo.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Monte Carlo methods</span></a>
+  <a href="./complexity.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algorithms and computational complexity</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./complexity.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms and computational complexity</span></a>
+  <a href="./fourier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Fast Fourier Transform</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -240,15 +240,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preamble-objects-in-python" id="toc-preamble-objects-in-python" class="nav-link active" data-scroll-target="#preamble-objects-in-python"><span class="toc-section-number">4.1</span>  Preamble: objects in Python</a></li>
-  <li><a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays"><span class="toc-section-number">4.2</span>  Arrays</a></li>
-  <li><a href="#mathematical-operations-with-arrays" id="toc-mathematical-operations-with-arrays" class="nav-link" data-scroll-target="#mathematical-operations-with-arrays"><span class="toc-section-number">4.3</span>  Mathematical operations with arrays</a>
+  <li><a href="#preamble-objects-in-python" id="toc-preamble-objects-in-python" class="nav-link active" data-scroll-target="#preamble-objects-in-python"><span class="toc-section-number">3.1</span>  Preamble: objects in Python</a></li>
+  <li><a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays"><span class="toc-section-number">3.2</span>  Arrays</a></li>
+  <li><a href="#mathematical-operations-with-arrays" id="toc-mathematical-operations-with-arrays" class="nav-link" data-scroll-target="#mathematical-operations-with-arrays"><span class="toc-section-number">3.3</span>  Mathematical operations with arrays</a>
   <ul class="collapse">
-  <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting"><span class="toc-section-number">4.3.1</span>  Broadcasting</a></li>
-  <li><a href="#example-playing-with-images" id="toc-example-playing-with-images" class="nav-link" data-scroll-target="#example-playing-with-images"><span class="toc-section-number">4.3.2</span>  Example: playing with images</a></li>
+  <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting"><span class="toc-section-number">3.3.1</span>  Broadcasting</a></li>
+  <li><a href="#example-playing-with-images" id="toc-example-playing-with-images" class="nav-link" data-scroll-target="#example-playing-with-images"><span class="toc-section-number">3.3.2</span>  Example: playing with images</a></li>
   </ul></li>
-  <li><a href="#plotting-with-matplotlib" id="toc-plotting-with-matplotlib" class="nav-link" data-scroll-target="#plotting-with-matplotlib"><span class="toc-section-number">4.4</span>  Plotting with Matplotlib</a></li>
-  <li><a href="#saving-and-loading-data" id="toc-saving-and-loading-data" class="nav-link" data-scroll-target="#saving-and-loading-data"><span class="toc-section-number">4.5</span>  Saving and loading data</a></li>
+  <li><a href="#plotting-with-matplotlib" id="toc-plotting-with-matplotlib" class="nav-link" data-scroll-target="#plotting-with-matplotlib"><span class="toc-section-number">3.4</span>  Plotting with Matplotlib</a></li>
+  <li><a href="#saving-and-loading-data" id="toc-saving-and-loading-data" class="nav-link" data-scroll-target="#saving-and-loading-data"><span class="toc-section-number">3.5</span>  Saving and loading data</a></li>
   </ul>
 </nav>
     </div>
@@ -257,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy and friends</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">NumPy and friends</span></h1>
 </div>
 
 
@@ -275,8 +275,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <a href="https://numpy.org/">NumPy</a> package is <em>the</em> key building block of the Python scientific ecosystem.</p>
 <p>In this chapter we introduce a few of the key concepts. You should refer to the <a href="https://numpy.org/doc/stable/user/index.html">documentation</a> for details. As with any mature software ecosystem, you should first <strong>assume that what you want to achieve <em>can</em> be achieved in a highly optimised way within the existing framework</strong>, and only resort to creating your own solution if and when you satisfy yourself that this is not the case.</p>
 <p>There are a huge number of resources for learning NumPy online. <a href="https://cs231n.github.io/python-numpy-tutorial/">This</a> is one particular nice and compact tutorial.</p>
-<section id="preamble-objects-in-python" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="preamble-objects-in-python"><span class="header-section-number">4.1</span> Preamble: objects in Python</h2>
+<section id="preamble-objects-in-python" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="preamble-objects-in-python"><span class="header-section-number">3.1</span> Preamble: objects in Python</h2>
 <p>Everything in Python is an <em>object</em>. For example <code>[1,2,3]</code> is a <code>list</code>:</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
@@ -294,7 +294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>With IPython you can see all the available methods by hitting tab:</p>
-<p><img src="assets/tab-complete.png" class="img-fluid"></p>
+<p><img src="assets/tab-complete.gif" class="img-fluid"></p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -372,8 +372,8 @@ Dunder methods
 </div>
 </div>
 </section>
-<section id="arrays" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="arrays"><span class="header-section-number">4.2</span> Arrays</h2>
+<section id="arrays" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="arrays"><span class="header-section-number">3.2</span> Arrays</h2>
 <p>The fundamental object in NumPy is the <em>Array</em>, which you can think of as a multidimensional version of a list. Let’s start with two dimensions to demonstrate:</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -460,8 +460,8 @@ Dunder methods
  [1. 1.]]
 [[5 5]
  [5 5]]
-[[0.84180888 0.72936887]
- [0.67738016 0.62080392]]</code></pre>
+[[0.35100504 0.94509288]
+ [0.65465018 0.32576187]]</code></pre>
 </div>
 </div>
 <p>There are also lots of methods to change the shape of arrays, for example</p>
@@ -486,8 +486,8 @@ Dunder methods
 </div>
 </div>
 </section>
-<section id="mathematical-operations-with-arrays" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="mathematical-operations-with-arrays"><span class="header-section-number">4.3</span> Mathematical operations with arrays</h2>
+<section id="mathematical-operations-with-arrays" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="mathematical-operations-with-arrays"><span class="header-section-number">3.3</span> Mathematical operations with arrays</h2>
 <p>Now here comes the payoff. On lists, multiplication by an integer concatentates multiple copies</p>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">*</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -514,8 +514,8 @@ Dunder methods
 </div>
 </div>
 <p>This avoids the need to write nested loops to perform some operation on each element of some multidimensional data. Of course, the loops are still there, it’s just that NumPy handles them in highly optimized C rather than Python. Code which operates in this way – rather than with explicit loops – is often described as <em>vectorized</em>, and in NumPy-speak vectorized functions are called <em>ufuncs</em>, short for <em>universal functions</em> (you can <a href="https://numpy.org/doc/stable/reference/ufuncs.html">write your own</a> if you need to). As a basic principle you should <em>never</em> use a Python loop to access your data in NumPy code. Loops may appear at a high level in stepping through time steps in a simulation, for example.</p>
-<section id="broadcasting" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="broadcasting"><span class="header-section-number">4.3.1</span> Broadcasting</h3>
+<section id="broadcasting" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="broadcasting"><span class="header-section-number">3.3.1</span> Broadcasting</h3>
 <p>Vectorization is even more versatile than the above examples might suggest. <em>Broadcasting</em> is a powerful protocol that allows us to combine arrays of different shapes. Thus we can add a number to an array</p>
 <div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]) <span class="op">+</span> <span class="fl">2.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -550,14 +550,14 @@ Dunder methods
 </ol>
 <p><a href="https://numpy.org/doc/stable/user/basics.broadcasting.html">The documentation</a> has more detail.</p>
 </section>
-<section id="example-playing-with-images" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="example-playing-with-images"><span class="header-section-number">4.3.2</span> Example: playing with images</h3>
+<section id="example-playing-with-images" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="example-playing-with-images"><span class="header-section-number">3.3.2</span> Example: playing with images</h3>
 <p>Nice example of a 2D array?</p>
 <p>TODO</p>
 </section>
 </section>
-<section id="plotting-with-matplotlib" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="plotting-with-matplotlib"><span class="header-section-number">4.4</span> Plotting with Matplotlib</h2>
+<section id="plotting-with-matplotlib" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="plotting-with-matplotlib"><span class="header-section-number">3.4</span> Plotting with Matplotlib</h2>
 <p>There are various specialized Python plotting libraries but the entry-level option is the catchily named <a href="https://matplotlib.org/">Matplotlib</a>. The <code>pyplot</code> module provides a plotting system that is similar to MATLAB (I’m told)</p>
 <div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -624,8 +624,8 @@ Dunder methods
 </div>
 </div>
 </section>
-<section id="saving-and-loading-data" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="saving-and-loading-data"><span class="header-section-number">4.5</span> Saving and loading data</h2>
+<section id="saving-and-loading-data" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="saving-and-loading-data"><span class="header-section-number">3.5</span> Saving and loading data</h2>
 <p>In the course of your work you are likely to produce, as well as consume lots of data. While it’s good practice to keep notebooks capable of reproducing any of your analyses, this could be time consuming and resource heavy for larger computations. Thus at some point you’ll probably want to save and load data. For example, after saving the data of a large scale simulation you’d like to load it and perform some analysis.</p>
 <p>NumPy comes with its own <a href="https://numpy.org/doc/stable/reference/generated/numpy.save.html">save</a> and <a href="https://numpy.org/doc/stable/reference/generated/numpy.load.html">load</a> functions and associated binary format <code>.npy</code>. The benefit of using these is that after loading you get back a NumPy array ready to be used.</p>
 <p>A related function <a href="https://numpy.org/doc/stable/reference/generated/numpy.savez.html">savez</a> allows several arrays to be saved and then loaded as a dictionary-like object.</p>
@@ -769,13 +769,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./python.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Python Language</span></span>
+      <a href="./setup.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Going</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./numbers.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Floating point and all that</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Floating point and all that</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

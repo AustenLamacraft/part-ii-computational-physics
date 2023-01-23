@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Part II Computational Physics - 8&nbsp; Algorithms and computational complexity</title>
+<title>Part II Computational Physics - 7&nbsp; Algorithms and computational complexity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,7 +112,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./linear.html" rel="next">
+<link href="./fourier.html" rel="next">
 <link href="./monte-carlo.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -153,7 +153,7 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms and computational complexity</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algorithms and computational complexity</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -193,32 +193,32 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Python Language</span></a>
+  <a href="./numpy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">NumPy and friends</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./numpy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy and friends</span></a>
+  <a href="./numbers.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Floating point and all that</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./numbers.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Floating point and all that</span></a>
+  <a href="./ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Solving differential equations with SciPy</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Solving differential equations with SciPy</span></a>
+  <a href="./monte-carlo.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Monte Carlo methods</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./monte-carlo.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Monte Carlo methods</span></a>
+  <a href="./complexity.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algorithms and computational complexity</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./complexity.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms and computational complexity</span></a>
+  <a href="./fourier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Fast Fourier Transform</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -260,17 +260,19 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#first-example-multiplication" id="toc-first-example-multiplication" class="nav-link active" data-scroll-target="#first-example-multiplication"><span class="toc-section-number">8.1</span>  First example: multiplication</a></li>
-  <li><a href="#defining-complexity" id="toc-defining-complexity" class="nav-link" data-scroll-target="#defining-complexity"><span class="toc-section-number">8.2</span>  Defining complexity</a>
+  <li><a href="#first-example-multiplication" id="toc-first-example-multiplication" class="nav-link active" data-scroll-target="#first-example-multiplication"><span class="toc-section-number">7.1</span>  First example: multiplication</a></li>
+  <li><a href="#defining-complexity" id="toc-defining-complexity" class="nav-link" data-scroll-target="#defining-complexity"><span class="toc-section-number">7.2</span>  Defining complexity</a>
   <ul class="collapse">
-  <li><a href="#best-worst-average" id="toc-best-worst-average" class="nav-link" data-scroll-target="#best-worst-average"><span class="toc-section-number">8.2.1</span>  Best / worst / average</a></li>
-  <li><a href="#polynomial-complexity" id="toc-polynomial-complexity" class="nav-link" data-scroll-target="#polynomial-complexity"><span class="toc-section-number">8.2.2</span>  Polynomial complexity</a></li>
-  <li><a href="#better-than-linear" id="toc-better-than-linear" class="nav-link" data-scroll-target="#better-than-linear"><span class="toc-section-number">8.2.3</span>  Better than linear?</a></li>
-  <li><a href="#exponential-complexity" id="toc-exponential-complexity" class="nav-link" data-scroll-target="#exponential-complexity"><span class="toc-section-number">8.2.4</span>  Exponential complexity</a></li>
+  <li><a href="#best-worst-average" id="toc-best-worst-average" class="nav-link" data-scroll-target="#best-worst-average"><span class="toc-section-number">7.2.1</span>  Best / worst / average</a></li>
+  <li><a href="#polynomial-complexity" id="toc-polynomial-complexity" class="nav-link" data-scroll-target="#polynomial-complexity"><span class="toc-section-number">7.2.2</span>  Polynomial complexity</a></li>
+  <li><a href="#better-than-linear" id="toc-better-than-linear" class="nav-link" data-scroll-target="#better-than-linear"><span class="toc-section-number">7.2.3</span>  Better than linear?</a></li>
+  <li><a href="#exponential-complexity" id="toc-exponential-complexity" class="nav-link" data-scroll-target="#exponential-complexity"><span class="toc-section-number">7.2.4</span>  Exponential complexity</a></li>
   </ul></li>
-  <li><a href="#examples-of-different-complexities" id="toc-examples-of-different-complexities" class="nav-link" data-scroll-target="#examples-of-different-complexities"><span class="toc-section-number">8.3</span>  Examples of different complexities</a></li>
-  <li><a href="#back-to-multiplication-divide-and-conquer" id="toc-back-to-multiplication-divide-and-conquer" class="nav-link" data-scroll-target="#back-to-multiplication-divide-and-conquer"><span class="toc-section-number">8.4</span>  Back to multiplication: divide and conquer</a></li>
-  <li><a href="#space-vs.-time-complexity" id="toc-space-vs.-time-complexity" class="nav-link" data-scroll-target="#space-vs.-time-complexity"><span class="toc-section-number">8.5</span>  Space vs.&nbsp;time complexity</a></li>
+  <li><a href="#examples-of-different-complexities" id="toc-examples-of-different-complexities" class="nav-link" data-scroll-target="#examples-of-different-complexities"><span class="toc-section-number">7.3</span>  Examples of different complexities</a></li>
+  <li><a href="#sorted" id="toc-sorted" class="nav-link" data-scroll-target="#sorted"><span class="toc-section-number">7.4</span>  Sorted</a></li>
+  <li><a href="#the-importance-of-data-structures" id="toc-the-importance-of-data-structures" class="nav-link" data-scroll-target="#the-importance-of-data-structures"><span class="toc-section-number">7.5</span>  The importance of data structures</a></li>
+  <li><a href="#divide-and-conquer" id="toc-divide-and-conquer" class="nav-link" data-scroll-target="#divide-and-conquer"><span class="toc-section-number">7.6</span>  Divide and conquer</a></li>
+  <li><a href="#space-vs.-time-complexity" id="toc-space-vs.-time-complexity" class="nav-link" data-scroll-target="#space-vs.-time-complexity"><span class="toc-section-number">7.7</span>  Space vs.&nbsp;time complexity</a></li>
   </ul>
 </nav>
     </div>
@@ -279,7 +281,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algorithms and computational complexity</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algorithms and computational complexity</span></h1>
 </div>
 
 
@@ -294,8 +296,8 @@ div.csl-indent {
 
 </header>
 
-<section id="first-example-multiplication" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="first-example-multiplication"><span class="header-section-number">8.1</span> First example: multiplication</h2>
+<section id="first-example-multiplication" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="first-example-multiplication"><span class="header-section-number">7.1</span> First example: multiplication</h2>
 <p>How hard is it to multiply numbers? The bigger they are, the harder it is, as you well know. You also know that computers are very good at multiplying, so once you’ve switched from multiplying numbers yourself to multiplying them on a computer, you may well be tempted to forget about how hard it is. Nevertheless, computers find big numbers harder than small numbers. How much harder?</p>
 <p>If you remember how you learnt to multiply numbers at school, it probably went something like this: <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <table class="table">
@@ -346,8 +348,8 @@ div.csl-indent {
 <p>For <span class="math inline">\(n\)</span> digits we have to perform <span class="math inline">\(n^2\)</span> single digit multiplications. We then have to add together the <span class="math inline">\(n\)</span> resulting <span class="math inline">\(n\)</span>-digit numbers. This is another <span class="math inline">\(n^2\)</span> operations. Thus the overall number of operations is proportional to <span class="math inline">\(n^2\)</span>: doubling the number of digits will make the problem four times harder.</p>
 <p>Exactly how long this takes to perform in your head or on a computer will depend on many things, such as how long it takes you to multiply two digits, or get the previous values out of memory (or read them of the page), but you can’t get away from the basic quadratic scaling law of this algorithm.</p>
 </section>
-<section id="defining-complexity" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="defining-complexity"><span class="header-section-number">8.2</span> Defining complexity</h2>
+<section id="defining-complexity" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="defining-complexity"><span class="header-section-number">7.2</span> Defining complexity</h2>
 <p>When computer scientists talk about the complexity of a problem, this question of <em>scaling of the number of steps involved</em> is what they have in mind. The complexity of any particular task (or calculation) may vary considerably — evaluating <span class="math inline">\(100\times 100\)</span> is considerably easier than the general case, for example — so instead we ask about how a particular <em>general</em> algorithm performs on a <em>class</em> of tasks. Such a class is what computer scientists mean when they talk about a problem: multiplication of <span class="math inline">\(n\)</span> digit numbers is a <em>problem</em>, and any particular pair of <span class="math inline">\(n\)</span> digit numbers represents an <em>instance</em> of that problem. What we discussed above is a particular algorithm for multiplication that has <em>quadratic complexity</em>, or “<span class="math inline">\(O(n^2)\)</span> complexity” (say “order <span class="math inline">\(n\)</span> squared”).</p>
 <p>This description only keeps track of how the difficulty scales with the size of the problem. There are various reasons why this level of detail is important:</p>
 <ol type="1">
@@ -355,8 +357,8 @@ div.csl-indent {
 <li><p>Likewise we don’t have to worry about how the algorithm is implemented exactly in software or hardware, what language we use, and so on.</p></li>
 <li><p>Inevitably, we always want to look at harder and harder problems with bigger and bigger <span class="math inline">\(n\)</span> (whatever <span class="math inline">\(n\)</span> means for the problem at hand). If a simulation finishes for a system of length 10 we immediately want to run it again for length 20, and so on. It then becomes important to know whether our code is going to run for twice as long, four times as long, or <span class="math inline">\(2^{10}\)</span> times as long (exponential scaling).</p></li>
 </ol>
-<section id="best-worst-average" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="best-worst-average"><span class="header-section-number">8.2.1</span> Best / worst / average</h3>
+<section id="best-worst-average" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="best-worst-average"><span class="header-section-number">7.2.1</span> Best / worst / average</h3>
 <p>Even when we focus on a problem in the above sense we still have to be careful in defining the complexity of an algorithm. In general we can characterize three complexities: best case, worse case, and average case. To see the difference between these three consider <em>search</em>, the very simple problem of finding an item in an (unordered) list of length <span class="math inline">\(n\)</span>. How hard is this? You have to check every item until you find the one you are looking for, so this suggests the complexity is <span class="math inline">\(O(n)\)</span>. You could be lucky and get it first try, however, or within the first ten tries. This means the <em>best case complexity</em> of search is <span class="math inline">\(O(1)\)</span>: it doesn’t increase with the size of the problem. The worst thing that could happen is that the sought item is last: the <em>worst case complexity</em> is <span class="math inline">\(O(n)\)</span>. On average, you’ll find your item in the middle of the list on attempt <span class="math inline">\(\sim n/2\)</span>, so the <em>average case complexity</em> is <span class="math inline">\(O(n/2)\)</span>. But this is the same as <span class="math inline">\(O(n)\)</span> (constants don’t matter)</p>
 <p>Thus for <em>linear search</em> we have:</p>
 <table class="table">
@@ -434,16 +436,30 @@ div.csl-indent {
 </div>
 <p>The “experimental noise” in these plots arises because we don’t have full control over exactly what our computer is doing at any moment: there are lots of other processes running. Also, it takes a while to reach the linear regime: there is an overhead associated with starting the program that represents a smaller fraction of the overall run time as <span class="math inline">\(n\)</span> increases.</p>
 </section>
-<section id="polynomial-complexity" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="polynomial-complexity"><span class="header-section-number">8.2.2</span> Polynomial complexity</h3>
+<section id="polynomial-complexity" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="polynomial-complexity"><span class="header-section-number">7.2.2</span> Polynomial complexity</h3>
 <p>Since you’ve already learnt a lot of algorithms in mathematics (even if you don’t think of them this way) it’s very instructive to revisit them through the lens of computational complexity.</p>
-<p>Multiplying a vector by a matrix?</p>
-<p>$$</p>
-<p>$$</p>
-<p>matrix vector</p>
+<p>Multiplying a <span class="math inline">\(n\)</span>-dimensional vector by a <span class="math inline">\(n\times n\)</span> matrix?</p>
+<p><span class="math display">\[
+\begin{align}
+\sum_{j=1}^n M_{ij}v_j
+\end{align}
+\]</span></p>
+<p>The sum contains <span class="math inline">\(n\)</span> terms, and we have to perform <span class="math inline">\(n\)</span> such sums. Thus the complexity of this operation is <span class="math inline">\(O(n^2)\)</span>.</p>
+<p>Likewise, multiplying two <span class="math inline">\(n\times n\)</span> matrices</p>
+<p><span class="math display">\[
+\sum_{j} A_{ij}B_{jk}
+\]</span></p>
+<p>involves <span class="math inline">\(n\)</span> terms for each of the <span class="math inline">\(n^2\)</span> assignments of <span class="math inline">\(i\)</span> and <span class="math inline">\(k\)</span>. Complexity: <span class="math inline">\(O(n^3)\)</span></p>
+<p>Thus, if you have to calculate something like <span class="math inline">\(M_1 M_2\cdots M_n \mathbf{v}\)</span>, you should <em>not</em> calculate the matrix product first, but instead do it like this</p>
+<p><span class="math display">\[
+M_1\left(M_2\cdots \left(M_n \mathbf{v}\right)\right)
+\]</span></p>
+<p><a href="https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations">Wikipedia has a nice summary</a> of computational complexity of common mathematical operations.</p>
+<p>If an algorithm has complexity <span class="math inline">\(O(n^p)\)</span> for some <span class="math inline">\(p\)</span> it is generally described as having <em>polynomial complexity</em>. A useful heuristic (which is not 100% reliable) is that if you have <span class="math inline">\(p\)</span> nested loops that range over <span class="math inline">\(\sim n\)</span>, the complexity is <span class="math inline">\(O(n^p)\)</span> (think how you would implement matrix-vector and matrix-matrix multiplication).</p>
 </section>
-<section id="better-than-linear" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="better-than-linear"><span class="header-section-number">8.2.3</span> Better than linear?</h3>
+<section id="better-than-linear" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="better-than-linear"><span class="header-section-number">7.2.3</span> Better than linear?</h3>
 <p>It seems obvious that for search you can’t do better than linear: you have to look at roughly half the items before you should expect to find the one you’re looking for <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. What if the list is <em>ordered</em>? Any order will do: numerical for numbers, or lexicographic for strings. This extra structure allows us to use an algorithm called <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a> that you may have seen before. The idea is pretty intuitive: look in the middle of the list and see if the item you seek should be in the top half or bottom half. Take the relevant half and divide it in half again to determine which quarter of the list your item is in, and so on. Here’s how it looks in code:</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binary_search(x, val):</span>
@@ -537,7 +553,7 @@ b^n = \begin{cases}
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> b <span class="op">*</span> exp(b, n <span class="op">-</span> <span class="dv">1</span>) </span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>exp(<span class="dv">2</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="54">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>64</code></pre>
 </div>
 </div>
@@ -556,8 +572,8 @@ b^n = \begin{cases}
 </div>
 <p>One interesting thing about exponentiation is that while it can be done efficiently, the inverse — finding the logarithm — cannot. To make this more precise one has to work with modular arithmetic i.e.&nbsp;do all operations modulo some number <span class="math inline">\(m\)</span>. Then for <span class="math inline">\(b, y=0,\ldots m-1\)</span> we are guaranteed that there is some number <span class="math inline">\(x\)</span> such that <span class="math inline">\(b^x=y\)</span> (this is called the <a href="https://en.wikipedia.org/wiki/Discrete_logarithm">discrete logarithm</a>). Finding this number is hard: there is no known method for computing it efficiently. Certain <a href="https://en.wikipedia.org/wiki/Public-key_cryptography">public-key cryptosystems</a> are based on the difficulty of the discrete log (for carefully chosen <span class="math inline">\(b\)</span>, <span class="math inline">\(m\)</span> and <span class="math inline">\(y\)</span>).</p>
 </section>
-<section id="exponential-complexity" class="level3" data-number="8.2.4">
-<h3 data-number="8.2.4" class="anchored" data-anchor-id="exponential-complexity"><span class="header-section-number">8.2.4</span> Exponential complexity</h3>
+<section id="exponential-complexity" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="exponential-complexity"><span class="header-section-number">7.2.4</span> Exponential complexity</h3>
 <p>While we’re on the subject of recursion, here’s an example that’s often used to introduce the topic: calculating the <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a>. Remember that the Fibonacci numbers are this sequence</p>
 <p><span class="math display">\[
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ...
@@ -577,11 +593,11 @@ b^n = \begin{cases}
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fib(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fib(n <span class="op">-</span> <span class="dv">2</span>)</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fib(<span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="56">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>233</code></pre>
 </div>
 </div>
-<p>The first two terms are the base cases (we need two because the recursion refers to two earlier values). While this looks quite cool it’s actually a terrible way o f calculating <span class="math inline">\(\text{Fib}(n)\)</span>. Look at the picture below which illustrates the function calls that are made during the evaluation of <span class="math inline">\(\text{Fib}(5)\)</span>. There are huge amounts of duplication!</p>
+<p>The first two terms are the base cases (we need two because the recursion refers to two earlier values). While this looks quite cool it’s actually a terrible way of calculating <span class="math inline">\(\text{Fib}(n)\)</span>. Look at the picture below which illustrates the function calls that are made during the evaluation of <span class="math inline">\(\text{Fib}(5)\)</span>. There are huge amounts of duplication!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/fibonacci.png" class="img-fluid figure-img"></p>
@@ -589,18 +605,26 @@ b^n = \begin{cases}
 </figure>
 </div>
 <p>The complexity of this algorithm actually grows <em>exponentially</em> with <span class="math inline">\(n\)</span>. Because of the branching structure the algorithm is <span class="math inline">\(O(2^n)\)</span>. Calculating the Fibonacci number the sensible way (i.e.&nbsp;the way you do it in your head) gives an <span class="math inline">\(O(n)\)</span> algorithm.</p>
-<p>It would be nice if exponential complexity were only ever the result of poor choices of algorithm. Unfortunately, this is not the case. It’s possible to come up with problems that definitely <em>can’t</em> be solved faster than exponentially: the <a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi">Towers of Hanoi</a> is one famous example. Closer to the hearts of physicists, the simulation of a quantum system with <span class="math inline">\(n\)</span> qubits (a qubit — or _quantum bit — is just a computer sciencey word for a spin-1/2) is believed to have complexity <span class="math inline">\(O(2^n)\)</span>, which is a big part of the hype surrounding quantum computers.</p>
-<p>There are problems whose solution, once found, is easy to check it is correct. The discrete logarithm we mentioned above is one example. Checking involves exponentiation, and exponentiation is <span class="math inline">\(O(\log n)\)</span> in the size of the numbers, or <span class="math inline">\(O(n)\)</span> in the number of digits. The question of whether efficient (i.e.&nbsp;polynomial) algorithms <em>always</em> exist for problems which are easy to check is in fact <em>the</em> outstanding problem in computer science: it’s called <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">P <em>vs</em> NP</a>, where P is the class of problems with polynomial time algorithms and NP is the class whose solution can be checked in polynomial time. The question is: are these two classes the same or do they differ? I think it’s fair to say that most people with an opinion on the matter think they differ, but the proof is lacking…</p>
+<p>It would be nice if exponential complexity were only ever the result of poor choices of algorithm. Unfortunately, this is not the case. It’s possible to come up with problems that definitely <em>can’t</em> be solved faster than exponentially: the <a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi">Towers of Hanoi</a> is one famous example. Closer to the hearts of physicists, the simulation of a quantum system with <span class="math inline">\(n\)</span> qubits (a qubit — or <em>quantum bit</em> — is just a computer sciencey word for a spin-1/2) is believed to have complexity <span class="math inline">\(O(2^n)\)</span>, which is a big part of the hype surrounding quantum computers.</p>
+<p>There are problems whose solution, once found, is easy to check. The discrete logarithm we mentioned above is one example. Checking involves exponentiation, and exponentiation is <span class="math inline">\(O(\log n)\)</span> in the size of the numbers, or <span class="math inline">\(O(n)\)</span> in the number of digits. The question of whether efficient (i.e.&nbsp;polynomial) algorithms <em>always</em> exist for problems which are easy to check is in fact <em>the</em> outstanding problem in computer science: it’s called <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">P <em>vs</em> NP</a>, where P is the class of problems with polynomial time algorithms and NP is the class whose solution can be checked in polynomial time. The question is: are these two classes the same or do they differ? That is, are there problems in NP that aren’t in P? I think it’s fair to say that most people with an opinion on the matter think so, but the proof is lacking (and worth a million dollars).</p>
 </section>
 </section>
-<section id="examples-of-different-complexities" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="examples-of-different-complexities"><span class="header-section-number">8.3</span> Examples of different complexities</h2>
+<section id="examples-of-different-complexities" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="examples-of-different-complexities"><span class="header-section-number">7.3</span> Examples of different complexities</h2>
 <p>A major goal in algorithm design</p>
+<p>Hard to overstate how big a deal it is to find a simple algorithm</p>
 <p>Summary of asymptotic notation</p>
 <p>XKCD plots</p>
 </section>
-<section id="back-to-multiplication-divide-and-conquer" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="back-to-multiplication-divide-and-conquer"><span class="header-section-number">8.4</span> Back to multiplication: divide and conquer</h2>
+<section id="sorted" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="sorted"><span class="header-section-number">7.4</span> Sorted</h2>
+</section>
+<section id="the-importance-of-data-structures" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="the-importance-of-data-structures"><span class="header-section-number">7.5</span> The importance of data structures</h2>
+<p>Let’s look again at the code for the Wolff algorithm</p>
+</section>
+<section id="divide-and-conquer" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="divide-and-conquer"><span class="header-section-number">7.6</span> Divide and conquer</h2>
 <p><a href="https://en.wikipedia.org/wiki/Karatsuba_algorithm">Karatsuba algorithm</a> nice story</p>
 <p><a href="http://www.cs.ru/personal/karatsuba/divcen.pdf">Karatsuba’s account</a></p>
 <p><span class="citation" data-cites="karatsuba1995complexity">Karatsuba (<a href="references.html#ref-karatsuba1995complexity" role="doc-biblioref">1995</a>)</span> contains a nice account of the discovery of his algorithm (<a href="http://www.cs.ru/personal/karatsuba/divcen.pdf">online version</a>)</p>
@@ -632,8 +656,8 @@ b^n = \begin{cases}
 <p>References. Nature of computation, grokking algos</p>
 <p>Insertion in a list etc.</p>
 </section>
-<section id="space-vs.-time-complexity" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="space-vs.-time-complexity"><span class="header-section-number">8.5</span> Space vs.&nbsp;time complexity</h2>
+<section id="space-vs.-time-complexity" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="space-vs.-time-complexity"><span class="header-section-number">7.7</span> Space vs.&nbsp;time complexity</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -788,12 +812,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./monte-carlo.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Monte Carlo methods</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Monte Carlo methods</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./linear.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear algebra</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./fourier.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The Fast Fourier Transform</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

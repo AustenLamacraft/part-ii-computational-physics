@@ -223,27 +223,32 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linear.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear algebra</span></a>
+  <a href="./fourier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Fast Fourier Transform</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./divide.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Divide and Conquer</span></a>
+  <a href="./linear.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Linear algebra</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dynamic Programming</span></a>
+  <a href="./divide.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Divide and Conquer</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./autograd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Automatic Differentiation</span></a>
+  <a href="./dynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dynamic Programming</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./autograd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Automatic Differentiation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -299,7 +304,7 @@ div.csl-indent {
 <p>Many physical phenomena, notably those falling within the domains of statistical mechanics and quantum theory, depend in an essential way on <em>randomness</em>. The simulation of these phenomena therefore requires algorithms that incorporate random (or pseudo-random) elements in the most efficient way.</p>
 <section id="sampling-from-a-distribution" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="sampling-from-a-distribution"><span class="header-section-number">7.1</span> Sampling from a distribution</h2>
-<p>Let’s suppose that we have a source of samples of a real valued random variable <span class="math inline">\(X\)</span> that follows a particular probability density function <span class="math inline">\(p_X\)</span> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (more about where they might come from in <a href="#sec-rng"><span class="quarto-unresolved-ref">sec-rng</span></a>). This means that the probability of drawing a sample in the region <span class="math inline">\([x, x+dx]\)</span> is <span class="math inline">\(p_X(x)dx\)</span>. If we now map the samples using a function <span class="math inline">\(f\)</span>, what is the probability density <span class="math inline">\(p_Y\)</span> of <span class="math inline">\(y=f(x)\)</span>? The new probability density is defined in just the same way: the probability of <span class="math inline">\(y\)</span> lying in the region <span class="math inline">\([y, y+dy]\)</span> is <span class="math inline">\(p_Y(y)dy\)</span>. Since <span class="math inline">\(x\)</span> is being mapped deterministically to <span class="math inline">\(y\)</span> these two probabilities are therefore the same</p>
+<p>Let’s suppose that we have a source of samples of a real valued random variable <span class="math inline">\(X\)</span> that follows a particular probability density function <span class="math inline">\(p_X\)</span> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (more about where they might come from in <a href="#sec-rng"><span>Section&nbsp;7.5</span></a>). This means that the probability of drawing a sample in the region <span class="math inline">\([x, x+dx]\)</span> is <span class="math inline">\(p_X(x)dx\)</span>. If we now map the samples using a function <span class="math inline">\(f\)</span>, what is the probability density <span class="math inline">\(p_Y\)</span> of <span class="math inline">\(y=f(x)\)</span>? The new probability density is defined in just the same way: the probability of <span class="math inline">\(y\)</span> lying in the region <span class="math inline">\([y, y+dy]\)</span> is <span class="math inline">\(p_Y(y)dy\)</span>. Since <span class="math inline">\(x\)</span> is being mapped deterministically to <span class="math inline">\(y\)</span> these two probabilities are therefore the same</p>
 <p><span class="math display">\[
 p_X(x)dx = p_Y(y)dy
 \]</span></p>
@@ -336,10 +341,10 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="monte-carlo_files/figure-html/cell-2-output-1.png" width="592" height="422"></p>
+<p><img src="monte-carlo_files/figure-html/cell-2-output-1.png" width="589" height="422"></p>
 </div>
 </div>
-<p>For complex multivariate (i.e.&nbsp;high dimensional) distributions there is no general recipe to construct an appropriate <span class="math inline">\(f\)</span>. One very recent application of these ideas is in machine learning models called <a href="https://arxiv.org/abs/1908.09257">normalizing flows</a> that use a mapping <span class="math inline">\(f\)</span> parameterized by a neural network. The workhorse for sampling from complicated distributions is Markov chain Monte Carlo, as we discuss in <a href="#sec-mcmc"><span class="quarto-unresolved-ref">sec-mcmc</span></a>.</p>
+<p>For complex multivariate (i.e.&nbsp;high dimensional) distributions there is no general recipe to construct an appropriate <span class="math inline">\(f\)</span>. One very recent application of these ideas is in machine learning models called <a href="https://arxiv.org/abs/1908.09257">normalizing flows</a> that use a mapping <span class="math inline">\(f\)</span> parameterized by a neural network. The workhorse for sampling from complicated distributions is Markov chain Monte Carlo, as we discuss in <a href="#sec-mcmc"><span>Section&nbsp;7.2.2</span></a>.</p>
 </section>
 <section id="the-monte-carlo-method" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="the-monte-carlo-method"><span class="header-section-number">7.2</span> The Monte Carlo method</h2>
@@ -381,11 +386,11 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/hard-spheres.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Coins in a shoe box (gas of hard disks). From <span class="citation" data-cites="krauth1998introduction">Krauth (<a href="#ref-krauth1998introduction" role="doc-biblioref">1998</a>)</span></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Coins in a shoe box (gas of hard disks). From <span class="citation" data-cites="krauth1998introduction">Krauth (<a href="references.html#ref-krauth1998introduction" role="doc-biblioref">1998</a>)</span></figcaption><p></p>
 </figure>
 </div>
 <p>It’s harder than it looks! The first guess you might have is to start adding coins at random, and if you get an overlap, try again until you don’t. Obviously this will become inefficient as the box fills up, and most attempts fail. <em>Worse, it doesn’t in fact yield a uniform distribution!</em></p>
-<p>TODO Why not? See <span class="citation" data-cites="widom1966random">Widom (<a href="#ref-widom1966random" role="doc-biblioref">1966</a>)</span> for an explanation</p>
+<p>TODO Why not? See <span class="citation" data-cites="widom1966random">Widom (<a href="references.html#ref-widom1966random" role="doc-biblioref">1966</a>)</span> for an explanation</p>
 <p>Here’s an approach that works:</p>
 <div id="exm-metropolis" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7.1 (Metropolis algorithm for hard disks) </strong></span>&nbsp;</p>
@@ -442,12 +447,12 @@ p^{(n)}(x_n)=\sum_{x_{n-1},\ldots x_1}p(x_n|x_{n-1})p(x_{n-1}|x_{n-2})\cdots p(x
 <p><span id="eq-detailed"><span class="math display">\[
 \mathsf{P}_{jk}\pi_k = \pi_j\mathsf{P}_{kj}.
 \tag{7.2}\]</span></span></p>
-<p>This condition is stronger than the condition <a href="#eq-stat">Equation&nbsp;<span class="quarto-unresolved-ref">eq-stat</span></a> for a stationary state. This makes it easier to check: you don’t have to do a sum over a state space index. The Metropolis algorithm <a href="#exm-metropolis">Example&nbsp;<span class="quarto-unresolved-ref">exm-metropolis</span></a> for the hard disk problem satisfies detailed balance for a stationary distribution that is constant when disks don’t intersect and zero when they do.</p>
+<p>This condition is stronger than the condition <a href="#eq-stat">Equation&nbsp;<span>7.1</span></a> for a stationary state. This makes it easier to check: you don’t have to do a sum over a state space index. The Metropolis algorithm <a href="#exm-metropolis">Example&nbsp;<span>7.1</span></a> for the hard disk problem satisfies detailed balance for a stationary distribution that is constant when disks don’t intersect and zero when they do.</p>
 <p>When the stationary distribution <span class="math inline">\(\boldsymbol{\pi}\)</span> has more structure, designing an appropriate transition matrix is harder. The idea is to generalize the hard disk approach by separating the transition into a <em>proposal</em> distribution <span class="math inline">\(p_\text{prop}(j|k)\)</span> and an <em>acceptance</em> distribution <span class="math inline">\(p_\text{acc}(a=0,1|j\leftarrow k)\)</span> that gives the probability of a move from <span class="math inline">\(k\)</span> to <span class="math inline">\(j\)</span> being accepted (<span class="math inline">\(a=1\)</span>) or rejected (<span class="math inline">\(a=0\)</span>). The probability of moving from <span class="math inline">\(k\)</span> to <span class="math inline">\(j\)</span> is then</p>
 <p><span class="math display">\[
 p(j|k) = p_\text{acc}(a=1|j\leftarrow k) p_\text{prop}(j|k).
 \]</span></p>
-<p>Substituting this into the detailed balance condition <a href="#eq-detailed">Equation&nbsp;<span class="quarto-unresolved-ref">eq-detailed</span></a> gives <span class="math display">\[
+<p>Substituting this into the detailed balance condition <a href="#eq-detailed">Equation&nbsp;<span>7.2</span></a> gives <span class="math display">\[
 \frac{p_\text{acc}(a=1|j\leftarrow k)}{p_\text{acc}(a=1|k\leftarrow j)} = \frac{\pi_j}{\pi_k}\frac{p_\text{prop}(k|j)}{p_\text{prop}(j|k)}.
 \]</span></p>
 <p>Any <span class="math inline">\(p_\text{acc}\)</span> that satisfies this relation for all <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span> will do the job. The Metropolis choice is</p>
@@ -464,8 +469,8 @@ p_\text{acc}(a=1|j \leftarrow k) = \min\left(1,  \frac{\pi_j}{\pi_k}\frac{p_\tex
 </ol>
 </div>
 <p>MCMC has the benefit of being <a href="https://en.wikipedia.org/wiki/Embarrassingly_parallel">embarrassingly parallel</a>. If you want to average something over <span class="math inline">\(\boldsymbol{\pi}\)</span>, just run the algorithm many times independently and average the results. This is perfect for parallel computing.</p>
-<p>The Metropolis algorithm has an Achilles’ heel, however. To perform a move one has to sample from <span class="math inline">\(p_\text{prop}(j|k)\)</span> and from <span class="math inline">\(p_\text{acc}(a|j \leftarrow k)\)</span>. The proposal therefore has to be tractable, like the small shift in position for the hard disk case. This may however, mean that that many of the <span class="math inline">\(j\)</span>s suggested correspond to very small <span class="math inline">\(\pi_j\)</span>, and therefore a very low acceptance probability (c.f. <a href="#eq-metropolis">Equation&nbsp;<span class="quarto-unresolved-ref">eq-metropolis</span></a>). For example, in the hard disk case at high density many proposed moves will give rise to overlap of disks and be rejected. This means that many steps are required to have one successful update of the simulation. This kind of slowdown is a common feature of MCMC methods applied to complex distributions.</p>
-<p>We’ll see some more examples of MCMC algorithms for statistical mechanical problems in <a href="#sec-statmech"><span class="quarto-unresolved-ref">sec-statmech</span></a>, and ways in which this problem can be avoided.</p>
+<p>The Metropolis algorithm has an Achilles’ heel, however. To perform a move one has to sample from <span class="math inline">\(p_\text{prop}(j|k)\)</span> and from <span class="math inline">\(p_\text{acc}(a|j \leftarrow k)\)</span>. The proposal therefore has to be tractable, like the small shift in position for the hard disk case. This may however, mean that that many of the <span class="math inline">\(j\)</span>s suggested correspond to very small <span class="math inline">\(\pi_j\)</span>, and therefore a very low acceptance probability (c.f. <a href="#eq-metropolis">Equation&nbsp;<span>7.3</span></a>). For example, in the hard disk case at high density many proposed moves will give rise to overlap of disks and be rejected. This means that many steps are required to have one successful update of the simulation. This kind of slowdown is a common feature of MCMC methods applied to complex distributions.</p>
+<p>We’ll see some more examples of MCMC algorithms for statistical mechanical problems in <a href="#sec-statmech"><span>Section&nbsp;7.3</span></a>, and ways in which this problem can be avoided.</p>
 </section>
 <section id="relaxation-to-equilibrium" class="level3" data-number="7.2.3">
 <h3 data-number="7.2.3" class="anchored" data-anchor-id="relaxation-to-equilibrium"><span class="header-section-number">7.2.3</span> Relaxation to equilibrium</h3>
@@ -499,7 +504,7 @@ p(\mathbf{x})=\frac{\exp\left[-\beta \mathcal{E}(\mathbf{x})\right]}{Z},
 <p>Monte Carlo simulation is a much more attractive alternative. MCMC can be used to generate samples from <span class="math inline">\(p(\sigma)\)</span> which are then used to estimate the averages of interest (e.g.&nbsp;average energy <span class="math inline">\(\langle\mathcal{E}(\sigma)\rangle\)</span>, average magnetization <span class="math inline">\(\langle\sum_n \sigma_n\rangle\)</span>, etc.).</p>
 <section id="mcmc-updates-for-the-ising-model" class="level3" data-number="7.3.1">
 <h3 data-number="7.3.1" class="anchored" data-anchor-id="mcmc-updates-for-the-ising-model"><span class="header-section-number">7.3.1</span> MCMC updates for the Ising model</h3>
-<p>How does MCMC work in practice for the Ising model? To apply the Metropolis alogorithm <a href="#exm-metropolis-gen">Example&nbsp;<span class="quarto-unresolved-ref">exm-metropolis-gen</span></a> we can use a simple proposal: pick each spin in turn in some order and try to flip it.</p>
+<p>How does MCMC work in practice for the Ising model? To apply the Metropolis alogorithm <a href="#exm-metropolis-gen">Example&nbsp;<span>7.2</span></a> we can use a simple proposal: pick each spin in turn in some order and try to flip it.</p>
 <p>The form of <span class="math inline">\(p(\sigma)\)</span> means that, although we cannot compute the probabilities explicitly, we can calculate <em>ratios</em>, which is all we need for Metropolis. For two configurations that differ only by <span class="math inline">\(\sigma_n=\pm 1\)</span> we have</p>
 <p><span class="math display">\[
 \begin{align}
@@ -518,7 +523,7 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 <ol type="1">
 <li>Pick a spin <span class="math inline">\(n\)</span>. <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
 <li>Compute <span class="math inline">\(\Delta E\)</span>, the energy difference between <span class="math inline">\(\sigma_n=\pm 1\)</span>.</li>
-<li>Set <span class="math inline">\(\sigma_n=\pm 1\)</span> with probabilities given by <a href="#eq-heat-bath">Equation&nbsp;<span class="quarto-unresolved-ref">eq-heat-bath</span></a>.</li>
+<li>Set <span class="math inline">\(\sigma_n=\pm 1\)</span> with probabilities given by <a href="#eq-heat-bath">Equation&nbsp;<span>7.5</span></a>.</li>
 <li>Repeat 1-3 many times</li>
 </ol>
 </div>
@@ -586,7 +591,7 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 </section>
 <section id="the-universe-of-monte-carlo-methods" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="the-universe-of-monte-carlo-methods"><span class="header-section-number">7.4</span> The universe of Monte Carlo methods</h2>
-<p>Monte Carlo simulation is a vast field with practitioners and specialists across the natural sciences, engineering, machine learning, and statistics. In this section I’ll mention a few important topics to give a taste of what’s out there. For much more detail take a look at <span class="citation" data-cites="krauth2006statistical">Krauth (<a href="#ref-krauth2006statistical" role="doc-biblioref">2006</a>)</span> and / or <span class="citation" data-cites="mackay2003information">MacKay (<a href="#ref-mackay2003information" role="doc-biblioref">2003</a>)</span>.</p>
+<p>Monte Carlo simulation is a vast field with practitioners and specialists across the natural sciences, engineering, machine learning, and statistics. In this section I’ll mention a few important topics to give a taste of what’s out there. For much more detail take a look at <span class="citation" data-cites="krauth2006statistical">Krauth (<a href="references.html#ref-krauth2006statistical" role="doc-biblioref">2006</a>)</span> and / or <span class="citation" data-cites="mackay2003information">MacKay (<a href="references.html#ref-mackay2003information" role="doc-biblioref">2003</a>)</span>.</p>
 <p>Probably the biggest single issue is: how do you kow when your MCMC simulation has reached the stationary distribution <span class="math inline">\(\boldsymbol{\pi}\)</span>? The pragmatic approach is to monitor the averages of interest (magnetization, say, in the case of the Ising model) over different simulations or over a time interval and see when they stop changing.</p>
 <p>We’ve touched on the issue of the <a href="https://en.wikipedia.org/wiki/Markov_chain_mixing_time">mixing time</a> in a Markov chain.</p>
 <ol type="1">
@@ -597,11 +602,12 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 </ol>
 <p>Exact sampling</p>
 <p><a href="https://en.wikipedia.org/wiki/Hamiltonian_Monte_Carlo">Hamiltonian Monte Carlo</a>.</p>
-<p>Multispin encoding: 32 or 64 simulations <span class="citation" data-cites="jacobs1981multi">Jacobs and Rebbi (<a href="#ref-jacobs1981multi" role="doc-biblioref">1981</a>)</span></p>
+<p>Multispin encoding: 32 or 64 simulations <span class="citation" data-cites="jacobs1981multi">Jacobs and Rebbi (<a href="references.html#ref-jacobs1981multi" role="doc-biblioref">1981</a>)</span></p>
 <p>https://en.wikipedia.org/wiki/Gibbs_sampling</p>
 <p>Other updates</p>
-<p>A huge topic, see <span class="citation" data-cites="krauth2006statistical">Krauth (<a href="#ref-krauth2006statistical" role="doc-biblioref">2006</a>)</span> for much more</p>
-<p>Also Chapter 29 of <span class="citation" data-cites="mackay2003information">MacKay (<a href="#ref-mackay2003information" role="doc-biblioref">2003</a>)</span></p>
+<p>A huge topic, see <span class="citation" data-cites="krauth2006statistical">Krauth (<a href="references.html#ref-krauth2006statistical" role="doc-biblioref">2006</a>)</span> for much more</p>
+<p>Also Chapter 29 of <span class="citation" data-cites="mackay2003information">MacKay (<a href="references.html#ref-mackay2003information" role="doc-biblioref">2003</a>)</span></p>
+<p>https://hef.ru.nl/~tbudd/mct/intro.html looks nice and deals with the queue issue</p>
 <p>Comment at the end about typicality</p>
 <p>MCMC in Bayesian inference</p>
 <p>Relation to Ising models. Community detection. Why not?</p>
@@ -619,7 +625,7 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 <p>https://roomno308.github.io/blog/MCMC.html https://maximilianrohde.com/posts/code-breaking-with-metropolis/</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
 <div id="ref-jacobs1981multi" class="csl-entry" role="doc-biblioentry">
 Jacobs, Laurence, and Claudio Rebbi. 1981. <span>“Multi-Spin Coding: A Very Efficient Technique for Monte Carlo Simulations of Spin Systems.”</span> <em>Journal of Computational Physics</em> 41 (1): 203–10.
 </div>
@@ -647,7 +653,7 @@ Widom, B. 1966. <span>“Random Sequential Addition of Hard Spheres to a Volume.
 <hr>
 <ol>
 <li id="fn1"><p>A common shorthand notation is <span class="math inline">\(x\sim p_X\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>This is in fact the original motivation for the development of the technique, see <span class="citation" data-cites="metropolis1953equation">Metropolis et al. (<a href="#ref-metropolis1953equation" role="doc-biblioref">1953</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This is in fact the original motivation for the development of the technique, see <span class="citation" data-cites="metropolis1953equation">Metropolis et al. (<a href="references.html#ref-metropolis1953equation" role="doc-biblioref">1953</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>There is an important caveat. If there are two or more subsets of the state space that are not connected by finite transition probabilities, the probability distribution in each subset evolves independently and there is not a unique stationary distribution. When there <em>is</em>, we say that the Markov chain is <strong>ergodic</strong> and the corresponding transition matrix is <strong>irreducible</strong>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>For a classical gas of point particles this would correspond to specifying all the positions and velocities, for example.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>Multiple names are sign that a technique was re-discovered by different communities who don’t talk to each other.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
