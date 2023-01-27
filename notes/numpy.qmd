@@ -427,6 +427,7 @@ plt.show()
 img.shape, img.dtype
 ```
 
+This is a standard 12 megapixel image.
 
 ## Saving and loading data
 
@@ -435,3 +436,16 @@ In the course of your work you are likely to produce, as well as consume lots of
 NumPy comes with its own [save](https://numpy.org/doc/stable/reference/generated/numpy.save.html) and [load](https://numpy.org/doc/stable/reference/generated/numpy.load.html) functions and associated binary format `.npy`. The benefit of using these is that after loading you get back a NumPy array ready to be used.
 
 A related function [savez](https://numpy.org/doc/stable/reference/generated/numpy.savez.html) allows several arrays to be saved and then loaded as a dictionary-like object.
+
+```{python}
+random_matrix_1 = np.random.rand(4, 4)
+random_matrix_2 = np.random.rand(4, 4)
+np.savez("assets/my-matrices", first_matrix=random_matrix_1, second_matrix=random_matrix_2)
+%ls assets
+```
+
+```{python}
+my_matrix_file = np.load("assets/my-matrices.npz")
+my_matrix_file['first_matrix']
+```
+
