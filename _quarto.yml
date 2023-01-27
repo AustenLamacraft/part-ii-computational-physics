@@ -32,6 +32,7 @@ website:
       - section: "Slides"
         contents:
           - slides/getting-going.qmd
+          - slides/numpy.qmd
 
 bibliography: references.bib
 

@@ -337,6 +337,8 @@ After broadcasting, each array behaves as if it had shape equal to the elementwi
 
 [The documentation](https://numpy.org/doc/stable/user/basics.broadcasting.html) has more detail.
 
+Recall our earlier example of an $N$-particle system described by a position array of shape `(N,3)`. If we want to shift the entire system by a vector, we can just add a vector of shape `(3,)` and broadcasting will ensure that this applied correctly to each particle.
+
 ## Plotting with Matplotlib
 
 There are various specialized Python plotting libraries but the entry-level option is the catchily named [Matplotlib](https://matplotlib.org/). The `pyplot` module provides a plotting system that is similar to MATLAB (I'm told)

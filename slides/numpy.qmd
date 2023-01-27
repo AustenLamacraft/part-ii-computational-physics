@@ -303,7 +303,7 @@ my_float_array.dtype
 
 - With $N$ particles could use a $3N$ dimensional vector
 
-- Better: an array of shape `(N,3)`First index indexes particle number and second particle coordinate.
+- Better: an array of shape `(N,3)`. First index indexes particle number and second particle coordinate.
 
 - $N\times M$ matrix has shape `(N,M)`
 
@@ -443,6 +443,12 @@ np.array([[1, 2, 3], [4, 5, 6]]) + np.array([4, 3, 2])
 
 ---
 
+- Recall example of an $N$-particle system described by a position array of shape `(N,3)`
+
+- If we want to shift the entire system by a vector, just add a vector of shape `(3,)` and broadcasting will ensure that this applied correctly to each particle.
+
+---
+
 Broadcasting two arrays follows these rules:
 
 1. If arrays do not have same rank, prepend shape of lower rank array with 1s until both shapes have same length
@@ -472,7 +478,7 @@ After broadcasting, each array behaves as if it had shape equal to the elementwi
 
  - Various specialized Python plotting libraries 
  
- - "entry-level" option is Matplotlib](https://matplotlib.org/)
+ - "entry-level" option is [Matplotlib](https://matplotlib.org/)
  
  - `pyplot` module provides a plotting system that is similar to MATLAB (I'm told)
 

@@ -220,6 +220,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Big questions…</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/numpy.html" class="sidebar-item-text sidebar-link">NumPy and friends</a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -516,8 +521,8 @@ What’s with the comma?
  [1. 1.]]
 [[5 5]
  [5 5]]
-[[0.01579599 0.06067654]
- [0.50654924 0.49035426]]</code></pre>
+[[0.82232412 0.80914944]
+ [0.33375893 0.15275029]]</code></pre>
 </div>
 </div>
 <p>There are also lots of methods to change the shape of arrays, for example</p>
@@ -692,6 +697,7 @@ What’s with the comma?
 <li><p>In any dimension where one array had size 1 and the other array had size greater than 1, the first array behaves as if it were copied along that dimension.</p></li>
 </ol>
 <p><a href="https://numpy.org/doc/stable/user/basics.broadcasting.html">The documentation</a> has more detail.</p>
+<p>Recall our earlier example of an <span class="math inline">\(N\)</span>-particle system described by a position array of shape <code>(N,3)</code>. If we want to shift the entire system by a vector, we can just add a vector of shape <code>(3,)</code> and broadcasting will ensure that this applied correctly to each particle.</p>
 </section>
 </section>
 <section id="plotting-with-matplotlib" class="level2">
@@ -812,10 +818,10 @@ ia-question.png   lucian.jpeg       tab-complete.gif</code></pre>
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>my_matrix_file <span class="op">=</span> np.load(<span class="st">"assets/my-matrices.npz"</span>)</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>my_matrix_file[<span class="st">'first_matrix'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
-<pre><code>array([[0.74126786, 0.15860146, 0.00161297, 0.28728838],
-       [0.73435138, 0.49455274, 0.89492342, 0.84795395],
-       [0.49881023, 0.77262989, 0.07185997, 0.95687876],
-       [0.23865614, 0.26021596, 0.24698979, 0.81666716]])</code></pre>
+<pre><code>array([[0.16981864, 0.28407527, 0.53098579, 0.96027752],
+       [0.68769811, 0.08058349, 0.44836261, 0.79331079],
+       [0.03630193, 0.26386085, 0.27421928, 0.84962774],
+       [0.44038729, 0.36796666, 0.01811826, 0.04607609]])</code></pre>
 </div>
 </div>
 
