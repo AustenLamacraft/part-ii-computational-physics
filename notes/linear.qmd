@@ -11,3 +11,5 @@ http://timbaumann.info/svd-image-compression-demo/
 Trebst has nice Einstein example
 
 PCA for big data
+
+https://www.tensors.net/exact-diagonalization

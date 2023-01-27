@@ -148,9 +148,11 @@ If an algorithm has complexity $O(n^p)$ for some $p$ it is generally described a
 
 ### Better than linear?
 
-It seems obvious that for search you can't do better than linear: you have to look at roughly half the items before you should expect to find the one you're looking for [^3]. What if the list is _ordered_? Any order will do: numerical for numbers, or lexicographic for strings. This extra structure allows us to use an algorithm called [binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm) that you may have seen before. The idea is pretty intuitive: look in the middle of the list and see if the item you seek should be in the top half or bottom half. Take the relevant half and divide it in half again to determine which quarter of the list your item is in, and so on. Here's how it looks in code:
+It seems obvious that for search you can't do better than linear: you have to look at roughly half the items before you should expect to find the one you're looking for [^3]. What if the list is _ordered_? Any order will do: numerical for numbers, or lexicographic for strings. This extra structure allows us to use an algorithm called [binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm) that you may have seen before [^4]. The idea is pretty intuitive: look in the middle of the list and see if the item you seek should be in the top half or bottom half. Take the relevant half and divide it in half again to determine which quarter of the list your item is in, and so on. Here's how it looks in code:
 
 [^3]: [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) for search has $O(\sqrt{n})$ complexity, but there's a catch: you need a _quantum computer_, and even then a $\sqrt{n}$ speedup is not going to get you a billion dollars in this economy.
+
+[^3]: [Not everyone has](https://twitter.com/RobDotHutton/status/1618191368094126082)
 
 ```{python}
 def binary_search(x, val):
