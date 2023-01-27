@@ -22,7 +22,7 @@ Computation saturates every corner of physics these days, much as it saturates e
 
 In this course we'll have to touch on all of these, except the last one (it's only eight lectures). Most of the concrete techniques we'll look at will come from computational physics (i.e. mathematical modelling of physical processes), rather than data analysis, but that's mostly because of my background.
 
-For theoretical physics, computation is used to deal with the awkward fact that physical theories are _generally not tractable_. You can't solve Maxwell's equations, the Navier–Stokes equation, or Schrödinger's equation in any but the simplest situations. To be blunt, this means that your knowledge of physics, while very nice, is of _not all that useful_ unless you can write a program to solve more complicated problems. Sorry.
+For theoretical physics, computation is used to deal with the awkward fact that physical theories are _generally not tractable_. You can't solve Maxwell's equations, the Navier–Stokes equation, or Schrödinger's equation in any but the simplest situations. To be blunt, this means that your knowledge of physics, while very nice, is _not all that useful_ unless you can write a program to solve more complicated problems. Sorry.
 
 On the plus side — as the above quote from Donald Knuth suggests — thinking about how to put a piece of physics you think you know into functioning code is a fantastic way to deepen your understanding of the physics itself. Every symbol and every operation has to mean and do exactly what it should for you to succeed. 
 
