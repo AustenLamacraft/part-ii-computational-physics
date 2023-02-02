@@ -1,10 +1,9 @@
 ---
+title: Solving differential equations with SciPy
 format:
   html:
     code-overflow: wrap
 ---
-
-# Solving differential equations with SciPy
 
 > Newton's fundamental discovery, the one which he considered necessary to keep secret and published only in the form of an anagram, consists of the following: _Data aequatione quotcunque fluentes quantitates involvente, fluxiones invenire; et vice versa_. In contemporary mathematical language, this means: "It is useful to solve differential equations".
 >
@@ -20,11 +19,11 @@ cannot be solved for general $f(x,t)$ [^1]. Of course, formulating a physical (o
 
 [^1]: We'll refer to $t$ as the time in the following, as this is the most common setting in physics.
 
-Numerical analysis of differential equations is a colossal topic in applied maths and we are barely going to scratch the surface. The important thing is to be able to access existing solvers (and implement your own if necessary) and crucially to _understand their limitations_. 
+Numerical analysis of differential equations is a colossal topic in applied mathematics and we are barely going to scratch the surface. The important thing is to be able to access existing solvers (and implement your own if necessary) and crucially to _understand their limitations_. 
 
-## Euler's method
+# Euler's method
 
-The basic idea behind all ODE solvers is to introduce a discretization of the equation and its solution $x_j\equiv x(t_j)$ at time points $t_j = hj$ for some step size $h$ and $j=0, 1, \ldots$. The very simplest approach is called [Euler's method](https://en.wikipedia.org/wiki/Euler_method) [^2] and approximates the derivative on the right hand side of @eq-ode as
+The basic idea behind all ODE solvers is to introduce a discretization of the equation and its solution $x_j\equiv x(t_j)$ at time points $t_j = hj$ for some step size $h$ and $j=0, 1, \ldots$. The very simplest approach is called [Euler's method](https://en.wikipedia.org/wiki/Euler_method) [^2] and approximates the derivative on the left hand side of @eq-ode as
 
 [^2]: As featured in [Hidden Figures](https://www.youtube.com/watch?v=v-pbGAts_Fg).
 
@@ -47,17 +46,28 @@ $$ {#eq-backward-euler-update}
 
 which is _implicit_. This means that the update requires an additional step to numerically solve for $x_{j+1}$. Although this is more costly, there are benefits to the backward method associated with stability.
 
-### Truncation error
+## Truncation error
 
 In making the approximation @eq-fwd we make an $O(h^2)$ _local truncation error_. To integrate for a fixed time the number of steps required is proportional to $h^{-1}$, which means that the worst case error at fixed time (the _global truncation error_) is $O(h)$. For this reason Euler's method is called _first order_. More sophisticated methods are typically higher order: the SciPy function [scipy.integrate.solve_ivp](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#r179348322575-1) uses a fifth order method by default.
 
-<!-- TODO discuss midpoint method? -->
 
-### Rounding error
+The [midpoint method](https://en.wikipedia.org/wiki/Midpoint_method) is a simple example of a higher order integration scheme
 
-If you had unlimited computer time you might think you could make the step size $h$ ever smaller in order to make the updates more accurate. This ignores the machine precision $\epsilon$, discussed in @sec-fp-numpy. The rounding error is roughly $\epsilon x_j$, and if the $N\propto h^{-1}$ errors in successive steps can be treated as independent random variables, the relative total rounding error will be $\propto \sqrt{N}\epsilon=\frac{\epsilon}{\sqrt{h}}$ and will dominate for $h$ small. 
+$$
+\begin{align}
+k_1 &\equiv h f(x_j,t_j) \\
+k_2 &\equiv h f(x_i + k_1/2, t_j + h/2) \\
+x_{j+1} &= x_j + k_2 +O(h^3)
+\end{align}
+$$
 
-### Stability
+The $O(h^2)$ error cancels! The downside is that we have two function evaluations to perform per step, but this is often worthwhile.
+
+## Rounding error
+
+If you had unlimited computer time you might think you could make the step size $h$ ever smaller in order to make the updates more accurate. This ignores the machine precision $\epsilon$. The rounding error is roughly $\epsilon x_j$, and if the $N\propto h^{-1}$ errors in successive steps can be treated as independent random variables, the relative total rounding error will be $\propto \sqrt{N}\epsilon=\frac{\epsilon}{\sqrt{h}}$ and will dominate for $h$ small.
+
+## Stability
 
 Apart from the relatively low accuracy that comes from using a first order method, the Euler method may additionally be unstable, depending on the equation. This can be demonstrated for the linear equation
 
@@ -110,7 +120,7 @@ $$
 
 so the region of stability is $|1 + hk|\leq 1$. You can check that the backward Euler method @eq-backward-euler-update eliminates the instability for $k<0$.
 
-## Using SciPy
+# Using SciPy
 
 Coming up with integration schemes is best left to the professionals. Your first port of call for solving ODEs in Python should probably be the [integrate](https://docs.scipy.org/doc/scipy/tutorial/integrate.html) module of the [SciPy](https://scipy.org/) scientific computing library. The function [scipy.integrate.solve_ivp](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#r179348322575-1) provides a versatile API. 
 
@@ -208,6 +218,16 @@ $$
 E = \frac{1}{2}\left(p_x^2+p_y^2 + x^2 + y^2\right) + \lambda\left(x^2y-\frac{1}{3}y^3\right)
 $$
 
+The existence of a conserved quantity means that, once the energy is fixed by the initial conditions, the subsequent motion must be confined to a three dimensional submanifold.
+
+When $\lambda=0$ the HH system corresponds to an isotropic 2D harmonic oscillator. In this case not only is the energy conserved, but also the angular momentum 
+
+$$
+J = x p_y - y p_x
+$$
+
+Fixing $E$ and $J$ gives a two dimensional submanifold that is in fact a torus (it's not obvious).
+
 If we take a [Poincaré section](https://en.wikipedia.org/wiki/Poincar%C3%A9_map) with $x=0$ a system with energy $E$ must lie within the curve defined by
 
 $$
@@ -233,8 +253,8 @@ def section(t, y, 𝜆): return y[0] # The section with x=0
 t_max = 10000
 𝜆 = 1
 hh_motion = []
-for E in [1/12, 1/8, 1/6]:
-    hh_motion.append(solve_ivp(henon_heiles, [0, t_max], [0, px(E, 0.1, 0.1, 𝜆), 0.1, 0.1], events=section, args=[𝜆], atol=1e-7, rtol=1e-7))
+for E in [1/10, 1/8, 1/6]:
+    hh_motion.append(solve_ivp(henon_heiles, [0, t_max], [0, px(E, 0.1, -0.1, 𝜆), 0.1, -0.1], events=section, args=[𝜆], atol=1e-7, rtol=1e-7))
 ```
 
 We can then plot a section of the phase space with increasing energy, showing the transition from regular to chaotic dynamics.
@@ -243,7 +263,7 @@ We can then plot a section of the phase space with increasing energy, showing th
 #| code-fold: true
 #| code-summary: "Code for plot"
 fig, ax = plt.subplots(1, 3)
-energies = ["1/12", "1/8", "1/6"]
+energies = ["1/10", "1/8", "1/6"]
 for idx, data in enumerate(hh_motion): 
         ax[idx].scatter(*data.y_events[0][:, 2:].T, s=0.1)
         ax[idx].title.set_text(f"E={energies[idx]}")        

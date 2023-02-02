@@ -1,10 +1,12 @@
-# Getting going
+---
+title: Getting going
+---
 
-## Finding your way
+# Finding your way
 
 Everyone finds their own workflow for coding, depending on their preferred language, editor, how they run their code, and so on. The aim of the sections below is to give a roundup of some popular tools in the Python ecosystem. 
 
-## Your coding environment
+# Your coding environment
 
 To run Python code on your computer you will need to have installed the Python language. I recommend the [Anaconda distribution](https://www.anaconda.com/products/distribution) as it comes with all the parts of the toolkit we'll need such as [Jupyter notebooks](https://jupyter.org/) and the major libraries [NumPy](https://numpy.org/) and [SciPy](https://scipy.org/).
 
@@ -26,7 +28,7 @@ print("Hello world!")
 
 To leave and return to the command line, you can run `quit()` or `exit()`.  
 
-## IPython
+# IPython
 
 If you ran the above command from within `python` you may have noticed that the nice colour scheme that you see above was absent. This is called [syntax highlighting](https://en.wikipedia.org/wiki/Syntax_highlighting) and provides a visual guide to the syntax of the language.
 
@@ -45,7 +47,7 @@ Among the most helpful features of IPython are:
 
 You can find much more exploring the [documentation](https://ipython.readthedocs.io/en/stable/).
 
-## Running a Python program 
+# Running a Python program 
 
 Python code in a file with a `.py` extension can be run from the command line with `python hello_world.py` or `python -m hello_world`. In the latter case the `-m` option tells the interpreter to look for a _module_ called `hello_world`. More on modules below. 
 
@@ -53,7 +55,7 @@ From the IPython shell you can instead use `run hello_world.py` or just `run hel
 
 <!-- TODO: These magics are normally documented with a `%`. When is it necessary? -->
 
-## Importing code
+# Importing code
 
 A Python [module](https://docs.python.org/3/tutorial/modules.html) is just a file containing definition and statements. Breaking long code into modules is good practice for writing clear and reusable software. Users may not want to delve into the details of some function you have written in order to be able to us it, and separating the corresponding code into a separate file is a hygienic way to handle this. 
 
@@ -100,20 +102,20 @@ np.arange(10)
 For details about where the interpreter looks to find modules you try to import are in the [documentation](https://docs.python.org/3/tutorial/modules.html).
 
 
-## Installing libraries
+# Installing libraries
 
 99% of the code [^1] you run will have been written by somebody else in the form of a library (a collection of modules or packages). Package installation is handled by the command line utilities `pip` or `conda`, the latter being the package manager for the Anaconda distribution. If you have NumPy and SciPy installed you won't need to worry about this too much in this course.  
 
 [^1]: This is a conservative estimate
 
 
-## Editors
+# Editors
 
 Modern editors come with a huge number of tools that make writing code much easier, and you would be crazy not to take advantage of them. These range from the visual cues provided by syntax highlighting – which we've already met – to code completion, parameter information and documentation popups as you type. These go under the general heading [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense). The latest hotness is [GitHub Copilot](https://github.com/features/copilot), which uses AI to make code suggestions. In my view, these are all part of a continuum of productivity enhancements that enable people to write better code faster. Use them (wisely). 
 
 I use [Visual Studio Code](https://code.visualstudio.com/).
 
-## Notebooks
+# Notebooks
 
 While software developers write `.py` files, modules and packages, scientists and others doing more exploratory work tend to favour a Notebook format that mixes code, text, and plots. The dominant option is the [Jupyter notebook](https://jupyter-notebook.readthedocs.io/en/latest/), which comes with the Anaconda distribution and can be started from the command line with `jupyter notebook` (or from the Anaconda Navigator application). This will open the notebook as a web page in your browser, where it can be edited and saved. The default extension is `.ipynb`.
 

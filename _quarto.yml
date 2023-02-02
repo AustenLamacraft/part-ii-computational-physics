@@ -33,13 +33,17 @@ website:
         contents:
           - slides/getting-going.qmd
           - slides/numpy.qmd
+          - slides/numbers-and-odes.qmd
+          # - slides/monte-carlo.qmd
 
 bibliography: references.bib
+number-sections: true
 
 format:
   html:
     theme: cosmo
     toc: true
+
   # pdf:
   #   documentclass: scrreprt
 

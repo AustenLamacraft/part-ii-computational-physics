@@ -1,15 +1,12 @@
 ---
+title: Monte Carlo methods
 resources:
   - "assets/ising.py"
 ---
 
-# Monte Carlo methods
+Many physical phenomena, notably those falling within the domains of statistical mechanics and quantum theory, depend in an essential way on *randomness*. The simulation of these phenomena therefore requires algorithms that incorporate random (or pseudo-random) elements in the most efficient way.
 
-Many physical phenomena, notably those falling within the domains of statistical mechanics and quantum theory, depend in an essential way on _randomness_. The simulation of these phenomena therefore requires algorithms that incorporate random (or pseudo-random) elements in the most efficient way. 
-
-
-
-## Sampling from a distribution
+# Sampling from a distribution
 
 Let's suppose that we have a source of samples of a real valued random variable $X$ that follows a particular probability density function $p_X$ [^1]. This means that the probability of drawing a sample in the region $[x, x+dx]$ is $p_X(x)dx$. If we now map the samples using a function $f$, what is the probability density $p_Y$ of $y=f(x)$? The new probability density is defined in just the same way: the probability of $y$ lying in the region $[y, y+dy]$ is $p_Y(y)dy$. Since $x$ is being mapped deterministically to $y$ these two probabilities are therefore the same
 
@@ -31,9 +28,9 @@ $$
 f^{-1}(y) = \int^y_{-\infty} p_Y(y')dy'
 $$
 
-The same approach works in higher dimensions: $\big\lvert \frac{dx}{dy}\big\rvert$ is replaced by the inverse of the Jacobian determinant. 
+The same approach works in higher dimensions: $\big\lvert \frac{dx}{dy}\big\rvert$ is replaced by the inverse of the Jacobian determinant.
 
-The [Box–Muller transform](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform) is one example of this idea. Take two independent samples from a standard uniform distribution $u_{1,2}$ and form
+The [Box--Muller transform](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform) is one example of this idea. Take two independent samples from a standard uniform distribution $u_{1,2}$ and form
 
 $$
 \begin{align}
@@ -42,9 +39,9 @@ y &= \sqrt{-2\log u_1}\sin(2\pi u_2).
 \end{align}
 $$
 
-$x$ and $y$ are independent samples from a [standard normal distribution](https://en.wikipedia.org/wiki/Standard_normal_distribution). 
+$x$ and $y$ are independent samples from a [standard normal distribution](https://en.wikipedia.org/wiki/Standard_normal_distribution).
 
-Various functions are available in the [`numpy.random`](https://numpy.org/doc/stable/reference/random/index.html#module-numpy.random) module to generate random arrays drawn from a variety of distributions. Box–Muller has now been retired in favour of the [Ziggurat algorithm](https://en.wikipedia.org/wiki/Ziggurat_algorithm).
+Various functions are available in the [`numpy.random`](https://numpy.org/doc/stable/reference/random/index.html#module-numpy.random) module to generate random arrays drawn from a variety of distributions. Box--Muller has now been retired in favour of the [Ziggurat algorithm](https://en.wikipedia.org/wiki/Ziggurat_algorithm).
 
 ```{python}
 import numpy.random as random
@@ -64,15 +61,15 @@ plt.show()
 
 For complex multivariate (i.e. high dimensional) distributions there is no general recipe to construct an appropriate $f$. One very recent application of these ideas is in machine learning models called [normalizing flows](https://arxiv.org/abs/1908.09257) that use a mapping $f$ parameterized by a neural network. The workhorse for sampling from complicated distributions is Markov chain Monte Carlo, as we discuss in @sec-mcmc.
 
-## The Monte Carlo method
+# The Monte Carlo method
 
-_Monte Carlo_ is the general prefix applied to variety of numerical methods that use randomness in some way. Two of the main classes of problem encountered in physics that come under this heading are:
+*Monte Carlo* is the general prefix applied to variety of numerical methods that use randomness in some way. Two of the main classes of problem encountered in physics that come under this heading are:
 
-1. Interpret a numerical evaluation as an expectation value of some random variable and use sampling to estimate it. [Monte Carlo integration](https://en.wikipedia.org/wiki/Monte_Carlo_integration) is an example of this idea.
+1.  Interpret a numerical evaluation as an expectation value of some random variable and use sampling to estimate it. [Monte Carlo integration](https://en.wikipedia.org/wiki/Monte_Carlo_integration) is an example of this idea.
 
-2. Sampling from a complex probability distribution (which may include taking expectation values). Example: [Markov chain Monte Carlo](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo).
+2.  Sampling from a complex probability distribution (which may include taking expectation values). Example: [Markov chain Monte Carlo](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo).
 
-### Monte Carlo integration
+## Monte Carlo integration
 
 The technique is exemplified by the following fairly dumb way of estimating $\pi$
 
@@ -101,38 +98,38 @@ Although it's a silly method, this does illustrate one important feature of Mont
 
 Monte Carlo integration comes into its own for high dimensional problems. For low dimensional integrals the quadrature methods in [`scipy.integrate`](https://docs.scipy.org/doc/scipy/tutorial/integrate.html) are preferable.
 
-### Markov chain Monte Carlo {#sec-mcmc}
+## Markov chain Monte Carlo {#sec-mcmc}
 
-Suppose you want to generate configurations at random (i.e. with a uniform distribution) from a "gas" of hard disks [^2]. 
+Suppose you want to generate configurations at random (i.e. with a uniform distribution) from a "gas" of hard disks [^2].
 
 [^2]: This is in fact the original motivation for the development of the technique, see @metropolis1953equation.
 
 ![Coins in a shoe box (gas of hard disks). From @krauth1998introduction](assets/hard-spheres.png)
 
-It's harder than it looks! The first guess you might have is to start adding coins at random, and if you get an overlap, try again until you don't. Obviously this will become inefficient as the box fills up, and most attempts fail. _Worse, it doesn't in fact yield a uniform distribution!_ 
+It's harder than it looks! The first guess you might have is to start adding coins at random, and if you get an overlap, try again until you don't. Obviously this will become inefficient as the box fills up, and most attempts fail. *Worse, it doesn't in fact yield a uniform distribution!*
 
 <!-- TODO Why not? See @widom1966random for an explanation -->
 
 Here's an approach that works:
 
 ::: {#exm-metropolis}
-## Metropolis algorithm for hard disks
+# Metropolis algorithm for hard disks
 
-1. Fix the number of disks and an initial configuration (some regular lattice configuration, say).
-2. Pick a disk at random and attempt (or _propose_) to move it by a small random amount (i.e. random direction; random small magnitude).
-3. If this results in the moved disk intersecting another, _reject_ the move, leaving the disk where it is. Otherwise, _accept_ the move.
-4. Repeat 2. and 3. many times.
+1.  Fix the number of disks and an initial configuration (some regular lattice configuration, say).
+2.  Pick a disk at random and attempt (or *propose*) to move it by a small random amount (i.e. random direction; random small magnitude).
+3.  If this results in the moved disk intersecting another, *reject* the move, leaving the disk where it is. Otherwise, *accept* the move.
+4.  Repeat 2. and 3. many times.
 :::
 
-![Accepted and rejected moves for hard disks. From @kapfer2013sampling](assets/metropolis.png).
+![Accepted and rejected moves for hard disks. From ](assets/metropolis.png).
 
-This is the simplest example of the [Metropolis–Hastings algorithm](https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm), the first Markov chain Monte Carlo (MCMC) algorithm. 
+This is the simplest example of the [Metropolis--Hastings algorithm](https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm), the first Markov chain Monte Carlo (MCMC) algorithm.
 
-More generally, the goal of MCMC is to come up with a sequential random process (a __Markov chain__) that generates (usually after many steps) a sample from a particular distribution.
+More generally, the goal of MCMC is to come up with a sequential random process (a **Markov chain**) that generates (usually after many steps) a sample from a particular distribution.
 
-You've all heard of a [random walk](https://en.wikipedia.org/wiki/Random_walk), perhaps as a model for diffusion. At each step you make a move in a random direction, independently of your earlier moves. After many steps these random moves gives rise to a distribution of possible locations. A random walk is the simplest example of a Markov chain. 
+You've all heard of a [random walk](https://en.wikipedia.org/wiki/Random_walk), perhaps as a model for diffusion. At each step you make a move in a random direction, independently of your earlier moves. After many steps these random moves gives rise to a distribution of possible locations. A random walk is the simplest example of a Markov chain.
 
-More generally, a [Markov chain](https://en.wikipedia.org/wiki/Markov_chain) is a sequence of random variables $X_n$ with each having a distribution that is is conditional on the value of the previous one, and so is defined in terms of __transition probabilities__ $p(X_{n}=x_n|X_{n-1}=x_{n-1})$ (hence they form a "chain"). I'm going to immediately drop this cumbersome notation in favour of $p(x_n|x_{n-1})$, a function of $x_n$ and $x_{n-1}$, but in general the function giving the transition probabilities can be different at each step (the random variables could all be different).
+More generally, a [Markov chain](https://en.wikipedia.org/wiki/Markov_chain) is a sequence of random variables $X_n$ with each having a distribution that is is conditional on the value of the previous one, and so is defined in terms of **transition probabilities** $p(X_{n}=x_n|X_{n-1}=x_{n-1})$ (hence they form a "chain"). I'm going to immediately drop this cumbersome notation in favour of $p(x_n|x_{n-1})$, a function of $x_n$ and $x_{n-1}$, but in general the function giving the transition probabilities can be different at each step (the random variables could all be different).
 
 The probability of a particular sequence $X_1=x_1\ldots X_n=x_n$ is therefore
 
@@ -140,19 +137,19 @@ $$
 p(x_n|x_{n-1})p(x_{n-1}|x_{n-2})\cdots p(x_2|x_{1})p^{(1)}(x_1)
 $$
 
-$X_1$ has no "parent" so is not conditional on any other value. 
+$X_1$ has no "parent" so is not conditional on any other value.
 
-Suppose we don't care about the earlier values and just want to know the __marginal distribution__ $p^{(n)}(x_n)$ of the final variable. For a random walk this is easy, as $x_n$ typically represents a displacement that is a sum of iid increments. In general this is not the case, however, as the marginal distribution is
+Suppose we don't care about the earlier values and just want to know the **marginal distribution** $p^{(n)}(x_n)$ of the final variable. For a random walk this is easy, as $x_n$ typically represents a displacement that is a sum of iid increments. In general this is not the case, however, as the marginal distribution is
 
 $$
 p^{(n)}(x_n)=\sum_{x_{n-1},\ldots x_1}p(x_n|x_{n-1})p(x_{n-1}|x_{n-2})\cdots p(x_2|x_{1})p^{(1)}(x_1)
 $$
 
-(I'm writing all these expressions for discrete random variables, but the continuous version involving probability density functions is straightforward) 
+(I'm writing all these expressions for discrete random variables, but the continuous version involving probability density functions is straightforward)
 
-The sums are over all possible values that the random variables might take in the __state space__ of the problem. These could be finite or infinite in number.
+The sums are over all possible values that the random variables might take in the **state space** of the problem. These could be finite or infinite in number.
 
-Things are not as bad as they appear, however, as the marginal distribution can be interpreted as the result of acting $n-1$ times on the vector of values of $p^{(1)}_j\equiv p^{(1)}(j)$ with the __transition matrix__ with elements $\mathsf{P}_{jk}=p(j|k)$
+Things are not as bad as they appear, however, as the marginal distribution can be interpreted as the result of acting $n-1$ times on the vector of values of $p^{(1)}_j\equiv p^{(1)}(j)$ with the **transition matrix** with elements $\mathsf{P}_{jk}=p(j|k)$
 
 $$
 \mathbf{p}^{(n)} = \mathsf{P}^{n-1}\mathbf{p}^{(1)}.
@@ -172,27 +169,27 @@ $$
 
 Such matrices are called [stochastic](https://en.wikipedia.org/wiki/Stochastic_matrix).
 
-Although $p^{(n)}$ — the probability distribution at the $n$th step — changes from step to step, you might expect that after many steps it tends to converge to a __stationary distribution__ $p^{(n)}\to\boldsymbol{\pi}$. If it exists, this distribution must satisfy
+Although $p^{(n)}$ --- the probability distribution at the $n$th step --- changes from step to step, you might expect that after many steps it tends to converge to a **stationary distribution** $p^{(n)}\to\boldsymbol{\pi}$. If it exists, this distribution must satisfy
 
 $$
 \boldsymbol{\pi} = \mathsf{P}\boldsymbol{\pi}.
-$${#eq-stat}  
+$$ {#eq-stat}
 
-In other words, it is an eigenvector of $\mathsf{P}$ with eigenvalue one. This property is guaranteed by the [Perron–Frobenius theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem) [^3]. 
+In other words, it is an eigenvector of $\mathsf{P}$ with eigenvalue one. This property is guaranteed by the [Perron--Frobenius theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem) [^3].
 
-[^3]: There is an important caveat. If there are two or more subsets of the state space that are not connected by finite transition probabilities, the probability distribution in each subset evolves independently and there is not a unique stationary distribution. When there _is_, we say that the Markov chain is __ergodic__ and the corresponding transition matrix is __irreducible__.
+[^3]: There is an important caveat. If there are two or more subsets of the state space that are not connected by finite transition probabilities, the probability distribution in each subset evolves independently and there is not a unique stationary distribution. When there *is*, we say that the Markov chain is **ergodic** and the corresponding transition matrix is **irreducible**.
 
-Thus $\mathsf{P}$ determines $\boldsymbol{\pi}$. MCMC turns this idea on its head and asks: if there is some $\boldsymbol{\pi}$ that I would like to generate samples from, can I find a $\mathsf{P}$ that has it as a stationary distribution? 
+Thus $\mathsf{P}$ determines $\boldsymbol{\pi}$. MCMC turns this idea on its head and asks: if there is some $\boldsymbol{\pi}$ that I would like to generate samples from, can I find a $\mathsf{P}$ that has it as a stationary distribution?
 
-There is a trivial answer to this question. Sure, take $\mathsf{P}_{jk}=\boldsymbol{\pi}_j$. That is, jump straight to the stationary distribution no matter what the starting state. But we are interested in highly complicated distributions over large state spaces (think the Boltzmann distribution for a statistical mechanical system comprised of billions of particles). Thus what we really want is to be able to approach such a complicated distribution by making many transitions with _simple_ distributions. 
+There is a trivial answer to this question. Sure, take $\mathsf{P}_{jk}=\boldsymbol{\pi}_j$. That is, jump straight to the stationary distribution no matter what the starting state. But we are interested in highly complicated distributions over large state spaces (think the Boltzmann distribution for a statistical mechanical system comprised of billions of particles). Thus what we really want is to be able to approach such a complicated distribution by making many transitions with *simple* distributions.
 
-One more idea is useful before returning to concrete algorithms. The quantity 
+One more idea is useful before returning to concrete algorithms. The quantity
 
 $$
 \mathsf{P}_{jk}\pi_k = p(j|k)\pi_k = p(j,k)
 $$
 
-is the joint distribution of seeing state $k$ followed by state $j$ in the stationary distribution. A _reversible_ Markov chain is one where $p(j,k)=p(k,j)$. Roughly, you can't tell the direction of time because any transition is equally likely to happen forward in time as backward. Random physical processes that respect time reversal symmetry are often modeled as reversible Markov processes. 
+is the joint distribution of seeing state $k$ followed by state $j$ in the stationary distribution. A *reversible* Markov chain is one where $p(j,k)=p(k,j)$. Roughly, you can't tell the direction of time because any transition is equally likely to happen forward in time as backward. Random physical processes that respect time reversal symmetry are often modeled as reversible Markov processes.
 
 Combining reversibility with the definition of the stationary state yields the condition of [detailed balance](https://en.wikipedia.org/wiki/Detailed_balance)
 
@@ -202,14 +199,13 @@ $$ {#eq-detailed}
 
 This condition is stronger than the condition @eq-stat for a stationary state. This makes it easier to check: you don't have to do a sum over a state space index. The Metropolis algorithm @exm-metropolis for the hard disk problem satisfies detailed balance for a stationary distribution that is constant when disks don't intersect and zero when they do.
 
-When the stationary distribution $\boldsymbol{\pi}$ has more structure, designing an appropriate transition matrix is harder. The idea is to generalize the hard disk approach by separating the transition into a _proposal_ distribution $p_\text{prop}(j|k)$ and an _acceptance_ distribution $p_\text{acc}(a=0,1|j\leftarrow k)$ that gives the probability of a move from $k$ to $j$ being accepted ($a=1$) or rejected ($a=0$). The probability of moving from $k$ to $j$ is then
+When the stationary distribution $\boldsymbol{\pi}$ has more structure, designing an appropriate transition matrix is harder. The idea is to generalize the hard disk approach by separating the transition into a *proposal* distribution $p_\text{prop}(j|k)$ and an *acceptance* distribution $p_\text{acc}(a=0,1|j\leftarrow k)$ that gives the probability of a move from $k$ to $j$ being accepted ($a=1$) or rejected ($a=0$). The probability of moving from $k$ to $j$ is then
 
 $$
 p(j|k) = p_\text{acc}(a=1|j\leftarrow k) p_\text{prop}(j|k).
 $$
 
-Substituting this into the detailed balance condition @eq-detailed gives
-$$
+Substituting this into the detailed balance condition @eq-detailed gives $$
 \frac{p_\text{acc}(a=1|j\leftarrow k)}{p_\text{acc}(a=1|k\leftarrow j)} = \frac{\pi_j}{\pi_k}\frac{p_\text{prop}(k|j)}{p_\text{prop}(j|k)}.
 $$
 
@@ -222,11 +218,11 @@ $$ {#eq-metropolis}
 This gives an extremely general algorithm, one of the top ten in applied mathematics, according to [one list](https://nhigham.com/2016/03/29/the-top-10-algorithms-in-applied-mathematics/):
 
 ::: {#exm-metropolis-gen}
-## Metropolis algorithm
+# Metropolis algorithm
 
-1. Starting from state $k$ sample a next state $j$ from the proposal distribution $p_\text{prop}(j|k)$. 
-2. Accept the proposal with probability $p_\text{acc}(a=1|j \leftarrow k)$ and move to state $j$. Otherwise reject the proposal and stay in state $k$.
-3. Repeat 1. and 2. many times.
+1.  Starting from state $k$ sample a next state $j$ from the proposal distribution $p_\text{prop}(j|k)$.
+2.  Accept the proposal with probability $p_\text{acc}(a=1|j \leftarrow k)$ and move to state $j$. Otherwise reject the proposal and stay in state $k$.
+3.  Repeat 1. and 2. many times.
 :::
 
 MCMC has the benefit of being [embarrassingly parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel). If you want to average something over $\boldsymbol{\pi}$, just run the algorithm many times independently and average the results. This is perfect for parallel computing.
@@ -235,7 +231,8 @@ The Metropolis algorithm has an Achilles' heel, however. To perform a move one h
 
 We'll see some more examples of MCMC algorithms for statistical mechanical problems in @sec-statmech, and ways in which this problem can be avoided.
 
-<!-- ### Relaxation to equilibrium
+```{=html}
+<!-- ## Relaxation to equilibrium
 
 TODO
 
@@ -244,19 +241,18 @@ Eigenvalues
 Master equation
 
 Transition matrix -->
-
-
-## Statistical mechanics {#sec-statmech}
+```
+# Statistical mechanics {#sec-statmech}
 
 Statistical mechanics is a natural source of such complex distributions in physics. Remember the fundamental principle that the probability of finding a statistical mechanical system in a microstate $\mathbf{x}$ [^4] with energy $\mathcal{E}(\mathbf{x})$ is
+
+[^4]: For a classical gas of point particles this would correspond to specifying all the positions and velocities, for example.
 
 $$
 p(\mathbf{x})=\frac{\exp\left[-\beta \mathcal{E}(\mathbf{x})\right]}{Z},
 $$ {#eq-boltzmann}
 
-where $Z$ is a normalizing constant called the partition function and $\beta=1/k_\text{B}T$, where $T$ is the temperature and $k_\text{B}$ is Boltzmann's constant.  
-
-[^4]: For a classical gas of point particles this would correspond to specifying all the positions and velocities, for example.
+where $Z$ is a normalizing constant called the partition function and $\beta=1/k_\text{B}T$, where $T$ is the temperature and $k_\text{B}$ is Boltzmann's constant.
 
 The *central problem* of statistical mechanics is computing ensemble averages of physical quantities, and the *principle difficulty* is the intractability of those averages for large systems. For example, if we are dealing with a classical gas, the configuration space point $\mathbf{x}$ corresponds to the positions of each of the gas molecules $\mathbf{x}=(\mathbf{x}_1,\ldots \mathbf{x}_N)$ and an average is a $3N$-dimensional integral. The only situation in which this integral is tractable is when the gas is noninteracting (ideal), in which case the energy function takes the form
 
@@ -276,19 +272,19 @@ $$
 \mathcal{E}(\sigma)=\sum_n h_n\sigma_n + \sum_{m<n} J_{mn}\sigma_m\sigma_n.
 $$
 
-The two terms correspond to a (magnetic) field that acts on each spin and a coupling between spins. As in the gas, it's the latter that causes problems / interest. 
+The two terms correspond to a (magnetic) field that acts on each spin and a coupling between spins. As in the gas, it's the latter that causes problems / interest.
 
-The Ising model comes in a great many flavours according to how the fields and couplings are chosen. They may reflect a lattice structure: $J_{mn}\neq 0$ for nearest neighbours, say, or longer range. They may be fixed or random, defining an ensemble of models. 
+The Ising model comes in a great many flavours according to how the fields and couplings are chosen. They may reflect a lattice structure: $J_{mn}\neq 0$ for nearest neighbours, say, or longer range. They may be fixed or random, defining an ensemble of models.
 
 The most pessimistic assessment is that to calculate an average we are going to have sum over $2^N$ configurations. Computing the partition function $Z$ that normalizes the average (or which gives the free energy via $F=-k_\text{B}T\log Z$) is another such sum.
 
 Monte Carlo simulation is a much more attractive alternative. MCMC can be used to generate samples from $p(\sigma)$ which are then used to estimate the averages of interest (e.g. average energy $\langle\mathcal{E}(\sigma)\rangle$, average magnetization $\langle\sum_n \sigma_n\rangle$, etc.).
 
-### MCMC updates for the Ising model
+## MCMC updates for the Ising model
 
-How does MCMC work in practice for the Ising model? To apply the Metropolis alogorithm @exm-metropolis-gen we can use a simple proposal: pick each spin in turn in some order and try to flip it. 
+How does MCMC work in practice for the Ising model? To apply the Metropolis alogorithm @exm-metropolis-gen we can use a simple proposal: pick each spin in turn in some order and try to flip it.
 
-The form of $p(\sigma)$ means that, although we cannot compute the probabilities explicitly, we can calculate _ratios_, which is all we need for Metropolis. For two configurations that differ only by $\sigma_n=\pm 1$ we have
+The form of $p(\sigma)$ means that, although we cannot compute the probabilities explicitly, we can calculate *ratios*, which is all we need for Metropolis. For two configurations that differ only by $\sigma_n=\pm 1$ we have
 
 $$
 \begin{align}
@@ -299,7 +295,7 @@ $$
 
 where $\Delta \mathcal{E}$ is the energy difference between two configurations.
 
-One alternative to Metropolis is the __Heat bath algorithm__ (or [Glauber dynamics](https://en.wikipedia.org/wiki/Glauber_dynamics) or [Gibbs sampling](https://en.wikipedia.org/wiki/Gibbs_sampling)) [^5]. The idea behind the name is that, since we can calculate the influence of the spin's environment (the "bath"), we can just choose the spin's orientation with the corresponding probabilities. Since there are only two probabilities the ratio is all we need and we get
+One alternative to Metropolis is the **Heat bath algorithm** (or [Glauber dynamics](https://en.wikipedia.org/wiki/Glauber_dynamics) or [Gibbs sampling](https://en.wikipedia.org/wiki/Gibbs_sampling)) [^5]. The idea behind the name is that, since we can calculate the influence of the spin's environment (the "bath"), we can just choose the spin's orientation with the corresponding probabilities. Since there are only two probabilities the ratio is all we need and we get
 
 [^5]: Multiple names are sign that a technique was re-discovered by different communities who don't talk to each other.
 
@@ -310,22 +306,19 @@ $$ {#eq-heat-bath}
 The algorithm is then:
 
 ::: {#exm-heat-bath}
+# Heat bath algorithm
 
-## Heat bath algorithm
-
-1. Pick a spin $n$. [^6]
-2. Compute $\Delta E$, the energy difference between $\sigma_n=\pm 1$.
-3. Set $\sigma_n=\pm 1$ with probabilities given by @eq-heat-bath. 
-4. Repeat 1-3 many times
-
+1.  Pick a spin $n$. [^6]
+2.  Compute $\Delta E$, the energy difference between $\sigma_n=\pm 1$.
+3.  Set $\sigma_n=\pm 1$ with probabilities given by @eq-heat-bath.
+4.  Repeat 1-3 many times
 :::
 
-[^6]: This can be done deterministically (e.g. sequentially or in alternating blocks when the model is defined on a [bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph)) — which is what is normally called Gibbs sampling — or at random, which corresponds to Glauber dynamics.
+[^6]: This can be done deterministically (e.g. sequentially or in alternating blocks when the model is defined on a [bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph)) --- which is what is normally called Gibbs sampling --- or at random, which corresponds to Glauber dynamics.
 
 What happens if we try and come up with more complicated proposals, flipping many spins at once? For Metropolis, the problem is that without a cleverly designed proposal we will be suggesting moves that are likely to be rejected. For the heat bath algorithm, the more spins we flip, the more complicated the evaluation of the corresponding probabilities ($2^n$ outcomes if we flip $n$ spins).
 
-The good news is that we _can_ do better — much better — than the above algorithms. The [Wolff algorithm](https://en.wikipedia.org/wiki/Wolff_algorithm) is one example. This proposes a cluster of spins of the same orientation to be flipped by adding adjacent spins to an initially random chosen spin with probability $p_\text{add}$. It turns out that for the nearest neighbour Ising model with Ferromagnetic coupling $J<0$ the "magic" value $p_\text{add}=1-e^{2\beta J}$ is _rejection free_: the probability to flip the whole cluster is always one. This makes for an extremely fast algorithm that is not subject to the usual _critical slowing down_ at phase transitions.
-
+The good news is that we *can* do better --- much better --- than the above algorithms. The [Wolff algorithm](https://en.wikipedia.org/wiki/Wolff_algorithm) is one example. This proposes a cluster of spins of the same orientation to be flipped by adding adjacent spins to an initially random chosen spin with probability $p_\text{add}$. It turns out that for the nearest neighbour Ising model with Ferromagnetic coupling $J<0$ the "magic" value $p_\text{add}=1-e^{2\beta J}$ is *rejection free*: the probability to flip the whole cluster is always one. This makes for an extremely fast algorithm that is not subject to the usual *critical slowing down* at phase transitions.
 
 ```{python}
 #| code-fold: true
@@ -374,20 +367,27 @@ class IsingModel:
                             cluster.append(neighbour)
 ```
 
-<script src = "https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script> 
+```{=html}
+<script src = "https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+```
+```{=html}
 <script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
-<script src = "assets/ising.js"></script> 
-
+```
+```{=html}
+<script src = "assets/ising.js"></script>
+```
 ::: {#fig-ising}
-<div id="ising-simulation" align="center"></div>
+::: {#ising-simulation align="center"}
+:::
 
 Glauber dynamics, Block Gibbs sampling and Wolff updates compared. Change the temperature using the slider. The centre of the slider corresponds to the critical temperature $k_\text{B}T = 2|J|/\log(1+\sqrt{2})\sim 2.269|J|$.
 :::
 
-## The universe of Monte Carlo methods
+# The universe of Monte Carlo methods
 
 Monte Carlo simulation is a vast field with practitioners and specialists across the natural sciences, engineering, machine learning, and statistics. In this section I'll mention a few important topics to give a taste of what's out there. For much more detail take a look at @krauth2006statistical and / or @mackay2003information. The recent set of lectures [Monte Carlo Techniques](https://hef.ru.nl/~tbudd/mct/intro.html) by Timothy Budd also look fantastic.
 
+```{=html}
 <!-- Probably the biggest single issue is: how do you kow when your MCMC simulation has reached the stationary distribution $\boldsymbol{\pi}$? The pragmatic approach is to monitor the averages of interest (magnetization, say, in the case of the Ising model) over different simulations or over a time interval and see when they stop changing. 
 
 
@@ -446,3 +446,4 @@ Other suggestions from Twitter
 
 https://roomno308.github.io/blog/MCMC.html
 https://maximilianrohde.com/posts/code-breaking-with-metropolis/ -->
+```

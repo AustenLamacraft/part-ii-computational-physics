@@ -1,0 +1,18 @@
+---
+number-sections: false
+format:
+  revealjs: 
+    slide-number: true
+    hash: true
+    center: true
+    auto-stretch: false
+    theme: default
+    html-math-method: mathjax
+
+---
+
+# Monte Carlo method
+
+$$
+a^2 + b^2 = c^2
+$$

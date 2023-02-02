@@ -1,12 +1,18 @@
-# NumPy and friends
+---
+title: NumPy and friends
+---
 
 The [NumPy](https://numpy.org/) package is _the_ key building block of the Python scientific ecosystem.
 
 In this chapter we introduce a few of the key concepts. You should refer to the [documentation](https://numpy.org/doc/stable/user/index.html) for details. As with any mature software ecosystem, you should first __assume that what you want to achieve _can_ be achieved in a highly optimised way within the existing framework__, and only resort to creating your own solution if and when you satisfy yourself that this is not the case.
 
-There are a huge number of resources for learning NumPy online. [This](https://cs231n.github.io/python-numpy-tutorial/) is one particular nice and compact tutorial.
+There are a huge number of resources for learning NumPy online. Here are a couple of good ones:
 
-## Preamble: objects in Python
+ - [NumPy: the absolute basics for beginners](https://numpy.org/doc/stable/user/absolute_beginners.html) from the NumPy documentation is pretty great. 
+ 
+ - [This tutorial](https://cs231n.github.io/python-numpy-tutorial/) from a machine learning course at Stanford is also particularly nice and compact.
+
+# Preamble: objects in Python
 
 Everything in Python is an _object_. For example `[1,2,3]` is a `list`:
 
@@ -27,7 +33,7 @@ With IPython you can see all the available methods by hitting tab:
 ![](assets/tab-complete.gif)
 
 ::: {.callout-tip collapse="true"}
-## Dunder methods
+# Dunder methods
 
 You can list all of an objects properties and methods using `dir`:
 
@@ -45,7 +51,7 @@ In this way the same function (`len` in this case) can operate on many different
 
 :::
 
-## Arrays
+# Arrays
 
 ```{python}
 import numpy as np
@@ -144,7 +150,7 @@ my_array[1:, 1].shape
 ```
 
 ::: {.callout-note collapse="true"}
-## What's with the comma?
+# What's with the comma?
 
 It's to distinguish the tuple `(3,)` giving the shape from `(3)` which is just the number 3 in brackets
 
@@ -215,7 +221,7 @@ my_float_array.dtype
 ```
 
 
-### Examples of array-like data
+# Examples of array-like data
 
 It's not hard to come up with examples of array-like data in physics. The position, velocity, or acceleration of a particle will be three dimensional vectors, so have shape `(3,)`. If we had $N$ particles you could either put them in a $3N$ dimensional vector, but for reasons that will become clear it would be better to store them in an array of shape `(N,3)`, so that the first index indexes the particle number and the second the particle coordinate.
 
@@ -278,7 +284,7 @@ plt.show()
 ```
 
 
-## Mathematical operations with arrays
+# Mathematical operations with arrays
 
 I've already hinted at the payoff from all of this. On lists, multiplication by an integer concatentates multiple copies
 
@@ -302,7 +308,7 @@ print(np.sqrt(np.array([1, 2, 3])))
 
 This avoids the need to write nested loops to perform some operation on each element of some multidimensional data. Of course, the loops are still there, it's just that NumPy handles them in highly optimized C rather than Python. Code which operates in this way – rather than with explicit loops – is often described as _vectorized_, and in NumPy-speak vectorized functions are called _ufuncs_, short for _universal functions_ (you can [write your own](https://numpy.org/doc/stable/reference/ufuncs.html) if you need to). As a basic principle you should _never_ use a Python loop to access your data in NumPy code. Loops may appear at a high level in stepping through time steps in a simulation, for example.
 
-### Broadcasting
+# Broadcasting
 
 Vectorization is even more versatile than the above examples might suggest. _Broadcasting_ is a powerful protocol that allows us to combine arrays of different shapes. Thus we can add a number to an array
 
@@ -339,7 +345,7 @@ After broadcasting, each array behaves as if it had shape equal to the elementwi
 
 Recall our earlier example of an $N$-particle system described by a position array of shape `(N,3)`. If we want to shift the entire system by a vector, we can just add a vector of shape `(3,)` and broadcasting will ensure that this applied correctly to each particle.
 
-## Plotting with Matplotlib
+# Plotting with Matplotlib
 
 There are various specialized Python plotting libraries but the entry-level option is the catchily named [Matplotlib](https://matplotlib.org/). The `pyplot` module provides a plotting system that is similar to MATLAB (I'm told)
 
@@ -404,7 +410,7 @@ plt.title('Cosine')
 plt.show()
 ```
 
-### Example: playing with images
+## Example: playing with images
 
 Pixels in an image are encoded as a triple of RGB values in the range [0,255] i.e. 8 bits of type `uint8` (the "u" is for "unsigned"). Tinting an image gives us a nice example of broadcasting
 
@@ -431,7 +437,7 @@ img.shape, img.dtype
 
 This is a standard 12 megapixel image.
 
-## Saving and loading data
+# Saving and loading data
 
 In the course of your work you are likely to produce, as well as consume lots of data. While it's good practice to keep notebooks capable of reproducing any of your analyses, this could be time consuming and resource heavy for larger computations. Thus at some point you'll probably want to save and load data. For example, after saving the data of a large scale simulation you'd like to load it and perform some analysis.
 

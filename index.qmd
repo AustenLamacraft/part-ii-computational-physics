@@ -1,8 +1,10 @@
-# Course outline {.unnumbered}
+---
+title: Course outline 
+---
 
 These are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge. 
 
-## Schedule
+# Schedule
 
 The course of eight Lectures will take place at 10.00 on Mondays and Fridays in the Pippard Lecture Theatre. After the lectures there will be __four computing exercises__ to be completed in the last four weeks of full Lent term; one per week. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. 
 
@@ -15,19 +17,19 @@ The schedule is as follows
 - Third exercise: Friday 3rd March – Friday 10th March
 - Fourth exercise: Friday 10th March – Friday 17th March (last day of full Lent term)
 
-### Computing Project
+## Computing Project
 
 Additionally, you may choose to offer a Computational Physics project for one unit of further work. This involves choosing a problem from the project list. You will analyse the problem, write and test Python code to investigate it, then write up your work in a report. 
 
-Students may start their project work once the project list is published by 17th February. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (1st May 2023)__.
+Students may start their project work once the project list is published by 17th February. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (1st May 2023)__. 
 
-## Prerequisites
+# Prerequisites
 
 This course assumes a basic knowledge of the Python language, including variables, control flow, and writing and using functions, at the level of last year's IB course (which had an excellent handout). 
 
 If you want an absolute bare bones intro to Python try the first half of [this tutorial](https://cs231n.github.io/python-numpy-tutorial/) (which then goes on to introduce NumPy).
 
-## Learning outcomes
+# Learning outcomes
 
 In this course you will learn
 
@@ -35,7 +37,7 @@ In this course you will learn
 2. Its use in implementing some common algorithms in computational physics.
 3. Basic ideas of computational complexity used in the analysis of algorithms
 
-## Outline 
+# Outline 
 
 Here's a list of topics that I'd like to cover. We make not have time for all of them.
 

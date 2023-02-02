@@ -1,10 +1,12 @@
 ---
+number-sections: false
 format:
   revealjs: 
     slide-number: true
     hash: true
     center: true
     auto-stretch: false
+    html-math-method: mathjax
 ---
 
 # Floating point and ODEs
@@ -510,7 +512,7 @@ pendulum_motion = solve_ivp(pendulum, [0, t_max], [2, 0], dense_output=True)
 
 ---
 
-Use this to plot pendulum's trajectory in $\theta- l$ [phase plane](https://en.wikipedia.org/wiki/Phase_plane), along with contours of conserved energy function
+- Use this to plot pendulum's trajectory in $\theta- l$ [phase plane](https://en.wikipedia.org/wiki/Phase_plane), along with contours of conserved energy function
 
 $$
 E(\theta, l) = \frac{1}{2}l^2 - \cos\theta

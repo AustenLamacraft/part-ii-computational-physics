@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Part II Computational Physics – ode</title>
+<title>Part II Computational Physics - Solving differential equations with SciPy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Part II Computational Physics</h1>
+      <h1 class="quarto-secondary-nav-title">Solving differential equations with SciPy</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -225,6 +225,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../slides/numpy.html" class="sidebar-item-text sidebar-link">NumPy and friends</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/numbers-and-odes.html" class="sidebar-item-text sidebar-link">Floating point and ODEs</a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -236,26 +241,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#solving-differential-equations-with-scipy" id="toc-solving-differential-equations-with-scipy" class="nav-link active" data-scroll-target="#solving-differential-equations-with-scipy">Solving differential equations with SciPy</a>
+  <li><a href="#eulers-method" id="toc-eulers-method" class="nav-link active" data-scroll-target="#eulers-method"><span class="toc-section-number">1</span>  Euler’s method</a>
   <ul class="collapse">
-  <li><a href="#eulers-method" id="toc-eulers-method" class="nav-link" data-scroll-target="#eulers-method">Euler’s method</a>
-  <ul class="collapse">
-  <li><a href="#truncation-error" id="toc-truncation-error" class="nav-link" data-scroll-target="#truncation-error">Truncation error</a></li>
-  <li><a href="#rounding-error" id="toc-rounding-error" class="nav-link" data-scroll-target="#rounding-error">Rounding error</a></li>
-  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability">Stability</a></li>
+  <li><a href="#truncation-error" id="toc-truncation-error" class="nav-link" data-scroll-target="#truncation-error"><span class="toc-section-number">1.1</span>  Truncation error</a></li>
+  <li><a href="#rounding-error" id="toc-rounding-error" class="nav-link" data-scroll-target="#rounding-error"><span class="toc-section-number">1.2</span>  Rounding error</a></li>
+  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability"><span class="toc-section-number">1.3</span>  Stability</a></li>
   </ul></li>
-  <li><a href="#using-scipy" id="toc-using-scipy" class="nav-link" data-scroll-target="#using-scipy">Using SciPy</a></li>
-  </ul></li>
+  <li><a href="#using-scipy" id="toc-using-scipy" class="nav-link" data-scroll-target="#using-scipy"><span class="toc-section-number">2</span>  Using SciPy</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Solving differential equations with SciPy</h1>
+</div>
 
 
-<section id="solving-differential-equations-with-scipy" class="level1">
-<h1>Solving differential equations with SciPy</h1>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
 <blockquote class="blockquote">
 <p>Newton’s fundamental discovery, the one which he considered necessary to keep secret and published only in the form of an anagram, consists of the following: <em>Data aequatione quotcunque fluentes quantitates involvente, fluxiones invenire; et vice versa</em>. In contemporary mathematical language, this means: “It is useful to solve differential equations”.</p>
 <p>Vladimir Arnold, <em>Geometrical Methods in the Theory of Ordinary Differential Equations</em></p>
@@ -265,10 +280,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \frac{dx}{dt} = f(x, t)
 \tag{1}\]</span></span></p>
 <p>cannot be solved for general <span class="math inline">\(f(x,t)\)</span> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Of course, formulating a physical (or whatever) system in terms of differential equations represents a nontrivial step on the road to understanding it, but a lot remains to be done.</p>
-<p>Numerical analysis of differential equations is a colossal topic in applied maths and we are barely going to scratch the surface. The important thing is to be able to access existing solvers (and implement your own if necessary) and crucially to <em>understand their limitations</em>.</p>
-<section id="eulers-method" class="level2">
-<h2 class="anchored" data-anchor-id="eulers-method">Euler’s method</h2>
-<p>The basic idea behind all ODE solvers is to introduce a discretization of the equation and its solution <span class="math inline">\(x_j\equiv x(t_j)\)</span> at time points <span class="math inline">\(t_j = hj\)</span> for some step size <span class="math inline">\(h\)</span> and <span class="math inline">\(j=0, 1, \ldots\)</span>. The very simplest approach is called <a href="https://en.wikipedia.org/wiki/Euler_method">Euler’s method</a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and approximates the derivative on the right hand side of <a href="#eq-ode">Equation&nbsp;1</a> as</p>
+<p>Numerical analysis of differential equations is a colossal topic in applied mathematics and we are barely going to scratch the surface. The important thing is to be able to access existing solvers (and implement your own if necessary) and crucially to <em>understand their limitations</em>.</p>
+<section id="eulers-method" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Euler’s method</h1>
+<p>The basic idea behind all ODE solvers is to introduce a discretization of the equation and its solution <span class="math inline">\(x_j\equiv x(t_j)\)</span> at time points <span class="math inline">\(t_j = hj\)</span> for some step size <span class="math inline">\(h\)</span> and <span class="math inline">\(j=0, 1, \ldots\)</span>. The very simplest approach is called <a href="https://en.wikipedia.org/wiki/Euler_method">Euler’s method</a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and approximates the derivative on the left hand side of <a href="#eq-ode">Equation&nbsp;1</a> as</p>
 <p><span id="eq-fwd"><span class="math display">\[
 \frac{dx}{dt}\Bigg|_{t=t_j} \approx \frac{x_{j+1} - x_j}{h}.
 \tag{2}\]</span></span></p>
@@ -281,17 +296,25 @@ x_{j+1} = x_j + hf(x_j, t_j).
 x_{j+1} = x_j + hf(x_{j+1}, t_{j+1})
 \tag{4}\]</span></span></p>
 <p>which is <em>implicit</em>. This means that the update requires an additional step to numerically solve for <span class="math inline">\(x_{j+1}\)</span>. Although this is more costly, there are benefits to the backward method associated with stability.</p>
-<section id="truncation-error" class="level3">
-<h3 class="anchored" data-anchor-id="truncation-error">Truncation error</h3>
+<section id="truncation-error" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="truncation-error"><span class="header-section-number">1.1</span> Truncation error</h2>
 <p>In making the approximation <a href="#eq-fwd">Equation&nbsp;2</a> we make an <span class="math inline">\(O(h^2)\)</span> <em>local truncation error</em>. To integrate for a fixed time the number of steps required is proportional to <span class="math inline">\(h^{-1}\)</span>, which means that the worst case error at fixed time (the <em>global truncation error</em>) is <span class="math inline">\(O(h)\)</span>. For this reason Euler’s method is called <em>first order</em>. More sophisticated methods are typically higher order: the SciPy function <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#r179348322575-1">scipy.integrate.solve_ivp</a> uses a fifth order method by default.</p>
-<!-- TODO discuss midpoint method? -->
+<p>The <a href="https://en.wikipedia.org/wiki/Midpoint_method">midpoint method</a> is a simple example of a higher order integration scheme</p>
+<p><span class="math display">\[
+\begin{align}
+k_1 &amp;\equiv h f(x_j,t_j) \\
+k_2 &amp;\equiv h f(x_i + k_1/2, t_j + h/2) \\
+x_{j+1} &amp;= x_j + k_2 +O(h^3)
+\end{align}
+\]</span></p>
+<p>The <span class="math inline">\(O(h^2)\)</span> error cancels! The downside is that we have two function evaluations to perform per step, but this is often worthwhile.</p>
 </section>
-<section id="rounding-error" class="level3">
-<h3 class="anchored" data-anchor-id="rounding-error">Rounding error</h3>
-<p>If you had unlimited computer time you might think you could make the step size <span class="math inline">\(h\)</span> ever smaller in order to make the updates more accurate. This ignores the machine precision <span class="math inline">\(\epsilon\)</span>, discussed in <strong>?@sec-fp-numpy</strong>. The rounding error is roughly <span class="math inline">\(\epsilon x_j\)</span>, and if the <span class="math inline">\(N\propto h^{-1}\)</span> errors in successive steps can be treated as independent random variables, the relative total rounding error will be <span class="math inline">\(\propto \sqrt{N}\epsilon=\frac{\epsilon}{\sqrt{h}}\)</span> and will dominate for <span class="math inline">\(h\)</span> small.</p>
+<section id="rounding-error" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="rounding-error"><span class="header-section-number">1.2</span> Rounding error</h2>
+<p>If you had unlimited computer time you might think you could make the step size <span class="math inline">\(h\)</span> ever smaller in order to make the updates more accurate. This ignores the machine precision <span class="math inline">\(\epsilon\)</span>. The rounding error is roughly <span class="math inline">\(\epsilon x_j\)</span>, and if the <span class="math inline">\(N\propto h^{-1}\)</span> errors in successive steps can be treated as independent random variables, the relative total rounding error will be <span class="math inline">\(\propto \sqrt{N}\epsilon=\frac{\epsilon}{\sqrt{h}}\)</span> and will dominate for <span class="math inline">\(h\)</span> small.</p>
 </section>
-<section id="stability" class="level3">
-<h3 class="anchored" data-anchor-id="stability">Stability</h3>
+<section id="stability" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="stability"><span class="header-section-number">1.3</span> Stability</h2>
 <p>Apart from the relatively low accuracy that comes from using a first order method, the Euler method may additionally be unstable, depending on the equation. This can be demonstrated for the linear equation</p>
 <p><span class="math display">\[
 \frac{dx}{dt} = kx
@@ -342,8 +365,8 @@ x_{j+1} = x_j(1 + hk)
 <p>so the region of stability is <span class="math inline">\(|1 + hk|\leq 1\)</span>. You can check that the backward Euler method <a href="#eq-backward-euler-update">Equation&nbsp;4</a> eliminates the instability for <span class="math inline">\(k&lt;0\)</span>.</p>
 </section>
 </section>
-<section id="using-scipy" class="level2">
-<h2 class="anchored" data-anchor-id="using-scipy">Using SciPy</h2>
+<section id="using-scipy" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Using SciPy</h1>
 <p>Coming up with integration schemes is best left to the professionals. Your first port of call for solving ODEs in Python should probably be the <a href="https://docs.scipy.org/doc/scipy/tutorial/integrate.html">integrate</a> module of the <a href="https://scipy.org/">SciPy</a> scientific computing library. The function <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#r179348322575-1">scipy.integrate.solve_ivp</a> provides a versatile API.</p>
 <p>One important thing to understand is that all these integration schemes apply to systems of <em>first order</em> differential equations. Higher order equations can always be presented as a first order system, at the expense of introducing more equations. For example, in physics we are often concerned with Newton’s equation</p>
 <p><span class="math display">\[
@@ -422,6 +445,12 @@ E(\theta, l) = \frac{1}{2}l^2 - \cos\theta
 <p><span class="math display">\[
 E = \frac{1}{2}\left(p_x^2+p_y^2 + x^2 + y^2\right) + \lambda\left(x^2y-\frac{1}{3}y^3\right)
 \]</span></p>
+<p>The existence of a conserved quantity means that, once the energy is fixed by the initial conditions, the subsequent motion must be confined to a three dimensional submanifold.</p>
+<p>When <span class="math inline">\(\lambda=0\)</span> the HH system corresponds to an isotropic 2D harmonic oscillator. In this case not only is the energy conserved, but also the angular momentum</p>
+<p><span class="math display">\[
+J = x p_y - y p_x
+\]</span></p>
+<p>Fixing <span class="math inline">\(E\)</span> and <span class="math inline">\(J\)</span> gives a two dimensional submanifold that is in fact a torus (it’s not obvious).</p>
 <p>If we take a <a href="https://en.wikipedia.org/wiki/Poincar%C3%A9_map">Poincaré section</a> with <span class="math inline">\(x=0\)</span> a system with energy <span class="math inline">\(E\)</span> must lie within the curve defined by</p>
 <p><span class="math display">\[
 E = \frac{1}{2}\left(p_y^2 + y^2\right) -\frac{\lambda}{3}y^3.
@@ -443,15 +472,15 @@ p_x = \sqrt{2E-y^2-p_y^2 + \frac{2\lambda}{3}y^3}
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>t_max <span class="op">=</span> <span class="dv">10000</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>𝜆 <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>hh_motion <span class="op">=</span> []</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> E <span class="kw">in</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">12</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">8</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">6</span>]:</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    hh_motion.append(solve_ivp(henon_heiles, [<span class="dv">0</span>, t_max], [<span class="dv">0</span>, px(E, <span class="fl">0.1</span>, <span class="fl">0.1</span>, 𝜆), <span class="fl">0.1</span>, <span class="fl">0.1</span>], events<span class="op">=</span>section, args<span class="op">=</span>[𝜆], atol<span class="op">=</span><span class="fl">1e-7</span>, rtol<span class="op">=</span><span class="fl">1e-7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> E <span class="kw">in</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">8</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">6</span>]:</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    hh_motion.append(solve_ivp(henon_heiles, [<span class="dv">0</span>, t_max], [<span class="dv">0</span>, px(E, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>, 𝜆), <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>], events<span class="op">=</span>section, args<span class="op">=</span>[𝜆], atol<span class="op">=</span><span class="fl">1e-7</span>, rtol<span class="op">=</span><span class="fl">1e-7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can then plot a section of the phase space with increasing energy, showing the transition from regular to chaotic dynamics.</p>
 <div class="cell" data-execution_count="6">
 <details>
 <summary>Code for plot</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>energies <span class="op">=</span> [<span class="st">"1/12"</span>, <span class="st">"1/8"</span>, <span class="st">"1/6"</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>energies <span class="op">=</span> [<span class="st">"1/10"</span>, <span class="st">"1/8"</span>, <span class="st">"1/6"</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, data <span class="kw">in</span> <span class="bu">enumerate</span>(hh_motion): </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        ax[idx].scatter(<span class="op">*</span>data.y_events[<span class="dv">0</span>][:, <span class="dv">2</span>:].T, s<span class="op">=</span><span class="fl">0.1</span>)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        ax[idx].title.set_text(<span class="ss">f"E=</span><span class="sc">{</span>energies[idx]<span class="sc">}</span><span class="ss">"</span>)        </span>
@@ -461,7 +490,7 @@ p_x = \sqrt{2E-y^2-p_y^2 + \frac{2\lambda}{3}y^3}
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="ode_files/figure-html/cell-7-output-1.png" width="603" height="442"></p>
+<p><img src="ode_files/figure-html/cell-7-output-1.png" width="604" height="442"></p>
 </div>
 </div>
 <p><a href="https://duetosymmetry.com/tool/poincare-section-clicker-toy/">Here’s a nice demo on Poincaré sections</a> if you’d like to learn more.</p>
@@ -478,7 +507,6 @@ Problem is that it's hard to do in scipy
 https://stackoverflow.com/questions/60338471/lyapunov-spectrum-for-known-odes-python-3 -->
 
 
-</section>
 </section>
 
 

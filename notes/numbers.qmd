@@ -1,5 +1,8 @@
-# Floating point and all that
+---
+title: Floating point and all that
+---
 
+<!-- https://pythonspeed.com/articles/float64-float32-precision/ -->
 
 Since physics is all about numbers we had better develop some understanding of how computers represent them, and the limitations of this representation. Hopefully this example is sufficiently motivating:
 
@@ -9,7 +12,7 @@ Since physics is all about numbers we had better develop some understanding of h
 
 Ah...
 
-## Integers
+# Integers
 
 Let's begin with something simpler
 
@@ -45,10 +48,10 @@ import numpy as np
 np.int64(2**100)
 ```
 
-Since NumPy is using C the types have to play nicely. The range of integers that can be represented with 32 bit `numpy.int32`s is $\approx\pm 2^{31} \approx \pm 2.1 × 10^9$ (one bit is for the sign) and 64 bit `numpy.int64`s is $\approx\pm 2^{63} \approx \pm 9.2 × 10^{18}$. Apart from the risk of overflow when working NumPy's integers there are not other gotchas to worry about.
+Since NumPy is using C the types have to play nicely. The range of integers that can be represented with 32 bit `numpy.int32`s is $\approx\pm 2^{31} \approx \pm 2.1 × 10^9$ (one bit is for the sign) and 64 bit `numpy.int64`s is $\approx\pm 2^{63} \approx \pm 9.2 × 10^{18}$. Apart from the risk of overflow when working NumPy's integers there are no other gotchas to worry about.
 
 
-## Floating point numbers
+# Floating point numbers
 
 The reason why $0.1 + 0.2 \neq 0.3$ in Python is that specifying a real number exactly would involve an infinite number of bits, so that any finite representation is necessarily approximate.
 
@@ -91,9 +94,9 @@ Another common representation is the 32 bit _binary32_ (_single precision_) with
 
 - $p=24$ for the significand, encoded in 23 bits
 - 8 bits for the exponent
-- 1 bit for the sign
+- 1 bit for the sign 
 
-### Floating point numbers in NumPy {#sec-fp-numpy}
+## Floating point numbers in NumPy {#sec-fp-numpy}
 
 If this all a bit theoretical you can just get NumPy's [finfo](https://numpy.org/doc/stable/reference/generated/numpy.finfo.html) function to tell all about the [machine precision](https://en.wikipedia.org/wiki/Machine_epsilon)
 
@@ -121,7 +124,7 @@ One lesson from this is that taking small differences between numbers is a poten
 ![](assets/ia-question.png)
 
 ::: {.callout-tip collapse="true"}
-## Solution
+# Solution
 Solution: $x-x'=x(1-\gamma^{-1})\sim x\beta^2/2\sim 4.2\text{mm}$. 
 
 ```{python}
@@ -133,7 +136,7 @@ print(1 - np.float32(1/gamma), 1 - np.float64(1/gamma))
 ```
 :::
 
-### The dreaded NaN
+## The dreaded NaN
 
 As well as a floating point system, IEEE 754 defines Infinity and NaN (Not a Number)
 
