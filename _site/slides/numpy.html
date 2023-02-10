@@ -433,7 +433,7 @@
 <ul>
 <li>In IPython you can see all the available methods by hitting tab:</li>
 </ul>
-<p><img data-src="assets/tab-complete.gif"></p>
+<p><img data-src="../assets/tab-complete.gif"></p>
 </section>
 <section class="slide level2 center">
 
@@ -684,8 +684,8 @@
  [1. 1.]]
 [[5 5]
  [5 5]]
-[[0.44521391 0.76646753]
- [0.21230931 0.86413815]]
+[[0.88033089 0.21886361]
+ [0.82283125 0.64978079]]
 [[1. 0.]
  [0. 1.]]</code></pre>
 </div>
@@ -1025,7 +1025,7 @@
 </section>
 <section class="slide level2 center">
 
-<div class="sourceCode" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a>img <span class="op">=</span> plt.imread(<span class="st">'assets/lucian.jpeg'</span>)</span>
+<div class="sourceCode" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a>img <span class="op">=</span> plt.imread(<span class="st">'../assets/lucian.jpeg'</span>)</span>
 <span id="cb69-2"><a href="#cb69-2"></a></span>
 <span id="cb69-3"><a href="#cb69-3"></a>img_tinted <span class="op">=</span> img <span class="op">*</span> [<span class="dv">1</span>, <span class="fl">0.55</span>, <span class="dv">1</span>]</span>
 <span id="cb69-4"><a href="#cb69-4"></a></span>
@@ -1072,25 +1072,22 @@
 <div class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a>random_matrix_1 <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">4</span>)</span>
 <span id="cb71-2"><a href="#cb71-2"></a>random_matrix_2 <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">4</span>)</span>
-<span id="cb71-3"><a href="#cb71-3"></a>np.savez(<span class="st">"assets/my-matrices"</span>, first_matrix<span class="op">=</span>random_matrix_1, second_matrix<span class="op">=</span>random_matrix_2)</span>
-<span id="cb71-4"><a href="#cb71-4"></a><span class="op">%</span>ls assets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb71-3"><a href="#cb71-3"></a>np.savez(<span class="st">"../assets/my-matrices"</span>, first_matrix<span class="op">=</span>random_matrix_1, second_matrix<span class="op">=</span>random_matrix_2)</span>
+<span id="cb71-4"><a href="#cb71-4"></a><span class="op">%</span>ls ..<span class="op">/</span>assets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Hidden-Figures-scene_Katherine-Johnson-calculates-orbital-insertion-trajectories_Credit_TM-and-C-2017-Twentieth-Century-Fox-Film-Corporation_All-rights-reserved.webp
-ia-question.png
-lucian.jpeg
-my-matrices.npz
-tab-complete.gif
-tab-complete.png</code></pre>
+<pre><code>fibonacci.png     ising.js          metropolis.png    tab-complete.png
+hard-spheres.png  ising.py          my-matrices.npz
+ia-question.png   lucian.jpeg       tab-complete.gif</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a>my_matrix_file <span class="op">=</span> np.load(<span class="st">"assets/my-matrices.npz"</span>)</span>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a>my_matrix_file <span class="op">=</span> np.load(<span class="st">"../assets/my-matrices.npz"</span>)</span>
 <span id="cb73-2"><a href="#cb73-2"></a>my_matrix_file[<span class="st">'first_matrix'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
-<pre><code>array([[0.09048565, 0.58984561, 0.0865507 , 0.08482758],
-       [0.87062113, 0.55063781, 0.61144802, 0.76248071],
-       [0.16123445, 0.31996254, 0.05390544, 0.62839777],
-       [0.87400023, 0.04081956, 0.67739626, 0.31693811]])</code></pre>
+<pre><code>array([[0.43303463, 0.46625546, 0.75395349, 0.69456282],
+       [0.5452065 , 0.15507252, 0.87227907, 0.93961307],
+       [0.10746136, 0.52692358, 0.0624021 , 0.21338092],
+       [0.62688037, 0.14867568, 0.04505824, 0.19230437]])</code></pre>
 </div>
 </div>
 
@@ -1252,7 +1249,7 @@ tab-complete.png</code></pre>
         hideCursorTime: 5000,
 
         // Opens links in an iframe preview overlay
-        previewLinks: false,
+        previewLinks: true,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
         transition: 'none',

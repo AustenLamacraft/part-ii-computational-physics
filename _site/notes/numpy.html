@@ -202,6 +202,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../notes/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/fourier.html" class="sidebar-item-text sidebar-link">Fast Fourier transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../notes/references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
@@ -217,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Big questions…</a>
+  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Getting going</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -228,6 +238,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/numbers-and-odes.html" class="sidebar-item-text sidebar-link">Floating point and ODEs</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/monte-carlo.html" class="sidebar-item-text sidebar-link">Monte Carlo methods</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
   </div>
 </li>
       </ul>
@@ -300,7 +320,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>With IPython you can see all the available methods by hitting tab:</p>
-<p><img src="assets/tab-complete.gif" class="img-fluid"></p>
+<p><img src="../assets/tab-complete.gif" class="img-fluid"></p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -536,8 +556,8 @@ What’s with the comma?
  [1. 1.]]
 [[5 5]
  [5 5]]
-[[0.3042687  0.47611684]
- [0.05467208 0.53129742]]</code></pre>
+[[0.09186552 0.47712133]
+ [0.16653795 0.87510057]]</code></pre>
 </div>
 </div>
 <p>There are also lots of methods to change the shape of arrays, for example</p>
@@ -785,7 +805,7 @@ What’s with the comma?
 <h2 data-number="6.1" class="anchored" data-anchor-id="example-playing-with-images"><span class="header-section-number">6.1</span> Example: playing with images</h2>
 <p>Pixels in an image are encoded as a triple of RGB values in the range [0,255] i.e.&nbsp;8 bits of type <code>uint8</code> (the “u” is for “unsigned”). Tinting an image gives us a nice example of broadcasting</p>
 <div class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> plt.imread(<span class="st">'assets/lucian.jpeg'</span>)</span>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> plt.imread(<span class="st">'../assets/lucian.jpeg'</span>)</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>img_tinted <span class="op">=</span> img <span class="op">*</span> [<span class="dv">1</span>, <span class="fl">0.55</span>, <span class="dv">1</span>]</span>
 <span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -821,8 +841,8 @@ What’s with the comma?
 <div class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>random_matrix_1 <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">4</span>)</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>random_matrix_2 <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">4</span>)</span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>np.savez(<span class="st">"assets/my-matrices"</span>, first_matrix<span class="op">=</span>random_matrix_1, second_matrix<span class="op">=</span>random_matrix_2)</span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>ls assets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>np.savez(<span class="st">"../assets/my-matrices"</span>, first_matrix<span class="op">=</span>random_matrix_1, second_matrix<span class="op">=</span>random_matrix_2)</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>ls ..<span class="op">/</span>assets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>fibonacci.png     ising.js          metropolis.png    tab-complete.png
 hard-spheres.png  ising.py          my-matrices.npz
@@ -830,13 +850,13 @@ ia-question.png   lucian.jpeg       tab-complete.gif</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>my_matrix_file <span class="op">=</span> np.load(<span class="st">"assets/my-matrices.npz"</span>)</span>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>my_matrix_file <span class="op">=</span> np.load(<span class="st">"../assets/my-matrices.npz"</span>)</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>my_matrix_file[<span class="st">'first_matrix'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="82">
-<pre><code>array([[0.28263376, 0.48800925, 0.37393376, 0.68660859],
-       [0.71371632, 0.286268  , 0.23383825, 0.94389055],
-       [0.69422325, 0.62720148, 0.99779908, 0.14423974],
-       [0.14161904, 0.71973034, 0.90420564, 0.78931422]])</code></pre>
+<pre><code>array([[0.74247601, 0.5018754 , 0.94228006, 0.42209143],
+       [0.71437331, 0.54953203, 0.50018677, 0.87390299],
+       [0.70960527, 0.43038589, 0.18670472, 0.08482399],
+       [0.15953534, 0.67654528, 0.38712039, 0.24182652]])</code></pre>
 </div>
 </div>
 

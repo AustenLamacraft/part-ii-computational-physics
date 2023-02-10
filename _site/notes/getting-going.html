@@ -202,6 +202,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../notes/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/fourier.html" class="sidebar-item-text sidebar-link">Fast Fourier transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../notes/references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
@@ -217,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Big questions…</a>
+  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Getting going</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -228,6 +238,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/numbers-and-odes.html" class="sidebar-item-text sidebar-link">Floating point and ODEs</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/monte-carlo.html" class="sidebar-item-text sidebar-link">Monte Carlo methods</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
   </div>
 </li>
       </ul>
@@ -303,14 +323,14 @@ Type "help", "copyright", "credits" or "license" for more information.
 <p><a href="https://ipython.readthedocs.io/en/stable/">IPython</a> is an interactive shell that provides syntax highlighting and much more. If you have installed IPython (it comes with Anaconda) you can start it from the command line with <code>ipython</code>.</p>
 <p>Among the most helpful features of IPython are:</p>
 <ol type="1">
-<li>Tab completion: hit <code>tab</code> to autocomplete. This is particularly useful for viewing all properties or methods of an object: <img src="assets/tab-complete.gif" class="img-fluid"></li>
+<li>Tab completion: hit <code>tab</code> to autocomplete. This is particularly useful for viewing all properties or methods of an object: <img src="../assets/tab-complete.gif" class="img-fluid"></li>
 <li>Typing <code>?obj</code> or <code>obj?</code> prints detailed information about the object <code>obj</code> (<code>??</code> provides additional detail).</li>
 <li>Certain <em>magic commands</em> prefixed by <code>%</code> that provide certain additional functionality. For example, <code>%timeit</code> finds the executation time of a single line statement, which is useful when profiling the performance of code:</li>
 </ol>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit L <span class="op">=</span> [n <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>219 µs ± 2.78 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
+<pre><code>235 µs ± 6.51 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
 </div>
 </div>
 <p><code>%timeit</code> automatically runs several times to give some statistics on the execution time. For multiple lines you can use the <code>%%timeit</code> magic.</p>

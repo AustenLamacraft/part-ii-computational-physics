@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Part II Computational Physics – fourier</title>
+<title>Part II Computational Physics - Fast Fourier transform</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,88 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -30,6 +112,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/references.html" rel="next">
+<link href="../notes/complexity.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -59,6 +143,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -68,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Part II Computational Physics</h1>
+      <h1 class="quarto-secondary-nav-title">Fast Fourier transform</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -136,6 +221,16 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../notes/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/fourier.html" class="sidebar-item-text sidebar-link active">Fast Fourier transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../notes/references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
@@ -151,7 +246,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Big questions…</a>
+  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Getting going</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -162,6 +257,16 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/numbers-and-odes.html" class="sidebar-item-text sidebar-link">Floating point and ODEs</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/monte-carlo.html" class="sidebar-item-text sidebar-link">Monte Carlo methods</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
   </div>
 </li>
       </ul>
@@ -175,22 +280,454 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-fast-fourier-transform" id="toc-the-fast-fourier-transform" class="nav-link active" data-scroll-target="#the-fast-fourier-transform"><span class="toc-section-number">1</span>  The Fast Fourier Transform</a></li>
+  <li><a href="#the-discrete-fourier-transform" id="toc-the-discrete-fourier-transform" class="nav-link active" data-scroll-target="#the-discrete-fourier-transform"><span class="toc-section-number">1</span>  The discrete Fourier transform</a>
+  <ul class="collapse">
+  <li><a href="#ntoinfty-limit" id="toc-ntoinfty-limit" class="nav-link" data-scroll-target="#ntoinfty-limit"><span class="toc-section-number">1.1</span>  <span class="math inline">\(N\to\infty\)</span> limit</a></li>
+  <li><a href="#ntoinfty-with-f_j-fjln" id="toc-ntoinfty-with-f_j-fjln" class="nav-link" data-scroll-target="#ntoinfty-with-f_j-fjln"><span class="toc-section-number">1.2</span>  <span class="math inline">\(N\to\infty\)</span> with <span class="math inline">\(f_j = f(jL/N)\)</span></a></li>
+  <li><a href="#ltoinfty" id="toc-ltoinfty" class="nav-link" data-scroll-target="#ltoinfty"><span class="toc-section-number">1.3</span>  <span class="math inline">\(L\to\infty\)</span></a></li>
+  <li><a href="#sec-properties" id="toc-sec-properties" class="nav-link" data-scroll-target="#sec-properties"><span class="toc-section-number">1.4</span>  Some important properties</a></li>
+  <li><a href="#higher-dimensions" id="toc-higher-dimensions" class="nav-link" data-scroll-target="#higher-dimensions"><span class="toc-section-number">1.5</span>  Higher dimensions</a></li>
+  </ul></li>
+  <li><a href="#the-fast-fourier-transform" id="toc-the-fast-fourier-transform" class="nav-link" data-scroll-target="#the-fast-fourier-transform"><span class="toc-section-number">2</span>  The fast Fourier transform</a>
+  <ul class="collapse">
+  <li><a href="#complexity" id="toc-complexity" class="nav-link" data-scroll-target="#complexity"><span class="toc-section-number">2.1</span>  Complexity</a></li>
+  <li><a href="#history" id="toc-history" class="nav-link" data-scroll-target="#history"><span class="toc-section-number">2.2</span>  History</a></li>
+  <li><a href="#fft-in-python" id="toc-fft-in-python" class="nav-link" data-scroll-target="#fft-in-python"><span class="toc-section-number">2.3</span>  FFT in Python</a></li>
+  <li><a href="#windowing" id="toc-windowing" class="nav-link" data-scroll-target="#windowing"><span class="toc-section-number">2.4</span>  Windowing</a></li>
+  </ul></li>
+  <li><a href="#applications-of-the-fft" id="toc-applications-of-the-fft" class="nav-link" data-scroll-target="#applications-of-the-fft"><span class="toc-section-number">3</span>  Applications of the FFT</a>
+  <ul class="collapse">
+  <li><a href="#signal-processing" id="toc-signal-processing" class="nav-link" data-scroll-target="#signal-processing"><span class="toc-section-number">3.1</span>  Signal processing</a></li>
+  <li><a href="#partial-differential-equations" id="toc-partial-differential-equations" class="nav-link" data-scroll-target="#partial-differential-equations"><span class="toc-section-number">3.2</span>  Partial differential equations</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Fast Fourier transform</h1>
+</div>
 
 
-<section id="the-fast-fourier-transform" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> The Fast Fourier Transform</h1>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>You’ve met Fourier in the context of Fourier <em>series</em>, where a periodic function is represented as an infinite series, and Fourier <em>transforms</em>, where a non-periodic function is represented as an integral. Both representations are infinite, involving all the points on a real interval or an infinite number of terms in a series, so not really suitable for representation on a computer. For that we need a <em>third</em> thing: the discrete Fourier transform (DFT). After defining it, we’ll see there is a divide and conquer type algorithm for calculating it efficiently called the <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">fast Fourier transform</a> (FFT), which opened up an enormous number of applications across science and engineering.</p>
+<section id="the-discrete-fourier-transform" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> The discrete Fourier transform</h1>
+<p>The discrete Fourier transform is a change of basis in a finite dimensional space. You can think of it as taking a signal sampled at a finite number of regularly spaced time points and outputting a representation of the signal at a finite number of frequency points (this is a common application).</p>
+<p>For a vector <span class="math inline">\(x_j = 0,\ldots N-1\)</span>, we define the DFT by <span id="eq-dft"><span class="math display">\[
+F_n = \sum_{j=0}^{N-1} f_j e^{-i\eta_n j},
+\tag{1}\]</span></span> where <span class="math inline">\(\eta_n\equiv \frac{2\pi n}{N}\)</span>, and <span class="math inline">\(n = 0,\ldots N-1\)</span>. The coefficients <span class="math inline">\(F_n\)</span> contain the same information as <span class="math inline">\(f_j\)</span>, and <span class="math inline">\(f_j\)</span> can be recovered completely by inverting the operation. The key to inverting <a href="#eq-dft">Equation&nbsp;1</a> is the observation <span id="eq-DFTIdent"><span class="math display">\[
+\sum_{n=0}^{N-1} e^{i\eta_n j} = \begin{cases}
+0 &amp; j\neq 0 \mod N\\
+N &amp; j = 0 \mod N.
+\end{cases}
+\tag{2}\]</span></span></p>
+<blockquote class="blockquote">
+<p>Perhaps the slickest way to to see this is to observe that <span class="math display">\[
+z^N-1 = (z-1)(1 + z + z^2 +\cdots z^{N-1})
+\]</span> Can you fill in the rest of the argument?</p>
+</blockquote>
+<p>This gives <span id="eq-IDFT"><span class="math display">\[
+f_j = \frac{1}{N}\sum_{n=0}^{N-1}  F_n e^{i\eta_n j}.
+\tag{3}\]</span></span> A more democratic definition would have <span class="math inline">\(1/\sqrt{N}\)</span> in both definitions <a href="#eq-dft">Equation&nbsp;1</a> and <a href="#eq-IDFT">Equation&nbsp;3</a>. This would allow us to regard the DFT as a basis change to an orthonormal basis of vectors <span class="math inline">\(e^{(n)}_j = \frac{e^{i\eta_n j}}{\sqrt{N}}\)</span> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Then both the DFT and its inverse would be unitary transformations.</p>
+<p>We often think of Fourier transforms involving complex exponentials in terms of positive and negative frequency contributions. When <span class="math inline">\(N\)</span> is finite the <span class="math inline">\(\eta_n\)</span> values for <span class="math inline">\(n\)</span> close to <span class="math inline">\(N-1\)</span> can be regarded as the negative frequencies since <span class="math inline">\(e^{-i\eta_n j}=e^{2\pi ij -i\eta_n j}=e^{i\eta_{N - n}j}\)</span>.</p>
+<p>There are a several limits we can consider that connect the DFT with the things you have already met.</p>
+<section id="ntoinfty-limit" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="ntoinfty-limit"><span class="header-section-number">1.1</span> <span class="math inline">\(N\to\infty\)</span> limit</h2>
+<p>In this limit the <span class="math inline">\(\eta_n\)</span> values become dense in the range <span class="math inline">\((-\pi,\pi]\)</span>, with separation <span class="math inline">\(\Delta \eta = 2\pi/N\)</span>, and we replace the sum in the inverse DFT <a href="#eq-IDFT">Equation&nbsp;3</a> by an integral according to the prescription <span class="math display">\[
+\sum_{n=0}^{N-1} \left(\cdots\right) \xrightarrow{N\to\infty} N \int_{0}^{2\pi} \frac{d\eta}{2\pi}\left(\cdots\right),
+\]</span> giving <span class="math display">\[
+f_j = \int_{0}^{2\pi} \frac{d\eta}{2\pi}\,F(\eta) e^{i\eta j}.
+\]</span></p>
+</section>
+<section id="ntoinfty-with-f_j-fjln" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="ntoinfty-with-f_j-fjln"><span class="header-section-number">1.2</span> <span class="math inline">\(N\to\infty\)</span> with <span class="math inline">\(f_j = f(jL/N)\)</span></h2>
+<p>Alternatively, regard the <span class="math inline">\(N\to\infty\)</span> limit as sampling a function <span class="math inline">\(f(x)\)</span> ever more finely in the range (0,L]. Now it’s the DFT, rather than the inverse, that becomes an integral <span class="math display">\[
+\hat f(k) \equiv \int_0^L f(x) e^{-ik_n x}\,dx,
+\]</span> where <span class="math inline">\(k_n =2\pi n/L\)</span>. Note that <span class="math inline">\(k_n x = \eta_n j\)</span>. The pair of transformations is now <span id="eq-FTSeries"><span class="math display">\[
+\begin{align}
+\hat f_k &amp;= \int_0^L f(x) e^{-ik_n x}\,dx\nonumber\\
+f(x) &amp;= \frac{1}{L}\sum_k \hat f_k e^{ik_n x}
+\end{align}
+\tag{4}\]</span></span> This is the conventional form of the Fourier series for a function with period <span class="math inline">\(L\)</span>.</p>
+<p>With this definition <span class="math inline">\(\hat f_k\)</span> has an extra dimension of distance (on account of the integral), which gets removed by the <span class="math inline">\(1/L\)</span> in the inverse transform.</p>
+<p>The analog of the identity <a href="#eq-DFTIdent">Equation&nbsp;2</a> is <span class="math display">\[
+\frac{1}{L}\sum_k e^{ik x} = \delta_L(x),
+\]</span> where <span class="math inline">\(\delta_L(x)\)</span> is an <span class="math inline">\(L\)</span>-periodic version of the <span class="math inline">\(\delta\)</span>-function.</p>
+</section>
+<section id="ltoinfty" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="ltoinfty"><span class="header-section-number">1.3</span> <span class="math inline">\(L\to\infty\)</span></h2>
+<p>Finally we arrive at the Fourier transform, where we take <span class="math inline">\(L\to\infty\)</span>, so that the inverse transform in <a href="#eq-FTSeries">Equation&nbsp;4</a> becomes an integral too <span class="math display">\[
+\begin{align}
+\hat{f}(k) &amp; = \int_{-\infty}^\infty f(x) e^{-ik_n x}\,dx\nonumber\\
+f(x) &amp;= \int_{-\infty}^\infty \hat f(k) e^{ik_n x}\,\frac{dk}{2\pi}.
+\label{coll_FTTrans}
+\end{align}
+\]</span></p>
+</section>
+<section id="sec-properties" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="sec-properties"><span class="header-section-number">1.4</span> Some important properties</h2>
+<p>Here are some properties that hold for all of the above.</p>
+<ol type="1">
+<li><p>If <span class="math inline">\(f_j\)</span> is real then <span class="math inline">\(F_n = \left[F_{-n}\right]^*\)</span>.</p></li>
+<li><p>If <span class="math inline">\(f_j\)</span> is even (odd) <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> , <span class="math inline">\(F_n\)</span> is even (odd).</p></li>
+<li><p>(Ergo) if <span class="math inline">\(f_j\)</span> is real and even, so is <span class="math inline">\(F_n\)</span>.</p></li>
+</ol>
+</section>
+<section id="higher-dimensions" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="higher-dimensions"><span class="header-section-number">1.5</span> Higher dimensions</h2>
+<p>The DFT generalizes to higher dimensions straightforwardly. Suppose we have data living in <span class="math inline">\(d\)</span> dimensions with <span class="math inline">\(N_i\)</span> datapoints along dimension <span class="math inline">\(i=1,\dots d\)</span>, then the DFT is <span class="math display">\[
+F_{\mathbf{n}} = \sum_{\mathbf{n}} f_\mathbf{j}e^{-i \boldsymbol{\eta}_\mathbf{n}\cdot \mathbf{j}},
+\]</span> where <span class="math inline">\(\mathbf{j}=(j_1,\ldots j_{d})\)</span> with <span class="math inline">\(j_i = 0,\ldots N_i - 1\)</span> and likewise <span class="math inline">\(\boldsymbol{\eta}_\mathbf{n} = 2\pi (n_1 / N_1, \ldots n_d/ N_d)\)</span> <span class="math inline">\(n_i = 0,\ldots N_i - 1\)</span></p>
+</section>
+</section>
+<section id="the-fast-fourier-transform" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The fast Fourier transform</h1>
+<p>What is the complexity of computing the Fourier transform? <a href="#eq-dft">Equation&nbsp;1</a> may be regarded as matrix-vector multiplication, where <span class="math inline">\(f_j\)</span> are the <span class="math inline">\(N\)</span> components of a vector and the matrix has elements <span class="math inline">\(Q_{n j}\equiv e^{-i\eta_n j}\)</span>, so tha the DFT is written <span class="math display">\[
+\mathbf{F} = Q \cdot \mathbf{f}.
+\]</span> Naively, then, the complexity is <span class="math inline">\(O(N^2)\)</span>.</p>
+<p>Surprisingly, we can do a lot better than this, because <span class="math inline">\(Q\)</span> is not any old matrix but has a great deal of structure. To see this, we follow the divide and conquer pattern of trying to break the problem up into two sub-problems, in this case by separating the <span class="math inline">\(N/2\)</span> even and <span class="math inline">\(N/2\)</span> odd coefficients (assuming <span class="math inline">\(N\)</span> even)</p>
+<p><span class="math display">\[
+f^{\text{e}}_j = f_{2j}\qquad f^{\text{o}}_j = f_{2j+1},\qquad j=0,\ldots N/2 - 1.
+\]</span></p>
+<p>The key idea is that we are going to express the DFT <span class="math inline">\(F_n\)</span> in terms of the DFT of <span class="math inline">\(f^\text{e}_j\)</span> and <span class="math inline">\(f^\text{o}_j\)</span>.</p>
+<p>Before going on, it’s convenient to introduce the <span class="math inline">\(N\)</span>th root of 1 <span class="math inline">\(\omega_N \equiv e^{2\pi i/N}\)</span>, so that <span class="math inline">\(e^{i\eta_n j}=\omega_N^{nj}\)</span> and we can write the Fourier transform as</p>
+<p><span class="math display">\[
+F_n = \sum_{j=0}^{N-1} f_j \omega_N^{-nj}
+\]</span></p>
+<p>Then we notice the following</p>
+<p><span class="math display">\[
+\begin{align}
+F_n &amp;= \sum_{j=0}^{N-1} \omega_N^{-nj} f_j \\
+&amp;=\sum_{j=0}^{N/2-1} \left[\omega_N^{-2nj} f^{\text{e}}_j + \omega_N^{-n(2j+1)}f^{\text{o}}_j\right]\\
+&amp;=\sum_{j=0}^{N/2-1} \left[\omega_{N/2}^{-nj} f^{\text{e}}_j + \omega_N^{-n}\omega_{N/2}^{-nj}f^{\text{o}}_j\right].\\
+\end{align}
+\]</span></p>
+<p>This is already looking like the sum of two DFTs of size <span class="math inline">\(N/2\)</span> but we have to be a bit careful with the indexing, as the original index <span class="math inline">\(n\)</span> takes values <span class="math inline">\(0,\ldots N-1\)</span>. We can write <span class="math inline">\(n\)</span> as</p>
+<p><span class="math display">\[
+n = (N/2)n_0 + n'
+\]</span></p>
+<p>where <span class="math inline">\(n_0=0,1\)</span> and <span class="math inline">\(n'=0,\ldots N/2 - 1\)</span>. If <span class="math inline">\(n\)</span> is a power of 2 then <span class="math inline">\(n_0\)</span> is the most significant bit of <span class="math inline">\(n\)</span> when written in binary and <span class="math inline">\(n'\)</span> are the remaining bits. Since <span class="math inline">\(\omega_{N/2}^{-jn}=\omega_{N/2}^{-jn'}\)</span> we have</p>
+<p><span id="eq-divide-and-conquer"><span class="math display">\[
+\begin{align}
+F_n &amp;= \sum_{j=0}^{N/2-1} \left[\omega_{N/2}^{-n'j} f^{\text{e}}_j + (-1)^{n_0}\omega_N^{-n'} \omega_{N/2}^{-n'j}f^{\text{o}}_j\right]\\
+&amp;= F^\text{e}_{n'} + (-1)^{n_0}\omega_N^{-n'} F^\text{o}_{n'}.
+\end{align}
+\tag{5}\]</span></span></p>
+<p>This is the big payoff: using the properties of the Fourier matrix we have expressed the DFT <span class="math inline">\(F_n\)</span> in terms of the DFTs of two arrays of half the length. If <span class="math inline">\(N\)</span> is a power of 2 we can repeat that process until we get to arrays of length 1, in which case the array and its DFT are the same single number.</p>
+<p>The structure of the FFT is often illustrated in terms of the “Butterfly” diagram, which probably makes more sense after you’ve seen <a href="#eq-divide-and-conquer">Equation&nbsp;5</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/FFT-butterfly.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Butterfly diagram for the FFT Source:<a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Wikipedia</a></figcaption><p></p>
+</figure>
+</div>
+<section id="complexity" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="complexity"><span class="header-section-number">2.1</span> Complexity</h2>
+<p>It should be clear that the FFT is going to beat the naive approach, but let’s analyze the complexity more carefully. If <span class="math inline">\(T(N)\)</span> is time (or number of steps) required to compute the DFT for size <span class="math inline">\(N\)</span> inputs, then calculating <span class="math inline">\(F^\text{e}_{n'}\)</span> and <span class="math inline">\(F^\text{0}_{n'}\)</span> takes time <span class="math inline">\(2T(N/2)\)</span>. Using <a href="#eq-divide-and-conquer">Equation&nbsp;5</a> to evaluate <span class="math inline">\(F_n\)</span> is a further <span class="math inline">\(N\)</span> steps, so we have <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p><span class="math display">\[
+T(N) = 2T(N/2) +\alpha N
+\]</span></p>
+<p>for some <span class="math inline">\(\alpha\)</span>. This implies <span class="math inline">\(T(N)=\Theta(N\log N)\)</span>.</p>
+<p>What happens when <span class="math inline">\(N\)</span> isn’t a power of 2? You can still use the divide and conquer strategy for any other factor <span class="math inline">\(p\)</span> of <span class="math inline">\(N\)</span>. If the largest prime factor of <span class="math inline">\(N\)</span> is bounded i.e.&nbsp;doesn’t grow with <span class="math inline">\(N\)</span> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, then this still yields <span class="math inline">\(T(N)=\Theta(N\log N)\)</span>. If <span class="math inline">\(N\)</span> is prime you have to use <a href="https://en.wikipedia.org/wiki/Rader%27s_FFT_algorithm">something else</a>.</p>
+<p>As a practical matter it’s probably best to try and ensure that <span class="math inline">\(N\)</span> <em>is</em> a power of two e.g.&nbsp;by choosing the size of your simulation appropriately or padding your data with zeros until its length is a power of 2.</p>
+</section>
+<section id="history" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="history"><span class="header-section-number">2.2</span> History</h2>
+<p>The modern invention of the FFT is credited to <span class="citation" data-cites="cooley1965algorithm">Cooley and Tukey (<a href="#ref-cooley1965algorithm" role="doc-biblioref">1965</a>)</span>. Certainly they were the first to discuss its complexity. The divide and conquer approach was however anticipated by <span class="citation" data-cites="danielson1942some">Danielson and Lanczos (<a href="#ref-danielson1942some" role="doc-biblioref">1942</a>)</span>, who had applications in crystallography in mind, and by unpublished work of <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a> in 1805 (predating even Fourier) in his astronomical studies. See <span class="citation" data-cites="cooley1967historical">Cooley, Lewis, and Welch (<a href="#ref-cooley1967historical" role="doc-biblioref">1967</a>)</span> for more on the historical background.</p>
+</section>
+<section id="fft-in-python" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="fft-in-python"><span class="header-section-number">2.3</span> FFT in Python</h2>
+<p>As usual, you don’t have to go implementing this yourself. The FFT is available in both NumPy (in the <a href="https://numpy.org/doc/stable/reference/routines.fft.html#module-numpy.fft"><code>numpy.fft</code></a> module) and SciPy (in <a href="https://docs.scipy.org/doc/scipy/reference/fft.html#module-scipy.fft"><code>scipy.fft</code></a>), the latter with a more comprehensive set of functions.</p>
+<p><a href="#eq-dft">Equation&nbsp;1</a> and <a href="#eq-IDFT">Equation&nbsp;3</a> are the default definitions used in these modules, though you should always check the conventions used in any library implementation. The NumPy documentation provides a careful discussion of the positive and negative frequency components and there are several helper functions available to make your life easier, such as:</p>
+<ol type="1">
+<li><code>np.fft.fftfreq(n, d)</code>, which returns the <em>frequencies</em> (not the angular frequencies) for input size <span class="math inline">\(n\)</span> and sample spacing <span class="math inline">\(d\)</span>.</li>
+<li><code>np.fft.fftshift(A)</code> shifts data so that the zero frequency is in the centre.</li>
+<li><code>np.fft.ifftshift(A)</code> inverts this.</li>
+</ol>
+<p>Here are some simple examples of their use, applied to a very simple signal consisting of two sinusoids at 12 Hz and 34 Hz:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dt<span class="op">=</span><span class="fl">0.01</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>fftsize<span class="op">=</span><span class="dv">256</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.arange(fftsize)<span class="op">*</span>dt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Generate some fake data at 12 Hz and 34 Hz</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>np.cos(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="dv">12</span><span class="op">*</span>t)<span class="op">+</span><span class="fl">0.5</span><span class="op">*</span>np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="dv">34</span><span class="op">*</span>t)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.plot(t,y)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>Text(0.5, 0, 'Time')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="fourier_files/figure-html/cell-2-output-2.png" width="582" height="422"></p>
+</div>
+</div>
+<p>Now we can take the FFT and plot vs array index, or against the real frequency (with the given sample spacing of <span class="math inline">\(dt=0.01\)</span>)</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Y<span class="op">=</span>np.fft.fft(y)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot FFT modulus versus array index</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)<span class="op">;</span> plt.plot(<span class="bu">abs</span>(Y))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now use the correct frequency coordinates</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>f<span class="op">=</span>np.fft.fftfreq(fftsize, dt)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Reordering makes a tidier plot...</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>Y<span class="op">=</span>np.fft.fftshift(Y)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>f<span class="op">=</span>np.fft.fftshift(f)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>)<span class="op">;</span> plt.plot(f, <span class="bu">abs</span>(Y))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Frequency / Hz"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="fourier_files/figure-html/cell-3-output-1.png" width="575" height="422"></p>
+</div>
+</div>
+<p>As we discussed in <a href="#sec-properties">Section&nbsp;1.4</a>, the Fourier transform of real valued data has the property <span class="math inline">\(F_n = \left[F_{-n}\right]^*\)</span>:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)<span class="op">;</span> plt.plot(f,Y.real)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>)<span class="op">;</span> plt.plot(f,Y.imag)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Frequency / Hz"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="fourier_files/figure-html/cell-4-output-1.png" width="578" height="422"></p>
+</div>
+</div>
+</section>
+<section id="windowing" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="windowing"><span class="header-section-number">2.4</span> Windowing</h2>
+<p>Note that, even though our signal consists of just a pair of sinusoids, the FFT does <em>not</em> just consist of <span class="math inline">\(\delta\)</span>-functions, which is more obvious on a log-scale:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.magnitude_spectrum(y, Fs<span class="op">=</span><span class="dv">100</span>, scale<span class="op">=</span><span class="st">'dB'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="fourier_files/figure-html/cell-5-output-1.png" width="604" height="422"></p>
+</div>
+</div>
+<p>The reason, as you may guess from your knowledge of Fourier transforms, is that our data is of <em>finite length</em>. This <em>windowing</em> causes the FFT to have non-zero values outside the frequencies present in the signal, a phenomenon called <a href="https://en.wikipedia.org/wiki/Spectral_leakage">spectral leakage</a>. In our case a sharp window means that the FFT is effectively convolved with the Fourier transform of a top hat function i.e.&nbsp;a sinc function. If the window happens to contain a whole number of wavelengths of the signals present, spectral leakage does not occur.</p>
+<p>The effects of windowing can be mitigated by choosing different <a href="https://en.wikipedia.org/wiki/Window_function">window functions</a> — with smooth edges for example — to multiply our data, depending on what you are looking for. The rectangular / top hat window has <em>low dynamic range</em>: it is not great at distinguishing contributions of different amplitude even when their frequencies differ, as leakage from the large peak may obscure the other, smaller ones. On the other hand it has <em>high resolution</em>, meaning that it is good at resolving peaks of similar amplitude that are close in frequency. Expect to be presented with several options (Hamming, Tukey (him again), etc.) when using library functions that perform spectral analysis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/ligo-window.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Importance of windowing LIGO data, from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span>. Without appropriate windowing, the entire power spectrum is dominated by spectral leakage following a <span class="math inline">\(1/f^2\)</span> scaling.</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="applications-of-the-fft" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Applications of the FFT</h1>
+<p>The FFT has a mindboggling number of applications ranging from signal processing in experimental data, audio and video signals, to numerical simulation, where <a href="https://en.wikipedia.org/wiki/Spectral_method">spectral methods</a> exploit the FFT as part of the numerical solution of partial differential equations. Here, we’ll look at just a couple of examples.</p>
+<section id="signal-processing" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="signal-processing"><span class="header-section-number">3.1</span> Signal processing</h2>
+<p>As an example, let’s look at some of the stages in the analysis of time series data from the LIGO and Virgo experiments on <a href="https://en.wikipedia.org/wiki/First_observation_of_gravitational_waves">gravitational wave detection</a> that led to the 2017 Nobel prize in physics. I’m following <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span> closely here, and you should check it out for further details, as well as the <a href="https://github.com/losc-tutorial/Data_Guide/blob/master/Guide_Notebook.ipynb">accompanying notebook</a> that describes how the analysis is performed in Python.</p>
+<p>As illustrated in <a href="#fig-ligo-stages">Figure&nbsp;1</a> uncovering the signal in the raw data involves a number of processing steps designed to eliminate noise, mostly carried out in the Fourier domain. The guiding principle is that the noise is <em>stationary</em> — meaning that it is described by a random process that does not change in time — while the signal is <em>transient</em>. This idea can be used to reduce noise in the data even though low frequency noise completely dominates the raw measurement (top panel).</p>
+<div id="fig-ligo-stages" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../assets/ligo-stages.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Stages in the analysis of LIGO strain data,from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span>. Note the scale on the <span class="math inline">\(y\)</span>-axis!</figcaption><p></p>
+</figure>
+</div>
+<p>The first step is windowing, which we have already discussed, designed to reduce spectral leakage. Next, the data is <em>whitened</em>, meaning that the Fourier spectrum is normalized by the spectral density (the power spectrum is made to resemble the power spectrum of white noise) <span class="math display">\[
+\tilde d(f)\longrightarrow \frac{\tilde d(f)}{S_n^{1/2}(f)}.
+\]</span></p>
+<p>The idea behind this step is to prevent high amplitude noise in certain parts of the spectrum from swamping the signal. After this step (third panel, red trace), the low frequency noise has been greatly reduced.</p>
+<p>Finally, the data are bandpass filtered with a pass band [35 Hz, 350 Hz], which removes low frequency seismic noise and high frequency (quantum) noise from the detector. Filtering is the Fourier analog of windowing i.e.&nbsp;multiplying by a function to discard certain parts of the signal. At this point, a transient is revealed in the data (bottom panel).</p>
+<p>The next step is to fit this transient with a model that describes the graviational wave physics. An important check on the correctness of this approach is to then analyze the residual — the difference between the data and the model — and to check whether it is described by a stationary noise process (see <a href="#fig-ligo-residuals">Figure&nbsp;2</a>). In such a process the phases of the Fourier components are random and uncorrelated, for example.</p>
+<div id="fig-ligo-residuals" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../assets/ligo-residuals.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Residuals from the modelled signal, from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span></figcaption><p></p>
+</figure>
+</div>
+<p>Hopefully this short summary has emphasized the vital role played throughout by the processing of signals in the Fourier domain, and therefore the importance of the FFT in analyzing time series data.</p>
+</section>
+<section id="partial-differential-equations" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="partial-differential-equations"><span class="header-section-number">3.2</span> Partial differential equations</h2>
+<p>We’ll illustrate the role of the FFT in the numerical solution of partial differential equations (PDEs) using one that you all know well: the time-dependent Schrödinger equation</p>
+<p><span id="eq-schrodinger"><span class="math display">\[
+i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m}\nabla^2 \psi + V(\mathbf{r})\psi.
+\tag{6}\]</span></span></p>
+<p>When the potential is absent, the solutions are plane waves</p>
+<p><span id="eq-momentum"><span class="math display">\[
+\Psi(\mathbf{r}, t) = \exp\left[-i\frac{\hbar^2 \mathbf{k}^2 t}{2m} +i\mathbf{k}\cdot\mathbf{r}\right].
+\tag{7}\]</span></span></p>
+<p>On the other hand, if the first term on the right hand side of <a href="#eq-schrodinger">Equation&nbsp;6</a> — representing the kinetic energy — were absent, then the evolution of the wavefunction would be</p>
+<p><span id="eq-position"><span class="math display">\[
+\Psi(\mathbf{r}, t) = \Psi(\mathbf{r}, 0)\exp\left[-iV(\mathbf{r})t/\hbar\right].
+\tag{8}\]</span></span></p>
+<p>The idea behind the <a href="https://en.wikipedia.org/wiki/Split-step_method">split-step method</a> is that the time evolution can be approximated by alternating the two kinds of time evolution represented by <a href="#eq-momentum">Equation&nbsp;7</a> and <a href="#eq-position">Equation&nbsp;8</a>. In more formal terms, write <a href="#eq-schrodinger">Equation&nbsp;6</a> in operator form as</p>
+<p><span class="math display">\[
+i\hbar \frac{\partial \ket{\psi}}{\partial t} = H\ket{\psi} = (T+V)\ket{\psi}
+\]</span></p>
+<p>The solution is <span class="math inline">\(\ket{\psi(t)} = \exp(-iHt/\hbar)\ket{\psi}(0)\)</span>. The exponential of an operator sum <span class="math inline">\(A+B\)</span> obeys the <a href="https://en.wikipedia.org/wiki/Lie_product_formula">Lie product formula</a></p>
+<p><span class="math display">\[
+e^{A+B} = \lim_{n\to\infty}\left( e^{A/n}e^{B/n}\right)^n.
+\]</span></p>
+<p>The logic behind this formula is that when the exponent is small, the failure of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> to commute can be neglected. More precisely, <span class="math display">\[
+e^{xA}e^{xB} = e^{x(A+B) + O(x^2)}.
+\]</span></p>
+<p>It turns out that a more accurate approximation is given by the Suzuki—Trotter formula</p>
+<p><span class="math display">\[
+e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
+\]</span></p>
+<p>In any case, the practical algorithm suggested by these formulas is implemented for the Schrödinger equation by switching between real space and Fourier space, where the two kinds of evolution are implemented. Here’s a simple 1D example:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_step_schrodinger(psi_0, dx, dt, V, N, x_0 <span class="op">=</span> <span class="fl">0.</span>, k_0 <span class="op">=</span> <span class="va">None</span>, m <span class="op">=</span> <span class="fl">1.0</span>, non_linear <span class="op">=</span> <span class="va">False</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    len_x <span class="op">=</span> psi_0.shape[<span class="dv">0</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> x_0 <span class="op">+</span> dx<span class="op">*</span>np.arange(len_x)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    dk_x <span class="op">=</span> (<span class="dv">2</span><span class="op">*</span>np.pi)<span class="op">/</span>(len_x<span class="op">*</span>dx)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> k_0 <span class="op">==</span> <span class="va">None</span>:</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        k_0 <span class="op">=</span> <span class="op">-</span>np.pi<span class="op">/</span>dx</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    k_x <span class="op">=</span> k_0<span class="op">+</span>dk_x<span class="op">*</span>np.arange(len_x)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    psi_x <span class="op">=</span> np.zeros((len_x,N), dtype <span class="op">=</span> np.complex128)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    psi_k <span class="op">=</span> np.zeros((len_x,N), dtype <span class="op">=</span> np.complex128)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    psi_mod_x <span class="op">=</span> np.zeros((len_x), dtype <span class="op">=</span> np.complex128)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    psi_mod_k <span class="op">=</span> np.zeros((len_x), dtype <span class="op">=</span> np.complex128)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    psi_x[:,<span class="dv">0</span>] <span class="op">=</span> psi_0</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> non_linear:</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        V_n <span class="op">=</span> V(x)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        V_n <span class="op">=</span> V(x,psi_0)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _compute_psi_mod(j):</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (dx<span class="op">/</span>np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi))<span class="op">*</span>psi_x[:,j]<span class="op">*</span>np.exp(<span class="op">-</span><span class="ot">1.0j</span><span class="op">*</span>k_x[<span class="dv">0</span>]<span class="op">*</span>x)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _compute_psi(j):</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        psi_x[:,j] <span class="op">=</span> (np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi)<span class="op">/</span>dx)<span class="op">*</span>psi_mod_x<span class="op">*</span>np.exp(<span class="ot">1.0j</span><span class="op">*</span>k_x[<span class="dv">0</span>]<span class="op">*</span>x)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        psi_k[:,j] <span class="op">=</span> psi_mod_k<span class="op">*</span>np.exp(<span class="op">-</span><span class="ot">1.0j</span><span class="op">*</span>x[<span class="dv">0</span>]<span class="op">*</span>dk_x<span class="op">*</span>np.arange(len_x))</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _x_half_step(j,ft <span class="op">=</span> <span class="va">True</span>):</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ft <span class="op">==</span> <span class="va">True</span>:</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            psi_mod_x[:] <span class="op">=</span> np.fft.ifft(psi_mod_k[:])</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> non_linear:</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>            V_n[:] <span class="op">=</span> V(x,psi_x[:,j])</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        psi_mod_x[:] <span class="op">=</span> psi_mod_x[:]<span class="op">*</span>np.exp(<span class="op">-</span><span class="ot">1.0j</span><span class="op">*</span>(dt<span class="op">/</span><span class="fl">2.</span>)<span class="op">*</span>V_n)   </span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _k_full_step():</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        psi_mod_k[:] <span class="op">=</span> np.fft.fft(psi_mod_x[:])</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>        psi_mod_k[:] <span class="op">=</span> psi_mod_k[:]<span class="op">*</span>np.exp(<span class="op">-</span><span class="ot">1.0j</span><span class="op">*</span>k_x<span class="op">**</span><span class="dv">2</span><span class="op">*</span>dt<span class="op">/</span>(<span class="fl">2.</span><span class="op">*</span>m))      </span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _main_loop():</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        psi_mod_x[:] <span class="op">=</span> _compute_psi_mod(<span class="dv">0</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>            _x_half_step(i,ft <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>            _k_full_step()</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>            _x_half_step(i)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>            _compute_psi(i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    _main_loop()</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> psi_x,psi_k,k_x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> oneD_gaussian(x,mean,std,k0):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="op">-</span>((x<span class="op">-</span>mean)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>std<span class="op">**</span><span class="dv">2</span>)<span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>x<span class="op">*</span>k0)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>std<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="fl">0.25</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> V(x):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    V_x <span class="op">=</span> np.zeros_like(x)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    V_x[np.where(<span class="bu">abs</span>(x) <span class="op">&lt;</span> <span class="fl">0.5</span>)] <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> V_x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>N_x <span class="op">=</span> <span class="dv">2</span><span class="op">**</span><span class="dv">11</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> <span class="fl">0.05</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> dx <span class="op">*</span> (np.arange(N_x) <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> N_x)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>N_t <span class="op">=</span> <span class="dv">2000</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>p0 <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> np.sqrt(N_t<span class="op">*</span>dt<span class="op">/</span><span class="fl">2.</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>psi_0 <span class="op">=</span> oneD_gaussian(x,x.<span class="bu">max</span>()<span class="op">-</span><span class="fl">10.</span><span class="op">*</span>d, d, <span class="op">-</span>p0)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>psi_x,psi_k,k <span class="op">=</span> split_step_schrodinger(psi_0, dx, dt, V, N_t, x_0 <span class="op">=</span> x[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<details>
+<summary>Animation code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>real_psi <span class="op">=</span> np.real(psi_x)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>imag_psi <span class="op">=</span> np.imag(psi_x)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>absl_psi <span class="op">=</span> np.absolute(psi_x)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>abs_psik <span class="op">=</span> np.absolute(psi_k)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">211</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>line1_R <span class="op">=</span> ax1.plot(x,real_psi[:,<span class="dv">0</span>],<span class="st">'b'</span>)[<span class="dv">0</span>]</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>line1_I <span class="op">=</span> ax1.plot(x,imag_psi[:,<span class="dv">0</span>],<span class="st">'r'</span>)[<span class="dv">0</span>]</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>line1_A <span class="op">=</span> ax1.plot(x,absl_psi[:,<span class="dv">0</span>],<span class="st">'k'</span>)[<span class="dv">0</span>]</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>line_V <span class="op">=</span> ax1.plot(x,<span class="fl">0.5</span><span class="op">*</span>V(x),<span class="st">'k'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)[<span class="dv">0</span>]</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim((real_psi.<span class="bu">min</span>(),real_psi.<span class="bu">max</span>()))</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim((x.<span class="bu">min</span>(),x.<span class="bu">max</span>()))</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">212</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>line2 <span class="op">=</span> ax2.plot(k,abs_psik[:,<span class="dv">1</span>],<span class="st">'k'</span>)[<span class="dv">0</span>]</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim((abs_psik.<span class="bu">min</span>(),abs_psik.<span class="bu">max</span>()))</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>ax2.set_xlim((<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nextframe(arg):</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    line1_R.set_data(x,real_psi[:,<span class="dv">10</span><span class="op">*</span>arg])</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    line1_I.set_data(x,imag_psi[:,<span class="dv">10</span><span class="op">*</span>arg])</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    line1_A.set_data(x,absl_psi[:,<span class="dv">10</span><span class="op">*</span>arg])</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    line2.set_data(k,abs_psik[:,<span class="dv">10</span><span class="op">*</span>arg])</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>animate <span class="op">=</span> FuncAnimation(fig, nextframe, frames <span class="op">=</span> <span class="bu">int</span>(N_t<span class="op">/</span><span class="dv">10</span>), interval <span class="op">=</span> <span class="dv">50</span>, repeat <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><video src="../assets/gaussian-barrier.mp4" class="img-fluid" controls=""><a href="../assets/gaussian-barrier.mp4">Video</a></video></p>
+<p></p><figcaption class="figure-caption">Wavepacket colliding with a top hat barrier. Black line is the modulus, while red and blue are the real and imaginary parts.</figcaption><p></p>
+</figure>
+</div>
+
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-abbott2020guide" class="csl-entry" role="doc-biblioentry">
+Abbott, Benjamin P, Rich Abbott, Thomas D Abbott, Sheelu Abraham, Fausto Acernese, Kendall Ackley, Carl Adams, et al. 2020. <span>“A Guide to LIGO–Virgo Detector Noise and Extraction of Transient Gravitational-Wave Signals.”</span> <em>Classical and Quantum Gravity</em> 37 (5): 055002.
+</div>
+<div id="ref-cooley1967historical" class="csl-entry" role="doc-biblioentry">
+Cooley, James W, Peter AW Lewis, and Peter D Welch. 1967. <span>“Historical Notes on the Fast Fourier Transform.”</span> <em>Proceedings of the IEEE</em> 55 (10): 1675–77.
+</div>
+<div id="ref-cooley1965algorithm" class="csl-entry" role="doc-biblioentry">
+Cooley, James W, and John W Tukey. 1965. <span>“An Algorithm for the Machine Calculation of Complex Fourier Series.”</span> <em>Mathematics of Computation</em> 19 (90): 297–301.
+</div>
+<div id="ref-danielson1942some" class="csl-entry" role="doc-biblioentry">
+Danielson, Gordon Charles, and Cornelius Lanczos. 1942. <span>“Some Improvements in Practical Fourier Analysis and Their Application to x-Ray Scattering from Liquids.”</span> <em>Journal of the Franklin Institute</em> 233 (5): 435–52.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Orthonormality follows from <a href="#eq-DFTIdent">Equation&nbsp;2</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>with respect to the middle of the data.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Strictly we should write <span class="math inline">\(T(N) = 2T(N/2) +\Theta(N)\)</span>, where <span class="math inline">\(f(N)=\Theta(g(N))\)</span> means <span class="math inline">\(\lim_{N\to \infty} \frac{f(N)}{g(N)}\)</span> is a finite nonzero number. Thus <span class="math inline">\(\Theta(N)\)</span> means “proportional to <span class="math inline">\(N\)</span> in the large <span class="math inline">\(N\)</span> limit”.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Such numbers are called <em>smooth</em>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -324,6 +861,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/complexity.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Algorithms and computational complexity</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../notes/references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

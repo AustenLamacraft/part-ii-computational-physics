@@ -1,0 +1,1279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="85.05mm" height="97.37mm" viewBox="0 0 8505 9737" preserveAspectRatio="xMidYMid" fill-rule="evenodd" clip-path="url(#presentation_clip_path)" stroke-width="28.222" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+ <defs class="ClipPathGroup">
+  <clipPath id="presentation_clip_path" clipPathUnits="userSpaceOnUse">
+   <rect x="0" y="0" width="8505" height="9737"/>
+  </clipPath>
+ </defs>
+ <defs class="TextShapeIndex">
+  
+ </defs>
+ <defs class="TextEmbeddedBitmaps"/>
+ <g>
+  <g id="id2" class="Master_Slide">
+   <g id="bg-id2" class="Background"/>
+   <g id="bo-id2" class="BackgroundObjects"/>
+  </g>
+ </g>
+ <g class="SlideGroup">
+  <g>
+   <g id="id1" class="Slide" clip-path="url(#presentation_clip_path)">
+    <g class="Page">
+     <g class="Group">
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id3">
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6544,1427 L 6368,1427 6191,1427 6191,1251 6191,1074 6015,1074 6015,1251 6015,1427 6191,1427 6191,1604 6191,1780"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id4" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="50ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6193,1780 L 6193,1956 6193,1780 6370,1780 6546,1780 6546,1956 6370,1956 6193,1956 6193,2133 6370,2133 6546,2133"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id5" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6544,2135 L 6544,1959 6544,1782 6720,1782 6897,1782 7073,1782 6897,1782 6897,1959 6897,2135 6897,1959 6897,1782"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id6" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6897,1780 L 7074,1780 7074,1604 7074,1780 6897,1780 6897,1957 6897,1780 6721,1780 6544,1780 6544,1957 6368,1957"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id7" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6370,1959 L 6194,1959 6017,1959 6194,1959 6017,1959 5841,1959 5841,1782 5664,1782 5664,1959 5841,1959 5841,2135"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id8" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,2135 L 6017,2135 5841,2135 5841,2311 5664,2311 5841,2311 5664,2311 5488,2311 5664,2311 5664,2488 5488,2488"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id9" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5488,2488 L 5488,2664 5665,2664 5665,2488 5841,2488 5841,2664 5841,2488 5665,2488 5841,2488 5665,2488 5841,2488"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id10" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,2487 L 5665,2487 5665,2663 5665,2840 5665,3016 5665,3193 5665,3369 5841,3369 5841,3193 5841,3369 5665,3369"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id11" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5662,3369 L 5662,3545 5662,3369 5486,3369 5486,3545 5309,3545 5309,3369 5309,3545 5309,3369 5309,3545 5486,3545"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id12" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5488,3546 L 5488,3370 5312,3370 5312,3193 5312,3370 5135,3370 5135,3193 5135,3017 4959,3017 5135,3017 5135,3193"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id13" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5133,3191 L 5133,3015 5309,3015 5309,2838 5309,3015 5309,2838 5133,2838 5133,2662 5133,2838 5133,2662 5309,2662"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id14" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,2662 L 5135,2662 5135,2486 5135,2309 5135,2486 5311,2486 5311,2309 5135,2309 5135,2133 5135,1956 5311,1956"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id15" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,1958 L 5311,2134 5311,2311 5311,2134 5488,2134 5488,1958 5664,1958 5488,1958 5488,2134 5311,2134 5135,2134"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id16" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5133,2135 L 4957,2135 4957,2311 5133,2311 5133,2135 5133,2311 5310,2311 5310,2135 5486,2135 5310,2135 5310,1958"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id17" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,1958 L 5311,2134 5488,2134 5488,2311 5488,2134 5311,2134 5488,2134 5488,2311 5664,2311 5664,2134 5664,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id18" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5662,2309 L 5662,2133 5662,1956 5662,1780 5662,1603 5662,1427 5662,1603 5662,1780 5486,1780 5309,1780 5133,1780"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id19" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5133,1780 L 5133,1603 5309,1603 5486,1603 5486,1780 5486,1956 5309,1956 5309,2133 5486,2133 5662,2133 5662,2309"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id20" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5662,2309 L 5662,2133 5662,1956 5838,1956 5838,1780 5838,1956 5838,1780 5838,1603 5838,1427 5838,1251 5838,1074"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id21" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5840,1076 L 5840,1252 6017,1252 6193,1252 6193,1429 6193,1252 6017,1252 5840,1252 5840,1429 6017,1429 6017,1605"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id22" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6016,1605 L 6016,1782 6016,1605 6192,1605 6192,1782 6192,1605 6192,1429 6016,1429 6192,1429 6192,1605 6016,1605 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id23" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6015,1606 L 6015,1782 6192,1782 6015,1782 6192,1782 6192,1606 6192,1782 6192,1606 6368,1606 6192,1606 6192,1782"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id24" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6193,1780 L 6193,1604 6369,1604 6546,1604 6722,1604 6722,1427 6722,1604 6722,1427 6899,1427 7075,1427 6899,1427"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id25" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6897,1427 L 6897,1251 6721,1251 6721,1074 6721,1251 6897,1251 7074,1251 6897,1251 7074,1251 7074,1074 7074,898"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id26" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7075,898 L 7075,722 6899,722 6899,898 6722,898 6722,1075 6722,898 6722,1075 6546,1075 6546,1251 6722,1251"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id27" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6722,1253 L 6899,1253 7075,1253 6899,1253 7075,1253 7075,1429 7252,1429 7075,1429 6899,1429 6722,1429 6546,1429"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id28" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6544,1427 L 6720,1427 6720,1251 6897,1251 7073,1251 7250,1251 7250,1427 7073,1427 7073,1604 6897,1604 6897,1427"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id29" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6897,1427 L 7074,1427 6897,1427 6897,1251 7074,1251 7074,1074 7074,898 6897,898 6721,898 6721,1074 6721,898"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id30" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6723,898 L 6899,898 6899,722 6899,898 6899,1075 7076,1075 7076,1251 7076,1075 7076,1251 6899,1251 6723,1251"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id31" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6723,1253 L 6723,1077 6723,1253 6723,1430 6899,1430 6723,1430 6899,1430 6899,1606 7076,1606 6899,1606 6723,1606"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id32" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6722,1605 L 6722,1782 6722,1605 6899,1605 6899,1429 6899,1605 6722,1605 6722,1429 6722,1605 6899,1605 7075,1605"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id33" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7075,1606 L 7075,1782 6899,1782 6899,1959 7075,1959 6899,1959 7075,1959 7075,2135 7075,2312 6899,2312 6722,2312"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id34" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6723,2309 L 6723,2133 6723,2309 6899,2309 6899,2486 6723,2486 6723,2662 6723,2486 6899,2486 6899,2662 6723,2662"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id35" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6723,2662 L 6723,2838 6547,2838 6547,2662 6370,2662 6370,2838 6370,3015 6194,3015 6017,3015 6017,2838 5841,2838"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id36" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,2841 L 5665,2841 5665,2664 5665,2841 5665,3017 5665,2841 5488,2841 5488,2664 5488,2841 5665,2841 5841,2841 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id37" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,2841 L 5841,3017 6017,3017 6017,2841 5841,2841 5841,2664 5841,2488 6017,2488 5841,2488 5841,2664 5664,2664"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id38" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5662,2662 L 5838,2662 5838,2839 6015,2839 6191,2839 6191,3015 6191,2839 6191,2662 6015,2662 6015,2486 5838,2486"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id39" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,2488 L 5664,2488 5841,2488 5841,2664 5664,2664 5488,2664 5488,2488 5488,2311 5664,2311 5841,2311 6017,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id40" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6015,2309 L 6015,2133 6015,2309 5839,2309 6015,2309 6015,2486 6192,2486 6368,2486 6192,2486 6368,2486 6368,2662"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id41" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6369,2662 L 6546,2662 6546,2838 6369,2838 6369,2662 6193,2662 6369,2662 6369,2838 6193,2838 6193,3015 6369,3015"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id42" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="1950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6370,3016 L 6194,3016 6194,2840 6194,3016 6370,3016 6370,3193 6194,3193 6017,3193 6017,3369 6194,3369 6194,3193"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id43" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6193,3191 L 6369,3191 6369,3015 6546,3015 6369,3015 6369,2838 6193,2838 6369,2838 6546,2838 6722,2838 6722,2662"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id44" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6723,2662 L 6899,2662 6899,2486 7076,2486 7252,2486 7076,2486 6899,2486 7076,2486 7076,2662 6899,2662 7076,2662"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id45" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7075,2662 L 7075,2486 7075,2309 7075,2133 7075,2309 7251,2309 7428,2309 7251,2309 7251,2133 7075,2133 7075,2309"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id46" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7075,2309 L 7252,2309 7075,2309 7252,2309 7075,2309 6899,2309 6899,2485 6899,2662 6722,2662 6722,2838 6546,2838"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id47" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6544,2840 L 6368,2840 6191,2840 6015,2840 5838,2840 6015,2840 6015,3017 6015,3193 6191,3193 6368,3193 6368,3017"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id48" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6370,3017 L 6193,3017 6370,3017 6546,3017 6370,3017 6370,2841 6193,2841 6193,2664 6193,2488 6370,2488 6546,2488"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id49" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6544,2488 L 6368,2488 6191,2488 6015,2488 6191,2488 6191,2664 6191,2488 6015,2488 6191,2488 6368,2488 6368,2664"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id50" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6370,2662 L 6370,2486 6546,2486 6370,2486 6370,2309 6370,2133 6370,1956 6546,1956 6723,1956 6899,1956 7076,1956"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id51" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7075,1958 L 7075,1782 7075,1605 7075,1782 7251,1782 7428,1782 7251,1782 7251,1605 7251,1429 7075,1429 7251,1429"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id52" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7252,1428 L 7076,1428 7076,1251 7076,1428 6899,1428 7076,1428 6899,1428 6899,1604 7076,1604 6899,1604 7076,1604"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id53" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7076,1606 L 7252,1606 7252,1782 7429,1782 7252,1782 7252,1959 7252,2135 7252,2312 7076,2312 6899,2312 6723,2312"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id54" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6722,2310 L 6899,2310 7075,2310 7075,2486 7075,2310 7075,2133 6899,2133 6899,1957 6722,1957 6722,2133 6546,2133"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id55" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6544,2135 L 6544,1959 6720,1959 6544,1959 6544,1782 6544,1606 6720,1606 6720,1429 6720,1253 6720,1429 6720,1253"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id56" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6723,1253 L 6547,1253 6547,1429 6547,1253 6370,1253 6370,1076 6547,1076 6547,1253 6547,1076 6547,1253 6547,1076"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id57" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6544,1077 L 6544,900 6368,900 6191,900 6191,1077 6191,1253 6015,1253 6015,1077 6191,1077 6191,900 6191,724"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id58" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6193,724 L 6193,548 6193,371 6193,195 6193,18 6370,18 6370,195 6193,195 6017,195 6017,371 6017,548"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id59" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6015,545 L 5839,545 5839,369 5839,192 5662,192 5662,369 5662,192 5839,192 6015,192 6192,192 6368,192"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id60" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6369,194 L 6546,194 6369,194 6193,194 6193,370 6369,370 6546,370 6369,370 6193,370 6193,194 6193,370"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id61" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6193,371 L 6193,547 6193,724 6193,547 6193,724 6193,547 6193,371 6193,547 6193,724 6193,900 6193,1077"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id62" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="2950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6194,1077 L 6194,1253 6370,1253 6370,1077 6194,1077 6017,1077 5841,1077 5841,1253 5841,1077 5841,900 5841,724"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id63" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,724 L 5841,900 5841,1077 5841,900 5665,900 5488,900 5312,900 5488,900 5665,900 5665,724 5488,724"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id64" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5488,724 L 5488,900 5664,900 5488,900 5488,1077 5664,1077 5841,1077 5841,1253 6017,1253 6017,1430 6017,1253"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id65" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6015,1253 L 6015,1429 6192,1429 6015,1429 6015,1253 6192,1253 6192,1429 6368,1429 6368,1606 6192,1606 6192,1429"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id66" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6193,1428 L 6017,1428 6017,1604 5841,1604 6017,1604 6193,1604 6370,1604 6546,1604 6723,1604 6723,1428 6899,1428"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id67" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6897,1428 L 6897,1251 7073,1251 7073,1428 7250,1428 7250,1251 7250,1428 7073,1428 7073,1251 7073,1428 7073,1604"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id68" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7075,1606 L 6899,1606 6899,1782 7075,1782 7075,1606 6899,1606 7075,1606 7075,1429 6899,1429 6899,1253 7075,1253"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id69" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7075,1253 L 7251,1253 7428,1253 7428,1429 7604,1429 7781,1429 7957,1429 7781,1429 7781,1253 7781,1429 7781,1253"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id70" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7779,1253 L 7779,1076 7779,1253 7956,1253 7956,1076 7956,1253 7779,1253 7779,1429 7956,1429 7779,1429 7603,1429"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id71" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7605,1427 L 7605,1251 7781,1251 7605,1251 7428,1251 7428,1074 7428,1251 7252,1251 7252,1427 7252,1604 7252,1780"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id72" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7252,1780 L 7252,1604 7252,1427 7252,1251 7252,1427 7252,1251 7252,1427 7428,1427 7605,1427 7428,1427 7605,1427"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id73" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7605,1428 L 7781,1428 7958,1428 7958,1251 7958,1075 7958,1251 7781,1251 7781,1075 7605,1075 7605,1251 7605,1075"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id74" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7605,1076 L 7605,1252 7781,1252 7781,1429 7781,1252 7781,1429 7781,1605 7605,1605 7605,1782 7605,1958 7605,2134"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id75" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7605,2135 L 7605,1959 7605,1782 7781,1782 7781,1606 7781,1429 7958,1429 7958,1606 7958,1782 7958,1959 7781,1959"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id76" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7779,1958 L 7779,1782 7779,1958 7779,1782 7779,1958 7955,1958 7955,1782 8132,1782 8132,1958 8308,1958 8132,1958"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id77" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 8133,1958 L 8310,1958 8486,1958 8310,1958 8310,2134 8310,1958 8133,1958 8310,1958 8133,1958 8133,2134 7957,2134"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id78" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7957,2135 L 7781,2135 7781,2311 7604,2311 7604,2135 7781,2135 7604,2135 7604,1958 7604,2135 7428,2135 7428,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id79" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7427,2310 L 7250,2310 7250,2133 7250,2310 7250,2486 7427,2486 7603,2486 7427,2486 7427,2310 7427,2133 7427,2310 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id80" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7426,2310 L 7250,2310 7073,2310 7073,2486 7250,2486 7073,2486 7073,2310 7073,2133 6897,2133 6720,2133 6897,2133"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id81" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6898,2135 L 6721,2135 6721,1959 6721,2135 6721,1959 6721,1782 6721,1606 6721,1429 6898,1429 6898,1606 7074,1606"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id82" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="3950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7076,1606 L 7076,1782 7076,1606 7076,1782 7076,1959 7252,1959 7076,1959 7076,1782 7252,1782 7429,1782 7605,1782"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id83" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7605,1780 L 7428,1780 7428,1956 7428,2133 7605,2133 7781,2133 7605,2133 7428,2133 7428,2309 7428,2133 7428,2309"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id84" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7426,2310 L 7426,2133 7602,2133 7602,1957 7602,2133 7426,2133 7426,2310 7426,2486 7602,2486 7779,2486 7955,2486"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id85" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7957,2487 L 8134,2487 8310,2487 8310,2311 8134,2311 7957,2311 7781,2311 7781,2487 7781,2311 7957,2311 7781,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id86" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7779,2309 L 7603,2309 7603,2486 7603,2662 7603,2839 7603,2662 7603,2839 7779,2839 7603,2839 7779,2839 7779,3015"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id87" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7780,3017 L 7780,3193 7780,3370 7956,3370 7780,3370 7603,3370 7780,3370 7780,3546 7603,3546 7603,3723 7603,3899"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id88" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7605,3898 L 7429,3898 7429,3722 7429,3898 7429,4075 7605,4075 7429,4075 7252,4075 7429,4075 7429,4251 7252,4251"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id89" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7252,4251 L 7252,4427 7428,4427 7252,4427 7428,4427 7428,4251 7428,4427 7428,4604 7605,4604 7781,4604 7605,4604"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id90" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7605,4602 L 7429,4602 7605,4602 7429,4602 7429,4779 7605,4779 7605,4955 7429,4955 7252,4955 7252,5132 7252,5308"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id91" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7252,5310 L 7428,5310 7428,5133 7605,5133 7605,4957 7428,4957 7605,4957 7605,5133 7605,5310 7605,5133 7428,5133"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id92" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7426,5133 L 7602,5133 7602,4957 7602,5133 7779,5133 7602,5133 7779,5133 7779,4957 7779,4780 7779,4604 7955,4604"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id93" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7957,4602 L 7957,4778 7957,4602 8134,4602 8310,4602 8134,4602 7957,4602 7781,4602 7781,4778 7781,4955 7781,4778"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id94" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7779,4781 L 7779,4957 7779,4781 7956,4781 7779,4781 7779,4957 7779,5134 7956,5134 8132,5134 8132,5310 8132,5487"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id95" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 8134,5484 L 8134,5308 7958,5308 7781,5308 7781,5131 7781,4955 7605,4955 7605,5131 7605,4955 7605,5131 7605,4955"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id96" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7604,4955 L 7428,4955 7428,5132 7428,5308 7428,5132 7604,5132 7781,5132 7957,5132 7957,4955 7957,4779 7957,4955"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id97" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7957,4956 L 7781,4956 7604,4956 7604,5132 7428,5132 7428,4956 7428,4779 7428,4956 7428,4779 7428,4603 7251,4603"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id98" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7251,4602 L 7251,4426 7251,4249 7428,4249 7251,4249 7251,4073 7075,4073 7251,4073 7251,4249 7428,4249 7428,4073"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id99" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7426,4073 L 7250,4073 7250,3897 7073,3897 6897,3897 7073,3897 6897,3897 6897,3720 6897,3544 7073,3544 7073,3367"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id100" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7075,3370 L 6899,3370 6899,3546 6722,3546 6899,3546 6899,3370 6722,3370 6722,3193 6899,3193 6899,3017 6899,3193"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id101" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6897,3192 L 7073,3192 7073,3015 7073,2839 7250,2839 7073,2839 7073,2662 7073,2486 7073,2662 7073,2839 6897,2839"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id102" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="4950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6897,2840 L 6897,3017 6721,3017 6721,2840 6544,2840 6544,2664 6544,2487 6544,2311 6368,2311 6368,2487 6191,2487"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id103" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6193,2487 L 6017,2487 5840,2487 5840,2664 6017,2664 5840,2664 5840,2840 5840,2664 5840,2840 5840,2664 5840,2487"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id104" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,2488 L 5841,2664 5841,2841 5665,2841 5488,2841 5488,2664 5488,2841 5312,2841 5312,3017 5488,3017 5665,3017"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id105" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5662,3017 L 5662,2841 5662,3017 5486,3017 5486,2841 5309,2841 5133,2841 5309,2841 5133,2841 5133,2664 5309,2664"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id106" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,2662 L 5311,2838 5135,2838 5135,3015 5135,2838 4958,2838 4958,3015 4782,3015 4782,2838 4958,2838 4958,2662"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id107" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4959,2663 L 4959,2486 5135,2486 5312,2486 5312,2663 5135,2663 5312,2663 5135,2663 5135,2839 5312,2839 5312,2663"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id108" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5312,2663 L 5135,2663 5135,2839 5135,2663 5135,2839 5312,2839 5488,2839 5312,2839 5312,2663 5488,2663 5488,2839"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id109" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5488,2840 L 5312,2840 5312,2663 5135,2663 5135,2840 5135,2663 5135,2840 5135,3016 5135,3193 5135,3369 5312,3369"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id110" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,3370 L 5311,3546 5311,3370 5488,3370 5664,3370 5664,3193 5664,3017 5841,3017 6017,3017 6017,3193 6017,3370"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id111" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6015,3369 L 6192,3369 6192,3546 6368,3546 6368,3369 6368,3193 6192,3193 6015,3193 5839,3193 5839,3016 5839,2840"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id112" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,2840 L 5841,2664 6017,2664 6194,2664 6194,2487 6370,2487 6370,2664 6194,2664 6194,2487 6194,2311 6017,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id113" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6015,2310 L 6191,2310 6368,2310 6368,2133 6544,2133 6721,2133 6897,2133 6897,1957 6897,2133 6721,2133 6897,2133"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id114" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6897,2134 L 7073,2134 7250,2134 7073,2134 6897,2134 6720,2134 6720,1958 6544,1958 6720,1958 6720,2134 6720,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id115" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6723,2310 L 6723,2486 6899,2486 6899,2310 6899,2133 6723,2133 6546,2133 6723,2133 6723,1957 6546,1957 6546,2133"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id116" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6545,2134 L 6721,2134 6721,2311 6721,2134 6721,1958 6545,1958 6545,2134 6368,2134 6545,2134 6368,2134 6192,2134"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id117" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6193,2135 L 6193,2311 6017,2311 6017,2135 6017,1958 5840,1958 5840,1782 5840,1958 5840,2135 5840,2311 5840,2135"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id118" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,2135 L 5665,2135 5665,1959 5665,2135 5488,2135 5488,2312 5665,2312 5488,2312 5488,2488 5312,2488 5135,2488"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id119" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5133,2487 L 4957,2487 4957,2664 4780,2664 4780,2840 4957,2840 5133,2840 5310,2840 5310,2664 5310,2840 5486,2840"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id120" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5488,2840 L 5312,2840 5312,2664 5135,2664 5135,2487 5312,2487 5488,2487 5312,2487 5312,2664 5488,2664 5488,2487"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id121" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5488,2488 L 5488,2312 5664,2312 5488,2312 5664,2312 5664,2488 5488,2488 5488,2312 5664,2312 5841,2312 5841,2135"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id122" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="5950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,2135 L 6017,2135 6017,2311 6017,2135 6017,2311 6194,2311 6194,2488 6194,2311 6017,2311 6194,2311 6017,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id123" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6015,2310 L 5839,2310 5839,2486 5839,2310 6015,2310 5839,2310 5839,2486 5662,2486 5839,2486 5662,2486 5486,2486"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id124" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5488,2487 L 5488,2664 5488,2840 5488,2664 5488,2487 5488,2311 5488,2487 5312,2487 5135,2487 4959,2487 4959,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id125" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4958,2310 L 4958,2133 5135,2133 5135,1957 5135,2133 4958,2133 4782,2133 4782,1957 4782,2133 4782,2310 4782,2486"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id126" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4782,2488 L 4959,2488 4959,2311 4782,2311 4606,2311 4606,2488 4606,2664 4606,2488 4782,2488 4782,2311 4782,2135"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id127" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4783,2135 L 4783,1958 4783,2135 4783,2311 4783,2135 4606,2135 4606,1958 4430,1958 4430,2135 4430,2311 4606,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id128" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4604,2309 L 4604,2485 4428,2485 4428,2309 4428,2133 4251,2133 4251,1956 4251,1780 4428,1780 4428,1603 4428,1427"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id129" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4430,1427 L 4606,1427 4606,1251 4430,1251 4430,1427 4430,1604 4606,1604 4430,1604 4253,1604 4077,1604 4077,1427"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id130" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4077,1427 L 4253,1427 4253,1251 4430,1251 4430,1427 4430,1604 4606,1604 4430,1604 4430,1780 4253,1780 4430,1780"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id131" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4429,1780 L 4429,1956 4429,1780 4429,1956 4429,2133 4429,1956 4429,2133 4429,1956 4606,1956 4606,2133 4782,2133"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id132" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4782,2135 L 4782,1959 4782,1782 4958,1782 4958,1959 5135,1959 5135,1782 5311,1782 5488,1782 5488,1606 5488,1782"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id133" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5487,1780 L 5664,1780 5840,1780 5840,1604 5664,1604 5664,1427 5664,1251 5840,1251 5664,1251 5487,1251 5311,1251"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id134" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,1253 L 5311,1077 5135,1077 5135,900 5135,724 5135,547 5135,724 5135,900 5135,1077 4958,1077 4782,1077"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id135" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4782,1076 L 4782,1253 4782,1076 4606,1076 4429,1076 4253,1076 4253,900 4253,1076 4253,1253 4253,1429 4429,1429"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id136" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4430,1428 L 4254,1428 4077,1428 3901,1428 4077,1428 4077,1604 4077,1428 4077,1604 4077,1428 4077,1251 4077,1075"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id137" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4077,1076 L 4077,1252 3901,1252 4077,1252 4077,1429 4077,1605 3901,1605 3724,1605 3548,1605 3724,1605 3724,1429"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id138" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3722,1427 L 3546,1427 3722,1427 3546,1427 3369,1427 3369,1251 3369,1074 3546,1074 3369,1074 3193,1074 3016,1074"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id139" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3018,1076 L 3194,1076 3194,1252 3018,1252 3194,1252 3194,1429 3194,1252 3018,1252 3194,1252 3371,1252 3371,1429"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id140" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3369,1427 L 3545,1427 3369,1427 3545,1427 3722,1427 3722,1603 3722,1780 3722,1956 3545,1956 3369,1956 3545,1956"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id141" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3548,1958 L 3548,2134 3371,2134 3371,1958 3371,2134 3371,2311 3548,2311 3548,2134 3724,2134 3724,2311 3548,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id142" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="6950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3548,2310 L 3372,2310 3195,2310 3019,2310 2842,2310 2842,2133 2842,2310 2666,2310 2490,2310 2666,2310 2666,2486"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id143" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 2666,2488 L 2842,2488 3019,2488 3019,2664 3019,2841 3019,2664 3019,2841 3019,2664 3019,2488 2842,2488 2666,2488 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id144" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 2666,2488 L 2842,2488 2666,2488 2666,2311 2842,2311 3019,2311 3019,2135 3195,2135 3195,2311 3019,2311 3019,2135"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id145" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3018,2135 L 3194,2135 3194,1959 3194,1782 3371,1782 3194,1782 3018,1782 3018,1606 3194,1606 3194,1782 3371,1782"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id146" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3369,1780 L 3193,1780 3016,1780 3016,1604 3193,1604 3193,1780 3193,1957 3193,2133 3016,2133 3016,1957 3193,1957"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id147" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3195,1958 L 3019,1958 3019,1782 3019,1605 3019,1782 3019,1605 3019,1782 3019,1605 3019,1429 3195,1429 3019,1429"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id148" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3019,1427 L 3019,1603 3019,1780 3019,1956 3195,1956 3019,1956 3019,2133 3019,2309 3019,2133 3019,1956 3019,2133"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id149" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3018,2135 L 2842,2135 2842,2311 2842,2135 2665,2135 2665,1958 2665,2135 2665,1958 2665,1782 2489,1782 2665,1782"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id150" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 2666,1780 L 2666,1956 2666,2133 2666,2309 2842,2309 3019,2309 3019,2486 3019,2309 3195,2309 3019,2309 3195,2309"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id151" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3195,2309 L 3195,2485 3195,2662 3371,2662 3195,2662 3371,2662 3371,2485 3195,2485 3195,2662 3195,2838 3018,2838"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id152" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3018,2840 L 3194,2840 3371,2840 3371,3017 3194,3017 3371,3017 3194,3017 3018,3017 3194,3017 3194,2840 3194,2664"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id153" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3195,2662 L 3195,2838 3195,2662 3019,2662 3019,2485 2842,2485 3019,2485 2842,2485 3019,2485 3019,2309 3019,2485"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id154" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3018,2488 L 3195,2488 3018,2488 2842,2488 3018,2488 3195,2488 3195,2664 3018,2664 3195,2664 3195,2841 3195,3017"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id155" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3195,3017 L 3195,3193 3195,3370 3371,3370 3548,3370 3724,3370 3548,3370 3548,3546 3548,3370 3724,3370 3548,3370"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id156" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3547,3369 L 3547,3546 3547,3369 3724,3369 3900,3369 3724,3369 3900,3369 3724,3369 3547,3369 3547,3193 3724,3193"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id157" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3722,3191 L 3722,3368 3722,3544 3546,3544 3546,3368 3369,3368 3369,3191 3193,3191 3369,3191 3369,3015 3193,3015"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id158" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3195,3017 L 3018,3017 3018,3193 2842,3193 3018,3193 3018,3017 3018,3193 2842,3193 3018,3193 3195,3193 3371,3193"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id159" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3369,3191 L 3546,3191 3369,3191 3369,3015 3369,2838 3369,2662 3193,2662 3193,2838 3016,2838 3016,3015 2840,3015"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id160" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 2840,3017 L 2840,3193 2840,3017 2840,2840 3016,2840 3016,2664 3193,2664 3369,2664 3193,2664 3016,2664 3016,2840"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id161" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3018,2841 L 3194,2841 3371,2841 3371,2664 3547,2664 3547,2488 3547,2664 3371,2664 3547,2664 3547,2841 3371,2841"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id162" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="7950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3370,2840 L 3193,2840 3370,2840 3370,2664 3193,2664 3370,2664 3546,2664 3546,2840 3370,2840 3193,2840 3370,2840 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id163" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3369,2840 L 3545,2840 3722,2840 3898,2840 3898,2664 3722,2664 3722,2840 3722,2664 3722,2487 3722,2311 3545,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id164" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3547,2309 L 3724,2309 3547,2309 3547,2133 3547,1956 3371,1956 3371,1780 3371,1956 3371,2133 3547,2133 3371,2133"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id165" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3369,2135 L 3193,2135 3193,1959 3369,1959 3546,1959 3722,1959 3722,2135 3546,2135 3722,2135 3546,2135 3722,2135"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id166" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3722,2135 L 3722,1958 3898,1958 3898,2135 3898,1958 3722,1958 3722,2135 3722,2311 3898,2311 3898,2135 4075,2135"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id167" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4077,2135 L 4077,2311 4077,2488 4077,2664 4077,2488 3901,2488 3901,2664 3901,2841 3901,3017 3724,3017 3548,3017"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id168" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3548,3017 L 3548,3193 3724,3193 3724,3370 3548,3370 3548,3546 3371,3546 3548,3546 3548,3723 3548,3546 3548,3723"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id169" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3547,3721 L 3547,3544 3547,3721 3547,3897 3371,3897 3547,3897 3371,3897 3371,3721 3371,3544 3371,3721 3547,3721 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id170" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3547,3720 L 3724,3720 3724,3896 3547,3896 3371,3896 3547,3896 3547,4073 3547,4249 3547,4426 3547,4602 3724,4602"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id171" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3722,4602 L 3546,4602 3546,4426 3369,4426 3369,4249 3369,4073 3369,4249 3546,4249 3722,4249 3722,4073 3722,3896"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id172" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3722,3898 L 3898,3898 3898,3722 3898,3898 3898,3722 4075,3722 4251,3722 4251,3898 4075,3898 4075,4075 4075,3898"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id173" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4077,3899 L 4077,3722 4077,3899 4253,3899 4253,4075 4253,3899 4253,4075 4430,4075 4606,4075 4606,3899 4430,3899"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id174" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4430,3899 L 4430,4075 4430,4252 4254,4252 4254,4075 4254,4252 4430,4252 4430,4075 4254,4075 4254,3899 4430,3899 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id175" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4430,3899 L 4606,3899 4606,3722 4783,3722 4783,3546 4783,3722 4783,3899 4606,3899 4430,3899 4606,3899 4430,3899 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id176" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4430,3899 L 4430,3722 4430,3546 4430,3722 4430,3899 4430,4075 4430,3899 4606,3899 4783,3899 4959,3899 4783,3899"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id177" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4783,3899 L 4783,4075 4783,3899 4959,3899 4959,4075 4783,4075 4783,4252 4606,4252 4606,4428 4783,4428 4606,4428"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id178" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4604,4428 L 4604,4604 4604,4781 4604,4957 4428,4957 4428,5134 4604,5134 4428,5134 4604,5134 4604,5310 4428,5310"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id179" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4430,5310 L 4430,5486 4430,5310 4253,5310 4253,5133 4253,4957 4253,4780 4430,4780 4606,4780 4430,4780 4430,4604"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id180" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4430,4602 L 4606,4602 4430,4602 4430,4426 4606,4426 4606,4249 4430,4249 4606,4249 4606,4073 4606,3896 4606,3720"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id181" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4604,3720 L 4604,3897 4604,3720 4604,3544 4604,3367 4604,3191 4604,3367 4428,3367 4428,3544 4604,3544 4604,3367"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id182" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="8950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4605,3369 L 4605,3545 4605,3369 4605,3545 4428,3545 4428,3369 4428,3545 4605,3545 4605,3722 4781,3722 4781,3898"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id183" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4783,3898 L 4783,4075 4783,3898 4606,3898 4606,3722 4783,3722 4959,3722 4959,3898 4783,3898 4783,3722 4959,3722"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id184" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4959,3720 L 4959,3896 5135,3896 5135,3720 4959,3720 4782,3720 4782,3896 4782,4073 4782,3896 4959,3896 4782,3896"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id185" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4782,3899 L 4958,3899 5135,3899 5311,3899 5488,3899 5488,4075 5664,4075 5488,4075 5311,4075 5488,4075 5488,3899"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id186" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5488,3899 L 5488,3723 5311,3723 5488,3723 5488,3546 5488,3370 5311,3370 5311,3193 5135,3193 5311,3193 5311,3370"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id187" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,3370 L 5487,3370 5487,3546 5487,3370 5664,3370 5664,3193 5664,3017 5664,3193 5487,3193 5487,3017 5311,3017"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id188" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,3017 L 5487,3017 5487,2840 5487,2664 5664,2664 5664,2487 5840,2487 6017,2487 6017,2311 5840,2311 5840,2487"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id189" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,2488 L 5665,2488 5665,2311 5665,2488 5665,2664 5488,2664 5488,2488 5312,2488 5488,2488 5488,2311 5312,2311"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id190" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,2310 L 5487,2310 5311,2310 5311,2133 5311,1957 5311,2133 5311,2310 5311,2486 5311,2663 5487,2663 5311,2663"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id191" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5312,2662 L 5312,2838 5312,2662 5312,2838 5488,2838 5488,3015 5488,2838 5665,2838 5841,2838 5841,3015 5841,2838"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id192" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,2840 L 6017,2840 6194,2840 6017,2840 6017,2664 6017,2840 5841,2840 6017,2840 5841,2840 6017,2840 6194,2840"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id193" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6193,2840 L 6369,2840 6546,2840 6546,2664 6369,2664 6369,2840 6193,2840 6369,2840 6369,2664 6369,2840 6193,2840 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id194" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6194,2840 L 6194,3016 6370,3016 6370,3193 6194,3193 6017,3193 6017,3369 6017,3546 6017,3369 6017,3193 6017,3016"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id195" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6015,3016 L 6192,3016 6368,3016 6368,2840 6192,2840 6192,3016 6192,3193 6015,3193 5839,3193 5839,3369 5839,3546"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id196" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,3546 L 5841,3722 5665,3722 5488,3722 5665,3722 5488,3722 5488,3546 5488,3722 5312,3722 5312,3546 5135,3546"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id197" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5133,3545 L 5309,3545 5309,3722 5309,3545 5309,3369 5486,3369 5486,3545 5309,3545 5309,3722 5309,3898 5486,3898"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id198" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5488,3899 L 5488,4075 5488,4252 5311,4252 5488,4252 5488,4428 5664,4428 5841,4428 5841,4252 6017,4252 6017,4428"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id199" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6015,4428 L 6015,4604 6192,4604 6015,4604 6192,4604 6192,4781 6192,4957 6015,4957 6192,4957 6368,4957 6192,4957"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id200" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6193,4955 L 6369,4955 6193,4955 6369,4955 6369,4779 6369,4955 6369,5132 6546,5132 6722,5132 6546,5132 6546,5308"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id201" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6545,5310 L 6545,5486 6721,5486 6721,5663 6898,5663 6898,5486 6721,5486 6721,5663 6898,5663 7074,5663 7074,5839"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id202" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="9950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 7075,5837 L 7075,5660 7075,5837 6899,5837 6899,6013 7075,6013 7075,5837 7075,6013 7075,6190 7075,6366 6899,6366"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id203" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6897,6366 L 7073,6366 7073,6190 6897,6190 6897,6366 6720,6366 6720,6543 6544,6543 6544,6719 6544,6896 6544,7072"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id204" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6544,7074 L 6368,7074 6191,7074 6015,7074 6191,7074 6191,6898 6191,6721 6368,6721 6368,6898 6368,7074 6544,7074 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id205" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6544,7074 L 6368,7074 6544,7074 6544,6897 6544,7074 6544,7250 6544,7074 6544,7250 6544,7074 6368,7074 6544,7074 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id206" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6544,7073 L 6368,7073 6368,7250 6368,7426 6368,7250 6191,7250 6015,7250 6015,7073 6015,7250 6015,7073 5838,7073"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id207" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,7074 L 5665,7074 5488,7074 5312,7074 5488,7074 5488,7250 5488,7074 5488,6897 5488,7074 5488,7250 5665,7250"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id208" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5663,7248 L 5663,7072 5663,6895 5839,6895 6016,6895 5839,6895 5839,7072 5663,7072 5486,7072 5486,7248 5310,7248"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id209" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5312,7249 L 5312,7072 5135,7072 5135,7249 5135,7425 5312,7425 5488,7425 5312,7425 5135,7425 5135,7249 4959,7249"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id210" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4958,7248 L 4958,7425 4958,7248 4782,7248 4605,7248 4782,7248 4958,7248 5135,7248 5135,7072 5135,7248 5311,7248"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id211" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5312,7248 L 5312,7424 5312,7601 5312,7424 5135,7424 5312,7424 5488,7424 5488,7248 5488,7424 5488,7601 5312,7601"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id212" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5312,7603 L 5135,7603 5312,7603 5312,7780 5312,7956 5488,7956 5488,7780 5488,7956 5312,7956 5488,7956 5312,7956"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id213" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,7955 L 5311,7779 5311,7955 5487,7955 5487,8132 5664,8132 5664,8308 5664,8132 5840,8132 6017,8132 6193,8132"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id214" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6194,8130 L 6370,8130 6194,8130 6194,8306 6194,8483 6194,8306 6194,8483 6017,8483 6017,8659 5841,8659 5841,8836"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id215" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5840,8837 L 6017,8837 5840,8837 5664,8837 5487,8837 5487,8661 5487,8837 5487,8661 5664,8661 5487,8661 5311,8661"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id216" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,8659 L 5311,8836 5488,8836 5664,8836 5841,8836 6017,8836 6017,8659 5841,8659 5664,8659 5664,8483 5488,8483"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id217" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5488,8485 L 5488,8661 5488,8838 5664,8838 5664,9014 5488,9014 5488,9191 5311,9191 5311,9014 5488,9014 5664,9014"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id218" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5663,9012 L 5839,9012 5663,9012 5487,9012 5310,9012 5310,9188 5134,9188 4957,9188 4957,9012 4957,9188 4781,9188"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id219" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4782,9190 L 4782,9014 4958,9014 5135,9014 4958,9014 5135,9014 5135,8837 5311,8837 5311,9014 5311,9190 5311,9014"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id220" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,9012 L 5135,9012 5311,9012 5311,8836 5311,9012 5311,9189 5311,9365 5311,9189 5311,9012 5311,9189 5311,9365"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id221" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,9367 L 5311,9190 5311,9367 5311,9190 5487,9190 5487,9367 5487,9190 5664,9190 5664,9367 5840,9367 5840,9543"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id222" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="10950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,9541 L 5841,9365 5841,9541 5841,9365 6017,9365 5841,9365 5664,9365 5664,9188 5488,9188 5664,9188 5841,9188"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id223" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,9190 L 6017,9190 6017,9014 5841,9014 6017,9014 6017,8837 5841,8837 5841,8661 6017,8661 6017,8484 6017,8308"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id224" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6016,8309 L 5839,8309 6016,8309 6016,8485 6016,8309 6192,8309 6192,8132 6016,8132 6016,7956 5839,7956 5663,7956"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id225" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5662,7956 L 5662,7780 5838,7780 5838,7603 5838,7427 6015,7427 6015,7603 5838,7603 6015,7603 6015,7427 6191,7427"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id226" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 6193,7426 L 6193,7250 6193,7073 6370,7073 6193,7073 6193,6897 6017,6897 5840,6897 5664,6897 5664,7073 5840,7073"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id227" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5841,7074 L 5665,7074 5665,6897 5665,7074 5488,7074 5488,7250 5312,7250 5312,7074 5135,7074 5135,6897 5312,6897"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id228" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,6896 L 5311,7072 5135,7072 5135,6896 5311,6896 5135,6896 5135,6719 5311,6719 5311,6543 5135,6543 4958,6543"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id229" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4958,6544 L 5135,6544 4958,6544 4782,6544 4958,6544 4958,6368 4958,6544 4958,6721 5135,6721 5135,6544 5311,6544"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id230" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,6544 L 5135,6544 5135,6720 5135,6897 5135,7073 5311,7073 5135,7073 5311,7073 5135,7073 5135,7250 5135,7426"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id231" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5134,7427 L 4957,7427 4781,7427 4781,7603 4604,7603 4781,7603 4957,7603 5134,7603 5310,7603 5134,7603 5310,7603"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id232" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5312,7603 L 5312,7427 5312,7250 5312,7427 5135,7427 5312,7427 5312,7250 5135,7250 4959,7250 5135,7250 5312,7250"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id233" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11500ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,7248 L 5487,7248 5487,7424 5487,7601 5311,7601 5487,7601 5311,7601 5311,7777 5487,7777 5311,7777 5311,7601"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id234" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11550ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 5311,7603 L 5311,7779 5135,7779 4958,7779 4782,7779 4782,7956 4782,8132 4605,8132 4605,7956 4429,7956 4253,7956"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id235" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11600ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4251,7955 L 4427,7955 4427,8132 4251,8132 4251,7955 4427,7955 4251,7955 4251,7779 4251,7955 4427,7955 4427,7779"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id236" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11650ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4430,7778 L 4430,7601 4606,7601 4783,7601 4783,7778 4606,7778 4606,7954 4606,7778 4606,7954 4430,7954 4430,7778 Z"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id237" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11700ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4430,7777 L 4430,7953 4430,7777 4606,7777 4606,7953 4430,7953 4430,8130 4430,7953 4430,8130 4430,7953 4430,8130"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id238" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11750ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4430,8130 L 4430,8306 4606,8306 4606,8483 4783,8483 4959,8483 4959,8659 4783,8659 4783,8483 4606,8483 4430,8483"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id239" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11800ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 4430,8485 L 4430,8309 4253,8309 4430,8309 4253,8309 4253,8132 4077,8132 3900,8132 3900,8309 3900,8485 3724,8485"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id240" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11850ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3723,8485 L 3723,8661 3899,8661 3723,8661 3546,8661 3546,8838 3370,8838 3546,8838 3723,8838 3723,9014 3899,9014"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id241" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11900ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3900,9012 L 3724,9012 3547,9012 3547,8836 3724,8836 3547,8836 3547,9012 3547,8836 3371,8836 3371,8659 3547,8659"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id242" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="11950ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3548,8660 L 3372,8660 3195,8660 3195,8836 3195,8660 3195,8483 3195,8307 3019,8307 3019,8130 3019,7954 3019,8130"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id243" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="12000ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 3018,8130 L 2842,8130 2842,8306 2842,8483 2665,8483 2665,8659 2665,8483 2489,8483 2489,8306 2312,8306 2312,8483"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id244" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="12050ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 2313,8485 L 2313,8661 2313,8485 2137,8485 2313,8485 2313,8661 2313,8485 2313,8661 2137,8661 2137,8838 1960,8838"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id245" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="12100ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 1958,8838 L 1958,9014 1958,9191 1782,9191 1782,9014 1958,9014 1782,9014 1782,9191 1605,9191 1605,9367 1605,9544"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id246" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="12150ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 1607,9542 L 1607,9718 1607,9542 1431,9542 1254,9542 1254,9365 1431,9365 1607,9365 1607,9542 1607,9365 1607,9189"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id247" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="12200ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 1607,9190 L 1431,9190 1254,9190 1431,9190 1431,9014 1431,8837 1431,8661 1254,8661 1254,8484 1078,8484 1078,8308"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id248" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="12250ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 1076,8309 L 900,8309 900,8132 900,8309 723,8309 723,8485 723,8309 900,8309 900,8132 723,8132 900,8132"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id249" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="12300ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 902,8130 L 902,8306 1079,8306 1255,8306 1079,8306 902,8306 726,8306 549,8306 373,8306 373,8130 549,8130"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id250" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="12350ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 547,8130 L 547,7954 370,7954 370,7777 194,7777 194,7601 194,7424 370,7424 194,7424 194,7248 194,7072"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id251" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="12400ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 194,7073 L 18,7073 194,7073 194,7250 371,7250 371,7426 547,7426 547,7250 547,7073 371,7073 371,6897"/>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.PolyLineShape">
+       <g id="id252" opacity="0"><animate attributeName="opacity" from="0" to="100" begin="12450ms" dur="1ms" fill="freeze"/>
+        <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" d="M 373,6895 L 549,6895 549,7071 373,7071 549,7071 726,7071 902,7071 1079,7071 902,7071 902,7248 902,7424"/>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

@@ -121,7 +121,7 @@ np.finfo(np.float32)
 
 One lesson from this is that taking small differences between numbers is a potential source of rounding error, as in this somewhat mean exam question
 
-![](assets/ia-question.png)
+![](../assets/ia-question.png)
 
 ::: {.callout-tip collapse="true"}
 # Solution

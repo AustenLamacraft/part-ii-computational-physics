@@ -1,4 +1,5 @@
 ---
+title: Getting going
 number-sections: false
 format:
   revealjs: 
@@ -7,6 +8,7 @@ format:
     center: true
     auto-stretch: false
     html-math-method: mathjax
+    preview-links: true
 ---
 
 # Big questions...
@@ -170,7 +172,7 @@ print("Hello world!")
 
 - Tab completion: hit `tab` to autocomplete. Particularly useful for viewing all properties or methods of an object:
 
-![](assets/tab-complete.gif){.border}
+![](../assets/tab-complete.gif){.border}
 
 - Typing `?obj` or `obj?` prints detailed information about the object `obj` (`??` provides additional detail)
 

@@ -1,4 +1,4 @@
-# Part II Computation Physics
+# Part II Computational Physics
 
 This repository holds the resources for the Part II Computational Physics
 run by Professor Austen Lamacraft at Cavendish Laboratory, University of Cambridge.

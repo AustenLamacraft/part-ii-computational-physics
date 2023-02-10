@@ -1,7 +1,7 @@
 ---
 title: Monte Carlo methods
 resources:
-  - "assets/ising.py"
+  - "../assets/ising.py"
 ---
 
 Many physical phenomena, notably those falling within the domains of statistical mechanics and quantum theory, depend in an essential way on *randomness*. The simulation of these phenomena therefore requires algorithms that incorporate random (or pseudo-random) elements in the most efficient way.
@@ -94,9 +94,52 @@ In terms of integration, you can think of this as a way to compute the integral 
 
 Although it's a silly method, this does illustrate one important feature of Monte Carlo methods in general: that the relative error with $N$ samples is typically $\propto N^{-1/2}$ (thus at the 1% level for $10^4$ samples) because the variance of a sum of $N$ [iid](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables) variables is $\propto N^{1/2}$.
 
-<!-- TODO General setting. Importance sampling -->
+The general setting of Monte Carlo integration is as follows. Suppose we have a multidimensional integral to evaluate over some domain $D$
 
-Monte Carlo integration comes into its own for high dimensional problems. For low dimensional integrals the quadrature methods in [`scipy.integrate`](https://docs.scipy.org/doc/scipy/tutorial/integrate.html) are preferable.
+$$
+I(f,D) = \int_D f(\mathbf{x}) d\mathbf{x}
+$$
+
+If we can sample points uniformly within $D$, then an estimate for the integral is
+
+$$
+I(f,D) = \frac{V_D}{N}\sum_{i=1}^N f(\mathbf{x}_i)
+$$
+
+where $N$ is the number of samples and $V_D$ is the (hyper-)volume of $D$. Why does this work? Because the uniform distribution has constant probability density $1/V_D$ so the average of $f(\mathbf{x}_i)$ with respect to this uniform distribution is simply related to the integral we are trying to calculate
+
+$$
+\bar f = \frac{1}{V_D}\int f(\mathbf{x})d\mathbf{x}.
+$$
+
+By taking many samples and averaging $f(\mathbf{x}_i)$ we can estimate this average. In the simple example that we started with $f(\mathbf{x})$ would be a "top hat" function that is one inside the circle. As in that example, the relative error is $\propto N^{-1/2}$, whatever the dimension. 
+
+For this reason Monte Carlo integration comes into its own for high dimensional problems. For low dimensional integrals the quadrature methods in [`scipy.integrate`](https://docs.scipy.org/doc/scipy/tutorial/integrate.html) are preferable:
+
+```{python}
+from scipy import integrate
+integrate.quadrature(np.cos, 0, np.pi / 2)
+```
+
+As for ODE solvers, there is a lot of detail in the implementation to do with how intervals are chosen, and so on.
+
+## Importance sampling
+
+Monte Carlo integration is not restricted to sampling from the uniform distribution. If our function $f(\mathbf{x})$ has regions where it is very small, there is not much point in sampling its value there. If there is a distribution we can sample from where samples tend to fall in the region where $f(\mathbf{x})$ is large, it will probably be better to use that.  In this case we calculate the weighted average using the probability density $p_\text{sample}(\mathbf{x})$ from where the samples are drawn
+
+$$
+I(f,D, p_\text{sample}) = \frac{1}{N}\sum_{i=1}^N \frac{f(\mathbf{x}_i)}{p_\text{sample}(\mathbf{x}_i)}
+$$
+
+The reason this works is that the average of one of the terms in the sum is just the integral we want
+
+$$
+\overline{\frac{f(\mathbf{x})}{p_\text{sample}(\mathbf{x})}} = \int \frac{f(\mathbf{x})}{p_\text{sample}(\mathbf{x})} p_\text{sample}(\mathbf{x})d\mathbf{x} = \int f(\mathbf{x})d\mathbf{x}
+$$
+
+The benefit of this approach is that it can lead to a drastic reduction in the variance of the estimator. To take an extreme example: if $f(\mathbf{x})\propto p_\text{sample}(\mathbf{x})$, and even a single sample leads to perfect estimate with no uncertainty! This observation is not useful, if you knew $p_\text{sample}(\mathbf{x})$ you would know the constant factor by which $f(\mathbf{x})$ differs, but it illustrates the point about variance reduction.
+
+This general technique is called [Importance sampling](https://en.wikipedia.org/wiki/Importance_sampling). To apply the above approach, one needs both an explicit form for $p_\text{sample}(\mathbf{x})$ and the ability to generate samples, which is rather restrictive. There are many elaborations of the basic idea, however, including multiple distributions as well as adaptive sampling to "discover" the right region for sampling. 
 
 ## Markov chain Monte Carlo {#sec-mcmc}
 
@@ -104,10 +147,11 @@ Suppose you want to generate configurations at random (i.e. with a uniform distr
 
 [^2]: This is in fact the original motivation for the development of the technique, see @metropolis1953equation.
 
-![Coins in a shoe box (gas of hard disks). From @krauth1998introduction](assets/hard-spheres.png)
+![Coins in a shoe box (gas of hard disks). From @krauth1998introduction](../assets/hard-spheres.png)
 
-It's harder than it looks! The first guess you might have is to start adding coins at random, and if you get an overlap, try again until you don't. Obviously this will become inefficient as the box fills up, and most attempts fail. *Worse, it doesn't in fact yield a uniform distribution!*
+It's harder than it looks! The first guess you might have is to start adding coins at random, and if you get an overlap, try again until you don't. Obviously this will become inefficient as the box fills up, and most attempts fail. *Worse, it doesn't in fact yield a uniform distribution!* [^3]
 
+[^3]: For a discussion of what goes wrong in a simple discrete model of rods in 1D, see Section 2.2.1 of @krauth2006statistical.
 <!-- TODO Why not? See @widom1966random for an explanation -->
 
 Here's an approach that works:
@@ -121,7 +165,7 @@ Here's an approach that works:
 4.  Repeat 2. and 3. many times.
 :::
 
-![Accepted and rejected moves for hard disks. From ](assets/metropolis.png).
+![Accepted and rejected moves for hard disks. From ](../assets/metropolis.png).
 
 This is the simplest example of the [Metropolis--Hastings algorithm](https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm), the first Markov chain Monte Carlo (MCMC) algorithm.
 
@@ -175,9 +219,9 @@ $$
 \boldsymbol{\pi} = \mathsf{P}\boldsymbol{\pi}.
 $$ {#eq-stat}
 
-In other words, it is an eigenvector of $\mathsf{P}$ with eigenvalue one. This property is guaranteed by the [Perron--Frobenius theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem) [^3].
+In other words, it is an eigenvector of $\mathsf{P}$ with eigenvalue one. This property is guaranteed by the [Perron--Frobenius theorem](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem) [^4].
 
-[^3]: There is an important caveat. If there are two or more subsets of the state space that are not connected by finite transition probabilities, the probability distribution in each subset evolves independently and there is not a unique stationary distribution. When there *is*, we say that the Markov chain is **ergodic** and the corresponding transition matrix is **irreducible**.
+[^4]: There is an important caveat. If there are two or more subsets of the state space that are not connected by finite transition probabilities, the probability distribution in each subset evolves independently and there is not a unique stationary distribution. When there *is*, we say that the Markov chain is **ergodic** and the corresponding transition matrix is **irreducible**.
 
 Thus $\mathsf{P}$ determines $\boldsymbol{\pi}$. MCMC turns this idea on its head and asks: if there is some $\boldsymbol{\pi}$ that I would like to generate samples from, can I find a $\mathsf{P}$ that has it as a stationary distribution?
 
@@ -244,9 +288,9 @@ Transition matrix -->
 ```
 # Statistical mechanics {#sec-statmech}
 
-Statistical mechanics is a natural source of such complex distributions in physics. Remember the fundamental principle that the probability of finding a statistical mechanical system in a microstate $\mathbf{x}$ [^4] with energy $\mathcal{E}(\mathbf{x})$ is
+Statistical mechanics is a natural source of such complex distributions in physics. Remember the fundamental principle that the probability of finding a statistical mechanical system in a microstate $\mathbf{x}$ [^5] with energy $\mathcal{E}(\mathbf{x})$ is
 
-[^4]: For a classical gas of point particles this would correspond to specifying all the positions and velocities, for example.
+[^5]: For a classical gas of point particles this would correspond to specifying all the positions and velocities, for example.
 
 $$
 p(\mathbf{x})=\frac{\exp\left[-\beta \mathcal{E}(\mathbf{x})\right]}{Z},
@@ -254,7 +298,7 @@ $$ {#eq-boltzmann}
 
 where $Z$ is a normalizing constant called the partition function and $\beta=1/k_\text{B}T$, where $T$ is the temperature and $k_\text{B}$ is Boltzmann's constant.
 
-The *central problem* of statistical mechanics is computing ensemble averages of physical quantities, and the *principle difficulty* is the intractability of those averages for large systems. For example, if we are dealing with a classical gas, the configuration space point $\mathbf{x}$ corresponds to the positions of each of the gas molecules $\mathbf{x}=(\mathbf{x}_1,\ldots \mathbf{x}_N)$ and an average is a $3N$-dimensional integral. The only situation in which this integral is tractable is when the gas is noninteracting (ideal), in which case the energy function takes the form
+The *central problem* of statistical mechanics is computing ensemble averages of physical quantities, and the *principal difficulty* is the intractability of those averages for large systems. For example, if we are dealing with a classical gas, the configuration space point $\mathbf{x}$ corresponds to the positions of each of the gas molecules $\mathbf{x}=(\mathbf{x}_1,\ldots \mathbf{x}_N)$ and an average is a $3N$-dimensional integral. The only situation in which this integral is tractable is when the gas is noninteracting (ideal), in which case the energy function takes the form
 
 $$
 \mathcal{E}(\mathbf{x}) = \sum_{n=1}^N \mathcal{E}_1(\mathbf{x}_n)
@@ -295,9 +339,9 @@ $$
 
 where $\Delta \mathcal{E}$ is the energy difference between two configurations.
 
-One alternative to Metropolis is the **Heat bath algorithm** (or [Glauber dynamics](https://en.wikipedia.org/wiki/Glauber_dynamics) or [Gibbs sampling](https://en.wikipedia.org/wiki/Gibbs_sampling)) [^5]. The idea behind the name is that, since we can calculate the influence of the spin's environment (the "bath"), we can just choose the spin's orientation with the corresponding probabilities. Since there are only two probabilities the ratio is all we need and we get
+One alternative to Metropolis is the **Heat bath algorithm** (or [Glauber dynamics](https://en.wikipedia.org/wiki/Glauber_dynamics) or [Gibbs sampling](https://en.wikipedia.org/wiki/Gibbs_sampling)) [^6]. The idea behind the name is that, since we can calculate the influence of the spin's environment (the "bath"), we can just choose the spin's orientation with the corresponding probabilities. Since there are only two probabilities the ratio is all we need and we get
 
-[^5]: Multiple names are sign that a technique was re-discovered by different communities who don't talk to each other.
+[^6]: Multiple names are sign that a technique was re-discovered by different communities who don't talk to each other.
 
 $$
 p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}}.
@@ -308,13 +352,13 @@ The algorithm is then:
 ::: {#exm-heat-bath}
 # Heat bath algorithm
 
-1.  Pick a spin $n$. [^6]
+1.  Pick a spin $n$. [^7]
 2.  Compute $\Delta E$, the energy difference between $\sigma_n=\pm 1$.
 3.  Set $\sigma_n=\pm 1$ with probabilities given by @eq-heat-bath.
 4.  Repeat 1-3 many times
 :::
 
-[^6]: This can be done deterministically (e.g. sequentially or in alternating blocks when the model is defined on a [bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph)) --- which is what is normally called Gibbs sampling --- or at random, which corresponds to Glauber dynamics.
+[^7]: This can be done deterministically (e.g. sequentially or in alternating blocks when the model is defined on a [bipartite graph](https://en.wikipedia.org/wiki/Bipartite_graph)) --- which is what is normally called Gibbs sampling --- or at random, which corresponds to Glauber dynamics.
 
 What happens if we try and come up with more complicated proposals, flipping many spins at once? For Metropolis, the problem is that without a cleverly designed proposal we will be suggesting moves that are likely to be rejected. For the heat bath algorithm, the more spins we flip, the more complicated the evaluation of the corresponding probabilities ($2^n$ outcomes if we flip $n$ spins).
 
@@ -374,7 +418,7 @@ class IsingModel:
 <script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
 ```
 ```{=html}
-<script src = "assets/ising.js"></script>
+<script src = "../assets/ising.js"></script>
 ```
 ::: {#fig-ising}
 ::: {#ising-simulation align="center"}

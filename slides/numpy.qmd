@@ -7,6 +7,7 @@ format:
     center: true
     auto-stretch: false
     html-math-method: mathjax
+    preview-links: true
 ---
 
 # NumPy and friends
@@ -51,7 +52,7 @@ my_list
 
 - In IPython you can see all the available methods by hitting tab:
 
-![](assets/tab-complete.gif)
+![](../assets/tab-complete.gif)
 
 ---
 
@@ -611,7 +612,7 @@ plt.show()
 ---
 
 ```python
-img = plt.imread('assets/lucian.jpeg')
+img = plt.imread('../assets/lucian.jpeg')
 
 img_tinted = img * [1, 0.55, 1]
 
@@ -634,7 +635,7 @@ img.shape, img.dtype
 ---
 
 ```{python}
-img = plt.imread('assets/lucian.jpeg')
+img = plt.imread('../assets/lucian.jpeg')
 
 img_tinted = img * [1, 0.55, 1]
 
@@ -672,12 +673,12 @@ This is a standard 12 megapixel image
 #| echo: true
 random_matrix_1 = np.random.rand(4, 4)
 random_matrix_2 = np.random.rand(4, 4)
-np.savez("assets/my-matrices", first_matrix=random_matrix_1, second_matrix=random_matrix_2)
-%ls assets
+np.savez("../assets/my-matrices", first_matrix=random_matrix_1, second_matrix=random_matrix_2)
+%ls ../assets
 ```
 
 ```{python}
 #| echo: true
-my_matrix_file = np.load("assets/my-matrices.npz")
+my_matrix_file = np.load("../assets/my-matrices.npz")
 my_matrix_file['first_matrix']
 ```

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Part II Computational Physics – complexity</title>
+<title>Part II Computational Physics - Algorithms and computational complexity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,6 +112,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/fourier.html" rel="next">
+<link href="../notes/monte-carlo.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -151,7 +153,7 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Part II Computational Physics</h1>
+      <h1 class="quarto-secondary-nav-title">Algorithms and computational complexity</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -219,6 +221,16 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../notes/complexity.html" class="sidebar-item-text sidebar-link active">Algorithms and computational complexity</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/fourier.html" class="sidebar-item-text sidebar-link">Fast Fourier transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../notes/references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
@@ -234,7 +246,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Big questions…</a>
+  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Getting going</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -245,6 +257,16 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/numbers-and-odes.html" class="sidebar-item-text sidebar-link">Floating point and ODEs</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/monte-carlo.html" class="sidebar-item-text sidebar-link">Monte Carlo methods</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
   </div>
 </li>
       </ul>
@@ -258,34 +280,45 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#algorithms-and-computational-complexity" id="toc-algorithms-and-computational-complexity" class="nav-link active" data-scroll-target="#algorithms-and-computational-complexity"><span class="toc-section-number">1</span>  Algorithms and computational complexity</a>
+  <li><a href="#first-example-multiplication" id="toc-first-example-multiplication" class="nav-link active" data-scroll-target="#first-example-multiplication"><span class="toc-section-number">1</span>  First example: multiplication</a></li>
+  <li><a href="#defining-complexity" id="toc-defining-complexity" class="nav-link" data-scroll-target="#defining-complexity"><span class="toc-section-number">2</span>  Defining complexity</a>
   <ul class="collapse">
-  <li><a href="#first-example-multiplication" id="toc-first-example-multiplication" class="nav-link" data-scroll-target="#first-example-multiplication"><span class="toc-section-number">1.1</span>  First example: multiplication</a></li>
-  <li><a href="#defining-complexity" id="toc-defining-complexity" class="nav-link" data-scroll-target="#defining-complexity"><span class="toc-section-number">1.2</span>  Defining complexity</a>
+  <li><a href="#best-worst-average" id="toc-best-worst-average" class="nav-link" data-scroll-target="#best-worst-average"><span class="toc-section-number">2.1</span>  Best / worst / average</a></li>
+  <li><a href="#polynomial-complexity" id="toc-polynomial-complexity" class="nav-link" data-scroll-target="#polynomial-complexity"><span class="toc-section-number">2.2</span>  Polynomial complexity</a></li>
+  <li><a href="#better-than-linear" id="toc-better-than-linear" class="nav-link" data-scroll-target="#better-than-linear"><span class="toc-section-number">2.3</span>  Better than linear?</a></li>
+  <li><a href="#exponential-complexity" id="toc-exponential-complexity" class="nav-link" data-scroll-target="#exponential-complexity"><span class="toc-section-number">2.4</span>  Exponential complexity</a></li>
+  </ul></li>
+  <li><a href="#sorted" id="toc-sorted" class="nav-link" data-scroll-target="#sorted"><span class="toc-section-number">3</span>  Sorted</a>
   <ul class="collapse">
-  <li><a href="#best-worst-average" id="toc-best-worst-average" class="nav-link" data-scroll-target="#best-worst-average"><span class="toc-section-number">1.2.1</span>  Best / worst / average</a></li>
-  <li><a href="#polynomial-complexity" id="toc-polynomial-complexity" class="nav-link" data-scroll-target="#polynomial-complexity"><span class="toc-section-number">1.2.2</span>  Polynomial complexity</a></li>
-  <li><a href="#better-than-linear" id="toc-better-than-linear" class="nav-link" data-scroll-target="#better-than-linear"><span class="toc-section-number">1.2.3</span>  Better than linear?</a></li>
-  <li><a href="#exponential-complexity" id="toc-exponential-complexity" class="nav-link" data-scroll-target="#exponential-complexity"><span class="toc-section-number">1.2.4</span>  Exponential complexity</a></li>
+  <li><a href="#bubble-sort" id="toc-bubble-sort" class="nav-link" data-scroll-target="#bubble-sort"><span class="toc-section-number">3.1</span>  Bubble sort</a></li>
+  <li><a href="#quicksort" id="toc-quicksort" class="nav-link" data-scroll-target="#quicksort"><span class="toc-section-number">3.2</span>  Quicksort</a></li>
   </ul></li>
-  <li><a href="#examples-of-different-complexities" id="toc-examples-of-different-complexities" class="nav-link" data-scroll-target="#examples-of-different-complexities"><span class="toc-section-number">1.3</span>  Examples of different complexities</a></li>
-  <li><a href="#sorted" id="toc-sorted" class="nav-link" data-scroll-target="#sorted"><span class="toc-section-number">1.4</span>  Sorted</a></li>
-  <li><a href="#the-importance-of-data-structures" id="toc-the-importance-of-data-structures" class="nav-link" data-scroll-target="#the-importance-of-data-structures"><span class="toc-section-number">1.5</span>  The importance of data structures</a></li>
-  <li><a href="#divide-and-conquer" id="toc-divide-and-conquer" class="nav-link" data-scroll-target="#divide-and-conquer"><span class="toc-section-number">1.6</span>  Divide and conquer</a></li>
-  <li><a href="#space-vs.-time-complexity" id="toc-space-vs.-time-complexity" class="nav-link" data-scroll-target="#space-vs.-time-complexity"><span class="toc-section-number">1.7</span>  Space vs.&nbsp;time complexity</a></li>
-  </ul></li>
+  <li><a href="#divide-and-conquer" id="toc-divide-and-conquer" class="nav-link" data-scroll-target="#divide-and-conquer"><span class="toc-section-number">4</span>  Divide and conquer</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Algorithms and computational complexity</h1>
+</div>
 
 
-<section id="algorithms-and-computational-complexity" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Algorithms and computational complexity</h1>
-<section id="first-example-multiplication" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="first-example-multiplication"><span class="header-section-number">1.1</span> First example: multiplication</h2>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="first-example-multiplication" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> First example: multiplication</h1>
 <p>How hard is it to multiply numbers? The bigger they are, the harder it is, as you well know. You also know that computers are very good at multiplying, so once you’ve switched from multiplying numbers yourself to multiplying them on a computer, you may well be tempted to forget about how hard it is. Nevertheless, computers find big numbers harder than small numbers. How much harder?</p>
 <p>If you remember how you learnt to multiply numbers at school, it probably went something like this: <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <table class="table">
@@ -336,8 +369,8 @@ div.csl-indent {
 <p>For <span class="math inline">\(n\)</span> digits we have to perform <span class="math inline">\(n^2\)</span> single digit multiplications. We then have to add together the <span class="math inline">\(n\)</span> resulting <span class="math inline">\(n\)</span>-digit numbers. This is another <span class="math inline">\(n^2\)</span> operations. Thus the overall number of operations is proportional to <span class="math inline">\(n^2\)</span>: doubling the number of digits will make the problem four times harder.</p>
 <p>Exactly how long this takes to perform in your head or on a computer will depend on many things, such as how long it takes you to multiply two digits, or get the previous values out of memory (or read them of the page), but you can’t get away from the basic quadratic scaling law of this algorithm.</p>
 </section>
-<section id="defining-complexity" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="defining-complexity"><span class="header-section-number">1.2</span> Defining complexity</h2>
+<section id="defining-complexity" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Defining complexity</h1>
 <p>When computer scientists talk about the complexity of a problem, this question of <em>scaling of the number of steps involved</em> is what they have in mind. The complexity of any particular task (or calculation) may vary considerably — evaluating <span class="math inline">\(100\times 100\)</span> is considerably easier than the general case, for example — so instead we ask about how a particular <em>general</em> algorithm performs on a <em>class</em> of tasks. Such a class is what computer scientists mean when they talk about a problem: multiplication of <span class="math inline">\(n\)</span> digit numbers is a <em>problem</em>, and any particular pair of <span class="math inline">\(n\)</span> digit numbers represents an <em>instance</em> of that problem. What we discussed above is a particular algorithm for multiplication that has <em>quadratic complexity</em>, or “<span class="math inline">\(O(n^2)\)</span> complexity” (say “order <span class="math inline">\(n\)</span> squared”).</p>
 <p>This description only keeps track of how the difficulty scales with the size of the problem. There are various reasons why this level of detail is important:</p>
 <ol type="1">
@@ -345,8 +378,8 @@ div.csl-indent {
 <li><p>Likewise we don’t have to worry about how the algorithm is implemented exactly in software or hardware, what language we use, and so on.</p></li>
 <li><p>Inevitably, we always want to look at harder and harder problems with bigger and bigger <span class="math inline">\(n\)</span> (whatever <span class="math inline">\(n\)</span> means for the problem at hand). If a simulation finishes for a system of length 10 we immediately want to run it again for length 20, and so on. It then becomes important to know whether our code is going to run for twice as long, four times as long, or <span class="math inline">\(2^{10}\)</span> times as long (exponential scaling).</p></li>
 </ol>
-<section id="best-worst-average" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="best-worst-average"><span class="header-section-number">1.2.1</span> Best / worst / average</h3>
+<section id="best-worst-average" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="best-worst-average"><span class="header-section-number">2.1</span> Best / worst / average</h2>
 <p>Even when we focus on a problem in the above sense we still have to be careful in defining the complexity of an algorithm. In general we can characterize three complexities: best case, worse case, and average case. To see the difference between these three consider <em>search</em>, the very simple problem of finding an item in an (unordered) list of length <span class="math inline">\(n\)</span>. How hard is this? You have to check every item until you find the one you are looking for, so this suggests the complexity is <span class="math inline">\(O(n)\)</span>. You could be lucky and get it first try, however, or within the first ten tries. This means the <em>best case complexity</em> of search is <span class="math inline">\(O(1)\)</span>: it doesn’t increase with the size of the problem. The worst thing that could happen is that the sought item is last: the <em>worst case complexity</em> is <span class="math inline">\(O(n)\)</span>. On average, you’ll find your item in the middle of the list on attempt <span class="math inline">\(\sim n/2\)</span>, so the <em>average case complexity</em> is <span class="math inline">\(O(n/2)\)</span>. But this is the same as <span class="math inline">\(O(n)\)</span> (constants don’t matter)</p>
 <p>Thus for <em>linear search</em> we have:</p>
 <table class="table">
@@ -424,8 +457,8 @@ div.csl-indent {
 </div>
 <p>The “experimental noise” in these plots arises because we don’t have full control over exactly what our computer is doing at any moment: there are lots of other processes running. Also, it takes a while to reach the linear regime: there is an overhead associated with starting the program that represents a smaller fraction of the overall run time as <span class="math inline">\(n\)</span> increases.</p>
 </section>
-<section id="polynomial-complexity" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="polynomial-complexity"><span class="header-section-number">1.2.2</span> Polynomial complexity</h3>
+<section id="polynomial-complexity" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="polynomial-complexity"><span class="header-section-number">2.2</span> Polynomial complexity</h2>
 <p>Since you’ve already learnt a lot of algorithms in mathematics (even if you don’t think of them this way) it’s very instructive to revisit them through the lens of computational complexity.</p>
 <p>Multiplying a <span class="math inline">\(n\)</span>-dimensional vector by a <span class="math inline">\(n\times n\)</span> matrix?</p>
 <p><span class="math display">\[
@@ -446,9 +479,9 @@ M_1\left(M_2\cdots \left(M_n \mathbf{v}\right)\right)
 <p><a href="https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations">Wikipedia has a nice summary</a> of computational complexity of common mathematical operations.</p>
 <p>If an algorithm has complexity <span class="math inline">\(O(n^p)\)</span> for some <span class="math inline">\(p\)</span> it is generally described as having <em>polynomial complexity</em>. A useful heuristic (which is not 100% reliable) is that if you have <span class="math inline">\(p\)</span> nested loops that range over <span class="math inline">\(\sim n\)</span>, the complexity is <span class="math inline">\(O(n^p)\)</span> (think how you would implement matrix-vector and matrix-matrix multiplication).</p>
 </section>
-<section id="better-than-linear" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="better-than-linear"><span class="header-section-number">1.2.3</span> Better than linear?</h3>
-<p>It seems obvious that for search you can’t do better than linear: you have to look at roughly half the items before you should expect to find the one you’re looking for <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. What if the list is <em>ordered</em>? Any order will do: numerical for numbers, or lexicographic for strings. This extra structure allows us to use an algorithm called <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a> that you may have seen before [^4]. The idea is pretty intuitive: look in the middle of the list and see if the item you seek should be in the top half or bottom half. Take the relevant half and divide it in half again to determine which quarter of the list your item is in, and so on. Here’s how it looks in code:</p>
+<section id="better-than-linear" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="better-than-linear"><span class="header-section-number">2.3</span> Better than linear?</h2>
+<p>It seems obvious that for search you can’t do better than linear: you have to look at roughly half the items before you should expect to find the one you’re looking for <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. What if the list is <em>ordered</em>? Any order will do: numerical for numbers, or lexicographic for strings. This extra structure allows us to use an algorithm called <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a> that you may have seen before <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. The idea is pretty intuitive: look in the middle of the list and see if the item you seek should be in the top half or bottom half. Take the relevant half and divide it in half again to determine which quarter of the list your item is in, and so on. Here’s how it looks in code:</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binary_search(x, val):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Peform binary search on x to find val. If found returns position, otherwise returns None."""</span></span>
@@ -523,7 +556,7 @@ b^4 &amp;= b^2\cdot b^2\\
 b^4 &amp;= b^4\cdot b^4
 \end{align}
 \]</span></p>
-<p>We only have to do <em>three</em> multiplications! Exponentiation by this method is <span class="math inline">\(O(\log n)\)</span>. To handle powers that aren’t a power of <span class="math inline">\(2\)</span>, we do the following</p>
+<p>We only have to do <em>three</em> multiplications! Exponentiation by this method (called <a href="https://en.wikipedia.org/wiki/Exponentiation_by_squaring">exponentiation by squaring</a>) is <span class="math inline">\(O(\log n)\)</span>. To handle powers that aren’t a power of <span class="math inline">\(2\)</span>, we do the following</p>
 <p><span class="math display">\[
 b^n = \begin{cases}
     b^{n/2} \cdot b^{n/2} &amp; \text{if $n$ even} \\
@@ -558,10 +591,10 @@ b^n = \begin{cases}
 <pre><code>RecursionError: maximum recursion depth exceeded in comparison</code></pre>
 </div>
 </div>
-<p>One interesting thing about exponentiation is that while it can be done efficiently, the inverse — finding the logarithm — cannot. To make this more precise one has to work with modular arithmetic i.e.&nbsp;do all operations modulo some number <span class="math inline">\(m\)</span>. Then for <span class="math inline">\(b, y=0,\ldots m-1\)</span> we are guaranteed that there is some number <span class="math inline">\(x\)</span> such that <span class="math inline">\(b^x=y\)</span> (this is called the <a href="https://en.wikipedia.org/wiki/Discrete_logarithm">discrete logarithm</a>). Finding this number is hard: there is no known method for computing it efficiently. Certain <a href="https://en.wikipedia.org/wiki/Public-key_cryptography">public-key cryptosystems</a> are based on the difficulty of the discrete log (for carefully chosen <span class="math inline">\(b\)</span>, <span class="math inline">\(m\)</span> and <span class="math inline">\(y\)</span>).</p>
+<p>One interesting thing about exponentiation is that while it can be done efficiently, the inverse — finding the logarithm — cannot. To make this more precise one has to work with modular arithmetic e.g.&nbsp;do all operations modulo some prime number <span class="math inline">\(p\)</span>. Then for <span class="math inline">\(b, y=0,\ldots p-1\)</span> we are guaranteed that there is some number <span class="math inline">\(x\)</span> such that <span class="math inline">\(b^x=y\)</span> (this is called the <a href="https://en.wikipedia.org/wiki/Discrete_logarithm">discrete logarithm</a>). Finding this number is hard: there is no known method for computing it efficiently. Certain <a href="https://en.wikipedia.org/wiki/Public-key_cryptography">public-key cryptosystems</a> are based on the difficulty of the discrete log (for carefully chosen <span class="math inline">\(b\)</span>, <span class="math inline">\(p\)</span> and <span class="math inline">\(y\)</span>).</p>
 </section>
-<section id="exponential-complexity" class="level3" data-number="1.2.4">
-<h3 data-number="1.2.4" class="anchored" data-anchor-id="exponential-complexity"><span class="header-section-number">1.2.4</span> Exponential complexity</h3>
+<section id="exponential-complexity" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="exponential-complexity"><span class="header-section-number">2.4</span> Exponential complexity</h2>
 <p>While we’re on the subject of recursion, here’s an example that’s often used to introduce the topic: calculating the <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci numbers</a>. Remember that the Fibonacci numbers are this sequence</p>
 <p><span class="math display">\[
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ...
@@ -588,72 +621,296 @@ b^n = \begin{cases}
 <p>The first two terms are the base cases (we need two because the recursion refers to two earlier values). While this looks quite cool it’s actually a terrible way of calculating <span class="math inline">\(\text{Fib}(n)\)</span>. Look at the picture below which illustrates the function calls that are made during the evaluation of <span class="math inline">\(\text{Fib}(5)\)</span>. There are huge amounts of duplication!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="assets/fibonacci.png" class="img-fluid figure-img"></p>
+<p><img src="../assets/fibonacci.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">The recursive tree for calculating Fibonacci numbers. Source: <a href="https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/index.html">SICP</a></figcaption><p></p>
 </figure>
 </div>
-<p>The complexity of this algorithm actually grows <em>exponentially</em> with <span class="math inline">\(n\)</span>. Because of the branching structure the algorithm is <span class="math inline">\(O(2^n)\)</span>. Calculating the Fibonacci number the sensible way (i.e.&nbsp;the way you do it in your head) gives an <span class="math inline">\(O(n)\)</span> algorithm.</p>
+<p>The complexity of this algorithm actually grows <em>exponentially</em> with <span class="math inline">\(n\)</span>. Because of the branching structure the algorithm is <span class="math inline">\(O(2^n)\)</span>. Calculating the Fibonacci number the sensible way (i.e.&nbsp;the way you do it in your head) gives an <span class="math inline">\(O(n)\)</span> algorithm. Formalizing this approach gives rise to the matrix recurrence relation:</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+\text{Fib}(n+2) \\
+\text{Fib}(n+1)
+\end{pmatrix} =
+\begin{pmatrix}
+1 &amp; 1 \\
+1 &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+\text{Fib}(n+1) \\
+\text{Fib}(n)
+\end{pmatrix}.
+\]</span></p>
+<p>This suggests an even better way of calculating the Fibonacci numbers, since</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+\text{Fib}(n+1) \\
+\text{Fib}(n)
+\end{pmatrix} =
+\begin{pmatrix}
+1 &amp; 1 \\
+1 &amp; 0
+\end{pmatrix}^n
+\begin{pmatrix}
+1 \\
+0
+\end{pmatrix},
+\]</span></p>
+<p>finding the <span class="math inline">\((n+1)\)</span>th number involves the <span class="math inline">\(n\)</span>th power of a matrix. But now we could use exponentiation by squaring, yielding an <span class="math inline">\(O(\log n)\)</span> algorithm!</p>
 <p>It would be nice if exponential complexity were only ever the result of poor choices of algorithm. Unfortunately, this is not the case. It’s possible to come up with problems that definitely <em>can’t</em> be solved faster than exponentially: the <a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi">Towers of Hanoi</a> is one famous example. Closer to the hearts of physicists, the simulation of a quantum system with <span class="math inline">\(n\)</span> qubits (a qubit — or <em>quantum bit</em> — is just a computer sciencey word for a spin-1/2) is believed to have complexity <span class="math inline">\(O(2^n)\)</span>, which is a big part of the hype surrounding quantum computers.</p>
 <p>There are problems whose solution, once found, is easy to check. The discrete logarithm we mentioned above is one example. Checking involves exponentiation, and exponentiation is <span class="math inline">\(O(\log n)\)</span> in the size of the numbers, or <span class="math inline">\(O(n)\)</span> in the number of digits. The question of whether efficient (i.e.&nbsp;polynomial) algorithms <em>always</em> exist for problems which are easy to check is in fact <em>the</em> outstanding problem in computer science: it’s called <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">P <em>vs</em> NP</a>, where P is the class of problems with polynomial time algorithms and NP is the class whose solution can be checked in polynomial time. The question is: are these two classes the same or do they differ? That is, are there problems in NP that aren’t in P? I think it’s fair to say that most people with an opinion on the matter think so, but the proof is lacking (and worth a million dollars).</p>
 </section>
 </section>
-<section id="examples-of-different-complexities" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="examples-of-different-complexities"><span class="header-section-number">1.3</span> Examples of different complexities</h2>
-<p>A major goal in algorithm design</p>
-<p>Hard to overstate how big a deal it is to find a simple algorithm</p>
-<p>Summary of asymptotic notation</p>
-<p>XKCD plots</p>
+<section id="sorted" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Sorted</h1>
+<p>If an improved algorithm takes us from exponential to polynomial complexity it’s a huge deal. It means that even moderately sized problems that were intractable become tractable. But even improvements in the <em>exponent</em> of polynomial scaling make a huge difference.</p>
+<p>One problem that illustrates nicely the benefits of such improvements is <em>sorting</em>, turning a list or array into a sorted list (conventionally in <em>ascending</em> order):</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>random_array <span class="op">=</span> np.random.randint(<span class="dv">0</span>,<span class="dv">100</span>, <span class="dv">10</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(random_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>[0, 13, 23, 32, 37, 39, 65, 85, 91, 99]</code></pre>
+</div>
+</div>
+<p>But what is Python actually <em>doing</em>? There are many algorithms: the <a href="https://en.wikipedia.org/wiki/Sorting_algorithm">Wikipedia page on sorting</a> is particularly extensive. Here we’ll explore just a couple to get a sense of the variety of algorithms and their possible complexities. The site <a href="https://www.sortvisualizer.com/">sort visualizer</a> animates the action of various algorithms. It’s fun to try and figure out what the algorithm is from its animation.</p>
+<section id="bubble-sort" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="bubble-sort"><span class="header-section-number">3.1</span> Bubble sort</h2>
+<p>This one is very simple: repeatedly pass through the array, comparing neighbouring pairs of elements and switching them if they are out of order. After the first pass the largest element is in the rightmost position (largest index). That means the second pass can finish before reaching the last element, as we know that it is already in place. After the second pass the final two elements are correctly ordered. Continue in this way, stopping one place earlier each time, until the array is sorted.</p>
+<p>Here’s a simple implementation: <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bubble_sort(A):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Sort A and return"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> A.copy()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(A)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Swap data if in wrong order</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> A[i] <span class="op">&gt;</span> A[i <span class="op">+</span> <span class="dv">1</span>]:</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                A[i <span class="op">+</span> <span class="dv">1</span>], A[i] <span class="op">=</span> A[i], A[i <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What is the complexity of this algorithm? From the code we can see immediately that there are two nested loops: one to implement each pass and one to loop over the <span class="math inline">\(n-1\)</span> passes. This suggests that the complexity is quadratic i.e.&nbsp;<span class="math inline">\(O(n^2)\)</span>. A numerical check verifies this:</p>
+<div class="cell" data-execution_count="11">
+<details>
+<summary>Code for plot</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array of problem sizes we want to test (powers of 2)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>np.arange(<span class="dv">2</span>, <span class="dv">10</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an array of random numbers</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.rand(N[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Time bubble sort on arrays of different lengths  </span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> []</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> N:</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="op">%</span>timeit <span class="op">-</span>q <span class="op">-</span>n2 <span class="op">-</span>r2 <span class="op">-</span>o bubble_sort(x[:n])</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    times.append(t.best)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot bubble sort timing</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, times, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'bubble sort'</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Show reference line of O(n^2)</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, <span class="fl">1e-6</span><span class="op">*</span>N<span class="op">**</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'$O(n^2)$'</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and legend</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$t$ (s)'</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="complexity_files/figure-html/cell-12-output-1.png" width="600" height="424"></p>
+</div>
+</div>
+<p>If you watch the <a href="https://www.sortvisualizer.com/bubblesort/">animation of bubble sort</a> you might get a bit bored, as it <em>slowly</em> carries the next largest element to the end. Can we do better?</p>
 </section>
-<section id="sorted" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="sorted"><span class="header-section-number">1.4</span> Sorted</h2>
-</section>
-<section id="the-importance-of-data-structures" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="the-importance-of-data-structures"><span class="header-section-number">1.5</span> The importance of data structures</h2>
-<p>Let’s look again at the code for the Wolff algorithm</p>
-</section>
-<section id="divide-and-conquer" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="divide-and-conquer"><span class="header-section-number">1.6</span> Divide and conquer</h2>
-<p><a href="https://en.wikipedia.org/wiki/Karatsuba_algorithm">Karatsuba algorithm</a> nice story</p>
-<p><a href="http://www.cs.ru/personal/karatsuba/divcen.pdf">Karatsuba’s account</a></p>
-<p><span class="citation" data-cites="karatsuba1995complexity">Karatsuba (<a href="#ref-karatsuba1995complexity" role="doc-biblioref">1995</a>)</span> contains a nice account of the discovery of his algorithm (<a href="http://www.cs.ru/personal/karatsuba/divcen.pdf">online version</a>)</p>
-<p>Karatsuba algo</p>
-<p>Big O</p>
-<p><a href="https://www.sortvisualizer.com/">Visualization of sorting algorithms</a></p>
-<p>Simple example from Leetcode</p>
-<p>Analaysis of algorithms</p>
-<p>Example of finding a unique item in list</p>
-<p>Nice examples from Garth Wells</p>
-<p>https://github.com/CambridgeEngineering/PartIA-Computing-Michaelmas/blob/main/11%20Complexity.ipynb</p>
-<p>Examples of multiplication</p>
-<p>Breadth first and depth first</p>
-<p>Importance of choosing a data structure to match algorithm</p>
-<p>Examples: queue in Wolff. Was there a Numpy-ish way to do this faster? Priority queue in waiting time algo</p>
-<p>FFT uses</p>
-<p>https://en.wikipedia.org/wiki/Orthogonal_frequency-division_multiplexing</p>
-<p>Needleman-Wunsch</p>
-<p>Examples</p>
+<section id="quicksort" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="quicksort"><span class="header-section-number">3.2</span> Quicksort</h2>
+<p>Yes! It turns out that there are number of algorithms that do considerably better than quadratic. How fast <em>could</em> a sorting algorithm be? It’s clear that it can’t be faster than <span class="math inline">\(O(n)\)</span>: at the very least one has to look at each element. While one can’t actually achieve linear scaling, there are many algorithms which achieve the next best thing: <span class="math inline">\(O(n\log n)\)</span>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Quicksort">Quicksort</a> is one such algorithm. It uses two key ideas:</p>
 <ol type="1">
-<li>Multiplication <a href="https://en.wikipedia.org/wiki/Multiplication_algorithm#Karatsuba_multiplication">Karatsuba</a></li>
-<li>Binary search</li>
-<li>Linear algebra</li>
-<li>Sorting</li>
-<li>FFT</li>
-<li>Taking powers (SICP). What is <span class="math inline">\(n\)</span> in this case?</li>
-<li>Euclidean algorithm (GCD) (SICP)</li>
+<li>It is possible in <span class="math inline">\(O(n)\)</span> steps to partition an array into those elements larger (or equal) and those elements smaller than a given value (called the <em>pivot</em>).</li>
+<li>Acting recursively on each partition requires only <span class="math inline">\(O(\log n)\)</span> partitions to completely sort the array.</li>
 </ol>
-<p>References. Nature of computation, grokking algos</p>
-<p>Insertion in a list etc.</p>
+<p>Here’s an implementation. See <a href="https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme">this discussion</a> of the partitioning scheme for more information.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quicksort(A, lo<span class="op">=</span><span class="dv">0</span>, hi<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Sort A and return sorted array"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialise data the first time function is called    </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hi <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        hi <span class="op">=</span> <span class="bu">len</span>(A) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> A.copy()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sort    </span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> lo <span class="op">&lt;</span> hi:</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> partition(A, lo,  hi)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        quicksort(A, lo, p <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        quicksort(A, p <span class="op">+</span> <span class="dv">1</span>, hi)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partition(A, lo, hi):</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Partitioning function for use in quicksort"</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    pivot <span class="op">=</span> A[hi]</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> lo</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(lo,  hi):</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> A[j] <span class="op">&lt;=</span> pivot:</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>            A[i], A[j] <span class="op">=</span> A[j], A[i]</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    A[i], A[hi] <span class="op">=</span> A[hi], A[i]</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And here’s a demonstration of the <span class="math inline">\(O(n\log n)\)</span> performance</p>
+<div class="cell" data-execution_count="13">
+<details>
+<summary>Code for plot</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array of problem sizes we want to test (powers of 2)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>np.arange(<span class="dv">2</span>, <span class="dv">14</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an array of random numbers</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.rand(N[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Time quicksort on arrays of different lengths</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> []</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> N:</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="op">%</span>timeit <span class="op">-</span>n1 <span class="op">-</span>r1 <span class="op">-</span>o <span class="op">-</span>q quicksort(x[:n])</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    times.append(t.best)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot quicksort timings</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, times, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'quicksort'</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Show reference line of O(n*log(n))</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, <span class="fl">1e-6</span><span class="op">*</span>N<span class="op">*</span>np.log(N), label<span class="op">=</span><span class="st">'$O(n\log\, n)$'</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$t$ (s)'</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="complexity_files/figure-html/cell-14-output-1.png" width="600" height="424"></p>
+</div>
+</div>
+<p>Quicksort provides an interesting example of the differences between best, worst and average case complexities. They are:</p>
+<ol type="1">
+<li>Best case: <span class="math inline">\(O(n\log n)\)</span></li>
+<li>Worst case: <span class="math inline">\(O(n^2)\)</span></li>
+<li>Average case: <span class="math inline">\(O(n\log n)\)</span></li>
+</ol>
+<p>Funnily enough, the worst case occurs when the array is already sorted. Because the pivot is chosen as the last element of the array, one of the partitions is always empty. Thus, instead of the problem being cut roughly in half at each stage, it is merely reduced in size by 1.</p>
+<p>NumPy’s <code>sort</code> uses quicksort, whereas Python’s <code>sorted</code> uses a hybrid algorithm called <a href="https://en.wikipedia.org/wiki/Timsort">Timsort</a>, which also has <span class="math inline">\(O(n\log n)\)</span> average case performance.</p>
+<div class="cell" data-execution_count="14">
+<details>
+<summary>Code for plot</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array of problem sizes we want to test (powers of 2)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>np.arange(<span class="dv">2</span>, <span class="dv">14</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an array of random numbers, and make read-only so we don't accidentally sort it    </span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.rand(N[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>x.flags.writeable <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Time the different implementations</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>py_times <span class="op">=</span> []</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>np_times <span class="op">=</span> []</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> N:</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Time Python built-in sort</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="op">%</span>timeit <span class="op">-</span>n3 <span class="op">-</span>q <span class="op">-</span>o <span class="bu">sorted</span>(x[:n])</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    py_times.append(t.best)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Time NumPy sort</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="op">%</span>timeit <span class="op">-</span>n3 <span class="op">-</span>q <span class="op">-</span>o np.sort(x[:n], kind<span class="op">=</span><span class="st">'quicksort'</span>)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    np_times.append(t.best)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot time taken for built-in sort</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, py_times, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'Python (timsort)'</span>)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, np_times, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'NumPy (quicksort)'</span>)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Show reference lines of O(n*log(n)) and  O(n^2)</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, <span class="fl">1e-6</span><span class="op">*</span>N<span class="op">*</span>np.log(N), <span class="st">'--'</span>, label<span class="op">=</span><span class="vs">r'$O(n\log n)$'</span>)</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, <span class="fl">1e-6</span><span class="op">*</span>N<span class="op">**</span><span class="dv">2</span>, <span class="st">'--'</span>, label<span class="op">=</span><span class="vs">r'$O(n^2$)'</span>)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Show legend</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Add label and legend</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$t$ (s)'</span>)</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="complexity_files/figure-html/cell-15-output-1.png" width="600" height="424"></p>
+</div>
+</div>
 </section>
-<section id="space-vs.-time-complexity" class="level2" data-number="1.7">
+</section>
+<section id="divide-and-conquer" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Divide and conquer</h1>
+<p>Quicksort, binary search, and exponentiation by squaring are all examples of <a href="https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm">divide and conquer algorithms</a>: they achieve their performance by breaking the task into two (or more) sub-problems of the same type. This turns out to be a powerful principle that underlies many best-in-class algorithms. To bring our story full circle we return to what was historically one of the first and most important discoveries that gave birth to algorithmic complexity theory: the <a href="https://en.wikipedia.org/wiki/Karatsuba_algorithm">Karatsuba algorithm</a> for multiplication.</p>
+<p>As we explained in the introduction, the “obvious” method for multiplication has quadratic complexity. One can try a divide and conquer type approach by splitting an <span class="math inline">\(n\)</span>-digit number as follows</p>
+<p><span class="math display">\[
+x = x_1 B^m + x_0
+\]</span></p>
+<p>where <span class="math inline">\(B\)</span> is the base and <span class="math inline">\(m=\lceil n\rceil\)</span>. Thus in base 10 <span class="math inline">\(x=12345\)</span> is written as <span class="math inline">\(12 * 1000 + 345\)</span>. If we do this for two <span class="math inline">\(n\)</span>-digit numbers <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, their product can be written</p>
+<p><span class="math display">\[
+xy = x_1 y_1 B^{2m} + (x_1 y_0 + x_0 y_1) B^{m} + x_0 y_0,
+\]</span></p>
+<p>which requires the computation of four products. We can now apply divide and conquer, splitting up <span class="math inline">\(x_0\)</span>, <span class="math inline">\(x_1\)</span>, <span class="math inline">\(y_0\)</span>, <span class="math inline">\(y_1\)</span> in the same way. This continues to a depth of <span class="math inline">\(\sim\log n\)</span> until we end up with single digit numbers. What’s the complexity?</p>
+<p><span class="math display">\[
+4^{\log_2 n} = n^2
+\]</span></p>
+<p>So we gained nothing by being fancy! <em>But</em> Karatsuba noticed that since</p>
+<p><span class="math display">\[
+x_1 y_0 + x_0 y_1 = (x_1 + x_0)(y_1 + y_0) - x_y y_0 - x_1 y_1
+\]</span></p>
+<p>you can in fact get away with <em>three</em> multiplications instead of four (together with some additions). If you apply the same divide and conquer approach, you end up with complexity</p>
+<p><span class="math display">\[
+3^{\log_2 n} = n^{\log_2 3} \approx n^{1.58}
+\]</span></p>
+<p>On a first encounter the existence of algorithms with such unusual scaling seems completely bizarre, although as we have seen they arise quite naturally when the divide and conquer approach is combined with some unexpected economy at each subdivision of the problem. <span class="citation" data-cites="karatsuba1995complexity">Karatsuba (<a href="#ref-karatsuba1995complexity" role="doc-biblioref">1995</a>)</span> contains a nice account of the circumstances surrounding his discovery (<a href="http://www.cs.ru/personal/karatsuba/divcen.pdf">online version</a>).</p>
+<p>This general approach has been elaborated in many directions. For example, the <a href="https://en.wikipedia.org/wiki/Strassen_algorithm">Strassen algorithm</a> is a divide and conquer algorithm for matrix multiplication with complexity <span class="math inline">\(O(n^{\log_2 7})\approx O(n^{2.8074})\)</span> that beats the naive <span class="math inline">\(O(n^3)\)</span> method. While these methods have been of great conceptual importance, I understand that practicalities of implementation mean that they aren’t in general use in the libraries you are likely to use.</p>
+<!-- Simple example from Leetcode
 
+Analaysis of algorithms
+
+Example of finding a unique item in list
+
+Breadth first and depth first
+
+Importance of choosing a data structure to match algorithm
+
+Examples: queue in Wolff. Was there a Numpy-ish way to do this faster? Priority queue in waiting time algo
+
+FFT uses
+
+https://en.wikipedia.org/wiki/Orthogonal_frequency-division_multiplexing
+
+Needleman-Wunsch 
+
+Examples
+
+1. Multiplication [Karatsuba](https://en.wikipedia.org/wiki/Multiplication_algorithm#Karatsuba_multiplication)
+
+3. Linear algebra
+5. FFT
+7. Euclidean algorithm (GCD) (SICP)
+
+References. Nature of computation, grokking algos
+
+Insertion in a list etc. -->
+<!-- # Space vs. time complexity -->
 
 
 
 </section>
-</section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">1.7 Space vs.&nbsp;time complexity</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-karatsuba1995complexity" class="csl-entry" role="doc-biblioentry">
 Karatsuba, Anatolii Alexeevich. 1995. <span>“The Complexity of Computations.”</span> <em>Proceedings of the Steklov Institute of Mathematics-Interperiodica Translation</em> 211: 169–83.
 </div>
@@ -662,7 +919,9 @@ Karatsuba, Anatolii Alexeevich. 1995. <span>“The Complexity of Computations.�
 <ol>
 <li id="fn1"><p>Sticking with integers<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>I’ve borrowed this example from <a href="https://github.com/CambridgeEngineering/PartIA-Computing-Michaelmas/blob/main/11%20Complexity.ipynb">Garth Wells’ course</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p><a href="https://twitter.com/RobDotHutton/status/1618191368094126082">Not everyone has</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://en.wikipedia.org/wiki/Grover%27s_algorithm">Grover’s algorithm</a> for search has <span class="math inline">\(O(\sqrt{n})\)</span> complexity, but there’s a catch: you need a <em>quantum computer</em>, and even then a <span class="math inline">\(\sqrt{n}\)</span> speedup is not going to get you a billion dollars in this economy.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://twitter.com/RobDotHutton/status/1618191368094126082">Not everyone has</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>I’ve borrowed these implementations from Garth Wells’ <a href="https://github.com/CambridgeEngineering/PartIA-Computing-Michaelmas">excellent lectures</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -798,6 +1057,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/monte-carlo.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Monte Carlo methods</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../notes/fourier.html" class="pagination-link">
+        <span class="nav-page-text">Fast Fourier transform</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

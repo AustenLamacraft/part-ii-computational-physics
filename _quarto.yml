@@ -1,3 +1,6 @@
+editor:
+  render-on-save: true
+
 project:
   type: website
   preview:
@@ -21,8 +24,8 @@ website:
           - notes/numbers.qmd
           - notes/ode.qmd
           - notes/monte-carlo.qmd
-          # - notes/complexity.qmd
-          # # - notes/fourier.qmd
+          - notes/complexity.qmd
+          - notes/fourier.qmd
           # # - notes/linear.qmd
           # # - notes/divide.qmd
           # # - notes/dynamic.qmd
@@ -34,7 +37,8 @@ website:
           - slides/getting-going.qmd
           - slides/numpy.qmd
           - slides/numbers-and-odes.qmd
-          # - slides/monte-carlo.qmd
+          - slides/monte-carlo.qmd
+          - slides/complexity.qmd
 
 bibliography: references.bib
 number-sections: true

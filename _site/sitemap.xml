@@ -2,82 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://computational-physics.tripos.org/index.html</loc>
-    <lastmod>2023-02-02T10:08:36.100Z</lastmod>
+    <lastmod>2023-02-10T01:15:52.734Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/slides/getting-going.html</loc>
-    <lastmod>2023-02-02T10:08:36.751Z</lastmod>
+    <lastmod>2023-02-10T01:15:53.362Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/slides/monte-carlo.html</loc>
-    <lastmod>2023-02-02T10:08:37.001Z</lastmod>
+    <lastmod>2023-02-10T01:15:54.062Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/slides/complexity.html</loc>
+    <lastmod>2023-02-10T01:15:54.771Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/slides/numpy.html</loc>
-    <lastmod>2023-02-02T10:08:37.719Z</lastmod>
+    <lastmod>2023-02-10T01:15:55.453Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/slides/numbers-and-odes.html</loc>
-    <lastmod>2023-02-02T10:08:38.409Z</lastmod>
+    <lastmod>2023-02-10T01:15:56.182Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/assignments.html</loc>
-    <lastmod>2023-02-02T10:08:38.686Z</lastmod>
+    <lastmod>2023-02-10T01:15:56.476Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/getting-going.html</loc>
-    <lastmod>2023-02-02T10:08:39.219Z</lastmod>
+    <lastmod>2023-02-10T01:15:57.026Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/monte-carlo.html</loc>
-    <lastmod>2023-02-02T10:08:39.982Z</lastmod>
+    <lastmod>2023-02-10T01:15:57.902Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/numbers.html</loc>
-    <lastmod>2023-02-02T10:08:40.591Z</lastmod>
+    <lastmod>2023-02-10T01:15:58.431Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/intro.html</loc>
-    <lastmod>2023-02-02T10:08:40.981Z</lastmod>
+    <lastmod>2023-02-10T01:15:58.771Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/complexity.html</loc>
-    <lastmod>2023-02-02T10:08:41.675Z</lastmod>
+    <lastmod>2023-02-10T01:15:59.540Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/autodiff.html</loc>
-    <lastmod>2023-02-02T10:08:41.932Z</lastmod>
+    <lastmod>2023-02-10T01:15:59.800Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/divide.html</loc>
-    <lastmod>2023-02-02T10:08:42.185Z</lastmod>
+    <lastmod>2023-02-10T01:16:00.076Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/linear.html</loc>
-    <lastmod>2023-02-02T10:08:42.729Z</lastmod>
+    <lastmod>2023-02-10T01:16:00.682Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/fourier.html</loc>
-    <lastmod>2023-02-02T10:08:42.995Z</lastmod>
+    <lastmod>2023-02-10T01:16:01.492Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/ode.html</loc>
-    <lastmod>2023-02-02T10:08:43.871Z</lastmod>
+    <lastmod>2023-02-10T01:16:02.450Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/autograd.html</loc>
-    <lastmod>2023-02-02T10:08:44.472Z</lastmod>
+    <lastmod>2023-02-10T01:16:03.013Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/references.html</loc>
-    <lastmod>2023-02-02T10:08:44.739Z</lastmod>
+    <lastmod>2023-02-10T01:16:03.271Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/numpy.html</loc>
-    <lastmod>2023-02-02T10:08:45.520Z</lastmod>
+    <lastmod>2023-02-10T01:16:03.984Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/dynamic.html</loc>
-    <lastmod>2023-02-02T10:08:45.793Z</lastmod>
+    <lastmod>2023-02-10T01:16:04.239Z</lastmod>
   </url>
 </urlset>

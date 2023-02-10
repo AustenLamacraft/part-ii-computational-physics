@@ -1,11 +1,9 @@
 ---
+title: Algorithms and computational complexity
 draft: false
 ---
 
-# Algorithms and computational complexity
-
-
-## First example: multiplication
+# First example: multiplication
 
 How hard is it to multiply numbers? The bigger they are, the harder it is, as you well know. You also know that computers are very good at multiplying, so once you've switched from multiplying numbers yourself to multiplying them on a computer, you may well be tempted to forget about how hard it is. Nevertheless, computers find big numbers harder than small numbers. How much harder? 
 
@@ -35,7 +33,7 @@ For $n$ digits we have to perform $n^2$ single digit multiplications. We then ha
 
 Exactly how long this takes to perform in your head or on a computer will depend on many things, such as how long it takes you to multiply two digits, or get the previous values out of memory (or read them of the page), but you can't get away from the basic quadratic scaling law of this algorithm. 
 
-## Defining complexity
+# Defining complexity
 
 When computer scientists talk about the complexity of a problem, this question of _scaling of the number of steps involved_ is what they have in mind. The complexity of any particular task (or calculation) may vary considerably — evaluating $100\times 100$ is considerably easier than the general case, for example — so instead we ask about how a particular _general_ algorithm performs on a _class_ of tasks. Such a class is what computer scientists mean when they talk about a problem: multiplication of $n$ digit numbers is a _problem_, and any particular pair of $n$ digit numbers represents an _instance_ of that problem. What we discussed above is a particular algorithm for multiplication that has _quadratic complexity_, or "$O(n^2)$ complexity" (say "order $n$ squared"). 
 
@@ -47,7 +45,7 @@ This description only keeps track of how the difficulty scales with the size of 
 
 3. Inevitably, we always want to look at harder and harder problems with bigger and bigger $n$ (whatever $n$ means for the problem at hand). If a simulation finishes for a system of length 10 we immediately want to run it again for length 20, and so on. It then becomes important to know whether our code is going to run for twice as long, four times as long, or $2^{10}$ times as long (exponential scaling).
 
-### Best / worst / average
+## Best / worst / average
 
 Even when we focus on a problem in the above sense we still have to be careful in defining the complexity of an algorithm. In general we can characterize three complexities: best case, worse case, and average case. To see the difference between these three consider _search_, the very simple problem of finding an item in an (unordered) list of length $n$. How hard is this? You have to check every item until you find the one you are looking for, so this suggests the complexity is $O(n)$. You could be lucky and get it first try, however, or within the first ten tries. This means the _best case complexity_ of search is $O(1)$: it doesn't increase with the size of the problem. The worst thing that could happen is that the sought item is last: the _worst case complexity_ is $O(n)$. On average, you'll find your item in the middle of the list on attempt $\sim n/2$, so the _average case complexity_ is $O(n/2)$. But this is the same as $O(n)$ (constants don't matter)
 
@@ -114,7 +112,7 @@ plt.show()
 
 The "experimental noise" in these plots arises because we don't have full control over exactly what our computer is doing at any moment: there are lots of other processes running. Also, it takes a while to reach the linear regime: there is an overhead associated with starting the program that represents a smaller fraction of the overall run time as $n$ increases.
 
-### Polynomial complexity
+## Polynomial complexity
 
 Since you've already learnt a lot of algorithms in mathematics (even if you don't think of them this way) it's very instructive to revisit them through the lens of computational complexity. 
 
@@ -146,13 +144,13 @@ $$
 
 If an algorithm has complexity $O(n^p)$ for some $p$ it is generally described as having _polynomial complexity_. A useful heuristic (which is not 100% reliable) is that if you have $p$ nested loops that range over $\sim n$, the complexity is $O(n^p)$ (think how you would implement matrix-vector and matrix-matrix multiplication).
 
-### Better than linear?
+## Better than linear?
 
 It seems obvious that for search you can't do better than linear: you have to look at roughly half the items before you should expect to find the one you're looking for [^3]. What if the list is _ordered_? Any order will do: numerical for numbers, or lexicographic for strings. This extra structure allows us to use an algorithm called [binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm) that you may have seen before [^4]. The idea is pretty intuitive: look in the middle of the list and see if the item you seek should be in the top half or bottom half. Take the relevant half and divide it in half again to determine which quarter of the list your item is in, and so on. Here's how it looks in code:
 
 [^3]: [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) for search has $O(\sqrt{n})$ complexity, but there's a catch: you need a _quantum computer_, and even then a $\sqrt{n}$ speedup is not going to get you a billion dollars in this economy.
 
-[^3]: [Not everyone has](https://twitter.com/RobDotHutton/status/1618191368094126082)
+[^4]: [Not everyone has](https://twitter.com/RobDotHutton/status/1618191368094126082)
 
 ```{python}
 def binary_search(x, val):
@@ -231,7 +229,7 @@ b^4 &= b^4\cdot b^4
 \end{align}
 $$
 
-We only have to do _three_ multiplications! Exponentiation by this method is $O(\log n)$. To handle powers that aren't a power of $2$, we do the following
+We only have to do _three_ multiplications! Exponentiation by this method (called [exponentiation by squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring)) is $O(\log n)$. To handle powers that aren't a power of $2$, we do the following
 
 $$
 b^n = \begin{cases}
@@ -268,9 +266,9 @@ def exp_no_base_case(b, n):
 exp_no_base_case(2, 6)
 ```
 
-One interesting thing about exponentiation is that while it can be done efficiently, the inverse — finding the logarithm — cannot. To make this more precise one has to work with modular arithmetic i.e. do all operations modulo some number $m$. Then for $b, y=0,\ldots m-1$ we are guaranteed that there is some number $x$ such that $b^x=y$ (this is called the [discrete logarithm](https://en.wikipedia.org/wiki/Discrete_logarithm)). Finding this number is hard: there is no known method for computing it efficiently. Certain [public-key cryptosystems](https://en.wikipedia.org/wiki/Public-key_cryptography) are based on the difficulty of the discrete log (for carefully chosen $b$, $m$ and $y$).
+One interesting thing about exponentiation is that while it can be done efficiently, the inverse — finding the logarithm — cannot. To make this more precise one has to work with modular arithmetic e.g. do all operations modulo some prime number $p$. Then for $b, y=0,\ldots p-1$ we are guaranteed that there is some number $x$ such that $b^x=y$ (this is called the [discrete logarithm](https://en.wikipedia.org/wiki/Discrete_logarithm)). Finding this number is hard: there is no known method for computing it efficiently. Certain [public-key cryptosystems](https://en.wikipedia.org/wiki/Public-key_cryptography) are based on the difficulty of the discrete log (for carefully chosen $b$, $p$ and $y$).
 
-### Exponential complexity
+## Exponential complexity
 
 While we're on the subject of recursion, here's an example that's often used to introduce the topic: calculating the [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number). Remember that the Fibonacci numbers are this sequence
 
@@ -300,59 +298,285 @@ fib(13)
 
 The first two terms are the base cases (we need two because the recursion refers to two earlier values). While this looks quite cool it's actually a terrible way of calculating $\text{Fib}(n)$. Look at the picture below which illustrates the function calls that are made during the evaluation of $\text{Fib}(5)$. There are huge amounts of duplication! 
 
-![The recursive tree for calculating Fibonacci numbers. Source: [SICP](https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/index.html)](assets/fibonacci.png)
+![The recursive tree for calculating Fibonacci numbers. Source: [SICP](https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/index.html)](../assets/fibonacci.png)
 
-The complexity of this algorithm actually grows _exponentially_ with $n$. Because of the branching structure the algorithm is $O(2^n)$. Calculating the Fibonacci number the sensible way (i.e. the way you do it in your head) gives an $O(n)$ algorithm.
+The complexity of this algorithm actually grows _exponentially_ with $n$. Because of the branching structure the algorithm is $O(2^n)$. Calculating the Fibonacci number the sensible way (i.e. the way you do it in your head) gives an $O(n)$ algorithm. Formalizing this approach gives rise to the matrix recurrence relation:
+
+$$
+\begin{pmatrix}
+\text{Fib}(n+2) \\
+\text{Fib}(n+1)
+\end{pmatrix} = 
+\begin{pmatrix}
+1 & 1 \\
+1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+\text{Fib}(n+1) \\
+\text{Fib}(n)
+\end{pmatrix}.
+$$
+
+This suggests an even better way of calculating the Fibonacci numbers, since
+
+$$
+\begin{pmatrix}
+\text{Fib}(n+1) \\
+\text{Fib}(n)
+\end{pmatrix} = 
+\begin{pmatrix}
+1 & 1 \\
+1 & 0
+\end{pmatrix}^n
+\begin{pmatrix}
+1 \\
+0
+\end{pmatrix},
+$$
+
+finding the $(n+1)$th number involves the $n$th power of a matrix. But now we could use exponentiation by squaring, yielding an $O(\log n)$ algorithm! 
 
 It would be nice if exponential complexity were only ever the result of poor choices of algorithm. Unfortunately, this is not the case. It's possible to come up with problems that definitely _can't_ be solved faster than exponentially: the [Towers of Hanoi](https://en.wikipedia.org/wiki/Tower_of_Hanoi) is one famous example. Closer to the hearts of physicists, the simulation of a quantum system with $n$ qubits (a qubit — or _quantum bit_ — is just a computer sciencey word for a spin-1/2) is believed to have complexity $O(2^n)$, which is a big part of the hype surrounding quantum computers.
 
 There are problems whose solution, once found, is easy to check. The discrete logarithm we mentioned above is one example. Checking involves exponentiation, and exponentiation is $O(\log n)$ in the size of the numbers, or $O(n)$ in the number of digits. The question of whether efficient (i.e. polynomial) algorithms _always_ exist for problems which are easy to check is in fact _the_ outstanding problem in computer science: it's called [P _vs_ NP](https://en.wikipedia.org/wiki/P_versus_NP_problem), where P is the class of problems with polynomial time algorithms and NP is the class whose solution can be checked in polynomial time. The question is: are these two classes the same or do they differ? That is, are there problems in NP that aren't in P? I think it's fair to say that most people with an opinion on the matter think so, but the proof is lacking (and worth a million dollars).
 
-## Examples of different complexities
+# Sorted
 
-A major goal in algorithm design 
+If an improved algorithm takes us from exponential to polynomial complexity it's a huge deal. It means that even moderately sized problems that were intractable become tractable. But even improvements in the _exponent_ of polynomial scaling make a huge difference. 
 
-Hard to overstate how big a deal it is to find a simple algorithm 
+One problem that illustrates nicely the benefits of such improvements is _sorting_, turning a list or array into a sorted list (conventionally in _ascending_ order):
 
-Summary of asymptotic notation
+```{python}
+random_array = np.random.randint(0,100, 10)
+sorted(random_array)
+```
+
+But what is Python actually _doing_? There are many algorithms: the [Wikipedia page on sorting](https://en.wikipedia.org/wiki/Sorting_algorithm) is particularly extensive. Here we'll explore just a couple to get a sense of the variety of algorithms and their possible complexities. The site [sort visualizer](https://www.sortvisualizer.com/) animates the action of various algorithms. It's fun to try and figure out what the algorithm is from its animation.
+
+## Bubble sort
+
+This one is very simple: repeatedly pass through the array, comparing neighbouring pairs of elements and switching them if they are out of order. After the first pass the largest element is in the rightmost position (largest index). That means the second pass can finish before reaching the last element, as we know that it is already in place. After the second pass the final two elements are correctly ordered. Continue in this way, stopping one place earlier each time, until the array is sorted.
+
+Here's a simple implementation: [^5]
+
+[^5]: I've borrowed these implementations from Garth Wells' [excellent lectures](https://github.com/CambridgeEngineering/PartIA-Computing-Michaelmas)
+
+```{python}
+def bubble_sort(A):
+    "Sort A and return"
+    A = A.copy()
+    n = len(A)
+    while n > 0:
+        for i in range(n - 1):
+            # Swap data if in wrong order
+            if A[i] > A[i + 1]:
+                A[i + 1], A[i] = A[i], A[i + 1]
+        n = n - 1
+
+    return A
+```
+
+What is the complexity of this algorithm? From the code we can see immediately that there are two nested loops: one to implement each pass and one to loop over the $n-1$ passes. This suggests that the complexity is quadratic i.e. $O(n^2)$. A numerical check verifies this:
+
+```{python}
+#| code-fold: true
+#| code-summary: "Code for plot"
+# Create array of problem sizes we want to test (powers of 2)
+N = 2**np.arange(2, 10)
+
+# Create an array of random numbers
+x = np.random.rand(N[-1])
+
+# Time bubble sort on arrays of different lengths  
+times = []
+for n in N:
+    t = %timeit -q -n2 -r2 -o bubble_sort(x[:n])
+    times.append(t.best)
+
+# Plot bubble sort timing
+plt.loglog(N, times, marker='o', label='bubble sort')
+
+# Show reference line of O(n^2)
+plt.loglog(N, 1e-6*N**2, label='$O(n^2)$')
+
+# Add labels and legend
+plt.xlabel('$n$')
+plt.ylabel('$t$ (s)')
+plt.legend(loc=0)
+
+plt.show()
+```
+
+If you watch the [animation of bubble sort](https://www.sortvisualizer.com/bubblesort/) you might get a bit bored, as it _slowly_ carries the next largest element to the end. Can we do better? 
+
+## Quicksort
+
+Yes! It turns out that there are number of algorithms that do considerably better than quadratic. How fast _could_ a sorting algorithm be? It's clear that it can't be faster than $O(n)$: at the very least one has to look at each element. While one can't actually achieve linear scaling, there are many algorithms which achieve the next best thing: $O(n\log n)$. 
+
+[Quicksort](https://en.wikipedia.org/wiki/Quicksort) is one such algorithm. It uses two key ideas:
+
+1. It is possible in $O(n)$ steps to partition an array into those elements larger (or equal) and those elements smaller than a given value (called the _pivot_).
+2. Acting recursively on each partition requires only $O(\log n)$ partitions to completely sort the array.
+
+Here's an implementation. See [this discussion](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme) of the partitioning scheme for more information.
+
+```{python}
+def quicksort(A, lo=0, hi=None):
+    "Sort A and return sorted array"
+
+    # Initialise data the first time function is called    
+    if hi is None:
+        hi = len(A) - 1
+        A = A.copy()
+
+    # Sort    
+    if lo < hi:
+        p = partition(A, lo,  hi)
+        quicksort(A, lo, p - 1)
+        quicksort(A, p + 1, hi)
+    return A
 
 
+def partition(A, lo, hi):
+    "Partitioning function for use in quicksort"
+    pivot = A[hi]
+    i = lo
+    for j in range(lo,  hi):
+        if A[j] <= pivot:
+            A[i], A[j] = A[j], A[i]
+            i += 1
+    A[i], A[hi] = A[hi], A[i]
+    return i
+```
 
-XKCD plots
+And here's a demonstration of the $O(n\log n)$ performance
 
-## Sorted
+```{python}
+#| code-fold: true
+#| code-summary: "Code for plot"
+# Create array of problem sizes we want to test (powers of 2)
+N = 2**np.arange(2, 14)
 
-## The importance of data structures
+# Create an array of random numbers
+x = np.random.rand(N[-1])
 
-Let's look again at the code for the Wolff algorithm
+# Time quicksort on arrays of different lengths
+times = []
+for n in N:
+    t = %timeit -n1 -r1 -o -q quicksort(x[:n])
+    times.append(t.best)
 
-## Divide and conquer  
+# Plot quicksort timings
+plt.loglog(N, times, marker='o', label='quicksort')
 
-[Karatsuba algorithm](https://en.wikipedia.org/wiki/Karatsuba_algorithm) nice story
+# Show reference line of O(n*log(n))
+plt.loglog(N, 1e-6*N*np.log(N), label='$O(n\log\, n)$')
 
-[Karatsuba's account](http://www.cs.ru/personal/karatsuba/divcen.pdf)
+# Add labels
+plt.xlabel('$n$')
+plt.ylabel('$t$ (s)')
+plt.legend(loc=0)
 
-@karatsuba1995complexity contains a nice account of the discovery of his algorithm ([online version](http://www.cs.ru/personal/karatsuba/divcen.pdf))
+plt.show()
+```
 
-Karatsuba algo
 
-Big O
+Quicksort provides an interesting example of the differences between best, worst and average case complexities. They are:
 
-[Visualization of sorting algorithms](https://www.sortvisualizer.com/)
+1. Best case: $O(n\log n)$
+2. Worst case: $O(n^2)$
+3. Average case: $O(n\log n)$
 
-Simple example from Leetcode
+Funnily enough, the worst case occurs when the array is already sorted. Because the pivot is chosen as the last element of the array, one of the partitions is always empty. Thus, instead of the problem being cut roughly in half at each stage, it is merely reduced in size by 1.
+
+NumPy's `sort` uses quicksort, whereas Python's `sorted` uses a hybrid algorithm called [Timsort](https://en.wikipedia.org/wiki/Timsort), which also has $O(n\log n)$ average case performance.
+
+```{python}
+#| code-fold: true
+#| code-summary: "Code for plot"
+# Create array of problem sizes we want to test (powers of 2)
+N = 2**np.arange(2, 14)
+ 
+# Create an array of random numbers, and make read-only so we don't accidentally sort it    
+x = np.random.rand(N[-1])
+x.flags.writeable = False
+
+# Time the different implementations
+py_times = []
+np_times = []
+for n in N:
+    # Time Python built-in sort
+    t = %timeit -n3 -q -o sorted(x[:n])
+    py_times.append(t.best)
+
+    # Time NumPy sort
+    t = %timeit -n3 -q -o np.sort(x[:n], kind='quicksort')
+    np_times.append(t.best)
+
+
+# Plot time taken for built-in sort
+plt.loglog(N, py_times, marker='o', label='Python (timsort)')
+plt.loglog(N, np_times, marker='o', label='NumPy (quicksort)')
+
+# Show reference lines of O(n*log(n)) and  O(n^2)
+plt.loglog(N, 1e-6*N*np.log(N), '--', label=r'$O(n\log n)$')
+plt.loglog(N, 1e-6*N**2, '--', label=r'$O(n^2$)')
+
+# Show legend
+plt.legend(loc=0);
+
+# Add label and legend
+plt.xlabel('$n$')
+plt.ylabel('$t$ (s)')
+
+plt.show()
+```
+
+
+# Divide and conquer  
+
+Quicksort, binary search, and exponentiation by squaring are all examples of [divide and conquer algorithms](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm): they achieve their performance by breaking the task into two (or more) sub-problems of the same type. This turns out to be a powerful principle that underlies many best-in-class algorithms. To bring our story full circle we return to what was historically one of the first and most important discoveries that gave birth to algorithmic complexity theory: the [Karatsuba algorithm](https://en.wikipedia.org/wiki/Karatsuba_algorithm) for multiplication. 
+
+As we explained in the introduction, the "obvious" method for multiplication has quadratic complexity. One can try a divide and conquer type approach by splitting an $n$-digit number as follows
+
+$$
+x = x_1 B^m + x_0
+$$
+
+where $B$ is the base and $m=\lceil n\rceil$. Thus in base 10 $x=12345$ is written as $12 * 1000 + 345$. If we do this for two  $n$-digit numbers $x$ and $y$, their product can be written
+
+$$
+xy = x_1 y_1 B^{2m} + (x_1 y_0 + x_0 y_1) B^{m} + x_0 y_0,
+$$
+
+which requires the computation of four products. We can now apply divide and conquer, splitting up $x_0$, $x_1$, $y_0$, $y_1$ in the same way. This continues to a depth of $\sim\log n$ until we end up with single digit numbers. What's the complexity?
+
+$$
+4^{\log_2 n} = n^2
+$$
+
+So we gained nothing by being fancy! _But_ Karatsuba noticed that since
+
+$$
+x_1 y_0 + x_0 y_1 = (x_1 + x_0)(y_1 + y_0) - x_y y_0 - x_1 y_1
+$$
+
+you can in fact get away with _three_ multiplications instead of four (together with some additions). If you apply the same divide and conquer approach, you end up with complexity
+
+$$
+3^{\log_2 n} = n^{\log_2 3} \approx n^{1.58}
+$$
+
+On a first encounter the existence of algorithms with such unusual scaling seems completely bizarre, although as we have seen they arise quite naturally when the divide and conquer approach is combined with some unexpected economy at each subdivision of the problem. @karatsuba1995complexity contains a nice account of the circumstances surrounding his discovery ([online version](http://www.cs.ru/personal/karatsuba/divcen.pdf)). 
+
+This general approach has been elaborated in many directions. For example, the [Strassen algorithm](https://en.wikipedia.org/wiki/Strassen_algorithm) is a divide and conquer algorithm for matrix multiplication with complexity $O(n^{\log_2 7})\approx O(n^{2.8074})$ that beats the naive $O(n^3)$ method. While these methods have been of great conceptual importance, I understand that practicalities of implementation mean that they aren't in general use in the libraries you are likely to use.
+
+
+<!-- Simple example from Leetcode
 
 Analaysis of algorithms
 
 Example of finding a unique item in list
-
-Nice examples from Garth Wells
-
-https://github.com/CambridgeEngineering/PartIA-Computing-Michaelmas/blob/main/11%20Complexity.ipynb
-
-Examples of multiplication
-
-
 
 Breadth first and depth first
 
@@ -369,15 +593,13 @@ Needleman-Wunsch
 Examples
 
 1. Multiplication [Karatsuba](https://en.wikipedia.org/wiki/Multiplication_algorithm#Karatsuba_multiplication)
-2. Binary search
+
 3. Linear algebra
-4. Sorting
 5. FFT
-6. Taking powers (SICP). What is $n$ in this case?
 7. Euclidean algorithm (GCD) (SICP)
 
 References. Nature of computation, grokking algos
 
-Insertion in a list etc.
+Insertion in a list etc. -->
 
-## Space vs. time complexity
+<!-- # Space vs. time complexity -->

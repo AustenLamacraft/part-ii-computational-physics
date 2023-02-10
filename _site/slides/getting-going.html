@@ -9,7 +9,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.280">
 
-  <title>Part II Computational Physics – getting-going</title>
+  <title>Part II Computational Physics - Getting going</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -386,7 +386,13 @@
   <div class="reveal">
     <div class="slides">
 
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Getting going</h1>
 
+<div class="quarto-title-authors">
+</div>
+
+</section>
 <section>
 <section id="big-questions" class="title-slide slide level1 center">
 <h1>Big questions…</h1>
@@ -550,7 +556,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <ul>
 <li>Tab completion: hit <code>tab</code> to autocomplete. Particularly useful for viewing all properties or methods of an object:</li>
 </ul>
-<p><img data-src="assets/tab-complete.gif" class="border"></p>
+<p><img data-src="../assets/tab-complete.gif" class="border"></p>
 <ul>
 <li>Typing <code>?obj</code> or <code>obj?</code> prints detailed information about the object <code>obj</code> (<code>??</code> provides additional detail)</li>
 </ul>
@@ -564,7 +570,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="op">%</span>timeit L <span class="op">=</span> [n <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>214 µs ± 1.49 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
+<pre><code>220 µs ± 884 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
 </div>
 </div>
 <ul>
@@ -872,7 +878,7 @@ New from Github... -->
         hideCursorTime: 5000,
 
         // Opens links in an iframe preview overlay
-        previewLinks: false,
+        previewLinks: true,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
         transition: 'none',

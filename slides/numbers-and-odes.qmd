@@ -7,6 +7,7 @@ format:
     center: true
     auto-stretch: false
     html-math-method: mathjax
+    preview-links: true
 ---
 
 # Floating point and ODEs
@@ -194,7 +195,7 @@ np.finfo(np.float32)
 
 - Taking small differences between numbers is a potential source of rounding error
 
-![](assets/ia-question.png)
+![](../assets/ia-question.png)
 
 - Solution: $x-x'=x(1-\gamma^{-1})\sim x\beta^2/2\sim 4.2\text{mm}$. 
 
@@ -269,7 +270,7 @@ $$
 
 - Basic idea is to _discretize_ equation and solution $x_j\equiv x(t_j)$ at time points $t_j = hj$ with some _step size_ $h$
 
-![Taraji P. Henson as Katherine Johnson in _Hidden Figures_](assets/Hidden-Figures-scene_Katherine-Johnson-calculates-orbital-insertion-trajectories_Credit_TM-and-C-2017-Twentieth-Century-Fox-Film-Corporation_All-rights-reserved.webp){fig-align="center" width="700"}
+![Taraji P. Henson as Katherine Johnson in _Hidden Figures_](../assets/Hidden-Figures-scene_Katherine-Johnson-calculates-orbital-insertion-trajectories_Credit_TM-and-C-2017-Twentieth-Century-Fox-Film-Corporation_All-rights-reserved.webp){fig-align="center" width="700"}
 
 ---
 

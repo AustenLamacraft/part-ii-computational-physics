@@ -112,7 +112,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../notes/references.html" rel="next">
+<link href="../notes/complexity.html" rel="next">
 <link href="../notes/ode.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -221,6 +221,16 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../notes/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/fourier.html" class="sidebar-item-text sidebar-link">Fast Fourier transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../notes/references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
@@ -236,7 +246,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Big questions…</a>
+  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Getting going</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -247,6 +257,16 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/numbers-and-odes.html" class="sidebar-item-text sidebar-link">Floating point and ODEs</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/monte-carlo.html" class="sidebar-item-text sidebar-link">Monte Carlo methods</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
   </div>
 </li>
       </ul>
@@ -264,7 +284,8 @@ div.csl-indent {
   <li><a href="#the-monte-carlo-method" id="toc-the-monte-carlo-method" class="nav-link" data-scroll-target="#the-monte-carlo-method"><span class="toc-section-number">2</span>  The Monte Carlo method</a>
   <ul class="collapse">
   <li><a href="#monte-carlo-integration" id="toc-monte-carlo-integration" class="nav-link" data-scroll-target="#monte-carlo-integration"><span class="toc-section-number">2.1</span>  Monte Carlo integration</a></li>
-  <li><a href="#sec-mcmc" id="toc-sec-mcmc" class="nav-link" data-scroll-target="#sec-mcmc"><span class="toc-section-number">2.2</span>  Markov chain Monte Carlo</a></li>
+  <li><a href="#importance-sampling" id="toc-importance-sampling" class="nav-link" data-scroll-target="#importance-sampling"><span class="toc-section-number">2.2</span>  Importance sampling</a></li>
+  <li><a href="#sec-mcmc" id="toc-sec-mcmc" class="nav-link" data-scroll-target="#sec-mcmc"><span class="toc-section-number">2.3</span>  Markov chain Monte Carlo</a></li>
   </ul></li>
   <li><a href="#sec-statmech" id="toc-sec-statmech" class="nav-link" data-scroll-target="#sec-statmech"><span class="toc-section-number">3</span>  Statistical mechanics</a>
   <ul class="collapse">
@@ -334,10 +355,10 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="monte-carlo_files/figure-html/cell-2-output-1.png" width="592" height="422"></p>
+<p><img src="monte-carlo_files/figure-html/cell-2-output-1.png" width="589" height="422"></p>
 </div>
 </div>
-<p>For complex multivariate (i.e.&nbsp;high dimensional) distributions there is no general recipe to construct an appropriate <span class="math inline">\(f\)</span>. One very recent application of these ideas is in machine learning models called <a href="https://arxiv.org/abs/1908.09257">normalizing flows</a> that use a mapping <span class="math inline">\(f\)</span> parameterized by a neural network. The workhorse for sampling from complicated distributions is Markov chain Monte Carlo, as we discuss in <a href="#sec-mcmc">Section&nbsp;2.2</a>.</p>
+<p>For complex multivariate (i.e.&nbsp;high dimensional) distributions there is no general recipe to construct an appropriate <span class="math inline">\(f\)</span>. One very recent application of these ideas is in machine learning models called <a href="https://arxiv.org/abs/1908.09257">normalizing flows</a> that use a mapping <span class="math inline">\(f\)</span> parameterized by a neural network. The workhorse for sampling from complicated distributions is Markov chain Monte Carlo, as we discuss in <a href="#sec-mcmc">Section&nbsp;2.3</a>.</p>
 </section>
 <section id="the-monte-carlo-method" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> The Monte Carlo method</h1>
@@ -370,20 +391,52 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 </div>
 <p>In terms of integration, you can think of this as a way to compute the integral of a function which is one inside the unit disc, and zero outside it.</p>
 <p>Although it’s a silly method, this does illustrate one important feature of Monte Carlo methods in general: that the relative error with <span class="math inline">\(N\)</span> samples is typically <span class="math inline">\(\propto N^{-1/2}\)</span> (thus at the 1% level for <span class="math inline">\(10^4\)</span> samples) because the variance of a sum of <span class="math inline">\(N\)</span> <a href="https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables">iid</a> variables is <span class="math inline">\(\propto N^{1/2}\)</span>.</p>
-<!-- TODO General setting. Importance sampling -->
-<p>Monte Carlo integration comes into its own for high dimensional problems. For low dimensional integrals the quadrature methods in <a href="https://docs.scipy.org/doc/scipy/tutorial/integrate.html"><code>scipy.integrate</code></a> are preferable.</p>
+<p>The general setting of Monte Carlo integration is as follows. Suppose we have a multidimensional integral to evaluate over some domain <span class="math inline">\(D\)</span></p>
+<p><span class="math display">\[
+I(f,D) = \int_D f(\mathbf{x}) d\mathbf{x}
+\]</span></p>
+<p>If we can sample points uniformly within <span class="math inline">\(D\)</span>, then an estimate for the integral is</p>
+<p><span class="math display">\[
+I(f,D) = \frac{V_D}{N}\sum_{i=1}^N f(\mathbf{x}_i)
+\]</span></p>
+<p>where <span class="math inline">\(N\)</span> is the number of samples and <span class="math inline">\(V_D\)</span> is the (hyper-)volume of <span class="math inline">\(D\)</span>. Why does this work? Because the uniform distribution has constant probability density <span class="math inline">\(1/V_D\)</span> so the average of <span class="math inline">\(f(\mathbf{x}_i)\)</span> with respect to this uniform distribution is simply related to the integral we are trying to calculate</p>
+<p><span class="math display">\[
+\bar f = \frac{1}{V_D}\int f(\mathbf{x})d\mathbf{x}.
+\]</span></p>
+<p>By taking many samples and averaging <span class="math inline">\(f(\mathbf{x}_i)\)</span> we can estimate this average. In the simple example that we started with <span class="math inline">\(f(\mathbf{x})\)</span> would be a “top hat” function that is one inside the circle. As in that example, the relative error is <span class="math inline">\(\propto N^{-1/2}\)</span>, whatever the dimension.</p>
+<p>For this reason Monte Carlo integration comes into its own for high dimensional problems. For low dimensional integrals the quadrature methods in <a href="https://docs.scipy.org/doc/scipy/tutorial/integrate.html"><code>scipy.integrate</code></a> are preferable:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> integrate</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>integrate.quadrature(np.cos, <span class="dv">0</span>, np.pi <span class="op">/</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>(0.9999999999999536, 3.9611425250996035e-11)</code></pre>
+</div>
+</div>
+<p>As for ODE solvers, there is a lot of detail in the implementation to do with how intervals are chosen, and so on.</p>
 </section>
-<section id="sec-mcmc" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sec-mcmc"><span class="header-section-number">2.2</span> Markov chain Monte Carlo</h2>
+<section id="importance-sampling" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="importance-sampling"><span class="header-section-number">2.2</span> Importance sampling</h2>
+<p>Monte Carlo integration is not restricted to sampling from the uniform distribution. If our function <span class="math inline">\(f(\mathbf{x})\)</span> has regions where it is very small, there is not much point in sampling its value there. If there is a distribution we can sample from where samples tend to fall in the region where <span class="math inline">\(f(\mathbf{x})\)</span> is large, it will probably be better to use that. In this case we calculate the weighted average using the probability density <span class="math inline">\(p_\text{sample}(\mathbf{x})\)</span> from where the samples are drawn</p>
+<p><span class="math display">\[
+I(f,D, p_\text{sample}) = \frac{1}{N}\sum_{i=1}^N \frac{f(\mathbf{x}_i)}{p_\text{sample}(\mathbf{x}_i)}
+\]</span></p>
+<p>The reason this works is that the average of one of the terms in the sum is just the integral we want</p>
+<p><span class="math display">\[
+\overline{\frac{f(\mathbf{x})}{p_\text{sample}(\mathbf{x})}} = \int \frac{f(\mathbf{x})}{p_\text{sample}(\mathbf{x})} p_\text{sample}(\mathbf{x})d\mathbf{x} = \int f(\mathbf{x})d\mathbf{x}
+\]</span></p>
+<p>The benefit of this approach is that it can lead to a drastic reduction in the variance of the estimator. To take an extreme example: if <span class="math inline">\(f(\mathbf{x})\propto p_\text{sample}(\mathbf{x})\)</span>, and even a single sample leads to perfect estimate with no uncertainty! This observation is not useful, if you knew <span class="math inline">\(p_\text{sample}(\mathbf{x})\)</span> you would know the constant factor by which <span class="math inline">\(f(\mathbf{x})\)</span> differs, but it illustrates the point about variance reduction.</p>
+<p>This general technique is called <a href="https://en.wikipedia.org/wiki/Importance_sampling">Importance sampling</a>. To apply the above approach, one needs both an explicit form for <span class="math inline">\(p_\text{sample}(\mathbf{x})\)</span> and the ability to generate samples, which is rather restrictive. There are many elaborations of the basic idea, however, including multiple distributions as well as adaptive sampling to “discover” the right region for sampling.</p>
+</section>
+<section id="sec-mcmc" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-mcmc"><span class="header-section-number">2.3</span> Markov chain Monte Carlo</h2>
 <p>Suppose you want to generate configurations at random (i.e.&nbsp;with a uniform distribution) from a “gas” of hard disks <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="assets/hard-spheres.png" class="img-fluid figure-img"></p>
+<p><img src="../assets/hard-spheres.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Coins in a shoe box (gas of hard disks). From <span class="citation" data-cites="krauth1998introduction">Krauth (<a href="#ref-krauth1998introduction" role="doc-biblioref">1998</a>)</span></figcaption><p></p>
 </figure>
 </div>
-<p>It’s harder than it looks! The first guess you might have is to start adding coins at random, and if you get an overlap, try again until you don’t. Obviously this will become inefficient as the box fills up, and most attempts fail. <em>Worse, it doesn’t in fact yield a uniform distribution!</em></p>
-<!-- TODO Why not? See @widom1966random for an explanation -->
+<p>It’s harder than it looks! The first guess you might have is to start adding coins at random, and if you get an overlap, try again until you don’t. Obviously this will become inefficient as the box fills up, and most attempts fail. <em>Worse, it doesn’t in fact yield a uniform distribution!</em> <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <p>Here’s an approach that works:</p>
 <div id="exm-metropolis" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (Metropolis algorithm for hard disks) </strong></span>&nbsp;</p>
@@ -394,7 +447,7 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 <li>Repeat 2. and 3. many times.</li>
 </ol>
 </div>
-<p><img src="assets/metropolis.png" class="img-fluid" alt="Accepted and rejected moves for hard disks. From">.</p>
+<p><img src="../assets/metropolis.png" class="img-fluid" alt="Accepted and rejected moves for hard disks. From">.</p>
 <p>This is the simplest example of the <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis–Hastings algorithm</a>, the first Markov chain Monte Carlo (MCMC) algorithm.</p>
 <p>More generally, the goal of MCMC is to come up with a sequential random process (a <strong>Markov chain</strong>) that generates (usually after many steps) a sample from a particular distribution.</p>
 <p>You’ve all heard of a <a href="https://en.wikipedia.org/wiki/Random_walk">random walk</a>, perhaps as a model for diffusion. At each step you make a move in a random direction, independently of your earlier moves. After many steps these random moves gives rise to a distribution of possible locations. A random walk is the simplest example of a Markov chain.</p>
@@ -427,7 +480,7 @@ p^{(n)}(x_n)=\sum_{x_{n-1},\ldots x_1}p(x_n|x_{n-1})p(x_{n-1}|x_{n-2})\cdots p(x
 <p><span id="eq-stat"><span class="math display">\[
 \boldsymbol{\pi} = \mathsf{P}\boldsymbol{\pi}.
 \tag{1}\]</span></span></p>
-<p>In other words, it is an eigenvector of <span class="math inline">\(\mathsf{P}\)</span> with eigenvalue one. This property is guaranteed by the <a href="https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem">Perron–Frobenius theorem</a> <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p>In other words, it is an eigenvector of <span class="math inline">\(\mathsf{P}\)</span> with eigenvalue one. This property is guaranteed by the <a href="https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem">Perron–Frobenius theorem</a> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 <p>Thus <span class="math inline">\(\mathsf{P}\)</span> determines <span class="math inline">\(\boldsymbol{\pi}\)</span>. MCMC turns this idea on its head and asks: if there is some <span class="math inline">\(\boldsymbol{\pi}\)</span> that I would like to generate samples from, can I find a <span class="math inline">\(\mathsf{P}\)</span> that has it as a stationary distribution?</p>
 <p>There is a trivial answer to this question. Sure, take <span class="math inline">\(\mathsf{P}_{jk}=\boldsymbol{\pi}_j\)</span>. That is, jump straight to the stationary distribution no matter what the starting state. But we are interested in highly complicated distributions over large state spaces (think the Boltzmann distribution for a statistical mechanical system comprised of billions of particles). Thus what we really want is to be able to approach such a complicated distribution by making many transitions with <em>simple</em> distributions.</p>
 <p>One more idea is useful before returning to concrete algorithms. The quantity</p>
@@ -476,12 +529,12 @@ Transition matrix -->
 </section>
 <section id="sec-statmech" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Statistical mechanics</h1>
-<p>Statistical mechanics is a natural source of such complex distributions in physics. Remember the fundamental principle that the probability of finding a statistical mechanical system in a microstate <span class="math inline">\(\mathbf{x}\)</span> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> with energy <span class="math inline">\(\mathcal{E}(\mathbf{x})\)</span> is</p>
+<p>Statistical mechanics is a natural source of such complex distributions in physics. Remember the fundamental principle that the probability of finding a statistical mechanical system in a microstate <span class="math inline">\(\mathbf{x}\)</span> <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> with energy <span class="math inline">\(\mathcal{E}(\mathbf{x})\)</span> is</p>
 <p><span id="eq-boltzmann"><span class="math display">\[
 p(\mathbf{x})=\frac{\exp\left[-\beta \mathcal{E}(\mathbf{x})\right]}{Z},
 \tag{4}\]</span></span></p>
 <p>where <span class="math inline">\(Z\)</span> is a normalizing constant called the partition function and <span class="math inline">\(\beta=1/k_\text{B}T\)</span>, where <span class="math inline">\(T\)</span> is the temperature and <span class="math inline">\(k_\text{B}\)</span> is Boltzmann’s constant.</p>
-<p>The <em>central problem</em> of statistical mechanics is computing ensemble averages of physical quantities, and the <em>principle difficulty</em> is the intractability of those averages for large systems. For example, if we are dealing with a classical gas, the configuration space point <span class="math inline">\(\mathbf{x}\)</span> corresponds to the positions of each of the gas molecules <span class="math inline">\(\mathbf{x}=(\mathbf{x}_1,\ldots \mathbf{x}_N)\)</span> and an average is a <span class="math inline">\(3N\)</span>-dimensional integral. The only situation in which this integral is tractable is when the gas is noninteracting (ideal), in which case the energy function takes the form</p>
+<p>The <em>central problem</em> of statistical mechanics is computing ensemble averages of physical quantities, and the <em>principal difficulty</em> is the intractability of those averages for large systems. For example, if we are dealing with a classical gas, the configuration space point <span class="math inline">\(\mathbf{x}\)</span> corresponds to the positions of each of the gas molecules <span class="math inline">\(\mathbf{x}=(\mathbf{x}_1,\ldots \mathbf{x}_N)\)</span> and an average is a <span class="math inline">\(3N\)</span>-dimensional integral. The only situation in which this integral is tractable is when the gas is noninteracting (ideal), in which case the energy function takes the form</p>
 <p><span class="math display">\[
 \mathcal{E}(\mathbf{x}) = \sum_{n=1}^N \mathcal{E}_1(\mathbf{x}_n)
 \]</span></p>
@@ -508,7 +561,7 @@ p(\mathbf{x})=\frac{\exp\left[-\beta \mathcal{E}(\mathbf{x})\right]}{Z},
 \end{align}
 \]</span></p>
 <p>where <span class="math inline">\(\Delta \mathcal{E}\)</span> is the energy difference between two configurations.</p>
-<p>One alternative to Metropolis is the <strong>Heat bath algorithm</strong> (or <a href="https://en.wikipedia.org/wiki/Glauber_dynamics">Glauber dynamics</a> or <a href="https://en.wikipedia.org/wiki/Gibbs_sampling">Gibbs sampling</a>) <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. The idea behind the name is that, since we can calculate the influence of the spin’s environment (the “bath”), we can just choose the spin’s orientation with the corresponding probabilities. Since there are only two probabilities the ratio is all we need and we get</p>
+<p>One alternative to Metropolis is the <strong>Heat bath algorithm</strong> (or <a href="https://en.wikipedia.org/wiki/Glauber_dynamics">Glauber dynamics</a> or <a href="https://en.wikipedia.org/wiki/Gibbs_sampling">Gibbs sampling</a>) <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. The idea behind the name is that, since we can calculate the influence of the spin’s environment (the “bath”), we can just choose the spin’s orientation with the corresponding probabilities. Since there are only two probabilities the ratio is all we need and we get</p>
 <p><span id="eq-heat-bath"><span class="math display">\[
 p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}}.
 \tag{5}\]</span></span></p>
@@ -516,7 +569,7 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 <div id="exm-heat-bath" class="theorem example">
 <p><span class="theorem-title"><strong>Example 3 (Heat bath algorithm) </strong></span>&nbsp;</p>
 <ol type="1">
-<li>Pick a spin <span class="math inline">\(n\)</span>. <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+<li>Pick a spin <span class="math inline">\(n\)</span>. <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
 <li>Compute <span class="math inline">\(\Delta E\)</span>, the energy difference between <span class="math inline">\(\sigma_n=\pm 1\)</span>.</li>
 <li>Set <span class="math inline">\(\sigma_n=\pm 1\)</span> with probabilities given by <a href="#eq-heat-bath">Equation&nbsp;5</a>.</li>
 <li>Repeat 1-3 many times</li>
@@ -524,56 +577,56 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 </div>
 <p>What happens if we try and come up with more complicated proposals, flipping many spins at once? For Metropolis, the problem is that without a cleverly designed proposal we will be suggesting moves that are likely to be rejected. For the heat bath algorithm, the more spins we flip, the more complicated the evaluation of the corresponding probabilities (<span class="math inline">\(2^n\)</span> outcomes if we flip <span class="math inline">\(n\)</span> spins).</p>
 <p>The good news is that we <em>can</em> do better — much better — than the above algorithms. The <a href="https://en.wikipedia.org/wiki/Wolff_algorithm">Wolff algorithm</a> is one example. This proposes a cluster of spins of the same orientation to be flipped by adding adjacent spins to an initially random chosen spin with probability <span class="math inline">\(p_\text{add}\)</span>. It turns out that for the nearest neighbour Ising model with Ferromagnetic coupling <span class="math inline">\(J&lt;0\)</span> the “magic” value <span class="math inline">\(p_\text{add}=1-e^{2\beta J}\)</span> is <em>rejection free</em>: the probability to flip the whole cluster is always one. This makes for an extremely fast algorithm that is not subject to the usual <em>critical slowing down</em> at phase transitions.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="4">
 <details>
 <summary>Ising model code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> IsingModel:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, L):</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> L</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.spins <span class="op">=</span> np.random.choice(a<span class="op">=</span>[<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>], size<span class="op">=</span>(L, L))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        stagger <span class="op">=</span> np.empty(<span class="va">self</span>.L, dtype <span class="op">=</span> <span class="bu">bool</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        stagger[::<span class="dv">2</span>] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        stagger[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mask <span class="op">=</span> np.logical_xor(stagger[:, np.newaxis], stagger[np.newaxis, :])</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> gibbs_update(<span class="va">self</span>, beta, sublattice):</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> np.roll(<span class="va">self</span>.spins, <span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        delta_E <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> fields</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        spin_up_probabilities <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span> beta <span class="op">*</span> delta_E))</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        new_spins <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (np.random.rand(<span class="va">self</span>.L, <span class="va">self</span>.L) <span class="op">&lt;</span> spin_up_probabilities) <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.spins <span class="op">=</span> np.choose(np.logical_xor(sublattice, <span class="va">self</span>.mask), [<span class="va">self</span>.spins, new_spins])</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> glauber_update(<span class="va">self</span>, beta):</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> np.random.randint(<span class="va">self</span>.L, size<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> neighbour <span class="kw">in</span> [((x <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), ((x <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), (x, (y <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L), (x, (y <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L)]:</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            fields <span class="op">+=</span> <span class="va">self</span>.spins[neighbour]</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        delta_E <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> fields</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        spin_up_probability <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span> beta <span class="op">*</span> delta_E))        </span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> spin_up_probability:</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.spins[x, y] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.spins[x, y] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wolff_update(<span class="va">self</span>, beta):</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        initial_x, initial_y <span class="op">=</span> np.random.randint(<span class="va">self</span>.L, size<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        initial_spin <span class="op">=</span> <span class="va">self</span>.spins[initial_x, initial_y]</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        cluster <span class="op">=</span> deque([(initial_x, initial_y)])</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        add_prob <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> beta)</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="bu">len</span>(cluster) <span class="op">!=</span> <span class="dv">0</span>:</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>            x, y <span class="op">=</span> cluster.popleft()</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="va">self</span>.spins[x, y] <span class="op">==</span> initial_spin:</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.spins[x, y] <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> neighbour <span class="kw">in</span> (((x <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), ((x <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), (x, (y <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L), (x, (y <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L)):</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="va">self</span>.spins[neighbour] <span class="op">==</span> initial_spin:</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> add_prob:</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>                            cluster.append(neighbour)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> IsingModel:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, L):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> L</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.spins <span class="op">=</span> np.random.choice(a<span class="op">=</span>[<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>], size<span class="op">=</span>(L, L))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        stagger <span class="op">=</span> np.empty(<span class="va">self</span>.L, dtype <span class="op">=</span> <span class="bu">bool</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        stagger[::<span class="dv">2</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        stagger[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mask <span class="op">=</span> np.logical_xor(stagger[:, np.newaxis], stagger[np.newaxis, :])</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> gibbs_update(<span class="va">self</span>, beta, sublattice):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> np.roll(<span class="va">self</span>.spins, <span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        delta_E <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> fields</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        spin_up_probabilities <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span> beta <span class="op">*</span> delta_E))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        new_spins <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (np.random.rand(<span class="va">self</span>.L, <span class="va">self</span>.L) <span class="op">&lt;</span> spin_up_probabilities) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.spins <span class="op">=</span> np.choose(np.logical_xor(sublattice, <span class="va">self</span>.mask), [<span class="va">self</span>.spins, new_spins])</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> glauber_update(<span class="va">self</span>, beta):</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        x, y <span class="op">=</span> np.random.randint(<span class="va">self</span>.L, size<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> neighbour <span class="kw">in</span> [((x <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), ((x <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), (x, (y <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L), (x, (y <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L)]:</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>            fields <span class="op">+=</span> <span class="va">self</span>.spins[neighbour]</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        delta_E <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> fields</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        spin_up_probability <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span> beta <span class="op">*</span> delta_E))        </span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> spin_up_probability:</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.spins[x, y] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.spins[x, y] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wolff_update(<span class="va">self</span>, beta):</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        initial_x, initial_y <span class="op">=</span> np.random.randint(<span class="va">self</span>.L, size<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        initial_spin <span class="op">=</span> <span class="va">self</span>.spins[initial_x, initial_y]</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        cluster <span class="op">=</span> deque([(initial_x, initial_y)])</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        add_prob <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> beta)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="bu">len</span>(cluster) <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>            x, y <span class="op">=</span> cluster.popleft()</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="va">self</span>.spins[x, y] <span class="op">==</span> initial_spin:</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.spins[x, y] <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> neighbour <span class="kw">in</span> (((x <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), ((x <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), (x, (y <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L), (x, (y <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L)):</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="va">self</span>.spins[neighbour] <span class="op">==</span> initial_spin:</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> add_prob:</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>                            cluster.append(neighbour)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
 <script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
-<script src="assets/ising.js"></script>
+<script src="../assets/ising.js"></script>
 <div id="fig-ising" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <div id="ising-simulation" data-align="center">
@@ -669,10 +722,11 @@ Metropolis, Nicholas, Arianna W Rosenbluth, Marshall N Rosenbluth, Augusta H Tel
 <ol>
 <li id="fn1"><p>A common shorthand notation is <span class="math inline">\(x\sim p_X\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>This is in fact the original motivation for the development of the technique, see <span class="citation" data-cites="metropolis1953equation">Metropolis et al. (<a href="#ref-metropolis1953equation" role="doc-biblioref">1953</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>There is an important caveat. If there are two or more subsets of the state space that are not connected by finite transition probabilities, the probability distribution in each subset evolves independently and there is not a unique stationary distribution. When there <em>is</em>, we say that the Markov chain is <strong>ergodic</strong> and the corresponding transition matrix is <strong>irreducible</strong>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>For a classical gas of point particles this would correspond to specifying all the positions and velocities, for example.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Multiple names are sign that a technique was re-discovered by different communities who don’t talk to each other.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>This can be done deterministically (e.g.&nbsp;sequentially or in alternating blocks when the model is defined on a <a href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a>) — which is what is normally called Gibbs sampling — or at random, which corresponds to Glauber dynamics.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>For a discussion of what goes wrong in a simple discrete model of rods in 1D, see Section 2.2.1 of <span class="citation" data-cites="krauth2006statistical">Krauth (<a href="#ref-krauth2006statistical" role="doc-biblioref">2006</a>)</span>. <!-- TODO Why not? See @widom1966random for an explanation --><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>There is an important caveat. If there are two or more subsets of the state space that are not connected by finite transition probabilities, the probability distribution in each subset evolves independently and there is not a unique stationary distribution. When there <em>is</em>, we say that the Markov chain is <strong>ergodic</strong> and the corresponding transition matrix is <strong>irreducible</strong>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>For a classical gas of point particles this would correspond to specifying all the positions and velocities, for example.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Multiple names are sign that a technique was re-discovered by different communities who don’t talk to each other.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>This can be done deterministically (e.g.&nbsp;sequentially or in alternating blocks when the model is defined on a <a href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a>) — which is what is normally called Gibbs sampling — or at random, which corresponds to Glauber dynamics.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -815,8 +869,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notes/references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notes/complexity.html" class="pagination-link">
+        <span class="nav-page-text">Algorithms and computational complexity</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

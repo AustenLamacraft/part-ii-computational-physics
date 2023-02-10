@@ -1,5 +1,7 @@
 # Linear algebra
 
+https://twitter.com/nicholdav/status/1621180520901001220
+
 Krylov subspaces
 
 SVD and quantum mechanics. Quantum entanglement.
@@ -15,3 +17,11 @@ PCA for big data
 https://www.tensors.net/exact-diagonalization
 
 Power method
+
+Pagerank
+
+https://www.programcreek.com/python/?code=MKLab-ITI%2Freveal-graph-embedding%2Freveal-graph-embedding-master%2Freveal_graph_embedding%2Fembedding%2Fimplicit.py
+
+http://pi.math.cornell.edu/~web6140/TopTenAlgorithms/PageRank.html
+
+http://infolab.stanford.edu/~ullman/mmds/ch5.pdf

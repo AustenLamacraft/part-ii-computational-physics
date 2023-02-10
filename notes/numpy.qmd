@@ -30,7 +30,7 @@ my_list
 
 With IPython you can see all the available methods by hitting tab:
 
-![](assets/tab-complete.gif)
+![](../assets/tab-complete.gif)
 
 ::: {.callout-tip collapse="true"}
 # Dunder methods
@@ -415,7 +415,7 @@ plt.show()
 Pixels in an image are encoded as a triple of RGB values in the range [0,255] i.e. 8 bits of type `uint8` (the "u" is for "unsigned"). Tinting an image gives us a nice example of broadcasting
 
 ```{python}
-img = plt.imread('assets/lucian.jpeg')
+img = plt.imread('../assets/lucian.jpeg')
 
 img_tinted = img * [1, 0.55, 1]
 
@@ -448,12 +448,12 @@ A related function [savez](https://numpy.org/doc/stable/reference/generated/nump
 ```{python}
 random_matrix_1 = np.random.rand(4, 4)
 random_matrix_2 = np.random.rand(4, 4)
-np.savez("assets/my-matrices", first_matrix=random_matrix_1, second_matrix=random_matrix_2)
-%ls assets
+np.savez("../assets/my-matrices", first_matrix=random_matrix_1, second_matrix=random_matrix_2)
+%ls ../assets
 ```
 
 ```{python}
-my_matrix_file = np.load("assets/my-matrices.npz")
+my_matrix_file = np.load("../assets/my-matrices.npz")
 my_matrix_file['first_matrix']
 ```
 
