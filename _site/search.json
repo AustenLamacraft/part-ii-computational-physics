@@ -249,7 +249,7 @@
     "href": "slides/complexity.html#sorting",
     "title": "Part II Computational Physics",
     "section": "Sorting",
-    "text": "Sorting\n\nTurning a list or array into a sorted list (conventionally in ascending order):\n\n\nrandom_array = np.random.randint(0,100, 10)\nsorted(random_array)\n\n[8, 12, 14, 14, 25, 30, 52, 59, 61, 73]\n\n\n\nWhat is Python actually doing?\nMany sorting algorithms. See Wikipedia for an extensive list"
+    "text": "Sorting\n\nTurning a list or array into a sorted list (conventionally in ascending order):\n\n\nrandom_array = np.random.randint(0,100, 10)\nsorted(random_array)\n\n[30, 36, 44, 45, 52, 64, 73, 80, 95, 95]\n\n\n\nWhat is Python actually doing?\nMany sorting algorithms. See Wikipedia for an extensive list"
   },
   {
     "objectID": "slides/complexity.html#bubble-sort",
@@ -278,6 +278,230 @@
     "title": "Part II Computational Physics",
     "section": "Karatsuba algorithm",
     "text": "Karatsuba algorithm\n\nRecall “obvious” method for multiplication has quadratic complexity\nTry a divide and conquer type approach by splitting an \\(n\\)-digit number as follows \\[\nx = x_1 B^m + x_0\n\\]\n\\(B\\) is base and \\(m=\\lceil n\\rceil\\)\nIn base 10 \\(x=12345\\) is written as \\(12 * 1000 + 345\\)"
+  },
+  {
+    "objectID": "slides/autodiff.html#supervised-learning",
+    "href": "slides/autodiff.html#supervised-learning",
+    "title": "Part II Computational Physics",
+    "section": "Supervised learning",
+    "text": "Supervised learning\n\nPurpose of function is to map \\(\\mathbf{x}\\) to output \\(\\mathbf{y}\\) that represents a set of labels\nLabels represent e.g. different kinds of objects that might appear in images \\[\n\\mathbf{y} = \\mathsf{NN}_\\theta(\\mathbf{x})\n\\]\n\\(\\theta\\) are parameters\nIf family of functions is “big enough” then \\(\\exists\\) function that does “good job”"
+  },
+  {
+    "objectID": "slides/autodiff.html#the-cost-function",
+    "href": "slides/autodiff.html#the-cost-function",
+    "title": "Part II Computational Physics",
+    "section": "The cost function",
+    "text": "The cost function\n\nDataset of size \\(N\\) consisting of data \\(\\mathbf{x}_i=1,\\ldots N\\) together with labels \\(l_i\\)\nEncode labels in vectors \\(\\mathbf{y}_i\\) to be compared with output of the neural network\nPopular choice is one hot encoding. \\(\\mathbf{y}_i\\) is \\(N_L\\) dimensional vector. Label \\(n\\) encoded as \\((0,0,\\ldots, 1, \\ldots, 0)\\), with \\(1\\) in \\(n\\text{th}\\) place"
+  },
+  {
+    "objectID": "slides/autodiff.html#using-a-trained-model",
+    "href": "slides/autodiff.html#using-a-trained-model",
+    "title": "Part II Computational Physics",
+    "section": "Using a trained model",
+    "text": "Using a trained model\n\nNeed procedure for turning output \\(\\mathsf{NN}_\\theta(\\mathbf{x})\\) — an \\(N_L\\) dimensional vector — into discrete label\nSimplest way is to find the maximum component and predict corresponding label\n\n\\[\nl_* = \\underset{l}{\\operatorname{argmax}} \\left[\\mathsf{NN}_\\theta(\\mathbf{x})\\right]_l\n\\]"
+  },
+  {
+    "objectID": "slides/autodiff.html#evaluating-performance",
+    "href": "slides/autodiff.html#evaluating-performance",
+    "title": "Part II Computational Physics",
+    "section": "Evaluating performance",
+    "text": "Evaluating performance\n\nStardard protocol: split dataset into training set and test set\nTraining set used for training model; test set for evaluating it\nAfter training model should perform well on training set, but will perform less well on test set\nDifference between cost function evaluated on test set and training set is a measure of how well the model generalizes to new inputs: generalization error"
+  },
+  {
+    "objectID": "slides/autodiff.html#overfitting",
+    "href": "slides/autodiff.html#overfitting",
+    "title": "Part II Computational Physics",
+    "section": "Overfitting",
+    "text": "Overfitting\n\nParticular risk when using large neural networks with many parameters\nSufficiently flexible model capable of “memorizing” dataset without “understanding”, leading to poor generalization\n\n\n\n\nSource: Wikipeda"
+  },
+  {
+    "objectID": "slides/autodiff.html#gradient-descent",
+    "href": "slides/autodiff.html#gradient-descent",
+    "title": "Part II Computational Physics",
+    "section": "Gradient descent",
+    "text": "Gradient descent\n\nSimple algorithm underlying training\nCost function is differentiable function of parameters \\(\\theta\\)\nIdea of gradient descent is to take steps “downhill” i.e. in direction \\(-\\mathcal{C}(\\theta)\\) in high dimensional space of all parameters\nEach step corresponds to an update of the parameters\n\n\\[\n\\theta_i\\longrightarrow \\theta'_i = \\theta_i - \\eta \\frac{\\partial\\mathcal{C}}{\\partial \\theta_i}\n\\]\n\n\\(\\eta\\) is hyperparameter called learning rate"
+  },
+  {
+    "objectID": "slides/autodiff.html#why-so-simple",
+    "href": "slides/autodiff.html#why-so-simple",
+    "title": "Part II Computational Physics",
+    "section": "Why so simple?",
+    "text": "Why so simple?\n\nAll sophistication lies in how model is defined and how gradients are calculated\nNot a trvial task: ChatGPT has 175 billion parameters!\nMany more sophisticated optimization methods, but often involve more information about model’s dependence on parameters\nNewton’s method requires knowledge of first and second derivatives at each step: too costly to evaluate"
+  },
+  {
+    "objectID": "slides/autodiff.html#minibatches",
+    "href": "slides/autodiff.html#minibatches",
+    "title": "Part II Computational Physics",
+    "section": "Minibatches",
+    "text": "Minibatches\n\nRecall cost defined as average over dataset\n\n\\[\n\\mathcal{C}(\\theta) = \\frac{1}{2N}\\sum_{i=1}^N \\lVert\\mathbf{y}_i-\\mathsf{NN}_\\theta(\\mathbf{x}_i)\\rVert^2\n\\]\n\nFor large datasets of high dimensional data (e.g. images) not practical to calculate gradient of cost using entire dataset\nUsual procedure is to split data up into minibatches\nPerform each step of gradient descent by evaluating gradient only on batch"
+  },
+  {
+    "objectID": "slides/autodiff.html#the-network",
+    "href": "slides/autodiff.html#the-network",
+    "title": "Part II Computational Physics",
+    "section": "The network",
+    "text": "The network\n\nSo far \\(\\mathsf{NN}_\\theta\\) just a function \\(\\mathsf{NN}_\\theta:\\mathbb{R}^{N_D}\\longrightarrow \\mathbb{R}^{N_L}\\) with lots of parameters \\(\\theta\\)\nWhat is this function, and why is it a “neural network”?"
+  },
+  {
+    "objectID": "slides/autodiff.html#defining-fj",
+    "href": "slides/autodiff.html#defining-fj",
+    "title": "Part II Computational Physics",
+    "section": "Defining \\(f^{(j)}\\)",
+    "text": "Defining \\(f^{(j)}\\)\n\nShould be simple, but still allow each output component to depend on all input components\n\n\\[\n\\left[f(\\mathbf{x})\\right]_\\alpha = \\phi\\left(\\sum_{\\beta=1}^{N_\\text{in}} w_{\\alpha\\beta}x_\\beta + b_\\alpha\\right),\\qquad \\alpha = 1,\\ldots N_\\text{out}\n\\]\n\n\\(w\\in \\mathbb{R}^{N_\\text{out}\\times N_\\text{in}}\\) are weights; \\(\\mathbf{b}\\in\\mathbb{R}^{N_\\text{out}}\\) are biases\nThese are parameters of this layer: modified during training\n\\(\\phi:\\mathbb{R}\\longrightarrow\\mathbb{R}\\) activation function"
+  },
+  {
+    "objectID": "slides/autodiff.html#why-network",
+    "href": "slides/autodiff.html#why-network",
+    "title": "Part II Computational Physics",
+    "section": "Why network?",
+    "text": "Why network?\n\\[\nf(\\mathbf{x}) = \\phi(w\\cdot\\mathbf{x} + \\mathbf{b}).\n\\]\n\nRepresented graphically as\n\n\n\n\nFigure 1: Nielsen (2015)"
+  },
+  {
+    "objectID": "slides/autodiff.html#why-neural",
+    "href": "slides/autodiff.html#why-neural",
+    "title": "Part II Computational Physics",
+    "section": "Why neural?",
+    "text": "Why neural?\n\nLong been used as a model for what goes on in the brain\nMany differences\n\nAbsence of any particular role for time\nReal neural networks are not DAGs!\n\nDAG property plays a decisive role in training of artificial neural networks"
+  },
+  {
+    "objectID": "slides/autodiff.html#summary-so-far",
+    "href": "slides/autodiff.html#summary-so-far",
+    "title": "Part II Computational Physics",
+    "section": "Summary so far",
+    "text": "Summary so far\n\\[\n\\mathcal{C}(\\theta) = \\frac{1}{2N}\\sum_{i=1}^N \\lVert\\mathbf{y}_i-\\mathsf{NN}_\\theta(\\mathbf{x}_i)\\rVert^2\n\\]\n\\[\n\\theta_i\\longrightarrow \\theta'_i = \\theta_i - \\eta \\frac{\\partial\\mathcal{C}}{\\partial \\theta_i}\n\\]\n\\[\n\\mathsf{NN}_\\theta = f_\\theta^{(L)} \\circ f_\\theta^{(L-1)} \\cdots \\circ f_\\theta^{(2)} \\circ f_\\theta^{(1)}\n\\]"
+  },
+  {
+    "objectID": "slides/autodiff.html#automatic-differentiation",
+    "href": "slides/autodiff.html#automatic-differentiation",
+    "title": "Part II Computational Physics",
+    "section": "Automatic differentiation",
+    "text": "Automatic differentiation\n\nTo perform gradient descent have to calculate \\(\\partial\\mathcal{C}/\\partial \\theta_i\\)\nCan be calculated efficiently, using algorithm called backpropagation\nBackprop an example of automatic differentiation"
+  },
+  {
+    "objectID": "slides/autodiff.html#what-ad-is-not",
+    "href": "slides/autodiff.html#what-ad-is-not",
+    "title": "Part II Computational Physics",
+    "section": "What AD is not",
+    "text": "What AD is not\n\nOften people guess…\n\n\\[\n\\frac{\\partial\\mathcal{C}}{\\partial \\theta_i} \\approx \\frac{\\mathcal{C}(\\theta_i+\\Delta\\theta_i)- \\mathcal{C}(\\theta_i)}{\\Delta \\theta_i}\n\\tag{1}\\]\n\nBut this is numerical differentiation\nNecessary if you only have access to \\(\\mathcal{C}(\\theta)\\) as a black box function\nAD is different: uses knowledge about how function \\(\\mathcal{C}\\) is formed by composing many simpler functions"
+  },
+  {
+    "objectID": "slides/autodiff.html#evaluating-the-derivatives",
+    "href": "slides/autodiff.html#evaluating-the-derivatives",
+    "title": "Part II Computational Physics",
+    "section": "Evaluating the derivatives",
+    "text": "Evaluating the derivatives\n\\[\n\\theta = (w^{(1)}, \\mathbf{b}^{(1)},\\ldots, w^{(L)}, \\mathbf{b}^{(L)})\n\\]\n\\[\n\\mathsf{NN}_\\theta = f_{w^{(L)}, \\mathbf{b}^{(L)}}^{(L)} \\circ f_{w^{(L-1)}, \\mathbf{b}^{(L-1)}}^{(L-1)} \\cdots \\circ f_{w^{(2)}, \\mathbf{b}^{(2)}}^{(2)} \\circ f_{w^{(1)}, \\mathbf{b}^{(1)}}^{(1)}\n\\]\n\nDenote input to \\(l\\)th layer as \\[\n\\mathbf{z}^{(l)} \\equiv w^{(l)} \\cdot \\mathbf{x}^{(l)} + \\mathbf{b}^{(l)}\n\\] and the output as \\(\\mathbf{a}^{(l)}\\) (“a” for activation)\n\n\\[\n\\mathbf{a}^{(l)} = \\phi(\\mathbf{z}^{(l)})\n\\]"
+  },
+  {
+    "objectID": "slides/autodiff.html#forward-accumulation",
+    "href": "slides/autodiff.html#forward-accumulation",
+    "title": "Part II Computational Physics",
+    "section": "Forward accumulation",
+    "text": "Forward accumulation\n\\[\n\\frac{\\partial \\mathsf{NN}_\\theta(\\mathbf{x})}{\\partial \\mathbf{b}^{(l)}} = \\frac{\\partial f^{(L)}}{\\partial \\mathbf{x}^{(L)}}\\cdot \\frac{\\partial f^{(L-1)}}{\\partial \\mathbf{x}^{(L-1)}} \\cdots  \\frac{\\partial f^{(l)}}{\\partial \\mathbf{z}^{(l)}}\n\\]\n\nGo from right to left\nStarting from input \\(\\mathbf{x}\\): evaluate \\(\\mathbf{z}^{(l)}\\)\nOnce we reach \\(f^{(l)}\\) keep track of a matrix as well as \\(\\mathbf{z}^{(l')}\\)\nMatrix is initialized with components \\(\\phi'(\\mathbf{z}^{(l)})\\delta_{jk}\\). Then acted on by each of the Jacobians until we get to the final layer"
+  },
+  {
+    "objectID": "slides/autodiff.html#backpropagation",
+    "href": "slides/autodiff.html#backpropagation",
+    "title": "Part II Computational Physics",
+    "section": "Backpropagation",
+    "text": "Backpropagation\n\nGo from left to right\nHave to have evaluate and store \\(\\mathbf{z}^{(l')}\\) with \\(l'=1,\\ldots L\\) before we can do anything, as the Jacobians depend on these values\nThis is the forward pass"
+  },
+  {
+    "objectID": "slides/autodiff.html#implementation",
+    "href": "slides/autodiff.html#implementation",
+    "title": "Part II Computational Physics",
+    "section": "Implementation",
+    "text": "Implementation\n\nPopular libraries include PyTorch, TensorFlow, and Jax\nFun to take a look at how backpropagation is actually implemented in code\nTry micrograd by Andrej Karpathy\nHe also has a YouTube video where he explains it in detail"
+  },
+  {
+    "objectID": "slides/fourier.html#the-discrete-fourier-transform",
+    "href": "slides/fourier.html#the-discrete-fourier-transform",
+    "title": "Part II Computational Physics",
+    "section": "The discrete Fourier transform",
+    "text": "The discrete Fourier transform\n\nChange of basis in a finite dimensional space\nMps signal sampled at \\(N\\) regularly spaced time points to representation at \\(N\\) frequency points \\[\nF_n = \\sum_{j=0}^{N-1} f_j e^{-i\\eta_n j}\n\\] \\(\\eta_n\\equiv \\frac{2\\pi n}{N}\\)\n\\(F_n\\) contain same information as \\(f_j\\), and \\(f_j\\) can be recovered completely by inverting operation"
+  },
+  {
+    "objectID": "slides/fourier.html#ntoinfty-limit",
+    "href": "slides/fourier.html#ntoinfty-limit",
+    "title": "Part II Computational Physics",
+    "section": "\\(N\\to\\infty\\) limit",
+    "text": "\\(N\\to\\infty\\) limit\n\n\\(\\eta_n\\) values become dense in range \\((-\\pi,\\pi]\\), with separation \\(\\Delta \\eta = 2\\pi/N\\)\nReplace sum in IDFT integral according to: \\[\n\\sum_{n=0}^{N-1} \\left(\\cdots\\right) \\xrightarrow{N\\to\\infty} N \\int_{0}^{2\\pi} \\frac{d\\eta}{2\\pi}\\left(\\cdots\\right)\n\\] \\[\nf_j = \\int_{0}^{2\\pi} \\frac{d\\eta}{2\\pi}\\,F(\\eta) e^{i\\eta j}\n\\]"
+  },
+  {
+    "objectID": "slides/fourier.html#ntoinfty-with-f_j-fjln",
+    "href": "slides/fourier.html#ntoinfty-with-f_j-fjln",
+    "title": "Part II Computational Physics",
+    "section": "\\(N\\to\\infty\\) with \\(f_j = f(jL/N)\\)",
+    "text": "\\(N\\to\\infty\\) with \\(f_j = f(jL/N)\\)\n\n\\(N\\to\\infty\\) limit samples \\(f(x)\\) ever more finely in range (0,L]\nNow DFT becomes an integral \\[\n\\hat f(k) \\equiv \\int_0^L f(x) e^{-ik_n x}\\,dx,\n\\] where \\(k_n =2\\pi n/L\\). Note that \\(k_n x = \\eta_n j\\). \\[\n\\begin{align}\n\\hat f_k &= \\int_0^L f(x) e^{-ik_n x}\\,dx\\nonumber\\\\\nf(x) &= \\frac{1}{L}\\sum_k \\hat f_k e^{ik_n x}\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "slides/fourier.html#ltoinfty",
+    "href": "slides/fourier.html#ltoinfty",
+    "title": "Part II Computational Physics",
+    "section": "\\(L\\to\\infty\\)",
+    "text": "\\(L\\to\\infty\\)\n\nFinally Fourier transform, where we take \\(L\\to\\infty\\), so that inverse transform becomes an integral too \\[\n\\begin{align}\n\\hat{f}(k) & = \\int_{-\\infty}^\\infty f(x) e^{-ik_n x}\\,dx\\nonumber\\\\\nf(x) &= \\int_{-\\infty}^\\infty \\hat f(k) e^{ik_n x}\\,\\frac{dk}{2\\pi}\n\\label{coll_FTTrans}\n\\end{align}\n\\]"
+  },
+  {
+    "objectID": "slides/fourier.html#sec-properties",
+    "href": "slides/fourier.html#sec-properties",
+    "title": "Part II Computational Physics",
+    "section": "Some important properties",
+    "text": "Some important properties\n\nSome properties of DFT (and all of the above)\n\n\nIf \\(f_j\\) is real then \\(F_n = \\left[F_{-n}\\right]^*\\).\nIf \\(f_j\\) is even (odd), \\(F_n\\) is even (odd).\n(Ergo) if \\(f_j\\) is real and even, so is \\(F_n\\)."
+  },
+  {
+    "objectID": "slides/fourier.html#higher-dimensions",
+    "href": "slides/fourier.html#higher-dimensions",
+    "title": "Part II Computational Physics",
+    "section": "Higher dimensions",
+    "text": "Higher dimensions\n\nGeneralizes to higher dimensions straightforwardly\nIf data lives \\(d\\) dimensions with \\(N_i\\) datapoints along dimension \\(i=1,\\dots d\\) \\[\nF_{\\mathbf{n}} = \\sum_{\\mathbf{n}} f_\\mathbf{j}e^{-i \\boldsymbol{\\eta}_\\mathbf{n}\\cdot \\mathbf{j}}\n\\] \\(\\mathbf{j}=(j_1,\\ldots j_{d})\\) with \\(j_i = 0,\\ldots N_i - 1\\) and \\(\\boldsymbol{\\eta}_\\mathbf{n} = 2\\pi (n_1 / N_1, \\ldots n_d/ N_d)\\) \\(n_i = 0,\\ldots N_i - 1\\)"
+  },
+  {
+    "objectID": "slides/fourier.html#complexity",
+    "href": "slides/fourier.html#complexity",
+    "title": "Part II Computational Physics",
+    "section": "Complexity",
+    "text": "Complexity\n\nClear that FFT is going to beat the naive approach\n\\(T(N)\\) is steps required to compute DFT for size \\(N\\) input\nCalculating \\(F^\\text{e}_{n'}\\) and \\(F^\\text{0}_{n'}\\) takes time \\(2T(N/2)\\)\nCombining to evaluate \\(F_n\\) is a further \\(N\\) steps, so\n\n\\[\nT(N) = 2T(N/2) +\\Theta(N)\n\\]\n\nThis implies \\(T(N)=\\Theta(N\\log N)\\)"
+  },
+  {
+    "objectID": "slides/fourier.html#history",
+    "href": "slides/fourier.html#history",
+    "title": "Part II Computational Physics",
+    "section": "History",
+    "text": "History\n\nModern invention of FFT is credited to Cooley and Tukey (1965). First to discuss complexity\nDivide and conquer approach anticipated by Danielson and Lanczos (1942), for applications in crystallography\nOG is Carl Friedrich Gauss in 1805 (predating even Fourier) in his astronomical studies\nSee Cooley, Lewis, and Welch (1967) for more on historical background"
+  },
+  {
+    "objectID": "slides/fourier.html#fft-in-python",
+    "href": "slides/fourier.html#fft-in-python",
+    "title": "Part II Computational Physics",
+    "section": "FFT in Python",
+    "text": "FFT in Python\n\nFFT available in both NumPy (in the numpy.fft module) and SciPy (in scipy.fft), with a more comprehensive set of functions\nOur definitions are the defaults used in these modules (but always check conventions!)"
+  },
+  {
+    "objectID": "slides/fourier.html#simple-example",
+    "href": "slides/fourier.html#simple-example",
+    "title": "Part II Computational Physics",
+    "section": "Simple example",
+    "text": "Simple example\n\nSignal consisting of two sinusoids at 12 Hz and 34 Hz:"
+  },
+  {
+    "objectID": "slides/fourier.html#windowing",
+    "href": "slides/fourier.html#windowing",
+    "title": "Part II Computational Physics",
+    "section": "Windowing",
+    "text": "Windowing\n\nSignal a pair of sinusoids, but FFT not just \\(\\delta\\)-functions\n\n\n\n\n\n\n\nBecause data is of finite length"
+  },
+  {
+    "objectID": "slides/fourier.html#signal-processing",
+    "href": "slides/fourier.html#signal-processing",
+    "title": "Part II Computational Physics",
+    "section": "Signal processing",
+    "text": "Signal processing\n\nTime series data from LIGO and Virgo experiments on gravitational wave detection that led to the 2017 Nobel prize in physics\nSee Abbott et al. (2020) for details, as well as accompanying notebook that describes how analysis is performed in Python"
+  },
+  {
+    "objectID": "slides/fourier.html#partial-differential-equations",
+    "href": "slides/fourier.html#partial-differential-equations",
+    "title": "Part II Computational Physics",
+    "section": "Partial differential equations",
+    "text": "Partial differential equations\n\nSpectral methods exploit FFT as part of solver\nExample: time-dependent Schrödinger equation\n\n\\[\ni\\hbar \\frac{\\partial \\psi}{\\partial t} = -\\frac{\\hbar^2}{2m}\\nabla^2 \\psi + V(\\mathbf{r})\\psi\n\\]"
   },
   {
     "objectID": "slides/numpy.html#preamble-objects-in-python",
@@ -431,7 +655,7 @@
     "href": "notes/getting-going.html",
     "title": "Getting going",
     "section": "",
-    "text": "1 Finding your way\nEveryone finds their own workflow for coding, depending on their preferred language, editor, how they run their code, and so on. The aim of the sections below is to give a roundup of some popular tools in the Python ecosystem.\n\n\n2 Your coding environment\nTo run Python code on your computer you will need to have installed the Python language. I recommend the Anaconda distribution as it comes with all the parts of the toolkit we’ll need such as Jupyter notebooks and the major libraries NumPy and SciPy.\nTry running python at the command line. You should get something like\nPython 3.9.12 (main, Apr  5 2022, 01:53:17) \n[Clang 12.0.0 ] :: Anaconda, Inc. on darwin\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> \nYou should confirm that you are using Python 3 (the command python3 will also work and guarantee this if you happen to have Python 2 as the default). The prompt >>> indicates that you have started the Python interactive shell or REPL and are good to go:\n\nprint(\"Hello world!\")\n1 + 2\n\nHello world!\n\n\n3\n\n\nTo leave and return to the command line, you can run quit() or exit().\n\n\n3 IPython\nIf you ran the above command from within python you may have noticed that the nice colour scheme that you see above was absent. This is called syntax highlighting and provides a visual guide to the syntax of the language.\nIPython is an interactive shell that provides syntax highlighting and much more. If you have installed IPython (it comes with Anaconda) you can start it from the command line with ipython.\nAmong the most helpful features of IPython are:\n\nTab completion: hit tab to autocomplete. This is particularly useful for viewing all properties or methods of an object: \nTyping ?obj or obj? prints detailed information about the object obj (?? provides additional detail).\nCertain magic commands prefixed by % that provide certain additional functionality. For example, %timeit finds the executation time of a single line statement, which is useful when profiling the performance of code:\n\n\n%timeit L = [n ** 2 for n in range(1000)]\n\n235 µs ± 6.51 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)\n\n\n%timeit automatically runs several times to give some statistics on the execution time. For multiple lines you can use the %%timeit magic.\nYou can find much more exploring the documentation.\n\n\n4 Running a Python program\nPython code in a file with a .py extension can be run from the command line with python hello_world.py or python -m hello_world. In the latter case the -m option tells the interpreter to look for a module called hello_world. More on modules below.\nFrom the IPython shell you can instead use run hello_world.py or just run hello_world.\n\n\n\n5 Importing code\nA Python module is just a file containing definition and statements. Breaking long code into modules is good practice for writing clear and reusable software. Users may not want to delve into the details of some function you have written in order to be able to us it, and separating the corresponding code into a separate file is a hygienic way to handle this.\nThus if I make the file hello_world.py containing the function:\n\ndef hello():\n    print(\"Hello world!\")\n\nI can run this function by first importing the module:\n\nimport hello_world\nhello_world.hello()\n\nHello world!\n\n\nNotice that the function hello is accessed from the hello_world namespace. This is to avoid any confusion that may arise if more that one imported module has a function of the same name. If you are confident that’s not an issue and want more concise code you can do this:\n\nfrom hello_world import hello\nhello()\n\nHello world!\n\n\nor even import everything with the wildcard *:\n\nfrom hello_world import *\nhello()\n\nHello world!\n\n\nThe issue with the latter is that it may introduce a whole bunch of names that may interfere with things you already defined.\nA collection of modules in a folder is called a package. You can import a package in the same way and access all the modules using the same . notation i.e. package.module1, package.module2, etc..\nSince explicit namespaces are preferred to avoid ambiguity it’s common to introduce shorthand names for the package or module you are importing, hence the ubiquitous:\n\nimport numpy as np\nnp.arange(10)\n\narray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])\n\n\n(You can call it what you like, of course!)\nFor details about where the interpreter looks to find modules you try to import are in the documentation.\n\n\n6 Installing libraries\n99% of the code 1 you run will have been written by somebody else in the form of a library (a collection of modules or packages). Package installation is handled by the command line utilities pip or conda, the latter being the package manager for the Anaconda distribution. If you have NumPy and SciPy installed you won’t need to worry about this too much in this course.\n\n\n7 Editors\nModern editors come with a huge number of tools that make writing code much easier, and you would be crazy not to take advantage of them. These range from the visual cues provided by syntax highlighting – which we’ve already met – to code completion, parameter information and documentation popups as you type. These go under the general heading IntelliSense. The latest hotness is GitHub Copilot, which uses AI to make code suggestions. In my view, these are all part of a continuum of productivity enhancements that enable people to write better code faster. Use them (wisely).\nI use Visual Studio Code.\n\n\n8 Notebooks\nWhile software developers write .py files, modules and packages, scientists and others doing more exploratory work tend to favour a Notebook format that mixes code, text, and plots. The dominant option is the Jupyter notebook, which comes with the Anaconda distribution and can be started from the command line with jupyter notebook (or from the Anaconda Navigator application). This will open the notebook as a web page in your browser, where it can be edited and saved. The default extension is .ipynb.\nJupyter notebooks can actually run code in different languages (the processes running a particular language is called a kernel), but the default process is IPython with all the benefits described above.\nThe text cells can be formatted using Markdown and also support \\(\\LaTeX\\) equations, which is pretty handy for us.\nGoogle has their own cloud version of the Jupyter notebook called Colab. You can try it out for free, though you have to pay for significant compute. The “next generation” of the Jupyter notebook is called JupyterLab and can be started with jupyter lab. Notebook files can be opened in either Jupyter Lab or Jupyter Notebook\n\n\n\n\n\n\nFootnotes\n\n\nThis is a conservative estimate↩︎"
+    "text": "1 Finding your way\nEveryone finds their own workflow for coding, depending on their preferred language, editor, how they run their code, and so on. The aim of the sections below is to give a roundup of some popular tools in the Python ecosystem.\n\n\n2 Your coding environment\nTo run Python code on your computer you will need to have installed the Python language. I recommend the Anaconda distribution as it comes with all the parts of the toolkit we’ll need such as Jupyter notebooks and the major libraries NumPy and SciPy.\nTry running python at the command line. You should get something like\nPython 3.9.12 (main, Apr  5 2022, 01:53:17) \n[Clang 12.0.0 ] :: Anaconda, Inc. on darwin\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> \nYou should confirm that you are using Python 3 (the command python3 will also work and guarantee this if you happen to have Python 2 as the default). The prompt >>> indicates that you have started the Python interactive shell or REPL and are good to go:\n\nprint(\"Hello world!\")\n1 + 2\n\nHello world!\n\n\n3\n\n\nTo leave and return to the command line, you can run quit() or exit().\n\n\n3 IPython\nIf you ran the above command from within python you may have noticed that the nice colour scheme that you see above was absent. This is called syntax highlighting and provides a visual guide to the syntax of the language.\nIPython is an interactive shell that provides syntax highlighting and much more. If you have installed IPython (it comes with Anaconda) you can start it from the command line with ipython.\nAmong the most helpful features of IPython are:\n\nTab completion: hit tab to autocomplete. This is particularly useful for viewing all properties or methods of an object: \nTyping ?obj or obj? prints detailed information about the object obj (?? provides additional detail).\nCertain magic commands prefixed by % that provide certain additional functionality. For example, %timeit finds the executation time of a single line statement, which is useful when profiling the performance of code:\n\n\n%timeit L = [n ** 2 for n in range(1000)]\n\n222 µs ± 8.48 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)\n\n\n%timeit automatically runs several times to give some statistics on the execution time. For multiple lines you can use the %%timeit magic.\nYou can find much more exploring the documentation.\n\n\n4 Running a Python program\nPython code in a file with a .py extension can be run from the command line with python hello_world.py or python -m hello_world. In the latter case the -m option tells the interpreter to look for a module called hello_world. More on modules below.\nFrom the IPython shell you can instead use run hello_world.py or just run hello_world.\n\n\n\n5 Importing code\nA Python module is just a file containing definition and statements. Breaking long code into modules is good practice for writing clear and reusable software. Users may not want to delve into the details of some function you have written in order to be able to us it, and separating the corresponding code into a separate file is a hygienic way to handle this.\nThus if I make the file hello_world.py containing the function:\n\ndef hello():\n    print(\"Hello world!\")\n\nI can run this function by first importing the module:\n\nimport hello_world\nhello_world.hello()\n\nHello world!\n\n\nNotice that the function hello is accessed from the hello_world namespace. This is to avoid any confusion that may arise if more that one imported module has a function of the same name. If you are confident that’s not an issue and want more concise code you can do this:\n\nfrom hello_world import hello\nhello()\n\nHello world!\n\n\nor even import everything with the wildcard *:\n\nfrom hello_world import *\nhello()\n\nHello world!\n\n\nThe issue with the latter is that it may introduce a whole bunch of names that may interfere with things you already defined.\nA collection of modules in a folder is called a package. You can import a package in the same way and access all the modules using the same . notation i.e. package.module1, package.module2, etc..\nSince explicit namespaces are preferred to avoid ambiguity it’s common to introduce shorthand names for the package or module you are importing, hence the ubiquitous:\n\nimport numpy as np\nnp.arange(10)\n\narray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])\n\n\n(You can call it what you like, of course!)\nFull details about where the interpreter looks to find modules you try to import are in the documentation.\n\n\n6 Installing libraries\n99% of the code 1 you run will have been written by somebody else in the form of a library (a collection of modules or packages). Package installation is handled by the command line utilities pip or conda, the latter being the package manager for the Anaconda distribution. If you have NumPy and SciPy installed you won’t need to worry about this too much in this course.\n\n\n7 Editors\nModern editors come with a huge number of tools that make writing code much easier, and you would be crazy not to take advantage of them. These range from the visual cues provided by syntax highlighting – which we’ve already met – to code completion, parameter information and documentation popups as you type. These go under the general heading IntelliSense. The latest hotness is GitHub Copilot, which uses AI to make code suggestions. In my view, these are all part of a continuum of productivity enhancements that enable people to write better code faster. Use them (wisely).\nI use Visual Studio Code.\n\n\n8 Notebooks\nWhile software developers write .py files, modules and packages, scientists and others doing more exploratory work tend to favour a Notebook format that mixes code, text, and plots. The dominant option is the Jupyter notebook, which comes with the Anaconda distribution and can be started from the command line with jupyter notebook (or from the Anaconda Navigator application). This will open the notebook as a web page in your browser, where it can be edited and saved. The default extension is .ipynb.\nJupyter notebooks can actually run code in different languages (the processes running a particular language is called a kernel), but the default process is IPython with all the benefits described above.\nThe text cells can be formatted using Markdown and also support \\(\\LaTeX\\) equations, which is pretty handy for us.\nGoogle has their own cloud version of the Jupyter notebook called Colab. You can try it out for free, though you have to pay for significant compute. The “next generation” of the Jupyter notebook is called JupyterLab and can be started with jupyter lab. Notebook files can be opened in either Jupyter Lab or Jupyter Notebook\n\n\n\n\n\n\nFootnotes\n\n\nThis is a conservative estimate↩︎"
   },
   {
     "objectID": "notes/monte-carlo.html",
@@ -548,9 +772,51 @@
   {
     "objectID": "notes/autodiff.html",
     "href": "notes/autodiff.html",
-    "title": "Part II Computational Physics",
+    "title": "Automatic differentiation and neural networks",
     "section": "",
-    "text": "Intro to backpropagation"
+    "text": "In this lecture we are going to look at the algorithms that underlie the training of neural networks, which are the dominant model in the field of machine learning."
+  },
+  {
+    "objectID": "notes/autodiff.html#sec-cost",
+    "href": "notes/autodiff.html#sec-cost",
+    "title": "Automatic differentiation and neural networks",
+    "section": "1.1 The cost function",
+    "text": "1.1 The cost function\nLet’s discuss the idea of training as optimization in a bit more detail. We suppose that we have a large dataset of size \\(N\\) that consists of data \\(\\mathbf{x}_i=1,\\ldots N\\) together with labels \\(l_i\\). The first step is to encode our labels in vectors \\(\\mathbf{y}_i\\) that can be compared with the output of the neural network. A popular choice is one hot encoding. \\(\\mathbf{y}_i\\) is an \\(N_L\\) dimensional vector, where \\(N_L\\) is the number of labels, and label \\(n\\) is encoded as \\((0,0,\\ldots, 1, \\ldots, 0)\\), with the \\(1\\) in the \\(n\\)th place.\nWe would like to train the network (choose the parameters \\(\\theta\\)) so that \\(\\mathsf{NN}_\\theta(\\mathbf{x}_i)\\) is close to the corresponding \\(\\mathbf{y}_i\\) that represents the label. In order to quantify this we introduce a cost or loss function that quantifies the difference. A simple example is the quadratic cost\n\\[\n\\mathcal{C}(\\theta) = \\frac{1}{2N}\\sum_{i=1}^N \\lVert\\mathbf{y}_i-\\mathsf{NN}_\\theta(\\mathbf{x}_i)\\rVert^2.\n\\tag{1}\\]\nIn other words, we use the usual square norm in \\(\\mathbb{R}^{N_L}\\) of the distance between the network output and encoded label. Note also that we average over the training data, because sometimes our network may not perform so well, confusing different labels:\n\n\n\nMuffin or chihuahua?\n\n\nThe idea is now to minimize \\(\\mathcal{C}(\\theta)\\) over the parameters of the network. The rest of this lecture concerns the practicalities of how this is done. When it comes to using the model for identifying previously unseen data, we need a procedure for turning the output \\(\\mathsf{NN}_\\theta(\\mathbf{x})\\) — an \\(N_L\\) dimensional vector — into a discrete label. If the network has been defined so that the components of the output are non-negative, and recalling that the labels were encoded as one hot vectors, the simplest way to do this is to find the maximum component and make the prediction that the corresponding label is the correct one. This is written as\n\\[\nl_* = \\underset{l}{\\operatorname{argmax}} \\left[\\mathsf{NN}_\\theta(\\mathbf{x})\\right]_l.\n\\]\nWhen evaluating the performance of a machine learning model there is a standard protocol that involves splitting the dataset into training set and a test set, where the former is used for training the model and the latter for evaluating it. After training the model it should perform well on the training set, but will generally perform less well on the test set, which contains data that the model has never seen. The difference between the cost function evaluated on the test set and the training set is a measure of how well the model generalizes to new inputs and is known as the generalization error.\nA particular risk when using large neural networks with many parameters is the problem of overfitting. A sufficiently flexible model is capable of effectively “memorizing” the dataset, without “understanding” the labelling, leading to poor generalization.\n\n\n\nSimple illustration of overfitting, from Wikipeda. The black line represents a “reasonable” model that does a decent job of distinguishing between the two labels in the data (red and blue), while the green line represents an “unreasonable” model that does a better job.\n\n\nA particularly vivid example appears in Zhang et al. (2021). They showed that popular computer vision models can be trained on randomly labelled data (where the labels have no connection to the image) to achieve perfect accuracy on the training set. Of course, the resulting performance on the test set was no better than random guessing. This is a natural consequence of overparameterization — having more parameters than data points in your training data — and shows that much of the success in training models with good generalization is down to the details of how the training is done (for example, by stopping before the training error gets too low)."
+  },
+  {
+    "objectID": "notes/autodiff.html#sec-grad",
+    "href": "notes/autodiff.html#sec-grad",
+    "title": "Automatic differentiation and neural networks",
+    "section": "1.2 Gradient descent",
+    "text": "1.2 Gradient descent\nLeaving these questions aside, the basic idea underlying training is an extremely simple algorithm called gradient descent. If our network \\(\\mathsf{NN}_\\theta\\) is designed appropriately, our cost function Equation 1 is a differentiable function of the parameters \\(\\theta\\). The minimum cost that we seek therefore corresponds to a stationary point where \\(\\nabla_\\theta \\mathcal{C}(\\theta)|_{\\theta_*}=0\\). The idea of gradient descent is to take steps “downhill” i.e. in the direction \\(-\\mathcal{C}(\\theta)\\) in the high dimensional space of all the parameters, where each step corresponds to an update of the parameters according to\n\\[\n\\theta_i\\longrightarrow \\theta'_i = \\theta_i - \\eta \\frac{\\partial\\mathcal{C}}{\\partial \\theta_i}\n\\tag{2}\\]\nwhere \\(\\eta\\) is a hyperparameter2 called the learning rate. Choosing the learning rate is an important part of the craft of training models: too large and the first order approximation underlying Equation 2 breaks down and the cost may end up increasing; too small and the network will take too long to train. Often a learning rate schedule is used where the rate is adjusted during training to optimize convergence. You might guess that starting off with a large learning rate and then reducing it is the right way to go, and this is correct, but people do all sort of exotic things.\nYou might find it surprising that such a simple approach plays such an important role in machine learning. All of the sophistication lies in how the model is defined (Section 1.3) and how the gradients are calculated (Section 2): for a complicated function with many parameters 3 this is a highly nontrivial task. While there are plenty of more sophisticated optimization methods they often involve more information about the model’s dependence on its parameters, and this is more costly to evaluate. For example Newton’s method — which you may have encountered before — requires knowledge of first and second derivatives at each step, and this is normally less practical.\nAnother issue that relates to scale concerns the definition of our cost function Equation 1 as an average over the dataset. For large datasets consisting of high dimensional data (e.g. images) it is usually not practical to calculate the gradient of the cost using the entire dataset. The usual procedure is then to split the data up into batches (usually called minibatches, confusingly), and perform each step of gradient descent by evaluating the gradient only on the batch, moving on to a new batch at the next step. Eventually this will lead to all the data in the dataset being used, which is usually known as one epoch of training. Training a model can involve many epochs (passes through the dataset).\nBecause each step only uses part of the data, the gradients calculated are going to be more “noisy” than the “true” gradients involving the whole dataset. Because of this, training by gradient descent with minibatches is known as stochastic gradient descent. It is generally thought that the noise introduced by minibatching plays a role in improving the generalization performance of neural networks."
+  },
+  {
+    "objectID": "notes/autodiff.html#sec-nn",
+    "href": "notes/autodiff.html#sec-nn",
+    "title": "Automatic differentiation and neural networks",
+    "section": "1.3 The network",
+    "text": "1.3 The network\nSo far we have said nothing at all about \\(\\mathsf{NN}_\\theta\\) except that it is a function \\(\\mathsf{NN}_\\theta:\\mathbb{R}^{N_D}\\longrightarrow \\mathbb{R}^{N_L}\\) from the space of data to the space of labels, and it has lots of parameters. What is this function, and why is it called a “neural network”? In this section we’ll define \\(\\mathsf{NN}_\\theta\\) and say something about the origins of the idea in neuroscience.\nLeaving biology aside for the moment, we know that \\(\\mathsf{NN}_\\theta\\) must be complicated. We want it to take high dimensional inputs and somehow interpret them, outputting a label which synthesizes lots of high-level features in the data (e.g. in images the network must detect edges, shapes, and their relation). How can we make a complicated function?\nThe answer is that we do it by composing lots of simpler functions\n\\[\n\\mathsf{NN}_\\theta = f_\\theta^{(L)} \\circ f_\\theta^{(L-1)} \\cdots \\circ f_\\theta^{(2)} \\circ f_\\theta^{(1)}\n\\tag{3}\\]\nThe function \\(f^{(1)}\\) is a map \\(f^{(1)}:\\mathbb{R}^{N_D}\\longrightarrow \\mathbb{R}^{h_{1}}\\), where \\(h_1\\) is usually called the width of the first hidden layer (we’ll shortly draw a picture to show where this terminology comes from). \\(f^{(j)}\\) are maps \\(f^{(j)}:\\mathbb{R}^{h_{j-1}}\\longrightarrow \\mathbb{R}^{h_{j}}\\) for \\(j=2, \\ldots L-1\\), and finally the output layer is \\(f^{(L)}:\\mathbb{R}^{h_{L-1}}\\longrightarrow \\mathbb{R}^{N_L}\\). The dimensions \\(h_j\\) are hyperparameters of the model.\nWe now have to define the intermediate functions \\(f^{(j)}\\). Although we have said they should be simple, we still want to allow the possibility that each of the output components depends on all of the input components. The usual recipe is\n\\[\n\\left[f(\\mathbf{x})\\right]_\\alpha = \\phi\\left(\\sum_{\\beta=1}^{N_\\text{in}} w_{\\alpha\\beta}x_\\beta + b_\\alpha\\right),\\qquad \\alpha = 1,\\ldots N_\\text{out}\n\\tag{4}\\]\nHere the matrix \\(w\\in \\mathbb{R}^{N_\\text{out}\\times N_\\text{in}}\\) contains the weights and the vector \\(\\mathbf{b}\\in\\mathbb{R}^{N_\\text{out}}\\) contains the biases. These are the parameters of (this layer of) the network and will be modified during training. The function \\(\\phi:\\mathbb{R}\\longrightarrow\\mathbb{R}\\) is called the activation function. There are several popular choices, including the sigmoid\n\\[\n\\sigma(x) = \\frac{1}{1+e^{-x}},\n\\]\nprobably more familiar to you as the Fermi-Dirac distribution, and the ReLU function \\(\\max(0,x)\\) 4.\nEquation 4 is sometimes written more compactly as\n\\[\nf(\\mathbf{x}) = \\phi(w\\cdot\\mathbf{x} + \\mathbf{b}).\n\\]\nYou should understand this expression in the sense of vectorized functions (like NumPy’s ufuncs): \\(\\phi()\\) is applied to each element of \\(w\\cdot\\mathbf{x} + \\mathbf{b}\\).\nActivation functions should be differentiable but nonlinear. A linear function would mean that the function compositions in Equation 3 collapse into matrix multiplications, producing a single overall weight matrix and bias vector. There wouldn’t be any point having separate functions: one would do the same job.\nThe result of composing functions like this many times, each with their own set of weights and biases, is a highly complex function. The term deep learning, which you will often here these days in the context of neural networks, refers to models with many function applications, or layers, which is the source of the networks’ expressiveness.\n\n\n\nA two dimensional section through the cost function (“loss landscape”) of a neural network from Li et al. (2018).\n\n\nThe network that we have described so far is called fully connected, because in Equation 4 the matrix of weights means that every input dimension is coupled to every output dimension. Most of the innovation in neural networks over the past decade has been in creating and refining architectures that exploit the structure of the data in some way. For example, in a network to be used for computer vision (image recognition), it makes sense that the model “knows” that two input pixels are near or far from each other. This means that the input dimensions corresponding to two nearby pixels should be treated differently at the outset (i.e. before training) than two separated pixels. Also, the way the network responds to an image should not be strongly dependent on translations of that image. This implies that the weight matrices \\(w\\) should have some structure to them. In the case of vision this lead to the convolutional neural network, where the \\(w\\)’s act like convolutions, exploiting translational invariance but still retaining many parameters. We won’t go any further into these different architectures in this lecture.\n\n1.3.1 Why neural?\nYou may still be wondering where the network is, let alone the neurons. I’ve decide to present the neural network model in an ahistorical way, but if you look at other presentations you will tend to see the function Equation 4 represented graphically as\n\n\n\nFigure 1: A single artifical neuron. From Nielsen (2015).\n\n\nwhich reflects the dependence of the output on the inputs (and not much else). The result of composing several such functions then looks like this:\n\n\n\nAn artifical neural network. From Nielsen (2015).\n\n\nThis is the network we have been talking about all along! Specifically, it is a network called a directed acylic graph (DAG), meaning that the connections have a direction to them (input to output) and there are no loops.\nNeural networks have long been used as a model for what goes on in the brain, with Figure 1 playing the role of the neuron. There are many differences, however, including the absence of any particular role for time5, and the fact that (real) neural networks are not DAGs! This latter property plays a decisive role in the training of artificial neural networks, as we’ll see in the next section. In general, I feel that neural networks have outgrown their biological inspiration, which is the reason I’ve downplayed it here."
+  },
+  {
+    "objectID": "notes/autodiff.html#evaluating-the-derivatives",
+    "href": "notes/autodiff.html#evaluating-the-derivatives",
+    "title": "Automatic differentiation and neural networks",
+    "section": "2.1 Evaluating the derivatives",
+    "text": "2.1 Evaluating the derivatives\nLet’s just plow on and evaluate \\(\\partial\\mathcal{C}/\\partial \\theta_i\\). Remember that the parameters are the set of weights and biases in each layer:\n\\[\n\\theta = (w^{(1)}, \\mathbf{b}^{(1)},\\ldots, w^{(L)}, \\mathbf{b}^{(L)}).\n\\]\nThe function \\(\\mathsf{NN}_\\theta\\) can therefore more precisely be written as\n\\[\n\\mathsf{NN}_\\theta = f_{w^{(L)}, \\mathbf{b}^{(L)}}^{(L)} \\circ f_{w^{(L-1)}, \\mathbf{b}^{(L-1)}}^{(L-1)} \\cdots \\circ f_{w^{(2)}, \\mathbf{b}^{(2)}}^{(2)} \\circ f_{w^{(1)}, \\mathbf{b}^{(1)}}^{(1)}.\n\\tag{7}\\]\nEvaluating the derivative with respect to weights and biases in layer \\(l\\) is therefore going to involve applying the chain rule to Equation 7. In the following we’re going to denote the input to the \\(l\\)th layer as\n\\[\n\\mathbf{z}^{(l)} \\equiv w^{(l)} \\cdot \\mathbf{x}^{(l)} + \\mathbf{b}^{(l)}\n\\]\nand the output as \\(\\mathbf{a}^{(l)}\\) (“a” for activation). Thus the layer is written in vectorized form as\n\\[\n\\mathbf{a}^{(l)} = \\phi(\\mathbf{z}^{(l)}).\n\\]\nLet’s evaluate the derivative of \\(\\mathsf{NN}_\\theta(\\mathbf{x})\\) with some fixed input with respect to the biases \\(\\mathbf{b}^{(l)}\\) in the \\(l\\)th layer. One thing to note in passing is that the cost functions we consider are simple sums (averages) over different data \\(\\mathbf{x}_i\\), so the derivatives are too.\nA straightforward application of the chain rule gives\n\\[\n\\frac{\\partial \\mathsf{NN}_\\theta(\\mathbf{x})}{\\partial \\mathbf{b}^{(l)}} = \\frac{\\partial f^{(L)}}{\\partial \\mathbf{x}^{(L)}}\\cdot \\frac{\\partial f^{(L-1)}}{\\partial \\mathbf{x}^{(L-1)}} \\cdots  \\frac{\\partial f^{(l)}}{\\partial \\mathbf{z}^{(l)}}\n\\tag{8}\\]\nbecause \\(d\\mathbf{z}^{(l)}=d\\mathbf{b}^{(l)}\\). In this expression\n\\[\n\\frac{\\partial f_j^{(l')}}{\\partial x_k^{(l')}} = \\phi'(z^{(l')}_j)w^{(l')}_{jk} \\qquad l'=l+1,\\ldots L\n\\tag{9}\\]\nis the Jacobian matrix of each layer and the final factor is\n\\[\n\\frac{\\partial f_j^{(l)}}{\\partial z_k^{(l)}} =  \\phi'(z^{(l)}_j)\\delta_{jk}.\n\\]\nWe find a similar expression for the derivative with respect to the weights in the \\(l\\)th layer. These expressions all involve the deriviative of the activation function. When AD is implemented in code, the definition of any function is always supplemented with the derivative of that function.\nIn Equation 8 the matrices are composed by matrix multiplication. How should they be evaluated? There are two possibilities:"
+  },
+  {
+    "objectID": "notes/autodiff.html#forward-accumulation",
+    "href": "notes/autodiff.html#forward-accumulation",
+    "title": "Automatic differentiation and neural networks",
+    "section": "2.2 Forward accumulation",
+    "text": "2.2 Forward accumulation\nWe go from right to left. Starting from the input \\(\\mathbf{x}\\), we evaluate \\(\\mathbf{z}^{(l)}\\) by evaluating the first \\(l-1\\) functions, passing the output from each to the input of the next. Once we reach \\(f^{(l)}\\), we have to start keeping track of a matrix as well as the values \\(\\mathbf{z}^{(l')}\\). This matrix is initialized with components \\(\\phi'(\\mathbf{z}^{(l)})\\delta_{jk}\\). It is then acted on by each of the Jacobians in Equation 9 until we get to the final layer. This procedure is called forward accumulation.\nThe advantage of forward accumulation is that during evaluation we only have to store the current \\(\\mathbf{z}^{(l')}\\) and the corresponding matrix. The disadvantage is that we are dealing with matrix multiplication. For matrices \\(M_1\\in \\mathbb{R}^{N_1\\times N_2}\\) and \\(M_2\\in \\mathbb{R}^{N_2\\times N_3}\\) matrix multiplication \\(M_1\\cdot M_2\\) is \\(O(N_1 N_2 N_3)\\). Since we are interested in models with large numbers of parameters in each layer, this is a problem."
+  },
+  {
+    "objectID": "notes/autodiff.html#backpropagation",
+    "href": "notes/autodiff.html#backpropagation",
+    "title": "Automatic differentiation and neural networks",
+    "section": "2.3 Backpropagation",
+    "text": "2.3 Backpropagation\nThe alternative is that we go from left to right. Instantly we see a problem: we have to have evaluate and store all the \\(\\mathbf{z}^{(l')}\\) with \\(l'=1,\\ldots L\\) before we can do anything, as the Jacobians depend on these values. This is called the forward pass.\nNow remember that we’re actually interested in calculating \\(\\partial\\mathcal{C}/\\partial w^{(l)_k}\\). For a single data point our cost function is\n\\[\nC_i(\\theta) \\equiv \\frac{1}{2}\\lVert\\mathbf{y}_i-\\mathsf{NN}_\\theta(\\mathbf{x}_i)\\rVert^2,\n\\tag{10}\\]\nand so\n\\[\n\\frac{\\partial C_i}{\\partial b^{(l)}_k} = -\\left(\\mathbf{y_i} - \\mathsf{NN}_\\theta(\\mathbf{x}_i)\\right) \\cdot \\frac{\\partial \\mathsf{NN}_\\theta(\\mathbf{x_i})}{\\partial b^{(l)}_k}.\n\\]\nThis means that going from left to right involves only matrix-vector multiplications rather than matrix-matrix mutiplications. We start with the (row) vector \\(\\left(\\mathbf{y_i} - \\mathsf{NN}_\\theta(\\mathbf{x}_i)\\right)^T\\) and act on the right with the Jacobians. This reduces the complexity of the evaluation by a factor equal to the number of biases in the \\(l\\)th layer.\nIn AD this is known as backward accumulation. For the special case of neural networks it’s usually called backpropagation. Going backwards reduces the time complexity in favour additional space (i.e. memory) complexity, as we have to store \\(\\mathbf{z}^{l'}\\) for each layer. This trade-off is usually worth it, and essentially all large neural networks these days are trained using backpropagation."
   },
   {
     "objectID": "notes/divide.html",
@@ -564,7 +830,7 @@
     "href": "notes/linear.html",
     "title": "Part II Computational Physics",
     "section": "",
-    "text": "1 Linear algebra\nhttps://twitter.com/nicholdav/status/1621180520901001220\nKrylov subspaces\nSVD and quantum mechanics. Quantum entanglement.\nImage compression using SVD\nhttp://timbaumann.info/svd-image-compression-demo/\nTrebst has nice Einstein example\nPCA for big data\nhttps://www.tensors.net/exact-diagonalization\nPower method\nPagerank\nhttps://www.programcreek.com/python/?code=MKLab-ITI%2Freveal-graph-embedding%2Freveal-graph-embedding-master%2Freveal_graph_embedding%2Fembedding%2Fimplicit.py\nhttp://pi.math.cornell.edu/~web6140/TopTenAlgorithms/PageRank.html\nhttp://infolab.stanford.edu/~ullman/mmds/ch5.pdf"
+    "text": "1 Linear algebra\nhttps://twitter.com/nicholdav/status/1621180520901001220\nKrylov subspaces\nSVD and quantum mechanics. Quantum entanglement.\nImage compression using SVD\nPCA\nhttp://timbaumann.info/svd-image-compression-demo/\nTrebst has nice Einstein example\nPCA for big data\nhttps://www.tensors.net/exact-diagonalization\nPower method\nPagerank\nhttps://www.programcreek.com/python/?code=MKLab-ITI%2Freveal-graph-embedding%2Freveal-graph-embedding-master%2Freveal_graph_embedding%2Fembedding%2Fimplicit.py\nhttp://pi.math.cornell.edu/~web6140/TopTenAlgorithms/PageRank.html\nhttp://infolab.stanford.edu/~ullman/mmds/ch5.pdf"
   },
   {
     "objectID": "notes/fourier.html",
@@ -648,7 +914,7 @@
     "href": "notes/fourier.html#partial-differential-equations",
     "title": "Fast Fourier transform",
     "section": "3.2 Partial differential equations",
-    "text": "3.2 Partial differential equations\nWe’ll illustrate the role of the FFT in the numerical solution of partial differential equations (PDEs) using one that you all know well: the time-dependent Schrödinger equation\n\\[\ni\\hbar \\frac{\\partial \\psi}{\\partial t} = -\\frac{\\hbar^2}{2m}\\nabla^2 \\psi + V(\\mathbf{r})\\psi.\n\\tag{6}\\]\nWhen the potential is absent, the solutions are plane waves\n\\[\n\\Psi(\\mathbf{r}, t) = \\exp\\left[-i\\frac{\\hbar^2 \\mathbf{k}^2 t}{2m} +i\\mathbf{k}\\cdot\\mathbf{r}\\right].\n\\tag{7}\\]\nOn the other hand, if the first term on the right hand side of Equation 6 — representing the kinetic energy — were absent, then the evolution of the wavefunction would be\n\\[\n\\Psi(\\mathbf{r}, t) = \\Psi(\\mathbf{r}, 0)\\exp\\left[-iV(\\mathbf{r})t/\\hbar\\right].\n\\tag{8}\\]\nThe idea behind the split-step method is that the time evolution can be approximated by alternating the two kinds of time evolution represented by Equation 7 and Equation 8. In more formal terms, write Equation 6 in operator form as\n\\[\ni\\hbar \\frac{\\partial \\ket{\\psi}}{\\partial t} = H\\ket{\\psi} = (T+V)\\ket{\\psi}\n\\]\nThe solution is \\(\\ket{\\psi(t)} = \\exp(-iHt/\\hbar)\\ket{\\psi}(0)\\). The exponential of an operator sum \\(A+B\\) obeys the Lie product formula\n\\[\ne^{A+B} = \\lim_{n\\to\\infty}\\left( e^{A/n}e^{B/n}\\right)^n.\n\\]\nThe logic behind this formula is that when the exponent is small, the failure of \\(A\\) and \\(B\\) to commute can be neglected. More precisely, \\[\ne^{xA}e^{xB} = e^{x(A+B) + O(x^2)}.\n\\]\nIt turns out that a more accurate approximation is given by the Suzuki—Trotter formula\n\\[\ne^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.\n\\]\nIn any case, the practical algorithm suggested by these formulas is implemented for the Schrödinger equation by switching between real space and Fourier space, where the two kinds of evolution are implemented. Here’s a simple 1D example:\n\ndef split_step_schrodinger(psi_0, dx, dt, V, N, x_0 = 0., k_0 = None, m = 1.0, non_linear = False):\n\n    len_x = psi_0.shape[0]\n\n    x = x_0 + dx*np.arange(len_x)\n\n    dk_x = (2*np.pi)/(len_x*dx)\n    if k_0 == None:\n        k_0 = -np.pi/dx\n    k_x = k_0+dk_x*np.arange(len_x)\n\n    psi_x = np.zeros((len_x,N), dtype = np.complex128)\n    psi_k = np.zeros((len_x,N), dtype = np.complex128)\n    psi_mod_x = np.zeros((len_x), dtype = np.complex128)\n    psi_mod_k = np.zeros((len_x), dtype = np.complex128)\n    psi_x[:,0] = psi_0\n\n    if not non_linear:\n        V_n = V(x)\n    else:\n        V_n = V(x,psi_0)\n\n    def _compute_psi_mod(j):\n        return (dx/np.sqrt(2*np.pi))*psi_x[:,j]*np.exp(-1.0j*k_x[0]*x)\n\n    def _compute_psi(j):\n        psi_x[:,j] = (np.sqrt(2*np.pi)/dx)*psi_mod_x*np.exp(1.0j*k_x[0]*x)\n        psi_k[:,j] = psi_mod_k*np.exp(-1.0j*x[0]*dk_x*np.arange(len_x))\n\n    def _x_half_step(j,ft = True):\n        if ft == True:\n            psi_mod_x[:] = np.fft.ifft(psi_mod_k[:])\n        if non_linear:\n            V_n[:] = V(x,psi_x[:,j])\n        psi_mod_x[:] = psi_mod_x[:]*np.exp(-1.0j*(dt/2.)*V_n)   \n\n    def _k_full_step():\n        psi_mod_k[:] = np.fft.fft(psi_mod_x[:])\n        psi_mod_k[:] = psi_mod_k[:]*np.exp(-1.0j*k_x**2*dt/(2.*m))      \n\n    def _main_loop():\n        psi_mod_x[:] = _compute_psi_mod(0)\n\n        for i in range(N-1):\n            _x_half_step(i,ft = False)\n            _k_full_step()\n            _x_half_step(i)\n            _compute_psi(i+1)\n\n    _main_loop()\n\n    return psi_x,psi_k,k_x\n\n\ndef oneD_gaussian(x,mean,std,k0):\n    return np.exp(-((x-mean)**2)/(4*std**2)+ 1j*x*k0)/(2*np.pi*std**2)**0.25\n\ndef V(x):\n    V_x = np.zeros_like(x)\n    V_x[np.where(abs(x) < 0.5)] = 1.5\n    return V_x\n\n\nN_x = 2**11\ndx = 0.05\nx = dx * (np.arange(N_x) - 0.5 * N_x)\n\ndt = 0.01\nN_t = 2000\n\np0 = 2.0\nd = np.sqrt(N_t*dt/2.)\n\npsi_0 = oneD_gaussian(x,x.max()-10.*d, d, -p0)\n\npsi_x,psi_k,k = split_step_schrodinger(psi_0, dx, dt, V, N_t, x_0 = x[0])\n\n\n\nAnimation code\nfrom matplotlib.animation import FuncAnimation\n\nreal_psi = np.real(psi_x)\nimag_psi = np.imag(psi_x)\nabsl_psi = np.absolute(psi_x)\nabs_psik = np.absolute(psi_k)\n\nfig = plt.figure(figsize = (10,10))\nax1 = plt.subplot(211)\nline1_R = ax1.plot(x,real_psi[:,0],'b')[0]\nline1_I = ax1.plot(x,imag_psi[:,0],'r')[0]\nline1_A = ax1.plot(x,absl_psi[:,0],'k')[0]\nline_V = ax1.plot(x,0.5*V(x),'k',alpha=0.5)[0]\nax1.set_ylim((real_psi.min(),real_psi.max()))\nax1.set_xlim((x.min(),x.max()))\n\nax2 = plt.subplot(212)\nline2 = ax2.plot(k,abs_psik[:,1],'k')[0]\nax2.set_ylim((abs_psik.min(),abs_psik.max()))\nax2.set_xlim((-10,10))\n\ndef nextframe(arg):\n    line1_R.set_data(x,real_psi[:,10*arg])\n    line1_I.set_data(x,imag_psi[:,10*arg])\n    line1_A.set_data(x,absl_psi[:,10*arg])\n    line2.set_data(k,abs_psik[:,10*arg])\n    \nanimate = FuncAnimation(fig, nextframe, frames = int(N_t/10), interval = 50, repeat = False)\nplt.show()\n\n\n\n\nVideo\nWavepacket colliding with a top hat barrier. Black line is the modulus, while red and blue are the real and imaginary parts."
+    "text": "3.2 Partial differential equations\nWe’ll illustrate the role of the FFT in the numerical solution of partial differential equations (PDEs) using one that you all know well: the time-dependent Schrödinger equation\n\\[\ni\\hbar \\frac{\\partial \\psi}{\\partial t} = -\\frac{\\hbar^2}{2m}\\nabla^2 \\psi + V(\\mathbf{r})\\psi.\n\\tag{6}\\]\nWhen the potential is absent, the solutions are plane waves\n\\[\n\\Psi(\\mathbf{r}, t) = \\exp\\left[-i\\frac{\\hbar^2 \\mathbf{k}^2 t}{2m} +i\\mathbf{k}\\cdot\\mathbf{r}\\right].\n\\tag{7}\\]\nOn the other hand, if the first term on the right hand side of Equation 6 — representing the kinetic energy — were absent, then the evolution of the wavefunction would be\n\\[\n\\Psi(\\mathbf{r}, t) = \\Psi(\\mathbf{r}, 0)\\exp\\left[-iV(\\mathbf{r})t/\\hbar\\right].\n\\tag{8}\\]\nThe idea behind the split-step method is that the time evolution can be approximated by alternating the two kinds of time evolution represented by Equation 7 and Equation 8. In more formal terms, write Equation 6 in operator form as\n\\[\ni\\hbar \\frac{\\partial \\ket{\\psi}}{\\partial t} = H\\ket{\\psi} = (T+V)\\ket{\\psi}\n\\]\nThe solution is \\(\\ket{\\psi(t)} = \\exp(-iHt/\\hbar)\\ket{\\psi}(0)\\). The exponential of an operator sum \\(A+B\\) obeys the Lie product formula\n\\[\ne^{A+B} = \\lim_{n\\to\\infty}\\left( e^{A/n}e^{B/n}\\right)^n.\n\\]\nThe logic behind this formula is that when the exponent is small, the failure of \\(A\\) and \\(B\\) to commute can be neglected. More precisely, \\[\ne^{xA}e^{xB} = e^{x(A+B) + O(x^2)}.\n\\]\nIt turns out that a more accurate approximation is given by the Suzuki—Trotter formula\n\\[\ne^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.\n\\]\nIn any case, the practical algorithm suggested by these formulas is implemented for the Schrödinger equation by switching between real space and Fourier space, where the two kinds of evolution are implemented. Here’s a simple 1D example:\n\ndef split_step_schrodinger(psi_0, dx, dt, V, N, x_0 = 0., k_0 = None, m = 1.0, non_linear = False):\n\n    len_x = psi_0.shape[0]\n\n    x = x_0 + dx*np.arange(len_x)\n\n    dk_x = (2*np.pi)/(len_x*dx)\n    if k_0 == None:\n        k_0 = -np.pi/dx\n    k_x = k_0+dk_x*np.arange(len_x)\n\n    psi_x = np.zeros((len_x,N), dtype = np.complex128)\n    psi_k = np.zeros((len_x,N), dtype = np.complex128)\n    psi_mod_x = np.zeros((len_x), dtype = np.complex128)\n    psi_mod_k = np.zeros((len_x), dtype = np.complex128)\n    psi_x[:,0] = psi_0\n\n    if not non_linear:\n        V_n = V(x)\n    else:\n        V_n = V(x,psi_0)\n\n    def _compute_psi_mod(j):\n        return (dx/np.sqrt(2*np.pi))*psi_x[:,j]*np.exp(-1.0j*k_x[0]*x)\n\n    def _compute_psi(j):\n        psi_x[:,j] = (np.sqrt(2*np.pi)/dx)*psi_mod_x*np.exp(1.0j*k_x[0]*x)\n        psi_k[:,j] = psi_mod_k*np.exp(-1.0j*x[0]*dk_x*np.arange(len_x))\n\n    def _x_half_step(j,ft = True):\n        if ft == True:\n            psi_mod_x[:] = np.fft.ifft(psi_mod_k[:])\n        if non_linear:\n            V_n[:] = V(x,psi_x[:,j])\n        psi_mod_x[:] = psi_mod_x[:]*np.exp(-1.0j*(dt/2.)*V_n)   \n\n    def _k_full_step():\n        psi_mod_k[:] = np.fft.fft(psi_mod_x[:])\n        psi_mod_k[:] = psi_mod_k[:]*np.exp(-1.0j*k_x**2*dt/(2.*m))      \n\n    def _main_loop():\n        psi_mod_x[:] = _compute_psi_mod(0)\n\n        for i in range(N-1):\n            _x_half_step(i,ft = False)\n            _k_full_step()\n            _x_half_step(i)\n            _compute_psi(i+1)\n\n    _main_loop()\n\n    return psi_x,psi_k,k_x\n\n\ndef oneD_gaussian(x,mean,std,k0):\n    return np.exp(-((x-mean)**2)/(4*std**2)+ 1j*x*k0)/(2*np.pi*std**2)**0.25\n\ndef V(x):\n    V_x = np.zeros_like(x)\n    V_x[np.where(abs(x) < 0.5)] = 1.5\n    return V_x\n\n\nN_x = 2**11\ndx = 0.05\nx = dx * (np.arange(N_x) - 0.5 * N_x)\n\ndt = 0.01\nN_t = 2000\n\np0 = 2.0\nd = np.sqrt(N_t*dt/2.)\n\npsi_0 = oneD_gaussian(x,x.max()-10.*d, d, -p0)\n\npsi_x,psi_k,k = split_step_schrodinger(psi_0, dx, dt, V, N_t, x_0 = x[0])\n\n\n\nAnimation code\nfrom matplotlib.animation import FuncAnimation\n\nreal_psi = np.real(psi_x)\nimag_psi = np.imag(psi_x)\nabsl_psi = np.absolute(psi_x)\nabs_psik = np.absolute(psi_k)\n\nfig = plt.figure(figsize = (10,10))\nax1 = plt.subplot(211)\nline1_R = ax1.plot(x,real_psi[:,0],'b')[0]\nline1_I = ax1.plot(x,imag_psi[:,0],'r')[0]\nline1_A = ax1.plot(x,absl_psi[:,0],'k')[0]\nline_V = ax1.plot(x,0.5*V(x),'k',alpha=0.5)[0]\nax1.set_ylim((real_psi.min(),real_psi.max()))\nax1.set_xlim((x.min(),x.max()))\n\nax2 = plt.subplot(212)\nline2 = ax2.plot(k,abs_psik[:,1],'k')[0]\nax2.set_ylim((abs_psik.min(),abs_psik.max()))\nax2.set_xlim((-10,10))\n\ndef nextframe(arg):\n    line1_R.set_data(x,real_psi[:,10*arg])\n    line1_I.set_data(x,imag_psi[:,10*arg])\n    line1_A.set_data(x,absl_psi[:,10*arg])\n    line2.set_data(k,abs_psik[:,10*arg])\n    \nanimate = FuncAnimation(fig, nextframe, frames = int(N_t/10), interval = 50, repeat = False)\nplt.show()\n\n\n\n\nVideo\n(top) Wavepacket colliding with a top hat barrier. Black line is the modulus, while red and blue are the real and imaginary parts. (bottom) Absolute value of the Fourier transform"
   },
   {
     "objectID": "notes/ode.html",
@@ -677,20 +943,6 @@
     "title": "Solving differential equations with SciPy",
     "section": "1.3 Stability",
     "text": "1.3 Stability\nApart from the relatively low accuracy that comes from using a first order method, the Euler method may additionally be unstable, depending on the equation. This can be demonstrated for the linear equation\n\\[\n\\frac{dx}{dt} = kx\n\\]\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef euler(h, t_max, k=1):\n    \"\"\"\n    Solve the equation x' = k x, with x(0) = 1 using\n    the Euler method. \n\n    Integrate from t=0 to t=t_max using stepsize h for\n    num_steps = t_max / h.\n    \n    Returns two arrays of length num_steps: t, the time coordinate, and x_0, the position.\n    \"\"\"\n    num_steps = int(t_max / h)\n    # Allocate return arrays\n    x = np.zeros(num_steps, dtype=np.float32)\n    t = np.zeros(num_steps, dtype=np.float32)\n    x[0] = 1.0  # Initial condition\n    for i in range(num_steps - 1):\n        x[i+1] = x[i] + k * x[i] * h\n        t[i+1] = t[i] + h  # Time step\n    return t, x\n\nk = -2.3\nt_max = 5\nt, x = euler(1, t_max, k)\nplt.plot(t, x, label=\"h=1 Euler\")\nt, x = euler(0.7, t_max, k)\nplt.plot(t, x, label=\"h=0.7 Euler\")\nt = np.linspace(0, t_max, 100)\nplt.plot(t, np.exp(k * t), label=\"exact solution\")\nplt.title(\"k=-2.3\")\nplt.legend()\nplt.show()\n\n\n\n\nFor a linear equation the Euler update Equation 3 is a simple rescaling\n\\[\nx_{j+1} = x_j(1 + hk)\n\\]\nso the region of stability is \\(|1 + hk|\\leq 1\\). You can check that the backward Euler method Equation 4 eliminates the instability for \\(k<0\\)."
-  },
-  {
-    "objectID": "notes/autograd.html",
-    "href": "notes/autograd.html",
-    "title": "Part II Computational Physics",
-    "section": "",
-    "text": "1 Automatic Differentiation\nKarpathy’s micrograd Michael Nielsen’s book"
-  },
-  {
-    "objectID": "notes/references.html",
-    "href": "notes/references.html",
-    "title": "Part II Computational Physics",
-    "section": "",
-    "text": "References"
   },
   {
     "objectID": "notes/numpy.html",

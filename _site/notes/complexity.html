@@ -231,7 +231,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="../notes/autodiff.html" class="sidebar-item-text sidebar-link">Automatic differentiation and neural networks</a>
   </div>
 </li>
       </ul>
@@ -269,6 +269,16 @@ div.csl-indent {
   <a href="../slides/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/fourier.html" class="sidebar-item-text sidebar-link">Fast Fourier transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/autodiff.html" class="sidebar-item-text sidebar-link">Autodiff and neural nets</a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -294,6 +304,7 @@ div.csl-indent {
   <li><a href="#quicksort" id="toc-quicksort" class="nav-link" data-scroll-target="#quicksort"><span class="toc-section-number">3.2</span>  Quicksort</a></li>
   </ul></li>
   <li><a href="#divide-and-conquer" id="toc-divide-and-conquer" class="nav-link" data-scroll-target="#divide-and-conquer"><span class="toc-section-number">4</span>  Divide and conquer</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="toc-section-number">5</span>  Further reading</a></li>
   </ul>
 </nav>
     </div>
@@ -574,7 +585,7 @@ b^n = \begin{cases}
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> b <span class="op">*</span> exp(b, n <span class="op">-</span> <span class="dv">1</span>) </span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>exp(<span class="dv">2</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="174">
 <pre><code>64</code></pre>
 </div>
 </div>
@@ -614,7 +625,7 @@ b^n = \begin{cases}
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fib(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fib(n <span class="op">-</span> <span class="dv">2</span>)</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fib(<span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="176">
 <pre><code>233</code></pre>
 </div>
 </div>
@@ -667,8 +678,8 @@ b^n = \begin{cases}
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>random_array <span class="op">=</span> np.random.randint(<span class="dv">0</span>,<span class="dv">100</span>, <span class="dv">10</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(random_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>[0, 13, 23, 32, 37, 39, 65, 85, 91, 99]</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="177">
+<pre><code>[0, 5, 6, 10, 24, 27, 33, 44, 50, 83]</code></pre>
 </div>
 </div>
 <p>But what is Python actually <em>doing</em>? There are many algorithms: the <a href="https://en.wikipedia.org/wiki/Sorting_algorithm">Wikipedia page on sorting</a> is particularly extensive. Here we’ll explore just a couple to get a sense of the variety of algorithms and their possible complexities. The site <a href="https://www.sortvisualizer.com/">sort visualizer</a> animates the action of various algorithms. It’s fun to try and figure out what the algorithm is from its animation.</p>
@@ -860,7 +871,7 @@ x = x_1 B^m + x_0
 <p><span class="math display">\[
 xy = x_1 y_1 B^{2m} + (x_1 y_0 + x_0 y_1) B^{m} + x_0 y_0,
 \]</span></p>
-<p>which requires the computation of four products. We can now apply divide and conquer, splitting up <span class="math inline">\(x_0\)</span>, <span class="math inline">\(x_1\)</span>, <span class="math inline">\(y_0\)</span>, <span class="math inline">\(y_1\)</span> in the same way. This continues to a depth of <span class="math inline">\(\sim\log n\)</span> until we end up with single digit numbers. What’s the complexity?</p>
+<p>which requires the computation of four products. We can now apply divide and conquer, splitting up <span class="math inline">\(x_0\)</span>, <span class="math inline">\(x_1\)</span>, <span class="math inline">\(y_0\)</span>, <span class="math inline">\(y_1\)</span> in the same way. This continues to a depth of <span class="math inline">\(\sim\log_2 n\)</span> until we end up with single digit numbers. What’s the complexity?</p>
 <p><span class="math display">\[
 4^{\log_2 n} = n^2
 \]</span></p>
@@ -874,6 +885,10 @@ x_1 y_0 + x_0 y_1 = (x_1 + x_0)(y_1 + y_0) - x_y y_0 - x_1 y_1
 \]</span></p>
 <p>On a first encounter the existence of algorithms with such unusual scaling seems completely bizarre, although as we have seen they arise quite naturally when the divide and conquer approach is combined with some unexpected economy at each subdivision of the problem. <span class="citation" data-cites="karatsuba1995complexity">Karatsuba (<a href="#ref-karatsuba1995complexity" role="doc-biblioref">1995</a>)</span> contains a nice account of the circumstances surrounding his discovery (<a href="http://www.cs.ru/personal/karatsuba/divcen.pdf">online version</a>).</p>
 <p>This general approach has been elaborated in many directions. For example, the <a href="https://en.wikipedia.org/wiki/Strassen_algorithm">Strassen algorithm</a> is a divide and conquer algorithm for matrix multiplication with complexity <span class="math inline">\(O(n^{\log_2 7})\approx O(n^{2.8074})\)</span> that beats the naive <span class="math inline">\(O(n^3)\)</span> method. While these methods have been of great conceptual importance, I understand that practicalities of implementation mean that they aren’t in general use in the libraries you are likely to use.</p>
+</section>
+<section id="further-reading" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Further reading</h1>
+<p>We’ve just scratched the surface of computational complexity. If you’d like to learn more, a great (gentle) introduction, illustrated with plenty of Python code, is <span class="citation" data-cites="bhargava2016grokking">Bhargava (<a href="#ref-bhargava2016grokking" role="doc-biblioref">2016</a>)</span>. To go really deep, it’s hard to beat <span class="citation" data-cites="moore2011nature">Moore and Mertens (<a href="#ref-moore2011nature" role="doc-biblioref">2011</a>)</span>.</p>
 <!-- Simple example from Leetcode
 
 Analaysis of algorithms
@@ -911,8 +926,14 @@ Insertion in a list etc. -->
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-bhargava2016grokking" class="csl-entry" role="doc-biblioentry">
+Bhargava, Aditya. 2016. <em>Grokking Algorithms: An Illustrated Guide for Programmers and Other Curious People</em>. Simon; Schuster.
+</div>
 <div id="ref-karatsuba1995complexity" class="csl-entry" role="doc-biblioentry">
 Karatsuba, Anatolii Alexeevich. 1995. <span>“The Complexity of Computations.”</span> <em>Proceedings of the Steklov Institute of Mathematics-Interperiodica Translation</em> 211: 169–83.
+</div>
+<div id="ref-moore2011nature" class="csl-entry" role="doc-biblioentry">
+Moore, Cristopher, and Stephan Mertens. 2011. <em>The Nature of Computation</em>. Oxford University Press.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 

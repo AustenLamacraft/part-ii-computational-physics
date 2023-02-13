@@ -48,8 +48,9 @@ Here's a list of topics that I'd like to cover. We make not have time for all of
 5. Monte Carlo methods
 6. Introduction to algorithms and complexity
 7. The fast Fourier transform
-8. Linear algebra with NumPy
-9. Automatic differentiation 
+8. Automatic differentiation 
+9. Linear algebra with NumPy
+
 
 <!-- 4. Numerical algos. SciPy
 5. Other libraries. Pandas and scikit-learn. Kaggle

@@ -549,7 +549,7 @@ $$
 xy = x_1 y_1 B^{2m} + (x_1 y_0 + x_0 y_1) B^{m} + x_0 y_0,
 $$
 
-which requires the computation of four products. We can now apply divide and conquer, splitting up $x_0$, $x_1$, $y_0$, $y_1$ in the same way. This continues to a depth of $\sim\log n$ until we end up with single digit numbers. What's the complexity?
+which requires the computation of four products. We can now apply divide and conquer, splitting up $x_0$, $x_1$, $y_0$, $y_1$ in the same way. This continues to a depth of $\sim\log_2 n$ until we end up with single digit numbers. What's the complexity?
 
 $$
 4^{\log_2 n} = n^2
@@ -571,6 +571,9 @@ On a first encounter the existence of algorithms with such unusual scaling seems
 
 This general approach has been elaborated in many directions. For example, the [Strassen algorithm](https://en.wikipedia.org/wiki/Strassen_algorithm) is a divide and conquer algorithm for matrix multiplication with complexity $O(n^{\log_2 7})\approx O(n^{2.8074})$ that beats the naive $O(n^3)$ method. While these methods have been of great conceptual importance, I understand that practicalities of implementation mean that they aren't in general use in the libraries you are likely to use.
 
+# Further reading
+
+We've just scratched the surface of computational complexity. If you'd like to learn more, a great (gentle) introduction, illustrated with plenty of Python code, is @bhargava2016grokking. To go really deep, it's hard to beat @moore2011nature.
 
 <!-- Simple example from Leetcode
 

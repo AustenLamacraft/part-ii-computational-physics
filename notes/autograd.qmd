@@ -1,4 +1,0 @@
-# Automatic Differentiation
-
-Karpathy's micrograd
-[Michael Nielsen's book](http://neuralnetworksanddeeplearning.com/)

@@ -1,2 +1,248 @@
+---
+title: Automatic differentiation and neural networks
+---
 
-Intro to backpropagation
+In this lecture we are going to look at the algorithms that underlie the training of [neural networks](https://en.wikipedia.org/wiki/Neural_network), which are the dominant model in the field of machine learning. 
+
+# Background
+
+At a very high level a neural network is just a complicated function with a lot of parameters — so really a _family_ of functions — into which data can be passed. "Data" in this case could be anything: in popular applications in machine learning it could represent images (represented as pixel values), text (represented as strings), audio signals (represented as a time series), and so on. From now on just regard data as a big vector $\mathbf{x}\in\mathbb{R}^{N_D}$, where $N_D$ is the dimensionality of the data (e.g. number of pixels in an image, $\times 3$ if it's colour and there are three RGB values). In a common setting — called _supervised learning_ — the purpose of this function is to map the data $\mathbf{x}$ to some output $\mathbf{y}$ that represents a set of labels that correspond (for example) to the different kinds of objects that might appear in the images. Denoting the function by $\mathsf{NN}_\theta$, where $\theta$ represents the parameters, we have:
+
+$$
+\mathbf{y} = \mathsf{NN}_\theta(\mathbf{x})
+$$
+
+Different choices of $\theta$ give different functions. The idea is that if our family of functions is "big enough" then somewhere in that family will be a function that does a "good job". In the previous sentence "big enough" is a somewhat vague idea that implies both a large number of parameters and a variety of functions accessible by varying them. "Good job" is a bit less vague: it means that if we try out our function on a set of data where the labels already exist (normally because a human as labelled them, either voluntarily or because they are confronted with [reCAPTCHA](https://en.wikipedia.org/wiki/ReCAPTCHA)), the answer will be correct most of the time. The process of finding the "right" $\theta$ is called _training_ the neural network. Since making a correct prediction can be quantified, training is really a matter of _optimizing_ an appropriate function of the output $\mathbf{y}$, so techniques of optimization can be applied.
+
+I should say at the outset that the conceptual ideas behind the training of neural networks are not particularly deep, with the possible exception of the backpropagation algorithm that we will describe here. What has made for the revolutionary success of this approach — essentially putting all other forms of machine learning (e.g. symbolic) out of business [^1] — is:
+
+[^1]: This is a slight exaggeration, but what people often do these days is augment symbolic approaches with neural approaches.
+
+1. The free availability of large datasets of labelled data.
+2. The free availability of open source languages, libraries, and models.
+3. The ~~free~~ wide availability of the necessary computing power to train models.
+
+## The cost function {#sec-cost}
+
+Let's discuss the idea of training as optimization in a bit more detail. We suppose that we have a large dataset of size $N$ that consists of data $\mathbf{x}_i=1,\ldots N$ together with labels $l_i$. The first step is to encode our labels in vectors $\mathbf{y}_i$ that can be compared with the output of the neural network. A popular choice is _one hot_ encoding. $\mathbf{y}_i$ is an $N_L$ dimensional vector, where $N_L$ is the number of labels, and label $n$ is encoded as $(0,0,\ldots, 1, \ldots, 0)$, with the $1$ in the $n$th place. 
+
+We would like to train the network (choose the parameters $\theta$) so that $\mathsf{NN}_\theta(\mathbf{x}_i)$ is close to the corresponding $\mathbf{y}_i$ that represents the label. In order to quantify this we introduce a _cost_ or _loss function_ that quantifies the difference. A simple example is the quadratic cost
+
+$$
+\mathcal{C}(\theta) = \frac{1}{2N}\sum_{i=1}^N \lVert\mathbf{y}_i-\mathsf{NN}_\theta(\mathbf{x}_i)\rVert^2.
+$$ {#eq-cost}
+
+In other words, we use the usual square norm in $\mathbb{R}^{N_L}$ of the distance between the network output and encoded label. Note also that we _average_ over the training data, because sometimes our network may not perform so well, confusing different labels:
+
+![Muffin or chihuahua?](../assets/dog-or-food.png){width=60%}
+
+The idea is now to minimize $\mathcal{C}(\theta)$ over the parameters of the network. The rest of this lecture concerns the practicalities of how this is done. When it comes to _using_ the model for identifying previously unseen data, we need a procedure for turning the output $\mathsf{NN}_\theta(\mathbf{x})$ — an $N_L$ dimensional vector — into a discrete label. If the network has been defined so that the components of the output are non-negative, and recalling that the labels were encoded as one hot vectors, the simplest way to do this is to find the maximum component and make the prediction that the corresponding label is the correct one. This is written as
+
+$$
+l_* = \underset{l}{\operatorname{argmax}} \left[\mathsf{NN}_\theta(\mathbf{x})\right]_l.
+$$
+
+When evaluating the performance of a machine learning model there is a standard protocol that involves splitting the dataset into _training set_ and a _test set_, where the former is used for training the model and the latter for evaluating it. After training the model it should perform well on the training set, but will generally perform less well on the test set, which contains data that the model has never seen. The difference between the cost function evaluated on the test set and the training set is a measure of how well the model generalizes to new inputs and is known as the [generalization error](https://en.wikipedia.org/wiki/Generalization_error).
+
+A particular risk when using large neural networks with many parameters is the problem of [overfitting](https://en.wikipedia.org/wiki/Overfitting). A sufficiently flexible model is capable of effectively "memorizing" the dataset, without "understanding" the labelling, leading to poor generalization. 
+
+![Simple illustration of overfitting, from [Wikipeda](https://en.wikipedia.org/wiki/Overfitting). The black line represents a "reasonable" model that does a decent job of distinguishing between the two labels in the data (red and blue), while the green line represents an "unreasonable" model that does a better job.](../assets/overfitting.png){width=50%}
+
+A particularly vivid example appears in @zhang2021understanding. They showed that popular computer vision models can be trained on _randomly_ labelled data (where the labels have no connection to the image) to achieve perfect accuracy on the training set. Of course, the resulting performance on the test set was no better than random guessing. This is a natural consequence of _overparameterization_ — having more parameters than data points in your training data — and shows that much of the success in training models with good generalization is down to the details of how the training is done (for example, by stopping before the training error gets too low). 
+
+## Gradient descent {#sec-grad}
+
+Leaving these questions aside, the basic idea underlying training is an extremely simple algorithm called [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent). If our network $\mathsf{NN}_\theta$ is designed appropriately, our cost function @eq-cost is a differentiable function of the parameters $\theta$. The minimum cost that we seek therefore corresponds to a stationary point where $\nabla_\theta \mathcal{C}(\theta)|_{\theta_*}=0$. The idea of gradient descent is to take steps "downhill" i.e. in the direction $-\mathcal{C}(\theta)$ in the high dimensional space of all the parameters, where each step corresponds to an update of the parameters according to
+
+$$
+\theta_i\longrightarrow \theta'_i = \theta_i - \eta \frac{\partial\mathcal{C}}{\partial \theta_i}
+$$ {#eq-grad-descent}
+
+where $\eta$ is a hyperparameter[^2] called the _learning rate_. Choosing the learning rate is an important part of the craft of training models: too large and the first order approximation underlying @eq-grad-descent breaks down and the cost may end up increasing; too small and the network will take too long to train. Often a _learning rate schedule_ is used where the rate is adjusted during training to optimize convergence. You might guess that starting off with a large learning rate and then reducing it is the right way to go, and this is correct, but people do all sort of exotic things.
+
+[^2]: The term _parameter_ is normally reserved for the $\theta$'s that appear in the definition of the model. Numbers like the learning rate that describe how the model is trained are usually referred to as _hyperparameters_. 
+
+You might find it surprising that such a simple approach plays such an important role in machine learning. All of the sophistication lies in how the model is defined (@sec-nn) and how the gradients are calculated (@sec-backprop): for a complicated function with many parameters [^3] this is a highly nontrivial task. While there are plenty of more sophisticated optimization methods they often involve more information about the model's dependence on its parameters, and this is more costly to evaluate. For example [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization) — which you may have encountered before — requires knowledge of first _and second_ derivatives at each step, and this is normally less practical. 
+
+[^3]: GPT-3, the model from OpenAI underlying ChatGPT, has 175 _billion_ parameters!
+
+Another issue that relates to scale concerns the definition of our cost function @eq-cost as an average over the dataset. For large datasets consisting of high dimensional data (e.g. images) it is usually not practical to calculate the gradient of the cost using the entire dataset. The usual procedure is then to split the data up into batches (usually called _minibatches_, confusingly), and perform each step of gradient descent by evaluating the gradient only on the batch, moving on to a new batch at the next step. Eventually this will lead to all the data in the dataset being used, which is usually known as one _epoch_ of training. Training a model can involve many epochs (passes through the dataset). 
+
+Because each step only uses part of the data, the gradients calculated are going to be more "noisy" than the "true" gradients involving the whole dataset. Because of this, training by gradient descent with minibatches is known as [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent). It is generally thought that the noise introduced by minibatching plays a role in improving the generalization performance of neural networks.
+
+## The network {#sec-nn}
+
+So far we have said nothing at all about $\mathsf{NN}_\theta$ except that it is a function $\mathsf{NN}_\theta:\mathbb{R}^{N_D}\longrightarrow \mathbb{R}^{N_L}$ from the space of data to the space of labels, and it has lots of parameters. What is this function, and why is it called a "neural network"? In this section we'll define $\mathsf{NN}_\theta$ and say something about the origins of the idea in neuroscience. 
+
+Leaving biology aside for the moment, we know that $\mathsf{NN}_\theta$ must be _complicated_. We want it to take high dimensional inputs and somehow interpret them, outputting a label which synthesizes lots of high-level features in the data (e.g. in images the network must detect edges, shapes, and their relation). How can we make a _complicated_ function?
+
+The answer is that we do it by _composing_ lots of simpler functions
+
+$$
+\mathsf{NN}_\theta = f_\theta^{(L)} \circ f_\theta^{(L-1)} \cdots \circ f_\theta^{(2)} \circ f_\theta^{(1)}
+$$ {#eq-composed}
+
+The function $f^{(1)}$ is a map $f^{(1)}:\mathbb{R}^{N_D}\longrightarrow \mathbb{R}^{h_{1}}$, where $h_1$ is usually called the _width_ of the first _hidden layer_ (we'll shortly draw a picture to show where this terminology comes from). $f^{(j)}$ are maps $f^{(j)}:\mathbb{R}^{h_{j-1}}\longrightarrow \mathbb{R}^{h_{j}}$ for $j=2, \ldots L-1$, and finally the _output layer_ is $f^{(L)}:\mathbb{R}^{h_{L-1}}\longrightarrow \mathbb{R}^{N_L}$. The dimensions $h_j$ are hyperparameters of the model.
+
+We now have to define the intermediate functions $f^{(j)}$. Although we have said they should be simple, we still want to allow the possibility that each of the output components depends on all of the input components. The usual recipe is
+
+$$
+\left[f(\mathbf{x})\right]_\alpha = \phi\left(\sum_{\beta=1}^{N_\text{in}} w_{\alpha\beta}x_\beta + b_\alpha\right),\qquad \alpha = 1,\ldots N_\text{out}
+$$ {#eq-fdef}
+
+Here the matrix $w\in \mathbb{R}^{N_\text{out}\times N_\text{in}}$ contains the _weights_ and the vector $\mathbf{b}\in\mathbb{R}^{N_\text{out}}$ contains the _biases_. These are the parameters of (this layer of) the network and will be modified during training. The function $\phi:\mathbb{R}\longrightarrow\mathbb{R}$ is called the _activation function_. There are several popular choices, including the [sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function)
+
+$$
+\sigma(x) = \frac{1}{1+e^{-x}},
+$$ 
+
+probably more familiar to you as the Fermi-Dirac distribution, and the [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) function $\max(0,x)$ [^4]. 
+
+@eq-fdef is sometimes written more compactly as
+
+$$
+f(\mathbf{x}) = \phi(w\cdot\mathbf{x} + \mathbf{b}).
+$$
+
+You should understand this expression in the sense of vectorized functions (like NumPy's ufuncs): $\phi()$ is applied to each element of $w\cdot\mathbf{x} + \mathbf{b}$.
+
+Activation functions should be differentiable but _nonlinear_. A linear function would mean that the function compositions in @eq-composed collapse into matrix multiplications, producing a single overall weight matrix and bias vector. There wouldn't be any point having separate functions: one would do the same job.
+
+[^4]: Note that you don't have to use the same activation function throughout. Typically the output layer of a network used for classification uses the [softmax function](https://en.wikipedia.org/wiki/Softmax_function) to output probabilities over the labels.
+
+The result of composing functions like this many times, each with their own set of weights and biases, is a highly complex function. The term _deep learning_, which you will often here these days in the context of neural networks, refers to models with many function applications, or _layers_, which is the source of the networks' expressiveness. 
+
+![A two dimensional section through the cost function ("loss landscape") of a neural network from @li2018visualizing.](../assets/loss-landscape.png){width=80%}
+
+The network that we have described so far is called _fully connected_, because in @eq-fdef the matrix of weights means that every input dimension is coupled to every output dimension. Most of the innovation in neural networks over the past decade has been in creating and refining architectures that exploit the structure of the data in some way. For example, in a network to be used for computer vision (image recognition), it makes sense that the model "knows" that two input pixels are near or far from each other. This means that the input dimensions corresponding to two nearby pixels should be treated differently at the outset (i.e. before training) than two separated pixels. Also, the way the network responds to an image should not be strongly dependent on translations of that image. This implies that the weight matrices $w$ should have some structure to them. In the case of vision this lead to the [convolutional neural network](https://en.wikipedia.org/wiki/Convolutional_neural_network), where the $w$'s act like convolutions, exploiting translational invariance but still retaining many parameters. We won't go any further into these different architectures in this lecture.
+
+### Why neural?
+
+You may still be wondering where the network is, let alone the neurons. I've decide to present the neural network model in an ahistorical way, but if you look at other presentations you will tend to see the function @eq-fdef represented graphically as
+
+![A single artifical neuron. From @nielsen2015neural.](../assets/nielsen-single-neuron.png){#fig-neuron}
+
+which reflects the dependence of the output on the inputs (and not much else). The result of composing several such functions then looks like this:
+
+![An artifical neural network. From @nielsen2015neural.](../assets/nielsen-nn.png)
+
+_This_ is the network we have been talking about all along! Specifically, it is a network called a [directed acylic graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (DAG), meaning that the connections have a direction to them (input to output) and there are no loops.
+
+Neural networks have long been used as a model for what goes on in the brain, with @fig-neuron playing the role of the neuron. There are many differences, however, including the absence of any particular role for time[^5], and the fact that (real) neural networks are not DAGs! This latter property plays a decisive role in the training of artificial neural networks, as we'll see in the next section. In general, I feel that neural networks have outgrown their biological inspiration, which is the reason I've downplayed it here.
+
+[^5]: [Spiking neural networks](https://en.wikipedia.org/wiki/Spiking_neural_network) are a model in which time plays a more serious role.
+
+# Automatic differentiation and backpropagation {#sec-backprop}
+
+The ingredients we have assembled so far are:
+
+1. The cost function:
+$$
+\mathcal{C}(\theta) = \frac{1}{2N}\sum_{i=1}^N \lVert\mathbf{y}_i-\mathsf{NN}_\theta(\mathbf{x}_i)\rVert^2
+$$ 
+2. Training by gradient descent:
+$$
+\theta_i\longrightarrow \theta'_i = \theta_i - \eta \frac{\partial\mathcal{C}}{\partial \theta_i}
+$$
+3. A neural network expressed as a composition of functions: 
+$$
+\mathsf{NN}_\theta = f_\theta^{(L)} \circ f_\theta^{(L-1)} \cdots \circ f_\theta^{(2)} \circ f_\theta^{(1)}
+$$ {#eq-composed2}
+
+In order to perform a gradient step in training a neural network we have to calculate the gradients $\partial\mathcal{C}/\partial \theta_i$. In this section we are going to see how the structure in @eq-composed2 allows these gradients to be calculated efficiently, using an algorithm called [backpropagation](https://en.wikipedia.org/wiki/Backpropagation).
+
+Backpropagation is an example of [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation) (AD): the algorithmic evaluation of derivatives of a function. When people first hear about AD they sometimes guess that it must be something like this
+
+$$
+\frac{\partial\mathcal{C}}{\partial \theta_i} \approx \frac{\mathcal{C}(\theta_i+\Delta\theta_i)- \mathcal{C}(\theta_i)}{\Delta \theta_i}
+$$ {#eq-nd}
+
+i.e. the numerical evaluation of a derivative. This is called [numerical differentiation](https://en.wikipedia.org/wiki/Numerical_differentiation) and it's what you would be forced to do if you only had access to $\mathcal{C}(\theta)$ as a [black box](https://en.wikipedia.org/wiki/Black_box) function: one you can evaluate but otherwise have no knowledge of. AD is a different beast altogether: it uses knowledge about how the function $\mathcal{C}$ is formed by composing many simpler functions, together with the (analytic) derivatives of those functions, to find the overall gradient.
+
+As well as being a bit more elegant than the brute force approach, there is another reason why AD is preferred over the (conceptually simpler) approach @eq-nd. That approach would require us to vary each of the parameters in the network separately: think of those 175 billion parameters of ChatGPT! AD uses the network structure to simplify things drastically, as we'll now see.
+
+## Evaluating the derivatives
+
+Let's just plow on and evaluate $\partial\mathcal{C}/\partial \theta_i$. Remember that the parameters are the set of weights and biases in each layer:
+
+$$
+\theta = (w^{(1)}, \mathbf{b}^{(1)},\ldots, w^{(L)}, \mathbf{b}^{(L)}).
+$$
+
+The function $\mathsf{NN}_\theta$ can therefore more precisely be written as
+
+$$
+\mathsf{NN}_\theta = f_{w^{(L)}, \mathbf{b}^{(L)}}^{(L)} \circ f_{w^{(L-1)}, \mathbf{b}^{(L-1)}}^{(L-1)} \cdots \circ f_{w^{(2)}, \mathbf{b}^{(2)}}^{(2)} \circ f_{w^{(1)}, \mathbf{b}^{(1)}}^{(1)}.
+$$ {#eq-composed3}
+
+Evaluating the derivative with respect to weights and biases in layer $l$ is therefore going to involve applying the chain rule to @eq-composed3. In the following we're going to denote the input to the $l$th layer as
+
+$$
+\mathbf{z}^{(l)} \equiv w^{(l)} \cdot \mathbf{x}^{(l)} + \mathbf{b}^{(l)}
+$$
+
+and the output as $\mathbf{a}^{(l)}$ ("a" for activation). Thus the layer is written in vectorized form as
+
+$$
+\mathbf{a}^{(l)} = \phi(\mathbf{z}^{(l)}).
+$$
+
+Let's evaluate the derivative of $\mathsf{NN}_\theta(\mathbf{x})$ with some fixed input with respect to the biases $\mathbf{b}^{(l)}$ in the $l$th layer. One thing to note in passing is that the cost functions we consider are simple sums (averages) over different data $\mathbf{x}_i$, so the derivatives are too. 
+
+A straightforward application of the chain rule gives
+
+$$
+\frac{\partial \mathsf{NN}_\theta(\mathbf{x})}{\partial \mathbf{b}^{(l)}} = \frac{\partial f^{(L)}}{\partial \mathbf{x}^{(L)}}\cdot \frac{\partial f^{(L-1)}}{\partial \mathbf{x}^{(L-1)}} \cdots  \frac{\partial f^{(l)}}{\partial \mathbf{z}^{(l)}} 
+$$ {#eq-bias-chain}
+
+because $d\mathbf{z}^{(l)}=d\mathbf{b}^{(l)}$. In this expression
+
+$$
+\frac{\partial f_j^{(l')}}{\partial x_k^{(l')}} = \phi'(z^{(l')}_j)w^{(l')}_{jk} \qquad l'=l+1,\ldots L
+$$ {#eq-jac}
+
+is the Jacobian matrix of each layer and the final factor is 
+
+$$
+\frac{\partial f_j^{(l)}}{\partial z_k^{(l)}} =  \phi'(z^{(l)}_j)\delta_{jk}.
+$$
+
+We find a similar expression for the derivative with respect to the weights in the $l$th layer. These expressions all involve the deriviative of the activation function. When AD is implemented in code, the definition of any function is always supplemented with the derivative of that function. 
+
+In @eq-bias-chain the matrices are composed by matrix multiplication. How should they be evaluated? There are two possibilities:
+
+## Forward accumulation
+
+We go from right to left. Starting from the input $\mathbf{x}$, we evaluate $\mathbf{z}^{(l)}$ by evaluating the first $l-1$ functions, passing the output from each to the input of the next. Once we reach $f^{(l)}$, we have to start keeping track of a matrix as well as the values $\mathbf{z}^{(l')}$. This matrix is initialized with components $\phi'(\mathbf{z}^{(l)})\delta_{jk}$. It is then acted on by each of the Jacobians in @eq-jac until we get to the final layer. This procedure is called _forward accumulation_. 
+
+The advantage of forward accumulation is that during evaluation we only have to store the current $\mathbf{z}^{(l')}$ and the corresponding matrix. The disadvantage is that we are dealing with _matrix multiplication_. For matrices $M_1\in \mathbb{R}^{N_1\times N_2}$ and $M_2\in \mathbb{R}^{N_2\times N_3}$ matrix multiplication $M_1\cdot M_2$ is $O(N_1 N_2 N_3)$. Since we are interested in models with large numbers of parameters in each layer, this is a problem.
+
+## Backpropagation
+
+The alternative is that we go from left to right. Instantly we see a problem: we have to have evaluate _and store_ all the $\mathbf{z}^{(l')}$ with $l'=1,\ldots L$ before we can do anything, as the Jacobians depend on these values. This is called the _forward pass_. 
+
+Now remember that we're _actually_ interested in calculating $\partial\mathcal{C}/\partial w^{(l)_k}$. For a single data point our cost function is
+
+$$
+C_i(\theta) \equiv \frac{1}{2}\lVert\mathbf{y}_i-\mathsf{NN}_\theta(\mathbf{x}_i)\rVert^2,
+$$ {#eq-cost-single}
+
+and so
+
+$$
+\frac{\partial C_i}{\partial b^{(l)}_k} = -\left(\mathbf{y_i} - \mathsf{NN}_\theta(\mathbf{x}_i)\right) \cdot \frac{\partial \mathsf{NN}_\theta(\mathbf{x_i})}{\partial b^{(l)}_k}.
+$$
+
+This means that going from left to right involves only _matrix-vector_ multiplications rather than matrix-matrix mutiplications. We start with the (row) vector $\left(\mathbf{y_i} - \mathsf{NN}_\theta(\mathbf{x}_i)\right)^T$ and act on the right with the Jacobians. This reduces the complexity of the evaluation by a factor equal to the number of biases in the $l$th layer. 
+
+In AD this is known as _backward accumulation_. For the special case of neural networks it's usually called _backpropagation_. Going backwards reduces the time complexity in favour additional space (i.e. memory) complexity, as we have to store $\mathbf{z}^{l'}$ for each layer. This trade-off is usually worth it, and essentially all large neural networks these days are trained using backpropagation.
+
+# Implementation
+
+These days, getting started with training neural networks is easy due to the availability of many libraries that implement the common building blocks of popular neural architectures, as well as the automatic differentiation required to train them by gradient descent. Popular libraries include [PyTorch](https://pytorch.org/), [TensorFlow](https://www.tensorflow.org/), and [Jax](https://jax.readthedocs.io/en/latest/). As usual, you don't have to do it yourself. 
+
+Still, it's fun to take a look at how backpropagation is actually implemented in code. Among the simple versions of backpropgation you can find online I can recommend @nielsen2015neural and [micrograd](https://github.com/karpathy/micrograd) by Andrej Karpathy. He also has a [YouTube video](https://www.youtube.com/watch?v=VMj-3S1tku0) where he explains how it works in detail.
+
+# Further reading
+
+There are a huge number of resources online. For a really beautiful gentle introduction try @nielsen2015neural. For much more detail try @goodfellow2016deep, though the field moves so fast that the latter parts are probably already a bit dated.

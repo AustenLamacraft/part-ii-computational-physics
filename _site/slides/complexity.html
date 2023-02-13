@@ -816,7 +816,7 @@ b^n = \begin{cases}
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>random_array <span class="op">=</span> np.random.randint(<span class="dv">0</span>,<span class="dv">100</span>, <span class="dv">10</span>)</span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="bu">sorted</span>(random_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>[8, 12, 14, 14, 25, 30, 52, 59, 61, 73]</code></pre>
+<pre><code>[30, 36, 44, 45, 52, 64, 73, 80, 95, 95]</code></pre>
 </div>
 </div>
 <ul>
@@ -987,10 +987,10 @@ xy = x_1 y_1 B^{2m} + (x_1 y_0 + x_0 y_1) B^{m} + x_0 y_0,
 <ul>
 <li><p>Requires computation of four products</p></li>
 <li><p>Now divide and conquer, splitting up <span class="math inline">\(x_0\)</span>, <span class="math inline">\(x_1\)</span>, <span class="math inline">\(y_0\)</span>, <span class="math inline">\(y_1\)</span> in the same way</p></li>
-<li><p>Continues to a depth of <span class="math inline">\(\sim\log n\)</span> until we end up with single digit numbers. What’s the complexity?</p></li>
+<li><p>Continues to a depth of <span class="math inline">\(\sim\log_2 n\)</span> until we end up with single digit numbers. What’s the complexity?</p></li>
 </ul>
 <p><span class="math display">\[
-4^{\log n} = n^2
+4^{\log_2 n} = n^2
 \]</span></p>
 </section>
 <section class="slide level2 center">

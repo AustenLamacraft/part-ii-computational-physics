@@ -26,11 +26,10 @@ website:
           - notes/monte-carlo.qmd
           - notes/complexity.qmd
           - notes/fourier.qmd
+          - notes/autodiff.qmd
           # # - notes/linear.qmd
           # # - notes/divide.qmd
           # # - notes/dynamic.qmd
-          # # - notes/autograd.qmd
-          - notes/references.qmd
 
       - section: "Slides"
         contents:
@@ -39,6 +38,8 @@ website:
           - slides/numbers-and-odes.qmd
           - slides/monte-carlo.qmd
           - slides/complexity.qmd
+          - slides/fourier.qmd
+          - slides/autodiff.qmd
 
 bibliography: references.bib
 number-sections: true

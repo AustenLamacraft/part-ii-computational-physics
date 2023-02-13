@@ -703,10 +703,10 @@ $$
 
 - Now divide and conquer, splitting up $x_0$, $x_1$, $y_0$, $y_1$ in the same way
 
--  Continues to a depth of $\sim\log n$ until we end up with single digit numbers. What's the complexity?
+-  Continues to a depth of $\sim\log_2 n$ until we end up with single digit numbers. What's the complexity?
 
 $$
-4^{\log n} = n^2
+4^{\log_2 n} = n^2
 $$
 
 ---

@@ -105,7 +105,7 @@ where $\mathbf{j}=(j_1,\ldots j_{d})$ with $j_i = 0,\ldots N_i - 1$ and likewise
 
 # The fast Fourier transform
 
-What is the complexity of computing the Fourier transform? @eq-dft may be regarded as matrix-vector multiplication, where $f_j$ are the $N$ components of a vector and the matrix has elements $Q_{n j}\equiv e^{-i\eta_n j}$, so tha the DFT is written
+What is the complexity of computing the Fourier transform? @eq-dft may be regarded as matrix-vector multiplication, where $f_j$ are the $N$ components of a vector and the matrix has elements $Q_{n j}\equiv e^{-i\eta_n j}$, so that the DFT is written
 $$
 \mathbf{F} = Q \cdot \mathbf{f}.
 $$
@@ -431,4 +431,4 @@ animate = FuncAnimation(fig, nextframe, frames = int(N_t/10), interval = 50, rep
 plt.show()
 ```
 
-![Wavepacket colliding with a top hat barrier. Black line is the modulus, while red and blue are the real and imaginary parts.](../assets/gaussian-barrier.mp4)
+![(top) Wavepacket colliding with a top hat barrier. Black line is the modulus, while red and blue are the real and imaginary parts. (bottom) Absolute value of the Fourier transform](../assets/gaussian-barrier.mp4)

@@ -112,7 +112,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../notes/references.html" rel="next">
+<link href="../notes/autodiff.html" rel="next">
 <link href="../notes/complexity.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -231,7 +231,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="../notes/autodiff.html" class="sidebar-item-text sidebar-link">Automatic differentiation and neural networks</a>
   </div>
 </li>
       </ul>
@@ -267,6 +267,16 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/fourier.html" class="sidebar-item-text sidebar-link">Fast Fourier transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/autodiff.html" class="sidebar-item-text sidebar-link">Autodiff and neural nets</a>
   </div>
 </li>
       </ul>
@@ -396,7 +406,7 @@ F_{\mathbf{n}} = \sum_{\mathbf{n}} f_\mathbf{j}e^{-i \boldsymbol{\eta}_\mathbf{n
 </section>
 <section id="the-fast-fourier-transform" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> The fast Fourier transform</h1>
-<p>What is the complexity of computing the Fourier transform? <a href="#eq-dft">Equation&nbsp;1</a> may be regarded as matrix-vector multiplication, where <span class="math inline">\(f_j\)</span> are the <span class="math inline">\(N\)</span> components of a vector and the matrix has elements <span class="math inline">\(Q_{n j}\equiv e^{-i\eta_n j}\)</span>, so tha the DFT is written <span class="math display">\[
+<p>What is the complexity of computing the Fourier transform? <a href="#eq-dft">Equation&nbsp;1</a> may be regarded as matrix-vector multiplication, where <span class="math inline">\(f_j\)</span> are the <span class="math inline">\(N\)</span> components of a vector and the matrix has elements <span class="math inline">\(Q_{n j}\equiv e^{-i\eta_n j}\)</span>, so that the DFT is written <span class="math display">\[
 \mathbf{F} = Q \cdot \mathbf{f}.
 \]</span> Naively, then, the complexity is <span class="math inline">\(O(N^2)\)</span>.</p>
 <p>Surprisingly, we can do a lot better than this, because <span class="math inline">\(Q\)</span> is not any old matrix but has a great deal of structure. To see this, we follow the divide and conquer pattern of trying to break the problem up into two sub-problems, in this case by separating the <span class="math inline">\(N/2\)</span> even and <span class="math inline">\(N/2\)</span> odd coefficients (assuming <span class="math inline">\(N\)</span> even)</p>
@@ -469,7 +479,7 @@ T(N) = 2T(N/2) +\alpha N
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>np.cos(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="dv">12</span><span class="op">*</span>t)<span class="op">+</span><span class="fl">0.5</span><span class="op">*</span>np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="dv">34</span><span class="op">*</span>t)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.plot(t,y)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="37">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>Text(0.5, 0, 'Time')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -696,7 +706,7 @@ e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><video src="../assets/gaussian-barrier.mp4" class="img-fluid" controls=""><a href="../assets/gaussian-barrier.mp4">Video</a></video></p>
-<p></p><figcaption class="figure-caption">Wavepacket colliding with a top hat barrier. Black line is the modulus, while red and blue are the real and imaginary parts.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">(top) Wavepacket colliding with a top hat barrier. Black line is the modulus, while red and blue are the real and imaginary parts. (bottom) Absolute value of the Fourier transform</figcaption><p></p>
 </figure>
 </div>
 
@@ -868,8 +878,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notes/references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notes/autodiff.html" class="pagination-link">
+        <span class="nav-page-text">Automatic differentiation and neural networks</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
