@@ -234,16 +234,21 @@ div.csl-indent {
   <a href="../notes/autodiff.html" class="sidebar-item-text sidebar-link">Automatic differentiation and neural networks</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/linear.html" class="sidebar-item-text sidebar-link">Linear algebra</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Slides</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Slides</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Getting going</a>
@@ -277,6 +282,31 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/autodiff.html" class="sidebar-item-text sidebar-link">Autodiff and neural nets</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/linear.html" class="sidebar-item-text sidebar-link">Linear algebra</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Exercises and Projects</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/exercises.html" class="sidebar-item-text sidebar-link">Exercises</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/projects.html" class="sidebar-item-text sidebar-link">Projects</a>
   </div>
 </li>
       </ul>
@@ -483,7 +513,7 @@ div.csl-indent {
 \sum_{j} A_{ij}B_{jk}
 \]</span></p>
 <p>involves <span class="math inline">\(n\)</span> terms for each of the <span class="math inline">\(n^2\)</span> assignments of <span class="math inline">\(i\)</span> and <span class="math inline">\(k\)</span>. Complexity: <span class="math inline">\(O(n^3)\)</span></p>
-<p>Thus, if you have to calculate something like <span class="math inline">\(M_1 M_2\cdots M_n \mathbf{v}\)</span>, you should <em>not</em> calculate the matrix product first, but instead do it like this</p>
+<p>Thus, if you have to calculate something like <span class="math inline">\(M_1 M_2\cdots M_n \mathbf{v}\)</span>, you should <em>not</em> calculate the matrix products first, but instead do it like this</p>
 <p><span class="math display">\[
 M_1\left(M_2\cdots \left(M_n \mathbf{v}\right)\right)
 \]</span></p>
@@ -585,7 +615,7 @@ b^n = \begin{cases}
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> b <span class="op">*</span> exp(b, n <span class="op">-</span> <span class="dv">1</span>) </span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>exp(<span class="dv">2</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="174">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>64</code></pre>
 </div>
 </div>
@@ -625,7 +655,7 @@ b^n = \begin{cases}
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fib(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fib(n <span class="op">-</span> <span class="dv">2</span>)</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fib(<span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="176">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>233</code></pre>
 </div>
 </div>
@@ -678,8 +708,8 @@ b^n = \begin{cases}
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>random_array <span class="op">=</span> np.random.randint(<span class="dv">0</span>,<span class="dv">100</span>, <span class="dv">10</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(random_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="177">
-<pre><code>[0, 5, 6, 10, 24, 27, 33, 44, 50, 83]</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>[0, 6, 31, 35, 63, 67, 77, 79, 82, 89]</code></pre>
 </div>
 </div>
 <p>But what is Python actually <em>doing</em>? There are many algorithms: the <a href="https://en.wikipedia.org/wiki/Sorting_algorithm">Wikipedia page on sorting</a> is particularly extensive. Here we’ll explore just a couple to get a sense of the variety of algorithms and their possible complexities. The site <a href="https://www.sortvisualizer.com/">sort visualizer</a> animates the action of various algorithms. It’s fun to try and figure out what the algorithm is from its animation.</p>

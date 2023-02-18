@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Course outline",
     "section": "",
-    "text": "These are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge."
+    "text": "Feedback\n\n\n\nPlease fill out the feedback form before 12th March.\nThese are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge."
   },
   {
     "objectID": "index.html#computing-project",
@@ -413,6 +413,83 @@
     "text": "Implementation\n\nPopular libraries include PyTorch, TensorFlow, and Jax\nFun to take a look at how backpropagation is actually implemented in code\nTry micrograd by Andrej Karpathy\nHe also has a YouTube video where he explains it in detail"
   },
   {
+    "objectID": "slides/linear.html#linear-algebra-with-numpy",
+    "href": "slides/linear.html#linear-algebra-with-numpy",
+    "title": "Part II Computational Physics",
+    "section": "Linear algebra with NumPy",
+    "text": "Linear algebra with NumPy\n\nMultiplying matrices is easy in NumPy using np.matmul\n@ operator gives shortcut\n\n\nimport numpy as np\nA = np.random.rand(3, 3)\nB = np.random.rand(3, 3)\nnp.matmul(A, B), A @ B\n\n(array([[0.7645529 , 0.86089973, 0.19282863],\n        [1.58670982, 1.82148007, 1.0988854 ],\n        [1.31940987, 1.40988888, 1.02203438]]),\n array([[0.7645529 , 0.86089973, 0.19282863],\n        [1.58670982, 1.82148007, 1.0988854 ],\n        [1.31940987, 1.40988888, 1.02203438]]))"
+  },
+  {
+    "objectID": "slides/linear.html#power-method",
+    "href": "slides/linear.html#power-method",
+    "title": "Part II Computational Physics",
+    "section": "Power method",
+    "text": "Power method\n\nBetter methods available if only want largest (or smallest) eigenvalue and eigenvector (e.g. QM ground state)\nSimplest is Power method\n\nStart from arbitrary vector \\(\\mathbf{b}_0\\)\nMultiply repeatedly by matrix \\(A\\)\nResult tends to dominant eigenvector (largest magnitude eigenvalue)"
+  },
+  {
+    "objectID": "slides/linear.html#pagerank",
+    "href": "slides/linear.html#pagerank",
+    "title": "Part II Computational Physics",
+    "section": "PageRank",
+    "text": "PageRank\n\nGoogle’s PageRank algorithm assesses relative importance of webpages based on structure of links between them\n\n\n\n\nLarry Page"
+  },
+  {
+    "objectID": "slides/linear.html#sparsity",
+    "href": "slides/linear.html#sparsity",
+    "title": "Part II Computational Physics",
+    "section": "Sparsity",
+    "text": "Sparsity\n\nMany matrices that we meet in physical applications are sparse, meaning that most of elements are zero\n\n\\[\n\\left[-\\frac{\\hbar^2}{2m}\\frac{d^2}{dx^2} + V(x)\\right]\\psi(x) = E\\psi(x)\n\\]\n\\[\n\\frac{d^2}{dx^2} \\sim \\frac{1}{\\Delta x^2}\\begin{pmatrix}\n-2 &  1 & 0 & 0 & 0 & \\cdots & 1 \\\\\n1 &  -2 & 1 & 0 & 0 & \\cdots & 0 \\\\\n0 &  1 & -2 & 1 & 0 & \\cdots & 0 \\\\\n\\cdots &  \\cdots & \\cdots & \\cdots & \\cdots & \\cdots & \\cdots \\\\\n1 &  0 & 0 & \\cdots & 0 & 1 & -2\n\\end{pmatrix}\n\\]"
+  },
+  {
+    "objectID": "slides/linear.html#singular-value-decomposition",
+    "href": "slides/linear.html#singular-value-decomposition",
+    "title": "Part II Computational Physics",
+    "section": "Singular value decomposition",
+    "text": "Singular value decomposition\n\nOften faced with need to truncate large matrices in some way due to limits of finite storage space or processing time\nWhat is “right” way to perform truncation?\nSingular value decomposition (SVD) is natural in some settings: statistics, signal processing, quantum mechanics…"
+  },
+  {
+    "objectID": "slides/linear.html#geometrical-interpretation",
+    "href": "slides/linear.html#geometrical-interpretation",
+    "title": "Part II Computational Physics",
+    "section": "Geometrical interpretation",
+    "text": "Geometrical interpretation\n\nColumns of \\(V\\) define an orthonormal basis \\(\\mathbf{v}_i\\in \\mathbb{C}^n\\) (\\(i=1,\\ldots n\\))\n\\(U\\) defines a basis \\(\\mathbf{u}_i\\in \\mathbb{C}^m\\) \\(i=1,\\ldots m\\)\nIf we act on \\(\\mathbf{v}_i\\) with \\(M\\) (to the left) we get \\(\\lambda_i \\mathbf{u}_i\\)"
+  },
+  {
+    "objectID": "slides/linear.html#svd-in-quantum-mechanics",
+    "href": "slides/linear.html#svd-in-quantum-mechanics",
+    "title": "Part II Computational Physics",
+    "section": "SVD in quantum mechanics",
+    "text": "SVD in quantum mechanics\n\nSVD arises naturally in QM of composite systems (with two subsystems)\nExample: two spins \\(\\mathbf{S}_A\\) and \\(\\mathbf{S}_B\\)\nHilbert space of each spin has dimension \\(n_{A,B}\\equiv 2S_{A,B}+1\\), where \\(\\mathbf{S}_{A,B}^2=S_{A,B}(S_{A,B}+1)\\) (e.g. 2 for spin-1/2)."
+  },
+  {
+    "objectID": "slides/linear.html#other-applications-of-svd",
+    "href": "slides/linear.html#other-applications-of-svd",
+    "title": "Part II Computational Physics",
+    "section": "Other applications of SVD",
+    "text": "Other applications of SVD\n\nApplications of SVD in recommender systems, described in this blog post"
+  },
+  {
+    "objectID": "slides/linear.html#many-body-physics-tensor-methods",
+    "href": "slides/linear.html#many-body-physics-tensor-methods",
+    "title": "Part II Computational Physics",
+    "section": "Many body physics & tensor methods",
+    "text": "Many body physics & tensor methods\n\nWe saw that state of a quantum system composed of two subsystems represented as a matrix \\(\\psi_{ab}\\)\nGeneralizes to \\(N\\) subsystems: wavefunction may a tensor of rank \\(N\\): \\(\\psi_{a_1,\\ldots a_N}\\)\nEach index \\(a_i\\) ranges over dimension of Hilbert space of corresponding subsystem"
+  },
+  {
+    "objectID": "slides/linear.html#penrose-tensor-notation",
+    "href": "slides/linear.html#penrose-tensor-notation",
+    "title": "Part II Computational Physics",
+    "section": "Penrose tensor notation",
+    "text": "Penrose tensor notation\n\nGraphical notation due to Roger Penrose\nRank \\(N\\) tensor is represented as blob with \\(N\\) legs:\n\n\n\n\nThe tensor notation. Source: Glen Evenbly"
+  },
+  {
+    "objectID": "slides/linear.html#example-ground-state-of-spin-chain",
+    "href": "slides/linear.html#example-ground-state-of-spin-chain",
+    "title": "Part II Computational Physics",
+    "section": "Example: ground state of spin chain",
+    "text": "Example: ground state of spin chain\n\nSimplest example: Heisenberg chain for spin-1/2:\n\n\\[\nH = \\sum_{j=1}^N \\left[\\sigma^x_j \\sigma^x_{j+1} + \\sigma^y_j \\sigma^y_{j+1} + \\sigma^z_j \\sigma^z_{j+1} \\right]\n\\]\n\n\\(\\sigma^{x,y,z}\\) are usual Pauli matrices and subscript \\(j\\) means that matrix acts only the \\(j\\)th index of the wavefunction\nUsually impose periodic boundary conditions: \\(\\sigma^a_{j+N}=\\sigma^a_j\\)"
+  },
+  {
     "objectID": "slides/fourier.html#the-discrete-fourier-transform",
     "href": "slides/fourier.html#the-discrete-fourier-transform",
     "title": "Part II Computational Physics",
@@ -739,7 +816,7 @@
     "href": "notes/complexity.html#polynomial-complexity",
     "title": "Algorithms and computational complexity",
     "section": "2.2 Polynomial complexity",
-    "text": "2.2 Polynomial complexity\nSince you’ve already learnt a lot of algorithms in mathematics (even if you don’t think of them this way) it’s very instructive to revisit them through the lens of computational complexity.\nMultiplying a \\(n\\)-dimensional vector by a \\(n\\times n\\) matrix?\n\\[\n\\begin{align}\n\\sum_{j=1}^n M_{ij}v_j\n\\end{align}\n\\]\nThe sum contains \\(n\\) terms, and we have to perform \\(n\\) such sums. Thus the complexity of this operation is \\(O(n^2)\\).\nLikewise, multiplying two \\(n\\times n\\) matrices\n\\[\n\\sum_{j} A_{ij}B_{jk}\n\\]\ninvolves \\(n\\) terms for each of the \\(n^2\\) assignments of \\(i\\) and \\(k\\). Complexity: \\(O(n^3)\\)\nThus, if you have to calculate something like \\(M_1 M_2\\cdots M_n \\mathbf{v}\\), you should not calculate the matrix product first, but instead do it like this\n\\[\nM_1\\left(M_2\\cdots \\left(M_n \\mathbf{v}\\right)\\right)\n\\]\nWikipedia has a nice summary of computational complexity of common mathematical operations.\nIf an algorithm has complexity \\(O(n^p)\\) for some \\(p\\) it is generally described as having polynomial complexity. A useful heuristic (which is not 100% reliable) is that if you have \\(p\\) nested loops that range over \\(\\sim n\\), the complexity is \\(O(n^p)\\) (think how you would implement matrix-vector and matrix-matrix multiplication)."
+    "text": "2.2 Polynomial complexity\nSince you’ve already learnt a lot of algorithms in mathematics (even if you don’t think of them this way) it’s very instructive to revisit them through the lens of computational complexity.\nMultiplying a \\(n\\)-dimensional vector by a \\(n\\times n\\) matrix?\n\\[\n\\begin{align}\n\\sum_{j=1}^n M_{ij}v_j\n\\end{align}\n\\]\nThe sum contains \\(n\\) terms, and we have to perform \\(n\\) such sums. Thus the complexity of this operation is \\(O(n^2)\\).\nLikewise, multiplying two \\(n\\times n\\) matrices\n\\[\n\\sum_{j} A_{ij}B_{jk}\n\\]\ninvolves \\(n\\) terms for each of the \\(n^2\\) assignments of \\(i\\) and \\(k\\). Complexity: \\(O(n^3)\\)\nThus, if you have to calculate something like \\(M_1 M_2\\cdots M_n \\mathbf{v}\\), you should not calculate the matrix products first, but instead do it like this\n\\[\nM_1\\left(M_2\\cdots \\left(M_n \\mathbf{v}\\right)\\right)\n\\]\nWikipedia has a nice summary of computational complexity of common mathematical operations.\nIf an algorithm has complexity \\(O(n^p)\\) for some \\(p\\) it is generally described as having polynomial complexity. A useful heuristic (which is not 100% reliable) is that if you have \\(p\\) nested loops that range over \\(\\sim n\\), the complexity is \\(O(n^p)\\) (think how you would implement matrix-vector and matrix-matrix multiplication)."
   },
   {
     "objectID": "notes/complexity.html#better-than-linear",
@@ -819,18 +896,46 @@
     "text": "2.3 Backpropagation\nThe alternative is that we go from left to right. Instantly we see a problem: we have to have evaluate and store all the \\(\\mathbf{z}^{(l')}\\) with \\(l'=1,\\ldots L\\) before we can do anything, as the Jacobians depend on these values. This is called the forward pass.\nNow remember that we’re actually interested in calculating \\(\\partial\\mathcal{C}/\\partial w^{(l)_k}\\). For a single data point our cost function is\n\\[\nC_i(\\theta) \\equiv \\frac{1}{2}\\lVert\\mathbf{y}_i-\\mathsf{NN}_\\theta(\\mathbf{x}_i)\\rVert^2,\n\\tag{10}\\]\nand so\n\\[\n\\frac{\\partial C_i}{\\partial b^{(l)}_k} = -\\left(\\mathbf{y_i} - \\mathsf{NN}_\\theta(\\mathbf{x}_i)\\right) \\cdot \\frac{\\partial \\mathsf{NN}_\\theta(\\mathbf{x_i})}{\\partial b^{(l)}_k}.\n\\]\nThis means that going from left to right involves only matrix-vector multiplications rather than matrix-matrix mutiplications. We start with the (row) vector \\(\\left(\\mathbf{y_i} - \\mathsf{NN}_\\theta(\\mathbf{x}_i)\\right)^T\\) and act on the right with the Jacobians. This reduces the complexity of the evaluation by a factor equal to the number of biases in the \\(l\\)th layer.\nIn AD this is known as backward accumulation. For the special case of neural networks it’s usually called backpropagation. Going backwards reduces the time complexity in favour additional space (i.e. memory) complexity, as we have to store \\(\\mathbf{z}^{l'}\\) for each layer. This trade-off is usually worth it, and essentially all large neural networks these days are trained using backpropagation."
   },
   {
-    "objectID": "notes/divide.html",
-    "href": "notes/divide.html",
-    "title": "Part II Computational Physics",
-    "section": "",
-    "text": "# Divide and Conquer\nFFT. Use split step as illustration Matrix multiplication"
-  },
-  {
     "objectID": "notes/linear.html",
     "href": "notes/linear.html",
-    "title": "Part II Computational Physics",
+    "title": "Linear algebra",
     "section": "",
-    "text": "1 Linear algebra\nhttps://twitter.com/nicholdav/status/1621180520901001220\nKrylov subspaces\nSVD and quantum mechanics. Quantum entanglement.\nImage compression using SVD\nPCA\nhttp://timbaumann.info/svd-image-compression-demo/\nTrebst has nice Einstein example\nPCA for big data\nhttps://www.tensors.net/exact-diagonalization\nPower method\nPagerank\nhttps://www.programcreek.com/python/?code=MKLab-ITI%2Freveal-graph-embedding%2Freveal-graph-embedding-master%2Freveal_graph_embedding%2Fembedding%2Fimplicit.py\nhttp://pi.math.cornell.edu/~web6140/TopTenAlgorithms/PageRank.html\nhttp://infolab.stanford.edu/~ullman/mmds/ch5.pdf"
+    "text": "Numerical linear algebra is a huge topic. Here we’ll confine ourselves to how common operations are performed in NumPy and SciPy, and some applications in physics and elsewhere."
+  },
+  {
+    "objectID": "notes/linear.html#pagerank",
+    "href": "notes/linear.html#pagerank",
+    "title": "Linear algebra",
+    "section": "2.1 PageRank",
+    "text": "2.1 PageRank\nOne interesting application of these ideas is Google’s PageRank algorithm (Page et al. (1999)) to assess the relative importance of webpages based on structure of links between them1.\n\n\n\nLarry Page is happy he learnt about Markov chains\n\n\nPageRank imagines a web crawler that probabilistically navigates between pages according to a transition matrix \\(\\mathsf{P}\\). The stationary distribution \\(\\boldsymbol{\\pi}\\) satisfying \\[\n\\mathsf{P}\\boldsymbol{\\pi} = \\boldsymbol{\\pi}\n\\]\ncan then be interpreted as giving a ranking, with page \\(j\\) more important than page \\(k\\) if \\(\\boldsymbol{\\pi}_j>\\boldsymbol{\\pi}_k\\).\nA problem arises with this approach if the Markov chain is nonergodic, meaning that the state space breaks up into several independent components, leading to a nonunique stationary state. For example, if\n\\[\n\\begin{equation}\n\\mathsf{P}=\\begin{pmatrix}\n0 & 1 & 0 & 0 \\\\\n1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 1 \\\\\n0 & 0 & 1 & 0\n\\end{pmatrix}\n\\end{equation}\n\\]\nthen the first two pages and the last two do not link to each other, so\n\\[\n\\boldsymbol{\\pi} = \\begin{pmatrix}\n\\pi_1 \\\\\n\\pi_1 \\\\\n\\pi_2 \\\\\n\\pi_2\n\\end{pmatrix}\n\\]\nis a stationary state for any \\(\\pi_{1,2}\\).\nThe way out of this problem is to modify the Markov chain slightly to restore ergodicity and give a unique stationary state. At each step the crawler either moves as before with probability \\(\\alpha\\) (followed by making a choice about which link to follow) or moves with probability \\(1-\\alpha\\) to a random webpage. In this way the transition matrix of the overall Markov chain becomes\n\\[\n\\alpha\\mathsf{P} + (1-\\alpha)\\mathbf{t} \\mathbf{e}^T\n\\]\nwhere \\(\\mathbf{e}^T= (1, 1, \\ldots 1)\\) and \\(\\mathbf{t}\\) is a “teleporting” vector (usually \\((1, 1, \\ldots 1)/N\\)) giving the probability of teleporting to each of the webpages. Since this matrix has positive (i.e. \\(>0\\)) entries the Perron–Frobenius theorem is restored and there is a unique stationary state (and hence ranking).\nA further modification is required to teleport away from “dangling” webpages without any outgoing links)."
+  },
+  {
+    "objectID": "notes/linear.html#sparsity",
+    "href": "notes/linear.html#sparsity",
+    "title": "Linear algebra",
+    "section": "2.2 Sparsity",
+    "text": "2.2 Sparsity\nThe power method is the basis of more sophisticated algorithms such as Lanczos iteration: they are all based on the idea that matrix-vector products are to be preferred over matrix-matrix products, and provide only incomplete information about the eigenvalues and eigenvectors.\nFurther economies are possible when dealing with sparse matrices, meaning that most of the elements are zero (i.e. the density of non-zero elements goes to zero as the matrix size increases). Many matrices that we meet in physical applications (as well as in the above example of links between webpages) are sparse. For example, consider discretizing the Laplacian that appears in the Schrödinger equation:\n\\[\n\\left[-\\frac{\\hbar^2}{2m}\\frac{d^2}{dx^2} + V(x)\\right]\\psi(x) = E\\psi(x)\n\\]\n\\[\n\\frac{d^2}{dx^2} \\sim \\frac{1}{\\Delta x^2}\\begin{pmatrix}\n-2 &  1 & 0 & 0 & 0 & \\cdots & 1 \\\\\n1 &  -2 & 1 & 0 & 0 & \\cdots & 0 \\\\\n0 &  1 & -2 & 1 & 0 & \\cdots & 0 \\\\\n\\cdots &  \\cdots & \\cdots & \\cdots & \\cdots & \\cdots & \\cdots \\\\\n1 &  0 & 0 & \\cdots & 0 & 1 & -2\n\\end{pmatrix}.\n\\]\n(periodic boundary conditions) There’s no point iterating over a whole row to multiply this matrix into a vector representing the wavefunction if most of the elements are zero!\nThe basic idea behind sparse matrix algebra is that you should only need to store the non-zero values of a matrix (and their locations), and there are a variety of data structures to do so. Many of these are implemented in the scipy.sparse module, and allow matrix operations from scipy.sparse.linalg to be performed efficiently.\nThe alternative approach to building the sparse matrix explicitly is to pass the matrix operations in scipy.sparse.linalg a function which performs the matrix-vector multiplication. This is done by instantiating a LinearOperator with the function. We’ll see an example of this approach in Section 4."
+  },
+  {
+    "objectID": "notes/linear.html#svd-in-quantum-mechanics",
+    "href": "notes/linear.html#svd-in-quantum-mechanics",
+    "title": "Linear algebra",
+    "section": "3.1 SVD in quantum mechanics",
+    "text": "3.1 SVD in quantum mechanics\nSVD arises naturally in the quantum mechanics of composite systems: those that can be regarded as formed of two subsystems. For a simple, finite dimensional example, suppose that our system consists of two spins \\(\\mathbf{S}_A\\) and \\(\\mathbf{S}_B\\). The Hilbert space of each spin has dimension \\(n_{A,B}\\equiv 2S_{A,B}+1\\), where \\(\\mathbf{S}_{A,B}\\cdot\\mathbf{S}_{A,B}=S_{A,B}(S_{A,B}+1)\\) (e.g. 2 for spin-1/2).\nA general state of our system lives in a \\(n_A\\times n_B\\) dimensional Hilbert space and can be written in terms of basis vectors \\(\\ket{a}_A\\) and \\(\\ket{b}_B\\) for the A and B subsystems2 as\n\\[\n\\ket{\\Psi_{AB}} = \\sum_{a=1}^{n_A}\\sum_{b=1}^{n_B} \\psi_{ab}\\ket{a}_A\\ket{b}_B.\n\\tag{1}\\]\nWe can regard the components \\(\\psi_{ab}\\) as a matrix and perform an SVD. As discussed above, this is equivalent to finding new orthonormal bases \\(\\ket{\\tilde n}_{A,B}\\) for the two spaces such that the action of \\(\\psi_{ab}\\) on a basis vector of one subsystem maps it to a basis vector of the other, together with a rescaling. In this basis, the state \\(\\ket{\\Psi_{AB}}\\) can be written\n\\[\n\\ket{\\Psi_{AB}} = \\sum_{n=1}^{\\min(n_A,n_B)} \\lambda_n\\ket{\\tilde n}_A\\ket{\\tilde n}_B.\n\\]\nNote there is a single sum, c.f. the double sum in Equation 1. This is called a Schmidt decomposition, although it is really just a restatement of the SVD.\nThe singular values — sometimes called the Schmidt coefficients in this case — quantify the entanglement of the state (see the 2022 Nobel prize). If there is only one nonzero singular value the state is a product state and there are no correlations between the two subsystems. Note that his might not have been evident in the original form Equation 1.\nAs a simple example consider the Bell state of two spin-1/2 subsystems. One example is\n\\[\n\\begin{equation}\n\\left|\\Psi^{+}\\right\\rangle=\\frac{1}{\\sqrt{2}}\\left(|0\\rangle_A \\otimes|1\\rangle_B+|1\\rangle_A \\otimes|0\\rangle_B\\right).\n\\end{equation}\n\\]\nThese are already written in Schmidt form and the two singular values are both \\(\\frac{1}{\\sqrt{2}}\\), indicating maximal entanglement."
+  },
+  {
+    "objectID": "notes/linear.html#other-applications-of-svd",
+    "href": "notes/linear.html#other-applications-of-svd",
+    "title": "Linear algebra",
+    "section": "3.2 Other applications of SVD",
+    "text": "3.2 Other applications of SVD\nYou might find it interesting to read about the applications of SVD in recommender systems, as described in this blog post by Simon Funk."
+  },
+  {
+    "objectID": "notes/linear.html#example-ground-state-of-a-spin-chain",
+    "href": "notes/linear.html#example-ground-state-of-a-spin-chain",
+    "title": "Linear algebra",
+    "section": "4.1 Example: ground state of a spin chain",
+    "text": "4.1 Example: ground state of a spin chain\nSpin chains are among the simplest quantum mechanical many body models. The Hamiltonian couples the spins along the chain, with nearest neighbour couplings in the simplest case. The simplest such model is the Heisenberg chain for spin-1/2:\n\\[\nH = \\sum_{j=1}^N \\left[\\sigma^x_j \\sigma^x_{j+1} + \\sigma^y_j \\sigma^y_{j+1} + \\sigma^z_j \\sigma^z_{j+1} \\right],\n\\]\nwhere \\(\\sigma^{x,y,z}\\) are the usual Pauli matrices and the subscript \\(j\\) means that the matrix acts only the \\(j\\)th index of the wavefunction. Usually we impose periodic boundary conditions, so that \\(\\sigma^a_{j+N}=\\sigma^a_j\\). In the tensor diagram notation we have\n\n\n\nState and Hamiltonian of a spin chain. Source: Glen Evenbly\n\n\nThe number of components of the wavefunction \\(\\psi_{a_1,\\ldots a_N}\\) is \\(2^N\\), which is responsible for the exponential growth of the complexity with increasing \\(N\\). Treating the eigenvalue problem\n\\[\nH\\ket{\\Psi} = E\\ket{\\Psi}\n\\]\nin terms of matrix-vector multiplication with complexity \\(O(2^{2N})\\) would be a very bad idea. Instead, we should take advantage of the structure of the problem, using the sparse structure of the Hamiltonian. \\(H\\) consists of a sum of local terms, each acting on only a neighbouring pair of sites. We are going to define a function that acts on the wavefunction with each of the local Hamiltonians \\(h_{j,j+1}\\) (this implementation uses np.tensordot rather than np.einsum):\n\n# by Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 6/2019\n\ndef doApplyHam(psiIn: np.ndarray,\n               hloc: np.ndarray,\n               N: int,\n               usePBC: bool):\n  \"\"\"\n  Applies local Hamiltonian, given as sum of nearest neighbor terms, to\n  an input quantum state.\n  Args:\n    psiIn: vector of length d**N describing the quantum state.\n    hloc: array of ndim=4 describing the nearest neighbor coupling.\n    N: the number of lattice sites.\n    usePBC: sets whether to include periodic boundary term.\n  Returns:\n    np.ndarray: state psi after application of the Hamiltonian.\n  \"\"\"\n  d = hloc.shape[0]\n  psiOut = np.zeros(psiIn.size)\n  for k in range(N - 1):\n    # apply local Hamiltonian terms to sites [k,k+1]\n    psiOut += np.tensordot(hloc.reshape(d**2, d**2),\n                           psiIn.reshape(d**k, d**2, d**(N - 2 - k)),\n                           axes=[[1], [1]]).transpose(1, 0, 2).reshape(d**N)\n\n  if usePBC:\n    # apply periodic term\n    psiOut += np.tensordot(hloc.reshape(d, d, d, d),\n                           psiIn.reshape(d, d**(N - 2), d),\n                           axes=[[2, 3], [2, 0]]\n                           ).transpose(1, 2, 0).reshape(d**N)\n\n  return psiOut\n\nThe complexity of this step is \\(O(N 2^N)\\). The \\(2^N\\) arises from the tensor contractions over the indices of a pair of sites for each assignment of the remaining \\(N-2\\) indices (\\(2^{N-2}\\) assignments). This is still exponential, but exponentially better than \\(O(4^N)\\)!\nWe then use this to instantiate a LinearOperator which is passed into our eigenvalue solver (scipy.sparse.linalg.eigsh)\n\n\"\"\"\nby Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 06/2020\n\"\"\"\n\nfrom scipy.sparse.linalg import LinearOperator, eigsh\nfrom timeit import default_timer as timer\n\n# Simulation parameters\nmodel = 'XX'  # select 'XX' model of 'ising' model\nNsites = 18  # number of lattice sites\nusePBC = True  # use periodic or open boundaries\nnumval = 1  # number of eigenstates to compute\n\n# Define Hamiltonian (quantum XX model)\nd = 2  # local dimension\nsX = np.array([[0, 1.0], [1.0, 0]])\nsY = np.array([[0, -1.0j], [1.0j, 0]])\nsZ = np.array([[1.0, 0], [0, -1.0]])\nsI = np.array([[1.0, 0], [0, 1.0]])\nif model == 'XX':\n  hloc = (np.real(np.kron(sX, sX) + np.kron(sY, sY))).reshape(2, 2, 2, 2)\n  EnExact = -4 / np.sin(np.pi / Nsites)  # Note: only for PBC\nelif model == 'ising':\n  hloc = (-np.kron(sX, sX) + 0.5 * np.kron(sZ, sI) + 0.5 * np.kron(sI, sZ)\n          ).reshape(2, 2, 2, 2)\n  EnExact = -2 / np.sin(np.pi / (2 * Nsites))  # Note: only for PBC\n\n\n# cast the Hamiltonian 'H' as a linear operator\ndef doApplyHamClosed(psiIn):\n  return doApplyHam(psiIn, hloc, Nsites, usePBC)\n\n\nH = LinearOperator((2**Nsites, 2**Nsites), matvec=doApplyHamClosed)\n\n# do the exact diag\nstart_time = timer()\nEnergy, psi = eigsh(H, k=numval, which='SA')\ndiag_time = timer() - start_time\n\n# check with exact energy\nEnErr = Energy[0] - EnExact  # should equal to zero\n\nprint('NumSites: %d, Time: %1.2f, Energy: %e, EnErr: %e' %\n      (Nsites, diag_time, Energy[0], EnErr))\n\nNumSites: 18, Time: 3.68, Energy: -2.303508e+01, EnErr: 0.000000e+00\n\n\nThe two models tested here are in fact the XX and Quantum Ising models — which have a slightly different form — because there is a simple expression for the exact ground state energy.\nI encourage you to check out Glen Evenbly’s site is you’d like to learn more about these methods."
   },
   {
     "objectID": "notes/fourier.html",
@@ -959,10 +1064,10 @@
     "text": "6.1 Example: playing with images\nPixels in an image are encoded as a triple of RGB values in the range [0,255] i.e. 8 bits of type uint8 (the “u” is for “unsigned”). Tinting an image gives us a nice example of broadcasting\n\nimg = plt.imread('../assets/lucian.jpeg')\n\nimg_tinted = img * [1, 0.55, 1]\n\n# Show the original image\nplt.subplot(1, 2, 1)\nplt.imshow(img)\nplt.title(\"Lucian\")\n\n# Show the tinted image\nplt.subplot(1, 2, 2)\nplt.title(\"Pink Panther\")\n# Having multiplied by floats, \n# we must cast the image to uint8 before displaying it.\nplt.imshow(np.uint8(img_tinted))\n\nplt.show()\nimg.shape, img.dtype\n\n\n\n\n((4032, 3024, 3), dtype('uint8'))\n\n\nThis is a standard 12 megapixel image."
   },
   {
-    "objectID": "notes/dynamic.html",
-    "href": "notes/dynamic.html",
-    "title": "Part II Computational Physics",
+    "objectID": "exercises/exercises.html",
+    "href": "exercises/exercises.html",
+    "title": "Exercises",
     "section": "",
-    "text": "1 Dynamic Programming"
+    "text": "There are four computing exercises to be completed in the last four weeks of full Lent term; one per week. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. Each of the four exercises is marked out of 5 for a total of 20 marks. Marks will be awarded in proportion to the amount of each exercise you successfully complete. Successfully complete means that at the very least the relevant code should run!\n\nFirst exercise: Friday 17th February – Friday 24th February\nSecond exercise: Friday 24th February – Friday 3rd March\nThird exercise: Friday 3rd March – Friday 10th March\nFourth exercise: Friday 10th March – Friday 17th March (last day of full Lent term)\n\nThe deadline for every exercise is 12 noon on the final day (i.e. Friday 24th February for the first exercise).\n\n1 How to submit\nYou will be using GitHub classroom to submit your work, so you will need a GitHub account if you don’t already have one.\nIf you’ve never used GitHub before, you can try out the starter course. On clicking this link you will be asked to pick your identifier (CRSid) in order to join the classroom. Let me know if your id is missing.\nEach week I will email you a link to a new exercise. Once you accept the assignment, GitHub will create a repository called <exercise-name>-<your-username> in the Part-II-Computational-Physics organization on GitHub. Only you and the course admins (the demonstrators and I) can see this repo.\nNote that there is no explicit “submit” button. You submit your work by making changes to a copy of the repository containing the exercise description. You can make as many changes (“commits”) as you like up until the deadline. Note that you can continue to add commits to the repo after the deadline, but only the last commit before the deadline is counted as the submission.\nPlease use the discussions section to ask questions to your demonstrators (about the exercises) and me (about everything else). Treat the discussions as if they are a real life examples class where others can learn from your questions and the answers to them.\nIf you’re using VS Code, there is a GitHub Classroom extension that allows you to view, work on, and submit assignments directly within the editor.\n\n\n2 First exercise: PDEs\nThe first exercise concerns solving a simple PDE using different methods. Your demonstrator for this exercise is Nathan Magnan, a PhD student from DAMTP."
   }
 ]

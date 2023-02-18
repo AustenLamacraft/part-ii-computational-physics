@@ -1,0 +1,684 @@
+---
+number-sections: false
+format:
+  revealjs: 
+    slide-number: true
+    hash: true
+    center: true
+    auto-stretch: false
+    html-math-method: mathjax
+    preview-links: true
+---
+
+# NumPy and friends
+
+```{python}
+#| echo: true
+import numpy as np
+```
+---
+
+- [NumPy](https://numpy.org/) package is _the_ key building block of the Python scientific ecosystem.
+
+- __Assume that what you want to achieve _can_ be achieved in a highly optimised way within the existing framework__
+
+- Only resort to your own solution if this is not the case
+
+- Many resources for learning NumPy online (see links in notes)
+
+## Preamble: objects in Python
+
+- Everything in Python is an _object_
+
+- For example `[1,2,3]` is a `list`:
+
+```{python}
+#| echo: true
+my_list = [1, 2, 3]
+type(my_list)
+```
+
+- Object is container for _properties_ and _methods_ (functions associated with object), accessed with `.` syntax.
+
+- e.g. lists have `append` method:
+
+```{python}
+#| echo: true
+my_list.append("boop")
+my_list
+```
+
+---
+
+- In IPython you can see all the available methods by hitting tab:
+
+![](../assets/tab-complete.gif)
+
+---
+
+- List all of an objects properties and methods using `dir`:
+
+```{python}
+#| echo: true
+print(dir(my_list))
+```
+
+- Many are _dunder methods_ (or _magic methods_, or just _special methods_), to be used by Python interpreter to implement certain standard functions
+
+---
+
+- e.g. `len(my_list)` is actually calling `my_list.__len__` which does job of actually finding length.
+
+```{python}
+#| echo: true
+my_list.__len__()
+```
+
+- Example of [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) in object oriented programming
+
+## Arrays
+
+- Fundamental object in NumPy is _Array_ (or `ndarray`), multidimensional version of a `list`
+
+- In plain old Python a matrix would be a list of lists.
+
+```{python}
+#| echo: true
+data = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
+```
+
+-  `data[i]` represents each row:
+
+```{python}
+#| echo: true
+data[1]
+```
+
+---
+
+- To multiply every element by a number I would do something like this:
+
+```{python}
+#| echo: true
+for row in data:
+    for j, _ in enumerate(row):
+        row[j] *= 2
+data
+```
+
+::: incremental
+-  ___Don't do this___
+- NumPy is made for tasks like this with _minimum code_ and _maximum efficiency_
+:::
+
+---
+
+- First create data as array
+
+- Numerous NumPy functions produce arrays
+
+- Simplest is [numpy.array](https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array): takes data in "Pythonic" list-of-lists(-of-lists-of... etc.) form and produces `ndarray`
+
+```{python}
+#| echo: true
+my_array = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
+type(my_array)
+```
+
+---
+
+- Multiply array by number? Easy!
+
+```{python}
+#| echo: true
+2 * my_array
+```
+
+- It even prints nicely
+
+```{python}
+#| echo: true
+print(my_array)
+```
+
+## Indexing
+
+```{python}
+#| echo: true
+my_array
+```
+
+- Arrays can be indexed, similar to lists
+
+```{python}
+#| echo: true
+print(my_array[0], my_array[1], my_array[3][1])
+```
+
+- Better syntax for the last one
+
+```{python}
+#| echo: true
+my_array[3,1]
+```
+
+---
+
+```{python}
+#| echo: true
+my_array
+```
+
+- Also have a generalization of the _slice syntax 
+
+```{python}
+#| echo: true
+my_array[1:, 1:]
+```
+
+- Slicing can be mixed with integer indexing
+
+```{python}
+#| echo: true
+my_array[1:, 1]
+```
+
+---
+
+- NumPy has all sorts of fancy indexing options 
+
+- Indexing with integer arrays, with boolean arrays, etc.
+
+- See the [documentation](https://numpy.org/doc/stable/user/basics.indexing.html)
+
+## Shape
+
+- A fundamental property of an array is `shape`:
+
+```{python}
+#| echo: true
+# [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
+my_array.shape
+```
+
+:::incremental
+- First a number of `[` corresponding to the __rank__ of the array (two in the above example)
+
+- Then number of entries giving rightmost (innermost) dimension in shape before closing `]` (3 here)
+
+- After a number of 1D arrays `[...]` equal to the next innermost dimension (4 here), we have another closing `]`, and so on
+  
+:::
+
+---
+
+- Slicing does not change the array rank
+
+```{python}
+#| echo: true
+my_array[1:, 1:].shape
+```
+
+- Integer indexing does
+
+```{python}
+#| echo: true
+my_array[1:, 1].shape
+```
+
+- __Note:__ `(3,)` is _tuple_ giving the shape while `(3)` is just the number 3 in brackets
+
+## Other ways to make arrays
+
+- NumPy has lots of methods to create arrays
+
+```{python}
+#| echo: true
+a = np.zeros((2,2))
+print(a)
+b = np.ones((2,2))
+print(b)
+c = np.full((2,2), 5)
+print(c)
+d = np.random.random((2,2)) # random numbers uniformly in [0.0, 1.0)
+print(d)
+eye = np.eye(2) # Identity matrix
+print(eye)
+```
+
+## Shape shifting
+
+- [numpy.reshape](https://numpy.org/doc/stable/reference/generated/numpy.reshape.html#numpy-reshape) to change the shape of an array
+
+- [numpy.expand_dims](https://numpy.org/doc/stable/reference/generated/numpy.expand_dims.html) to insert new axes of length one.
+
+- [numpy.squeeze](https://numpy.org/doc/stable/reference/generated/numpy.squeeze.html#numpy.squeeze) (the opposite) to remove new axes of length one.
+
+---
+
+- Example of `reshape`
+
+```{python}
+#| echo: true
+my_array.reshape(2, 2, 3)
+```
+
+- Only works if the shapes are compatible. Here it's OK because the original shape was $(4,3)$ and $4\times 3 = 2\times 2\times 3$
+
+- If shapes aren't compatible, we'll get an error
+
+```{python}
+#| error: true
+#| echo: true
+my_array.reshape(2, 3, 3)
+```
+
+## `dtype`
+
+- Arrays have `dtype` property that gives datatype
+
+- If array was created from data, this will be inferred
+
+```{python}
+#| echo: true
+my_array.dtype
+```
+
+- Functions constructing arrays have optional `dtype`
+
+```{python}
+#| echo: true
+my_float_array = np.array([1,2,3], dtype=np.float64)
+my_float_array.dtype
+```
+
+- Importantly, complex numbers are supported
+
+```{python}
+#| echo: true
+my_float_array = np.array([1.1 + 2.3j,2.2,3.6])
+my_float_array.dtype
+```
+
+## Examples of array-like data
+
+- Position, velocity, or acceleration of particle will be three dimensional vectors, so have shape `(3,)`
+
+- With $N$ particles could use a $3N$ dimensional vector
+
+- Better: an array of shape `(N,3)`. First index indexes particle number and second particle coordinate.
+
+- $N\times M$ matrix has shape `(N,M)`
+
+- Riemann curvature tensor in General Relativity $R_{abcd}$ has shape `(4,4,4,4)`
+
+---
+
+- _Fields_ are functions of space and time e.g. the electric potential $\phi(\mathbf{r},t)$
+
+- Approximate these using a grid of space-time points $N_x\times N_y \times N_z\times N_t$
+
+- Scalar field can be stored in an array of shape `(N_x,N_y,N_z,N_t)`
+
+- A vector field like $\mathbf{E}(\mathbf{r},t)$ would be `(N_x,N_y,N_z,N_t,3)`
+
+---
+
+- Very useful method to create a grid of coordinate values
+```{python}
+#| echo: true
+# Grid of x, y points
+nx, ny = 64, 64
+x = np.linspace(-2, 2, nx)
+y = np.linspace(-2, 2, ny)
+X, Y = np.meshgrid(x, y)
+X.shape
+```
+
+
+```{python}
+#| code-fold: true
+#| code-summary: "Dipole electric field"
+# Example from https://scipython.com/blog/visualizing-a-vector-field-with-matplotlib/
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.patches import Circle
+
+def E(q, r0, x, y):
+    """Return the electric field vector E=(Ex,Ey) due to charge q at r0."""
+    den = np.hypot(x-r0[0], y-r0[1])**3
+    return q * (x - r0[0]) / den, q * (y - r0[1]) / den
+
+# Dipole
+charges = [(1, (1, 0)), (-1, (-1, 0))]
+
+# Electric field vector, E=(Ex, Ey), as separate components
+Ex, Ey = np.zeros((ny, nx)), np.zeros((ny, nx))
+for charge in charges:
+    ex, ey = E(*charge, x=X, y=Y)
+    Ex += ex
+    Ey += ey
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+# Plot the streamlines with an appropriate arrow style
+color = 2 * np.log(np.hypot(Ex, Ey))
+ax.streamplot(x, y, Ex, Ey, color=color, linewidth=1,
+              density=2, arrowstyle='->', arrowsize=1.5)
+
+# Add filled circles for the charges themselves
+charge_colors = {True: '#aa0000', False: '#0000aa'}
+for q, pos in charges:
+    ax.add_artist(Circle(pos, 0.05, color=charge_colors[q>0]))
+
+ax.set_xlabel('$x$')
+ax.set_ylabel('$y$')
+ax.set_xlim(-2,2)
+ax.set_ylim(-2,2)
+ax.set_aspect('equal')
+plt.show()
+```
+
+
+## Mathematical operations with arrays
+
+- On lists
+
+```{python}
+#| echo: true
+2 * [1, 2, 3]
+```
+
+- In numerical applications what we really want is
+
+```{python}
+#| echo: true
+2 * np.array([1, 2, 3])
+```
+
+---
+
+- General feature of NumPy: __all mathematical operations are performed elementwise on arrays!__
+
+```{python}
+#| echo: true
+print(np.array([1, 2, 3]) + np.array([4, 5, 6]))
+print(np.array([1, 2, 3])**2)
+print(np.sqrt(np.array([1, 2, 3])))
+```
+
+- Avoids need to write nested loops
+
+- Loops are still there, but written in C
+
+- This style of code is often described as _vectorized_
+
+- In NumPy-speak vectorized functions are called _ufuncs_
+
+- As a basic principle __never use a Python loop to access your data in NumPy code__
+
+## Broadcasting...
+
+- ...is a powerful protocol for combining arrays of different shapes, generalizing this kind of thing
+```{python}
+#| echo: true
+np.array([1, 2, 3]) + 2.3
+```
+
+---
+
+- Elementwise operations performed on two arrays of same rank if in each index sizes _either match or one array has size 1_
+
+```{python}
+#| echo: true
+# These have shape (2, 3) and (1, 3)
+np.array([[1, 2, 3], [4, 5, 6]]) + np.array([[4, 3, 2]])
+```
+
+- We can simplify this last example
+
+```{python}
+#| echo: true
+# These have shape (2, 3) and (3,)
+np.array([[1, 2, 3], [4, 5, 6]]) + np.array([4, 3, 2])
+```
+
+---
+
+- Recall example of an $N$-particle system described by a position array of shape `(N,3)`
+
+- If we want to shift the entire system by a vector, just add a vector of shape `(3,)` and broadcasting will ensure that this applied correctly to each particle.
+
+---
+
+Broadcasting two arrays follows these rules:
+
+1. If arrays do not have same rank, prepend shape of lower rank array with 1s until both shapes have same length
+
+---
+
+2. Two arrays are said to be _compatible_ in a dimension if they have same size in that dimension, or if one of the arrays has size 1 in that dimension
+
+---
+
+3. Arrays can be broadcast together if they are compatible in all dimensions.
+After broadcasting, each array behaves as if it had shape equal to the elementwise maximum of shapes of the two input arrays
+
+---
+
+4. In any dimension where one array had size 1 and the other array had size greater than 1, the first array behaves as if it were copied along that dimension
+
+:::incremental
+
+- [The documentation](https://numpy.org/doc/stable/user/basics.broadcasting.html) has more detail
+
+- Broadcasting takes some time to get used to but is immensely powerful!
+
+:::
+
+## Plotting with Matplotlib
+
+ - Various specialized Python plotting libraries 
+ 
+ - "entry-level" option is [Matplotlib](https://matplotlib.org/)
+ 
+ - `pyplot` module provides a plotting system that is similar to MATLAB (I'm told)
+
+```{python}
+#| echo: true
+import matplotlib.pyplot as plt
+```
+
+- Probably the second most common import you will make!
+
+---
+
+- Here's a simple example of `plot` function
+
+```{python}
+#| echo: true
+# Compute the x and y coordinates for points on a sine curve
+x = np.arange(0, 3 * np.pi, 0.1)
+y = np.sin(x)
+
+# Plot the points using matplotlib
+plt.plot(x, y)
+plt.show()
+```
+
+- __Note__: you must call plt.show() to make graphics appear
+
+---
+
+- Fancier example with some labelling
+
+```python
+# Compute the x and y coordinates for points on sine and cosine curves
+x = np.arange(0, 3 * np.pi, 0.1)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+
+# Plot the points using matplotlib
+plt.plot(x, y_sin)
+plt.plot(x, y_cos)
+plt.xlabel('x axis label')
+plt.ylabel('y axis label')
+plt.title('Sine and Cosine')
+plt.legend(['Sine', 'Cosine'])
+plt.show()
+```
+
+---
+
+```{python}
+# Compute the x and y coordinates for points on sine and cosine curves
+x = np.arange(0, 3 * np.pi, 0.1)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+
+# Plot the points using matplotlib
+plt.plot(x, y_sin)
+plt.plot(x, y_cos)
+plt.xlabel('x axis label')
+plt.ylabel('y axis label')
+plt.title('Sine and Cosine')
+plt.legend(['Sine', 'Cosine'])
+plt.show()
+```
+
+
+---
+
+- Often you'll want to make several related plots and present them together
+
+```python
+import matplotlib.pyplot as plt
+
+# Compute the x and y coordinates for points on sine and cosine curves
+x = np.arange(0, 3 * np.pi, 0.1)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+
+# Set up a subplot grid that has height 2 and width 1,
+# and set the first such subplot as active.
+plt.subplot(2, 1, 1)
+
+# Make the first plot
+plt.plot(x, y_sin)
+plt.title('Sine')
+
+# Set the second subplot as active, and make the second plot.
+plt.subplot(2, 1, 2)
+plt.plot(x, y_cos)
+plt.title('Cosine')
+
+# Show the figure.
+plt.show()
+```
+
+---
+```{python}
+import matplotlib.pyplot as plt
+
+# Compute the x and y coordinates for points on sine and cosine curves
+x = np.arange(0, 3 * np.pi, 0.1)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+
+# Set up a subplot grid that has height 2 and width 1,
+# and set the first such subplot as active.
+plt.subplot(2, 1, 1)
+
+# Make the first plot
+plt.plot(x, y_sin)
+plt.title('Sine')
+
+# Set the second subplot as active, and make the second plot.
+plt.subplot(2, 1, 2)
+plt.plot(x, y_cos)
+plt.title('Cosine')
+
+# Show the figure.
+plt.show()
+```
+
+## Example: playing with images
+
+- Pixels in an image encoded as a triple of RGB values in the range [0,255] i.e. 8 bits of type `uint8` (the "u" is for "unsigned")
+
+- Tinting an image gives a nice example of broadcasting
+
+---
+
+```python
+img = plt.imread('../assets/lucian.jpeg')
+
+img_tinted = img * [1, 0.55, 1]
+
+# Show the original image
+plt.subplot(1, 2, 1)
+plt.imshow(img)
+plt.title("Lucian")
+
+# Show the tinted image
+plt.subplot(1, 2, 2)
+plt.title("Pink Panther")
+# Having multiplied by floats, 
+# we must cast the image to uint8 before displaying it.
+plt.imshow(np.uint8(img_tinted))
+
+plt.show()
+img.shape, img.dtype
+```
+
+---
+
+```{python}
+img = plt.imread('../assets/lucian.jpeg')
+
+img_tinted = img * [1, 0.55, 1]
+
+# Show the original image
+plt.subplot(1, 2, 1)
+plt.imshow(img)
+plt.title("Lucian")
+
+# Show the tinted image
+plt.subplot(1, 2, 2)
+plt.title("Pink Panther")
+# Having multiplied by floats, 
+# we must cast the image to uint8 before displaying it.
+plt.imshow(np.uint8(img_tinted))
+
+plt.show()
+img.shape, img.dtype
+```
+
+This is a standard 12 megapixel image
+
+## Saving and loading data
+
+- At some point you'll probably want to save and load data
+
+- NumPy comes with its own [save](https://numpy.org/doc/stable/reference/generated/numpy.save.html) and [load](https://numpy.org/doc/stable/reference/generated/numpy.load.html) functions and associated binary format `.npy`
+
+- The benefit of using these is that after loading you get back a NumPy array ready to be used
+
+---
+
+- A related function [savez](https://numpy.org/doc/stable/reference/generated/numpy.savez.html) allows several arrays to be saved and then loaded as a dictionary-like object.
+
+```{python}
+#| echo: true
+random_matrix_1 = np.random.rand(4, 4)
+random_matrix_2 = np.random.rand(4, 4)
+np.savez("../assets/my-matrices", first_matrix=random_matrix_1, second_matrix=random_matrix_2)
+%ls ../assets
+```
+
+```{python}
+#| echo: true
+my_matrix_file = np.load("../assets/my-matrices.npz")
+my_matrix_file['first_matrix']
+```

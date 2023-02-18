@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Part II Computational Physics – linear</title>
+<title>Part II Computational Physics - Linear algebra</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,88 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -30,6 +112,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../slides/getting-going.html" rel="next">
+<link href="../notes/autodiff.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -59,6 +143,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -68,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Part II Computational Physics</h1>
+      <h1 class="quarto-secondary-nav-title">Linear algebra</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -149,16 +234,21 @@ ul.task-list li input[type="checkbox"] {
   <a href="../notes/autodiff.html" class="sidebar-item-text sidebar-link">Automatic differentiation and neural networks</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/linear.html" class="sidebar-item-text sidebar-link active">Linear algebra</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Slides</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Slides</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Getting going</a>
@@ -194,6 +284,31 @@ ul.task-list li input[type="checkbox"] {
   <a href="../slides/autodiff.html" class="sidebar-item-text sidebar-link">Autodiff and neural nets</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/linear.html" class="sidebar-item-text sidebar-link">Linear algebra</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Exercises and Projects</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/exercises.html" class="sidebar-item-text sidebar-link">Exercises</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/projects.html" class="sidebar-item-text sidebar-link">Projects</a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -205,36 +320,388 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#linear-algebra" id="toc-linear-algebra" class="nav-link active" data-scroll-target="#linear-algebra"><span class="toc-section-number">1</span>  Linear algebra</a></li>
+  <li><a href="#linear-algebra-with-numpy" id="toc-linear-algebra-with-numpy" class="nav-link active" data-scroll-target="#linear-algebra-with-numpy"><span class="toc-section-number">1</span>  Linear algebra with NumPy</a></li>
+  <li><a href="#the-power-method-and-pagerank" id="toc-the-power-method-and-pagerank" class="nav-link" data-scroll-target="#the-power-method-and-pagerank"><span class="toc-section-number">2</span>  The power method and PageRank</a>
+  <ul class="collapse">
+  <li><a href="#pagerank" id="toc-pagerank" class="nav-link" data-scroll-target="#pagerank"><span class="toc-section-number">2.1</span>  PageRank</a></li>
+  <li><a href="#sparsity" id="toc-sparsity" class="nav-link" data-scroll-target="#sparsity"><span class="toc-section-number">2.2</span>  Sparsity</a></li>
+  </ul></li>
+  <li><a href="#sec-svd" id="toc-sec-svd" class="nav-link" data-scroll-target="#sec-svd"><span class="toc-section-number">3</span>  Singular value decomposition</a>
+  <ul class="collapse">
+  <li><a href="#svd-in-quantum-mechanics" id="toc-svd-in-quantum-mechanics" class="nav-link" data-scroll-target="#svd-in-quantum-mechanics"><span class="toc-section-number">3.1</span>  SVD in quantum mechanics</a></li>
+  <li><a href="#other-applications-of-svd" id="toc-other-applications-of-svd" class="nav-link" data-scroll-target="#other-applications-of-svd"><span class="toc-section-number">3.2</span>  Other applications of SVD</a></li>
+  </ul></li>
+  <li><a href="#sec-many" id="toc-sec-many" class="nav-link" data-scroll-target="#sec-many"><span class="toc-section-number">4</span>  Quantum many body physics and tensor methods</a>
+  <ul class="collapse">
+  <li><a href="#example-ground-state-of-a-spin-chain" id="toc-example-ground-state-of-a-spin-chain" class="nav-link" data-scroll-target="#example-ground-state-of-a-spin-chain"><span class="toc-section-number">4.1</span>  Example: ground state of a spin chain</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Linear algebra</h1>
+</div>
 
 
-<section id="linear-algebra" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Linear algebra</h1>
-<p>https://twitter.com/nicholdav/status/1621180520901001220</p>
-<p>Krylov subspaces</p>
-<p>SVD and quantum mechanics. Quantum entanglement.</p>
-<p>Image compression using SVD</p>
-<p>PCA</p>
-<p>http://timbaumann.info/svd-image-compression-demo/</p>
-<p>Trebst has nice Einstein example</p>
-<p>PCA for big data</p>
-<p>https://www.tensors.net/exact-diagonalization</p>
-<p>Power method</p>
-<p>Pagerank</p>
-<p>https://www.programcreek.com/python/?code=MKLab-ITI%2Freveal-graph-embedding%2Freveal-graph-embedding-master%2Freveal_graph_embedding%2Fembedding%2Fimplicit.py</p>
-<p>http://pi.math.cornell.edu/~web6140/TopTenAlgorithms/PageRank.html</p>
-<p>http://infolab.stanford.edu/~ullman/mmds/ch5.pdf</p>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Numerical linear algebra is a huge topic. Here we’ll confine ourselves to how common operations are performed in NumPy and SciPy, and some applications in physics and elsewhere.</p>
+<section id="linear-algebra-with-numpy" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Linear algebra with NumPy</h1>
+<p>Multiplying matrices is easy in NumPy using <a href="https://numpy.org/doc/stable/reference/generated/numpy.matmul.html"><code>np.matmul</code></a>, although it can be done more briefly with the <code>@</code> operator</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>np.matmul(A, B), A <span class="op">@</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(array([[0.84516081, 0.89670732, 0.43218596],
+        [0.32224427, 0.19835096, 0.22433793],
+        [0.65834523, 0.65778613, 0.67064311]]),
+ array([[0.84516081, 0.89670732, 0.43218596],
+        [0.32224427, 0.19835096, 0.22433793],
+        [0.65834523, 0.65778613, 0.67064311]]))</code></pre>
+</div>
+</div>
+<p>You’ll get an error if your matrices don’t match…</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.random.rand(<span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>C <span class="op">@</span> D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)-&gt;(n?,m?) (size 4 is different from 3)</code></pre>
+</div>
+</div>
+<p>Note that if either <code>A</code> or <code>B</code> has a rank greater than two, they will be treated as a stack of matrices, with each matrix in the last two indices. The usual broadcasting rules then apply to the remaining indices:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>(C <span class="op">@</span> D).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>(4, 3, 3)</code></pre>
+</div>
+</div>
+<p>There are several library functions to perform matrix and vector algebra, including <a href="https://numpy.org/doc/stable/reference/generated/numpy.dot.html#numpy.dot"><code>np.dot</code></a> (dot product) <a href="https://numpy.org/doc/stable/reference/generated/numpy.vdot.html#numpy.vdot"><code>np.vdot</code></a> (dot product including complex conjugation), <a href="https://numpy.org/doc/stable/reference/generated/numpy.trace.html"><code>np.trace</code></a>, etc.</p>
+<p>The most versatile of these is <a href="https://numpy.org/doc/stable/reference/generated/numpy.einsum.html"><code>np.einsum</code></a>, which allows you to explicitly translate expressions using the Einstein summation convention that you’re all familiar with into NumPy code. Matrix multiplication is</p>
+<p><span class="math display">\[
+\left[A\cdot B\right]_{ik} = \sum_{j} A_{ij}B_{jk} = A_{ij}B_{jk}
+\]</span></p>
+<p>which can be written</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.einsum(<span class="st">'ij,jk-&gt;ik'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>array([[0.84516081, 0.89670732, 0.43218596],
+       [0.32224427, 0.19835096, 0.22433793],
+       [0.65834523, 0.65778613, 0.67064311]])</code></pre>
+</div>
+</div>
+<p>If I want to take to multiply and take the trace</p>
+<p><span class="math display">\[
+\operatorname{tr}\left[A\cdot B\right] = \sum_{i,j} A_{ij}B_{ji} = A_{ij}B_{ji}
+\]</span></p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>np.einsum(<span class="st">'ij,ji-&gt;'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>1.7141548819705075</code></pre>
+</div>
+</div>
+<p>This is great for people already familiar with the Einstein convention (like you): it’s very explicit.</p>
+<p>If I have multiple tensor contractions to do there is the interesting question of the order in which they should be evaluated. That is: how should the loops be nested? As we saw in the <a href="../notes/complexity.html#polynomial-complexity">lecture on complexity</a> evaluating <span class="math inline">\(M_1 M_2\cdots M_n \mathbf{v}\)</span> should be performed as <span class="math inline">\(O(N^2)\)</span> matrix-vector multiplications, rather than <span class="math inline">\(O(N^3)\)</span> matrix-matrix multiplications followed by a matrix-vector multiplication. In general, however, there is no efficient algorithm to find the best way to perform a specified set of contractions (<span class="citation" data-cites="chi1997optimizing">Chi-Chung, Sadayappan, and Wenger (<a href="#ref-chi1997optimizing" role="doc-biblioref">1997</a>)</span>). <code>einsum</code> can use a “greedy” algorithm (contracting the pair of tensors with the lowest cost at each step) to find a candidate scheme, but there is no guarantee this is optimal. Information on the contraction order used is provided by <a href="https://numpy.org/doc/stable/reference/generated/numpy.einsum_path.html"><code>np.einsum_path</code></a>.</p>
+<p>Many matrix operations, such as inversion (<a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.inv.html"><code>np.linalg.inv</code></a>), calculation of the determinant (<a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.det.html"><code>np.linalg.det</code></a>) or eigenvalues and eigenvectors (<a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html"><code>np.linalg.eig</code></a> or <a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigh.html#numpy.linalg.eigh"><code>np.linalg.eigh</code></a> for hermitian problems) inherit their complexity from the <span class="math inline">\(O(N^3)\)</span> complexity of matrix multiplication, so can be a major bottleneck in calculations</p>
+</section>
+<section id="the-power-method-and-pagerank" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The power method and PageRank</h1>
+<p>If we are only concerned with the <em>largest</em> (or smallest) eigenvalue and eigenvector — as in the calculation of the ground state of quantum mechanical Hamiltonian, for example — there are other methods available with lower complexity. The simplest of these is the <a href="https://en.wikipedia.org/wiki/Power_iteration">Power method</a>. The idea is simply that starting from a generic vector <span class="math inline">\(\mathbf{b}_0\)</span> and multiplying repeatedly by matrix <span class="math inline">\(A\)</span>, the resulting vector tends to the eigenvector with the largest (magnitude) eigenvalue. This is referred to as the <em>dominant</em> eigenvector and eigenvalue. It’s convenient to normalize each time, so the iteration takes the form</p>
+<p><span class="math display">\[
+\mathbf{b}_{k+1} = \frac{A \mathbf{b}_k}{\lVert A\mathbf{b}_k\rVert}
+\]</span></p>
+<p>Then we have</p>
+<p><span class="math display">\[
+\lim_{k\to\infty}\mathbf{b}_k = \mathbf{v}_\text{dom}
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{v}_\text{dom}\)</span> is the dominant eigenvector, satisfying</p>
+<p><span class="math display">\[
+A\mathbf{v}_\text{dom} = \lambda_\text{dom}\mathbf{v}_\text{dom}
+\]</span></p>
+<p>We have in fact already met this idea when we discussed <a href="../notes/monte-carlo.html#sec-mcmc">Markov chains</a>. In that case the relevant matrix was the matrix <span class="math inline">\(\mathsf{P}_{jk}=p(j|k)\geq 0\)</span> of transition probabilities, which is stochastic:</p>
+<p><span class="math display">\[
+\sum_j \mathsf{P}_{jk} = 1.
+\]</span></p>
+<p>The property guarantees that the dominant eigenvalue is one and the dominant eigenvector has the interpretation of the stationary distribution.</p>
+<section id="pagerank" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="pagerank"><span class="header-section-number">2.1</span> PageRank</h2>
+<p>One interesting application of these ideas is Google’s <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a> algorithm (<span class="citation" data-cites="page1999pagerank">Page et al. (<a href="#ref-page1999pagerank" role="doc-biblioref">1999</a>)</span>) to assess the relative importance of webpages based on structure of links between them<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/page.jpeg" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Larry Page is happy he learnt about Markov chains</figcaption><p></p>
+</figure>
+</div>
+<p>PageRank imagines a <a href="https://en.wikipedia.org/wiki/Web_crawler">web crawler</a> that probabilistically navigates between pages according to a transition matrix <span class="math inline">\(\mathsf{P}\)</span>. The stationary distribution <span class="math inline">\(\boldsymbol{\pi}\)</span> satisfying <span class="math display">\[
+\mathsf{P}\boldsymbol{\pi} = \boldsymbol{\pi}
+\]</span></p>
+<p>can then be interpreted as giving a ranking, with page <span class="math inline">\(j\)</span> more important than page <span class="math inline">\(k\)</span> if <span class="math inline">\(\boldsymbol{\pi}_j&gt;\boldsymbol{\pi}_k\)</span>.</p>
+<p>A problem arises with this approach if the Markov chain is <em>nonergodic</em>, meaning that the state space breaks up into several independent components, leading to a nonunique stationary state. For example, if</p>
+<p><span class="math display">\[
+\begin{equation}
+\mathsf{P}=\begin{pmatrix}
+0 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 0
+\end{pmatrix}
+\end{equation}
+\]</span></p>
+<p>then the first two pages and the last two do not link to each other, so</p>
+<p><span class="math display">\[
+\boldsymbol{\pi} = \begin{pmatrix}
+\pi_1 \\
+\pi_1 \\
+\pi_2 \\
+\pi_2
+\end{pmatrix}
+\]</span></p>
+<p>is a stationary state for any <span class="math inline">\(\pi_{1,2}\)</span>.</p>
+<p>The way out of this problem is to modify the Markov chain slightly to restore ergodicity and give a unique stationary state. At each step the crawler either moves as before with probability <span class="math inline">\(\alpha\)</span> (followed by making a choice about which link to follow) <em>or</em> moves with probability <span class="math inline">\(1-\alpha\)</span> to a random webpage. In this way the transition matrix of the overall Markov chain becomes</p>
+<p><span class="math display">\[
+\alpha\mathsf{P} + (1-\alpha)\mathbf{t} \mathbf{e}^T
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{e}^T= (1, 1, \ldots 1)\)</span> and <span class="math inline">\(\mathbf{t}\)</span> is a “teleporting” vector (usually <span class="math inline">\((1, 1, \ldots 1)/N\)</span>) giving the probability of teleporting to each of the webpages. Since this matrix has positive (i.e.&nbsp;<span class="math inline">\(&gt;0\)</span>) entries the <a href="https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem">Perron–Frobenius theorem</a> is restored and there is a unique stationary state (and hence ranking).</p>
+<p>A further modification is required to teleport away from “dangling” webpages without any outgoing links).</p>
+<!-- 
+https://www.programcreek.com/python/?code=MKLab-ITI%2Freveal-graph-embedding%2Freveal-graph-embedding-master%2Freveal_graph_embedding%2Fembedding%2Fimplicit.py
+
+http://pi.math.cornell.edu/~web6140/TopTenAlgorithms/PageRank.html
+
+http://infolab.stanford.edu/~ullman/mmds/ch5.pdf -->
+</section>
+<section id="sparsity" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sparsity"><span class="header-section-number">2.2</span> Sparsity</h2>
+<p>The power method is the basis of more sophisticated algorithms such as <a href="https://en.wikipedia.org/wiki/Lanczos_algorithm">Lanczos iteration</a>: they are all based on the idea that matrix-vector products are to be preferred over matrix-matrix products, and provide only incomplete information about the eigenvalues and eigenvectors.</p>
+<p>Further economies are possible when dealing with <a href="https://en.wikipedia.org/wiki/Sparse_matrix">sparse matrices</a>, meaning that most of the elements are zero (i.e.&nbsp;the density of non-zero elements goes to zero as the matrix size increases). Many matrices that we meet in physical applications (as well as in the above example of links between webpages) are sparse. For example, consider discretizing the Laplacian that appears in the Schrödinger equation:</p>
+<p><span class="math display">\[
+\left[-\frac{\hbar^2}{2m}\frac{d^2}{dx^2} + V(x)\right]\psi(x) = E\psi(x)
+\]</span></p>
+<p><span class="math display">\[
+\frac{d^2}{dx^2} \sim \frac{1}{\Delta x^2}\begin{pmatrix}
+-2 &amp;  1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 \\
+1 &amp;  -2 &amp; 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp;  1 &amp; -2 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 \\
+\cdots &amp;  \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\
+1 &amp;  0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1 &amp; -2
+\end{pmatrix}.
+\]</span></p>
+<p>(periodic boundary conditions) There’s no point iterating over a whole row to multiply this matrix into a vector representing the wavefunction if most of the elements are zero!</p>
+<p>The basic idea behind sparse matrix algebra is that you should only need to store the non-zero values of a matrix (and their locations), and there are a variety of data structures to do so. Many of these are implemented in the <a href="https://docs.scipy.org/doc/scipy/reference/sparse.html#"><code>scipy.sparse</code></a> module, and allow matrix operations from <a href="https://docs.scipy.org/doc/scipy/reference/sparse.linalg.html"><code>scipy.sparse.linalg</code></a> to be performed efficiently.</p>
+<p>The alternative approach to building the sparse matrix explicitly is to pass the matrix operations in <code>scipy.sparse.linalg</code> a function which performs the matrix-vector multiplication. This is done by instantiating a <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator"><code>LinearOperator</code></a> with the function. We’ll see an example of this approach in <a href="#sec-many">Section&nbsp;4</a>.</p>
+</section>
+</section>
+<section id="sec-svd" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Singular value decomposition</h1>
+<p>When dealing with large matrices we’re often faced with the need to truncate them in some way due to limits of finite storage space or processing time, and so the question arises of the “right” way to perform such a truncation. Here we’ll explore one way, which turns out to be natural in certain settings, based on the <a href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition</a> (SVD).</p>
+<p>SVD is an example of <a href="https://en.wikipedia.org/wiki/Matrix_decomposition">matrix factorization</a>, in which a matrix is presented as a product of several factors, each having a particular form (orthogonal, triangular, etc.). In the case of SVD the factorization is</p>
+<p><span class="math display">\[
+M = U\Sigma V
+\]</span></p>
+<p>where <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> are unitary and <span class="math inline">\(\Sigma\)</span> is diagonal with non-negative real entries. Note that SVD is <em>completely general</em>, and applies to <em>rectangular matrices</em> as well as square! If <span class="math inline">\(M\)</span> is <span class="math inline">\(m\times n\)</span>, then <span class="math inline">\(U\)</span> is <span class="math inline">\(m\times m\)</span>, <span class="math inline">\(V\)</span> is <span class="math inline">\(n\times n\)</span>, and <span class="math inline">\(\Sigma\)</span> is <span class="math inline">\(m\times n\)</span>. The diagonal elements of <span class="math inline">\(\Sigma\)</span> are called the <em>singular values</em> and they number <span class="math inline">\(\min(m,n)\)</span>.</p>
+<p>One geometrical interpretation of the SVD is as follows. The columns of <span class="math inline">\(V\)</span> define an orthonormal basis <span class="math inline">\(\mathbf{v}_i\in \mathbb{C}^n\)</span> (<span class="math inline">\(i=1,\ldots n\)</span>). Likewise <span class="math inline">\(U\)</span> defines a basis <span class="math inline">\(\mathbf{u}_i\in \mathbb{C}^m\)</span> <span class="math inline">\(i=1,\ldots m\)</span>. If we act on <span class="math inline">\(\mathbf{v}_i\)</span> with <span class="math inline">\(M\)</span> (to the left) we get <span class="math inline">\(\lambda_i \mathbf{u}_i\)</span>.</p>
+<p>The number of nonzero singular values is called the <a href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank</a> of the matrix: it is equal to the number of independent rows or columns (the two definitions are equivalent). For a general rectangular matrix the rank is <span class="math inline">\(\min(m,n)\)</span>.</p>
+<p>Often we want to produce a <a href="https://en.wikipedia.org/wiki/Low-rank_approximation">low rank approximation</a> to a matrix. This requires us to define how well the matrix is approximated by the lower rank matrix <span class="math inline">\(M_r\)</span> of rank <span class="math inline">\(r&lt;\min(m,n)\)</span>. One definition is that the <a href="https://en.wikipedia.org/wiki/Matrix_norm#Frobenius_norm">Frobenius norm</a> of the difference <span class="math inline">\(M-M_r\)</span> should be as small as possible. The Frobenius norm <span class="math inline">\(\|A\|_{\mathrm{F}}\)</span> of a matrix <span class="math inline">\(A\)</span> is</p>
+<p><span class="math display">\[
+\begin{equation}
+\|A\|_{\mathrm{F}}^2=\sum_i^m \sum_j^n\left|A_{i j}\right|^2
+\end{equation}
+\]</span></p>
+<p>With this definition we get the following simple result: the best low rank approximation of rank <span class="math inline">\(r\)</span> is obtained by taking the SVD and discarding all but <span class="math inline">\(r\)</span> largest singular values from the matrix <span class="math inline">\(\Sigma\)</span>. In other words, we retain only the <span class="math inline">\(r\)</span> “most important” directions <span class="math inline">\(\mathbf{v}_i\in \mathbb{C}^n\)</span> and <span class="math inline">\(\mathbf{u}_i\in \mathbb{C}^m\)</span>.</p>
+<p>The SVD can be computed using <a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html"><code>np.linalg.svd</code></a>. You might enjoy playing with this demo of <a href="http://timbaumann.info/svd-image-compression-demo/">image compression with SVD</a> (this isn’t actually how images are compressed; it’s just a fun illustration)</p>
+<section id="svd-in-quantum-mechanics" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="svd-in-quantum-mechanics"><span class="header-section-number">3.1</span> SVD in quantum mechanics</h2>
+<p>SVD arises naturally in the quantum mechanics of composite systems: those that can be regarded as formed of two subsystems. For a simple, finite dimensional example, suppose that our system consists of two spins <span class="math inline">\(\mathbf{S}_A\)</span> and <span class="math inline">\(\mathbf{S}_B\)</span>. The Hilbert space of each spin has dimension <span class="math inline">\(n_{A,B}\equiv 2S_{A,B}+1\)</span>, where <span class="math inline">\(\mathbf{S}_{A,B}\cdot\mathbf{S}_{A,B}=S_{A,B}(S_{A,B}+1)\)</span> (e.g.&nbsp;2 for spin-1/2).</p>
+<p>A general state of our system lives in a <span class="math inline">\(n_A\times n_B\)</span> dimensional Hilbert space and can be written in terms of basis vectors <span class="math inline">\(\ket{a}_A\)</span> and <span class="math inline">\(\ket{b}_B\)</span> for the A and B subsystems<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> as</p>
+<p><span id="eq-gen-state"><span class="math display">\[
+\ket{\Psi_{AB}} = \sum_{a=1}^{n_A}\sum_{b=1}^{n_B} \psi_{ab}\ket{a}_A\ket{b}_B.
+\tag{1}\]</span></span></p>
+<p>We can regard the components <span class="math inline">\(\psi_{ab}\)</span> as a matrix and perform an SVD. As discussed above, this is equivalent to finding new orthonormal bases <span class="math inline">\(\ket{\tilde n}_{A,B}\)</span> for the two spaces such that the action of <span class="math inline">\(\psi_{ab}\)</span> on a basis vector of one subsystem maps it to a basis vector of the other, together with a rescaling. In this basis, the state <span class="math inline">\(\ket{\Psi_{AB}}\)</span> can be written</p>
+<p><span class="math display">\[
+\ket{\Psi_{AB}} = \sum_{n=1}^{\min(n_A,n_B)} \lambda_n\ket{\tilde n}_A\ket{\tilde n}_B.
+\]</span></p>
+<p>Note there is a single sum, c.f. the double sum in <a href="#eq-gen-state">Equation&nbsp;1</a>. This is called a <a href="https://en.wikipedia.org/wiki/Schmidt_decomposition">Schmidt decomposition</a>, although it is really just a restatement of the SVD.</p>
+<p>The singular values — sometimes called the Schmidt coefficients in this case — quantify the <a href="https://en.wikipedia.org/wiki/Quantum_entanglement">entanglement</a> of the state (see the <a href="https://www.nobelprize.org/prizes/physics/2022/summary/">2022 Nobel prize</a>). If there is only one nonzero singular value the state is a <em>product state</em> and there are no correlations between the two subsystems. Note that his might not have been evident in the original form <a href="#eq-gen-state">Equation&nbsp;1</a>.</p>
+<p>As a simple example consider the <a href="https://en.wikipedia.org/wiki/Bell_state">Bell state</a> of two spin-1/2 subsystems. One example is</p>
+<p><span class="math display">\[
+\begin{equation}
+\left|\Psi^{+}\right\rangle=\frac{1}{\sqrt{2}}\left(|0\rangle_A \otimes|1\rangle_B+|1\rangle_A \otimes|0\rangle_B\right).
+\end{equation}
+\]</span></p>
+<p>These are already written in Schmidt form and the two singular values are both <span class="math inline">\(\frac{1}{\sqrt{2}}\)</span>, indicating maximal entanglement.</p>
+</section>
+<section id="other-applications-of-svd" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="other-applications-of-svd"><span class="header-section-number">3.2</span> Other applications of SVD</h2>
+<p>You might find it interesting to read about the applications of SVD in <a href="https://en.wikipedia.org/wiki/Matrix_factorization_(recommender_systems)">recommender systems</a>, as described in <a href="https://sifter.org/~simon/journal/20061211.html">this blog post</a> by Simon Funk.</p>
+</section>
+</section>
+<section id="sec-many" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Quantum many body physics and tensor methods</h1>
+<p>In the previous section we have seen that the state of a quantum system composed of two subsystems can be represented (<a href="#eq-gen-state">Equation&nbsp;1</a>) as a matrix or second rank tensor <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. This idea generalizes to <span class="math inline">\(N\)</span> subsystems: the wavefunction may be regarded as a tensor of rank <span class="math inline">\(N\)</span>: <span class="math inline">\(\psi_{a_1,\ldots a_N}\)</span>. Each of the indices <span class="math inline">\(a_i\)</span> ranges over the dimension of the Hilbert space of the corresponding subsystem.</p>
+<p>There is a convenient graphical notation for these higher rank tensors, orignally due to <a href="https://en.wikipedia.org/wiki/Penrose_graphical_notation">Roger Penrose</a>. A rank <span class="math inline">\(N\)</span> tensor is represented as blob with <span class="math inline">\(N\)</span> legs:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/tensor-pics.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The tensor notation. Source: <a href="https://www.tensors.net/">Glen Evenbly</a></figcaption><p></p>
+</figure>
+</div>
+<p>The real benefit of this notation is that it can represent tensor contractions by connecting legs between tensors:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/contractions.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Tensor contractions. Left: matrix multiplication. Right: something more complicated. Source: <a href="https://www.tensors.net/">Glen Evenbly</a></figcaption><p></p>
+</figure>
+</div>
+<section id="example-ground-state-of-a-spin-chain" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="example-ground-state-of-a-spin-chain"><span class="header-section-number">4.1</span> Example: ground state of a spin chain</h2>
+<p>Spin chains are among the simplest quantum mechanical many body models. The Hamiltonian couples the spins along the chain, with nearest neighbour couplings in the simplest case. The simplest such model is the <a href="https://en.wikipedia.org/wiki/Quantum_Heisenberg_model">Heisenberg chain</a> for spin-1/2:</p>
+<p><span class="math display">\[
+H = \sum_{j=1}^N \left[\sigma^x_j \sigma^x_{j+1} + \sigma^y_j \sigma^y_{j+1} + \sigma^z_j \sigma^z_{j+1} \right],
+\]</span></p>
+<p>where <span class="math inline">\(\sigma^{x,y,z}\)</span> are the usual Pauli matrices and the subscript <span class="math inline">\(j\)</span> means that the matrix acts only the <span class="math inline">\(j\)</span>th index of the wavefunction. Usually we impose periodic boundary conditions, so that <span class="math inline">\(\sigma^a_{j+N}=\sigma^a_j\)</span>. In the tensor diagram notation we have</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/h-chain.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">State and Hamiltonian of a spin chain. Source: <a href="https://www.tensors.net/">Glen Evenbly</a></figcaption><p></p>
+</figure>
+</div>
+<p>The number of components of the wavefunction <span class="math inline">\(\psi_{a_1,\ldots a_N}\)</span> is <span class="math inline">\(2^N\)</span>, which is responsible for the exponential growth of the complexity with increasing <span class="math inline">\(N\)</span>. Treating the eigenvalue problem</p>
+<p><span class="math display">\[
+H\ket{\Psi} = E\ket{\Psi}
+\]</span></p>
+<p>in terms of matrix-vector multiplication with complexity <span class="math inline">\(O(2^{2N})\)</span> would be a very bad idea. Instead, we should take advantage of the structure of the problem, using the sparse structure of the Hamiltonian. <span class="math inline">\(H\)</span> consists of a sum of <em>local terms</em>, each acting on only a neighbouring pair of sites. We are going to define a function that acts on the wavefunction with each of the local Hamiltonians <span class="math inline">\(h_{j,j+1}\)</span> (this implementation uses <a href="https://numpy.org/doc/stable/reference/generated/numpy.tensordot.html"><code>np.tensordot</code></a> rather than <code>np.einsum</code>):</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># by Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 6/2019</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doApplyHam(psiIn: np.ndarray,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>               hloc: np.ndarray,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>               N: <span class="bu">int</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>               usePBC: <span class="bu">bool</span>):</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">  Applies local Hamiltonian, given as sum of nearest neighbor terms, to</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">  an input quantum state.</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">  Args:</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">    psiIn: vector of length d**N describing the quantum state.</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">    hloc: array of ndim=4 describing the nearest neighbor coupling.</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">    N: the number of lattice sites.</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">    usePBC: sets whether to include periodic boundary term.</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">  Returns:</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">    np.ndarray: state psi after application of the Hamiltonian.</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  d <span class="op">=</span> hloc.shape[<span class="dv">0</span>]</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  psiOut <span class="op">=</span> np.zeros(psiIn.size)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(N <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># apply local Hamiltonian terms to sites [k,k+1]</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    psiOut <span class="op">+=</span> np.tensordot(hloc.reshape(d<span class="op">**</span><span class="dv">2</span>, d<span class="op">**</span><span class="dv">2</span>),</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>                           psiIn.reshape(d<span class="op">**</span>k, d<span class="op">**</span><span class="dv">2</span>, d<span class="op">**</span>(N <span class="op">-</span> <span class="dv">2</span> <span class="op">-</span> k)),</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>                           axes<span class="op">=</span>[[<span class="dv">1</span>], [<span class="dv">1</span>]]).transpose(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>).reshape(d<span class="op">**</span>N)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> usePBC:</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># apply periodic term</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    psiOut <span class="op">+=</span> np.tensordot(hloc.reshape(d, d, d, d),</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>                           psiIn.reshape(d, d<span class="op">**</span>(N <span class="op">-</span> <span class="dv">2</span>), d),</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>                           axes<span class="op">=</span>[[<span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">0</span>]]</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>                           ).transpose(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>).reshape(d<span class="op">**</span>N)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> psiOut</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The complexity of this step is <span class="math inline">\(O(N 2^N)\)</span>. The <span class="math inline">\(2^N\)</span> arises from the tensor contractions over the indices of a pair of sites <em>for each</em> assignment of the remaining <span class="math inline">\(N-2\)</span> indices (<span class="math inline">\(2^{N-2}\)</span> assignments). This is still exponential, but exponentially better than <span class="math inline">\(O(4^N)\)</span>!</p>
+<p>We then use this to instantiate a <code>LinearOperator</code> which is passed into our eigenvalue solver (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigsh.html#scipy.sparse.linalg.eigsh"><code>scipy.sparse.linalg.eigsh</code></a>)</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">by Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 06/2020</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse.linalg <span class="im">import</span> LinearOperator, eigsh</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timeit <span class="im">import</span> default_timer <span class="im">as</span> timer</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation parameters</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="st">'XX'</span>  <span class="co"># select 'XX' model of 'ising' model</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>Nsites <span class="op">=</span> <span class="dv">18</span>  <span class="co"># number of lattice sites</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>usePBC <span class="op">=</span> <span class="va">True</span>  <span class="co"># use periodic or open boundaries</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>numval <span class="op">=</span> <span class="dv">1</span>  <span class="co"># number of eigenstates to compute</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Define Hamiltonian (quantum XX model)</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">2</span>  <span class="co"># local dimension</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>sX <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="dv">0</span>]])</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>sY <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="op">-</span><span class="ot">1.0j</span>], [<span class="ot">1.0j</span>, <span class="dv">0</span>]])</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>sZ <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="fl">1.0</span>]])</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>sI <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="fl">1.0</span>]])</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> model <span class="op">==</span> <span class="st">'XX'</span>:</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  hloc <span class="op">=</span> (np.real(np.kron(sX, sX) <span class="op">+</span> np.kron(sY, sY))).reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  EnExact <span class="op">=</span> <span class="op">-</span><span class="dv">4</span> <span class="op">/</span> np.sin(np.pi <span class="op">/</span> Nsites)  <span class="co"># Note: only for PBC</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> model <span class="op">==</span> <span class="st">'ising'</span>:</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  hloc <span class="op">=</span> (<span class="op">-</span>np.kron(sX, sX) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.kron(sZ, sI) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.kron(sI, sZ)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>          ).reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  EnExact <span class="op">=</span> <span class="op">-</span><span class="dv">2</span> <span class="op">/</span> np.sin(np.pi <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> Nsites))  <span class="co"># Note: only for PBC</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co"># cast the Hamiltonian 'H' as a linear operator</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> doApplyHamClosed(psiIn):</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> doApplyHam(psiIn, hloc, Nsites, usePBC)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> LinearOperator((<span class="dv">2</span><span class="op">**</span>Nsites, <span class="dv">2</span><span class="op">**</span>Nsites), matvec<span class="op">=</span>doApplyHamClosed)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="co"># do the exact diag</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> timer()</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>Energy, psi <span class="op">=</span> eigsh(H, k<span class="op">=</span>numval, which<span class="op">=</span><span class="st">'SA'</span>)</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>diag_time <span class="op">=</span> timer() <span class="op">-</span> start_time</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="co"># check with exact energy</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>EnErr <span class="op">=</span> Energy[<span class="dv">0</span>] <span class="op">-</span> EnExact  <span class="co"># should equal to zero</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'NumSites: </span><span class="sc">%d</span><span class="st">, Time: </span><span class="sc">%1.2f</span><span class="st">, Energy: </span><span class="sc">%e</span><span class="st">, EnErr: </span><span class="sc">%e</span><span class="st">'</span> <span class="op">%</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>      (Nsites, diag_time, Energy[<span class="dv">0</span>], EnErr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NumSites: 18, Time: 3.68, Energy: -2.303508e+01, EnErr: 0.000000e+00</code></pre>
+</div>
+</div>
+<p>The two models tested here are in fact the XX and Quantum Ising models — which have a slightly different form — because there is a simple expression for the exact ground state energy.</p>
+<p>I encourage you to check out <a href="https://www.tensors.net/">Glen Evenbly’s site</a> is you’d like to learn more about these methods.</p>
+
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-chi1997optimizing" class="csl-entry" role="doc-biblioentry">
+Chi-Chung, Lam, P Sadayappan, and Rephael Wenger. 1997. <span>“On Optimizing a Class of Multi-Dimensional Loops with Reduction for Parallel Execution.”</span> <em>Parallel Processing Letters</em> 7 (02): 157–68.
+</div>
+<div id="ref-gupta2013wtf" class="csl-entry" role="doc-biblioentry">
+Gupta, Pankaj, Ashish Goel, Jimmy Lin, Aneesh Sharma, Dong Wang, and Reza Zadeh. 2013. <span>“Wtf: The Who to Follow Service at Twitter.”</span> In <em>Proceedings of the 22nd International Conference on World Wide Web</em>, 505–14.
+</div>
+<div id="ref-page1999pagerank" class="csl-entry" role="doc-biblioentry">
+Page, Lawrence, Sergey Brin, Rajeev Motwani, and Terry Winograd. 1999. <span>“The PageRank Citation Ranking: Bringing Order to the Web.”</span> Stanford InfoLab.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>A similar algorithm apparently suggests who to follow on Twitter (<span class="citation" data-cites="gupta2013wtf">Gupta et al. (<a href="#ref-gupta2013wtf" role="doc-biblioref">2013</a>)</span>). As the web became increasingly dynamic the original PageRank algorithm presumably faded in relevance, though according to <a href="https://ahrefs.com/blog/google-pagerank/">this blog post</a> some version of it survives at Google.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>For example, the usual eigenvectors of <span class="math inline">\(S_{A,B}^z\)</span> in the case of spins.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>I have to point out that the word “rank” is used for two totally different things: the rank of a matrix (discussed in <a href="#sec-svd">Section&nbsp;3</a>) and the rank of a tensor (number of indices, or length of the <code>shape</code> tuple) as used when discussing the shape of NumPy arrays in the <a href="../notes/numpy.html">NumPy lecture</a>, or when you learnt about tensors (so a matrix has tensor rank 2: perhaps it’s easier to stick with “second rank tensor”). To make matters worse, there is something <em>else</em> called tensor rank which generalizes the idea of the matrix rank to tensors. Sorry.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -368,6 +835,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/autodiff.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Automatic differentiation and neural networks</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../slides/getting-going.html" class="pagination-link">
+        <span class="nav-page-text">Getting going</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

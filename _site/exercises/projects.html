@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Part II Computational Physics - Projects</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../exercises/exercises.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Projects</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Part II Computational Physics</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Notes</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Course outline</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/getting-going.html" class="sidebar-item-text sidebar-link">Getting going</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/numpy.html" class="sidebar-item-text sidebar-link">NumPy and friends</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/numbers.html" class="sidebar-item-text sidebar-link">Floating point and all that</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/ode.html" class="sidebar-item-text sidebar-link">Solving differential equations with SciPy</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/monte-carlo.html" class="sidebar-item-text sidebar-link">Monte Carlo methods</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/fourier.html" class="sidebar-item-text sidebar-link">Fast Fourier transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/autodiff.html" class="sidebar-item-text sidebar-link">Automatic differentiation and neural networks</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/linear.html" class="sidebar-item-text sidebar-link">Linear algebra</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Slides</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Getting going</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/numpy.html" class="sidebar-item-text sidebar-link">NumPy and friends</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/numbers-and-odes.html" class="sidebar-item-text sidebar-link">Floating point and ODEs</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/monte-carlo.html" class="sidebar-item-text sidebar-link">Monte Carlo methods</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/fourier.html" class="sidebar-item-text sidebar-link">Fast Fourier transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/autodiff.html" class="sidebar-item-text sidebar-link">Autodiff and neural nets</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/linear.html" class="sidebar-item-text sidebar-link">Linear algebra</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Exercises and Projects</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/exercises.html" class="sidebar-item-text sidebar-link">Exercises</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/projects.html" class="sidebar-item-text sidebar-link active">Projects</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-report" id="toc-the-report" class="nav-link active" data-scroll-target="#the-report"><span class="toc-section-number">1</span>  The report</a></li>
+  <li><a href="#sec-submission" id="toc-sec-submission" class="nav-link" data-scroll-target="#sec-submission"><span class="toc-section-number">2</span>  Submission</a></li>
+  <li><a href="#marking" id="toc-marking" class="nav-link" data-scroll-target="#marking"><span class="toc-section-number">3</span>  Marking</a></li>
+  <li><a href="#sec-projects" id="toc-sec-projects" class="nav-link" data-scroll-target="#sec-projects"><span class="toc-section-number">4</span>  The projects</a>
+  <ul class="collapse">
+  <li><a href="#percolation" id="toc-percolation" class="nav-link" data-scroll-target="#percolation"><span class="toc-section-number">4.1</span>  Percolation</a></li>
+  <li><a href="#hierarchical-methods-for-n-body-simulation" id="toc-hierarchical-methods-for-n-body-simulation" class="nav-link" data-scroll-target="#hierarchical-methods-for-n-body-simulation"><span class="toc-section-number">4.2</span>  Hierarchical methods for <span class="math inline">\(N\)</span>-body simulation</a></li>
+  <li><a href="#cluster-algorithms-for-monte-carlo" id="toc-cluster-algorithms-for-monte-carlo" class="nav-link" data-scroll-target="#cluster-algorithms-for-monte-carlo"><span class="toc-section-number">4.3</span>  Cluster algorithms for Monte Carlo</a></li>
+  <li><a href="#lyapunov-exponents" id="toc-lyapunov-exponents" class="nav-link" data-scroll-target="#lyapunov-exponents"><span class="toc-section-number">4.4</span>  Lyapunov exponents</a></li>
+  <li><a href="#multi-spin-encoding-for-ising-models" id="toc-multi-spin-encoding-for-ising-models" class="nav-link" data-scroll-target="#multi-spin-encoding-for-ising-models"><span class="toc-section-number">4.5</span>  Multi-spin encoding for Ising models</a></li>
+  <li><a href="#the-fermipastaulamtsingou-problem" id="toc-the-fermipastaulamtsingou-problem" class="nav-link" data-scroll-target="#the-fermipastaulamtsingou-problem"><span class="toc-section-number">4.6</span>  The Fermi–Pasta–Ulam–Tsingou problem</a></li>
+  <li><a href="#lenia" id="toc-lenia" class="nav-link" data-scroll-target="#lenia"><span class="toc-section-number">4.7</span>  Lenia</a></li>
+  <li><a href="#time-evolving-block-decimation-tebd" id="toc-time-evolving-block-decimation-tebd" class="nav-link" data-scroll-target="#time-evolving-block-decimation-tebd"><span class="toc-section-number">4.8</span>  Time evolving block decimation (TEBD)</a></li>
+  <li><a href="#the-wavefunction-collapse-algorithm" id="toc-the-wavefunction-collapse-algorithm" class="nav-link" data-scroll-target="#the-wavefunction-collapse-algorithm"><span class="toc-section-number">4.9</span>  The Wavefunction Collapse Algorithm</a></li>
+  <li><a href="#schrödingers-smoke" id="toc-schrödingers-smoke" class="nav-link" data-scroll-target="#schrödingers-smoke"><span class="toc-section-number">4.10</span>  Schrödinger’s smoke</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Projects</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>The Computational Physics project — if you choose to submit one — is worth one unit of further work, so roughly 10% of your final mark for the year. It involves choosing a problem from the project list in <a href="#sec-projects">Section&nbsp;4</a>.&nbsp;You will analyse the problem, write and test Python code to investigate it, then write up your work in a report.&nbsp;Like E1 and E2, you can expect it to involve 40 to 50 hours’ work. This includes reading and research, coding, experimentation and gathering results, and writing your report.</p>
+<p>Students may start their project work once the project list is published by 17th February. The deadline for submission of the project report is <strong>16:00 on the first Monday of Full Easter term (1st May 2023)</strong>. Submissions made after that time will not be marked <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. I suggest you proceed <em>as if the deadline is 16.00 on Friday 28th April</em>, and use the final weekend if you really need to.</p>
+<p>Bear in mind that <strong>everything in your report should be your own work</strong>, and your submission will be treated as a declaration of this fact. The rules regarding cheating and plagiarism in the <a href="https://www.phy.cam.ac.uk/files/physics_course_handbook_2022_2023_0.pdf">Physics course handbook</a> (Page 34) apply here. It is OK for you to use code that others — that’s what a library is, after all — but in all cases the attribution should be clear.</p>
+<p>Notwithstanding the above, please also use the <a href="https://github.com/orgs/Part-II-Computational-Physics/discussions">discussions</a> to ask each other questions and share knowledge.</p>
+<section id="the-report" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> The report</h1>
+<p>Your report will take the form of repository submitted to GitHub classroom (see <a href="#sec-submission">Section&nbsp;2</a>). It should consist of a Jupyter notebook containing the body of the report, with all plots rendered (you can check how it will look on GitHub), together with any additional code written for the project as modules in <code>.py</code> files, and any data that you have produced in the course of running your code (e.g.&nbsp;simulation data in the form of <code>.npy</code> or <code>.npz</code> files) that is analyzed further in your report.</p>
+<p>When the cells in the notebook are executed, all analysis and figures should be reproduced <em>quickly</em>. Execution should not cause long runs of simulation code, for example. While you should feel free to use other (open source) libraries in your code, please limit your report notebook to the standard libraries we have used in the computational physics course (NumPy, SciPy, Matplotlib).</p>
+<p>Please see <a href="https://www-teach.phy.cam.ac.uk/dms/dms_getFile.php?node=43283">Keeping Laboratory Notes and Writing Formal Reports</a> for further guidance. There is no prescription on the length of your report, except that it should provide a comprehensive account of the work you have done.</p>
+<p>For a guide to the presentation of Python code, see <a href="https://peps.python.org/pep-0008/">PEP 8</a> and <a href="https://realpython.com/python-pep8/">this explanation</a>.</p>
+</section>
+<section id="sec-submission" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Submission</h1>
+<p>The submission instructions are the same as for the <a href="../exercises/exercises.html">exercises</a>. Around 17th February you will receive a GitHub Classroom link inviting you accept the project as an assignment.</p>
+</section>
+<section id="marking" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Marking</h1>
+<p>The credit for the project is one unit of further work (like TP1, TP2, E1, E2, etc.). The projects are marked out of ten in the four categories:</p>
+<ol type="1">
+<li>Analysis of the computational physics aspects of the problem (possible algorithms, their complexity, etc.).</li>
+<li>Details of implementation of the algorithm and its performance (e.g.&nbsp;in terms of run time on what hardware). This will include the description in the report as well as the accompanying code, and will include a judgement of style, readability (including comments and docstrings) and quality.</li>
+<li>Results, analysis of errors (if applicable), tests and discussion of the relevant computational physics.</li>
+<li>Overall presentation of the report, structure, etc.</li>
+</ol>
+<p>Although presentation only enters in the last category, bear in mind that assessors will not be able to get a good sense of what you have done unless your work is presented clearly throughout. In particular, it will make your assessor’s life easier (always a good thing) if there are <strong>sections that clearly refer to the first three points</strong>.</p>
+<p>As a general guide, you should present your work as if your assessor is <strong>completely ignorant</strong> of both the problem and computational approaches to it. Alternatively, present your work as if to yourself before you began working on it.</p>
+</section>
+<section id="sec-projects" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> The projects</h1>
+<p>For all of these projects the basic protocol is the same:</p>
+<ol type="1">
+<li>Understand the physical problem</li>
+<li>Learn about the available algorithms, including their theoretical complexity / performance</li>
+<li>Implement the algorithm(s)</li>
+<li>Gather results about the performance of the method</li>
+</ol>
+<p>You will need do some research and reading before starting, so follow the links and references<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. <em>But read pragmatically</em>: look for the algorithm description or pseudo-code and start thinking about how you will translate it into your own code.</p>
+<section id="percolation" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="percolation"><span class="header-section-number">4.1</span> Percolation</h2>
+<p><a href="https://en.wikipedia.org/wiki/Percolation_theory">Percolation</a> is an extremely simple statistical mechanical model that has been used as a testbed for many theoretical concepts and numerical techniques over the decades.</p>
+<p>One of the most popular and efficient algorithms for percolation is <span class="citation" data-cites="newman2000efficient">Newman and Ziff (<a href="#ref-newman2000efficient" role="doc-biblioref">2000</a>)</span>. Implement and study this algorithm. You may wish to compare the Newman–Ziff algorithm with other algorithms e.g. <span class="citation" data-cites="mertens2022exact">Mertens (<a href="#ref-mertens2022exact" role="doc-biblioref">2022</a>)</span>.</p>
+</section>
+<section id="hierarchical-methods-for-n-body-simulation" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="hierarchical-methods-for-n-body-simulation"><span class="header-section-number">4.2</span> Hierarchical methods for <span class="math inline">\(N\)</span>-body simulation</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Fast_multipole_method">fast multipole method</a> and the <a href="https://en.wikipedia.org/wiki/Barnes%E2%80%93Hut_simulation">Barnes Hut method</a> are two methods to study pairwise interactions in <span class="math inline">\(N\)</span>-body systems that lower the complexity to <span class="math inline">\(O(N\log N)\)</span> from the naive <span class="math inline">\(O(N^2)\)</span>. Implement these methods and compare their performance on different tasks.</p>
+</section>
+<section id="cluster-algorithms-for-monte-carlo" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="cluster-algorithms-for-monte-carlo"><span class="header-section-number">4.3</span> Cluster algorithms for Monte Carlo</h2>
+<p>Study the performance of cluster algorithms for statistical mechanics models such as the Ising model and hard disks — as described in <a href="https://hef.ru.nl/~tbudd/mct/lectures/cluster_algorithms.html">these lectures</a> — and compare them with the Metropolis algorithm. You should analyze the autocorrelation time of the algorithms and the issue of critical slowing down.</p>
+</section>
+<section id="lyapunov-exponents" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="lyapunov-exponents"><span class="header-section-number">4.4</span> Lyapunov exponents</h2>
+<p>Lyapunov exponents quantify chaos in a dynamical system by the exponential divergence of neighbouring trajectories. <span class="citation" data-cites="sandri1996numerical">Sandri (<a href="#ref-sandri1996numerical" role="doc-biblioref">1996</a>)</span> as well as Chapter 3 of <span class="citation" data-cites="pikovsky2016lyapunov">Pikovsky and Politi (<a href="#ref-pikovsky2016lyapunov" role="doc-biblioref">2016</a>)</span> describe numerical methods for their computation.</p>
+<p>It’s probably easier to start with <em>discrete time</em> dynamical systems, moving on to the continuous time case if you have time. Wikipedia has an <a href="https://en.wikipedia.org/wiki/List_of_chaotic_maps">extensive list of chaotic maps</a> e.g.&nbsp;the <a href="https://en.wikipedia.org/wiki/H%C3%A9non_map">Hénon map</a>. See the section “LCEs of of Discrete Systems” of <span class="citation" data-cites="sandri1996numerical">Sandri (<a href="#ref-sandri1996numerical" role="doc-biblioref">1996</a>)</span>.</p>
+</section>
+<section id="multi-spin-encoding-for-ising-models" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="multi-spin-encoding-for-ising-models"><span class="header-section-number">4.5</span> Multi-spin encoding for Ising models</h2>
+<p>In an Ising model the lattice variables can take only two values. The idea behind multispin encoding is to use 64 bit data (<code>uint64</code> say) to simulate multiple copies of the Ising model, so that a degree of parallelism comes “for free”. This requires <em>bitwise</em> operations to be performed on the integers.</p>
+<p>Implement and test multispin encoding for the square lattice Ising model. Multispin encoding is introduced in <span class="citation" data-cites="jacobs1981multi">Jacobs and Rebbi (<a href="#ref-jacobs1981multi" role="doc-biblioref">1981</a>)</span> and also described in Section 10.1 of <span class="citation" data-cites="bottcher2021computational">Böttcher and Herrmann (<a href="#ref-bottcher2021computational" role="doc-biblioref">2021</a>)</span>.</p>
+</section>
+<section id="the-fermipastaulamtsingou-problem" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="the-fermipastaulamtsingou-problem"><span class="header-section-number">4.6</span> The Fermi–Pasta–Ulam–Tsingou problem</h2>
+<p>A fundamental problem in statistical physics is: how does a mechanical system thermalize? FPUT studied this question in a model of a chain of masses coupled by weakly anharmonic springs. <span class="citation" data-cites="Dauxois:2008">Dauxois and Ruffo (<a href="#ref-Dauxois:2008" role="doc-biblioref">2008</a>)</span> is a nice review of the problem, which also includes sample <a href="http://www.scholarpedia.org/article/Fermi-Pasta-Ulam_nonlinear_lattice_oscillations#MATLAB_Code">MATLAB code</a> that you could use as a starting point. You may have to explore other integration schemes (e.g.&nbsp;<a href="https://en.wikipedia.org/wiki/Symplectic_integrator">symplectic integrators</a>).</p>
+</section>
+<section id="lenia" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="lenia"><span class="header-section-number">4.7</span> Lenia</h2>
+<p><a href="https://en.wikipedia.org/wiki/Lenia">Lenia</a> is a recently invented (discovered?) <a href="https://en.wikipedia.org/wiki/Cellular_automaton">cellular automaton</a>: somewhat similar to <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway’s Game of Life</a> but with continuous variables.</p>
+<p>There are lots of resources on Lenia, including the original paper (<span class="citation" data-cites="chan2018lenia">Chan (<a href="#ref-chan2018lenia" role="doc-biblioref">2018</a>)</span>), a <a href="https://github.com/Chakazul/Lenia">GitHub repo</a>, <a href="https://chakazul.github.io/lenia.html">webpage</a>, as well as <a href="https://google-research.github.io/self-organising-systems/particle-lenia/">this article</a> and <a href="https://colab.research.google.com/github/OpenLenia/Lenia-Tutorial/blob/main/Tutorial_From_Conway_to_Lenia.ipynb">colab notebook</a> from Google research. Produce your own implementation and investigate its properties!</p>
+</section>
+<section id="time-evolving-block-decimation-tebd" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="time-evolving-block-decimation-tebd"><span class="header-section-number">4.8</span> Time evolving block decimation (TEBD)</h2>
+<p>Using <a href="https://www.tensors.net/mps">Glen Evenbly’s site</a> as a starting point, investigate the use of TEBD to solve quantum spin chains (see the <a href="../notes/linear.html">linear algebra lecture</a>). Investigate real and imaginary time dynamics (the latter for finding the ground state), including the evolution of the expectation values of spins, starting from different initial states. See the original paper (<span class="citation" data-cites="vidal2004efficient">Vidal (<a href="#ref-vidal2004efficient" role="doc-biblioref">2004</a>)</span>) for ideas of what to calculate.</p>
+</section>
+<section id="the-wavefunction-collapse-algorithm" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="the-wavefunction-collapse-algorithm"><span class="header-section-number">4.9</span> The Wavefunction Collapse Algorithm</h2>
+<p>Despite the name, the <a href="https://github.com/mxgmn/WaveFunctionCollapse">wavefunction collapse algorithm</a> is not <em>strictly</em> about physics but rather <a href="https://en.wikipedia.org/wiki/Texture_synthesis">texture synthesis</a>: think making landscapes in computer games procedurally. There are potential connections with statistical physics: see <a href="https://twitter.com/ExUtumno/status/1119996186663030784">this Twitter thread</a></p>
+<p>There is an implementation in Python <a href="https://github.com/ikarth/wfc_2019f">here</a>, but you will need to write your own. <a href="https://github.com/mxgmn/MarkovJunior">Markov Junior</a> is a newer algorithm by the same author.</p>
+</section>
+<section id="schrödingers-smoke" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="schrödingers-smoke"><span class="header-section-number">4.10</span> Schrödinger’s smoke</h2>
+<p><a href="https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/">Schrödinger’s smoke</a> is a recent alogrithm for the simulation of incompressible fluids. The original paper (<span class="citation" data-cites="chern2016schrodinger">Chern et al. (<a href="#ref-chern2016schrodinger" role="doc-biblioref">2016</a>)</span>) describes the algorithm in Section 2: it is based on the split-step method and FFT as discussed in the <a href="../notes/fourier.html">FFT lecture</a>.</p>
+<p>The <a href="https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/">project webpage</a> includes <a href="https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/SchrodingersSmokeCode.zip">Matlab code</a>. <em>This is an ambitious project</em>. It’s probably best starting with a two dimensional fluid as a proof of principle.</p>
+
+<!-- ## Gross–Pitaevskii equation
+
+Solitons, vortices
+
+https://en.wikipedia.org/wiki/Nonlinear_Schr%C3%B6dinger_equation
+
+https://www.sciencedirect.com/science/article/pii/S0021999103001025
+
+
+
+
+
+
+
+## Path tracing
+
+https://blog.evjang.com/2019/11/jaxpt.html
+https://google-research.github.io/self-organising-systems/2022/jax-raycast/
+
+
+## Foldy–Lax
+
+Multiple Scattering Interaction of Time-Harmonic Wave with N Obstacles
+
+Study Anderson localization like @skipetrov2014absence (for light) or @skipetrov2018ioffe (for scalar waves)
+
+## Directed polymers
+
+Chapter 10 of @kardar2007statistical
+
+https://inordinatum.wordpress.com/2014/01/22/simulating-directed-polymers-and-the-tracy-widom-distribution/
+
+https://arxiv.org/pdf/1909.03841.pdf
+
+High-precision simulation of the height distribution for the KPZ equation
+
+https://iopscience.iop.org/article/10.1209/0295-5075/121/67004
+
+First / last passage percolation
+
+
+## Stokes drift
+
+[Stokes drift](https://en.wikipedia.org/wiki/Stokes_drift) is a phenomenon in fluid dynamics. 
+
+
+
+
+
+## Transfer matrix in statistical mechanics
+
+https://en.wikipedia.org/wiki/Transfer-matrix_method
+
+An alternative to Monte Carlo
+
+Efficient numerical routines
+
+https://journals.aps.org/prb/abstract/10.1103/PhysRevB.103.094441
+https://arxiv.org/abs/2106.08442
+
+
+https://github.com/stack-of-tasks/eigenpy
+
+https://github.com/TsuyoshiOkubo/classical_iTEBD
+
+
+## Nested sampling
+
+Try @ashton2022nested
+
+Potts model @pfeifenberger2018nested or hard spheres @partay2014nested
+
+## Hamiltonian Monte Carlo
+
+See Chapter 30 of @mackay2003information
+
+
+
+## Perfect / exact sampling
+
+See Chapter 32 of @mackay2003information, Section 12.6 of @moore2011nature
+
+or [David Wilson's page](http://www.dbwilson.com/exact/)
+
+## Long time tails in molecular dynamics??
+
+1D codes here
+
+[pylj](https://pythoninchemistry.org/pylj), described in @mccluskey2018pylj
+
+https://pythoninchemistry.org/sim_and_scat/intro.html
+
+https://github.com/jax-md/jax-md
+
+https://www.youtube.com/watch?v=Bkm8tGET7-w
+
+## Korteweg–De Vries equation
+
+
+https://en.wikipedia.org/wiki/Korteweg%E2%80%93De_Vries_equation
+
+## Aubry–André model
+
+https://iopscience.iop.org/article/10.1088/1361-6404/ab1670/meta?casa_token=rSQ28xYtP-IAAAAA:2L4ueVu_fmFdsyi76hDIFoMFNBHIrtfw77tt79iPmeKvhE34EpfDeAxXi0ySHAg3DL1auanpvi0
+
+## Frenkel–Kontorova
+
+## Worm algorithm for the Ising model
+
+Introduced in @prokof2001worm, the Worm algorithm is (yet another) Monte Carlo algorithm for statistical mechanical models. It differs from most others in that the configurations explored by the algorithm are _not_ those of the underlying model, but rather represent different terms in an expansion of the partition function.
+
+Compare with the newer _lifted_ version of the worm algorithm @elcci2018lifted.
+
+https://arxiv.org/abs/cond-mat/0703787
+
+## Event chain Monte Carlo
+
+## Diffusion-limited aggregation
+
+[DLA](https://en.wikipedia.org/wiki/Diffusion-limited_aggregation) is a process describing the formation 
+
+## Reaction–diffusion systems
+
+https://github.com/benmaier/reaction-diffusion
+
+http://www.karlsims.com/rd.html
+
+
+## ASEP 
+
+Shocks
+
+https://simulations.lpma.math.upmc.fr/asep/
+
+https://github.com/caley/OpenEPSim
+
+https://joss.theoj.org/papers/10.21105/joss.00650
+
+## Barabási–Albert model
+
+https://en.wikipedia.org/wiki/Barab%C3%A1si%E2%80%93Albert_model
+
+
+Watts–Strogatz model
+
+## Logistic map
+
+[Great resource](https://www.complexity-explorables.org/flongs/logistic/)
+
+
+---
+
+1.  
+2. Quantum circuits
+3.  Ising / XY model
+4.  Phase space visualization. Chaotic dynamics
+5.  Caustics
+6. Foldy-Lax scattering https://twitter.com/j_bertolotti/status/1477020799064330242
+
+8. Kinetically constrained models
+
+
+11.  Simple band structures
+12.  Transfer matrix
+
+
+16. Feigenbaum constant
+17. Cat maps and other chaotic maps
+18.  Visualizing hyperbolic space
+19.  Neural net
+20.  Support vector machine
+21.  Fast Fourier Transform and use in solving PDEs
+22.  Split step schrodinger for BECs
+23.  Corner growth - suitable for webgl?
+24.  Longest increasing subsequence
+26.  Maxwell-Boltzmann distribution. Kinetic theory. Try different dimensions. Diffusion constant. Landau-Placzek formula
+27. Perfect sampling
+28. Ray tracing!!
+29. Black hole lensing
+30. Wavefunction collapse algorithm / Markov Junior
+31. Cherenkov radiation and Kelvin wedge
+32. Lagrange points!
+33. Gravity waves. Solitons. KdV
+34. Localization https://twitter.com/adad8m/status/1525336769029603329
+35. Lennard Jones gas (dynamics)
+36. Glass / jamming?
+37. Graphs as matrices: https://twitter.com/TivadarDanka/status/1502215264544296962
+38. FPU chains and thermalization
+39. Mr Tompkins features a discussion of how things look at relativistic speeds. See Penrose's introduction, where he corrects this
+40. Stokes drift
+41. Darwin shift
+42. Lagrangian trajectories of fluid particles. Examples of chaotic flows
+43. Chaos and numerical computation of Lyapunov exponents
+44. Thomas precession https://en.wikipedia.org/wiki/Thomas_precession
+45. Lotka-Volterra dynamics
+46. Some kind of computational geometry a la Keenan Crane. Walk on Spheres
+
+48. Web GL physics
+49. Symplectic conservation laws
+50. Schrodinger bridge (for solving maze see e.g. this [Numberphile episode](https://www.youtube.com/watch?v=BvwgdrC8vlE) 
+51. Battlesnake!
+52. Belman / Reinforcement learning
+53. Connect 4 solver
+54. https://google-research.github.io/self-organising-systems/2022/jax-raycast/
+55. Cellular automata. Lattice Boltzmann methods
+56. Directed polymer / directed percolation. Limit shapes and KPZ scaling. Universality. Dynamic programming 
+57. Kalman filter. Ensemble Kalman. 
+58. Barabási–Albert model.
+59. Wordle solution. RL paper from MIT
+
+61. Multi-spin encoding for the Ising model -->
+
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-bottcher2021computational" class="csl-entry" role="doc-biblioentry">
+Böttcher, Lucas, and Hans J Herrmann. 2021. <em>Computational Statistical Physics</em>. Cambridge University Press.
+</div>
+<div id="ref-chan2018lenia" class="csl-entry" role="doc-biblioentry">
+Chan, Bert Wang-Chak. 2018. <span>“Lenia-Biology of Artificial Life.”</span> <em>arXiv Preprint arXiv:1812.05433</em>.
+</div>
+<div id="ref-chern2016schrodinger" class="csl-entry" role="doc-biblioentry">
+Chern, Albert, Felix Knöppel, Ulrich Pinkall, Peter Schröder, and Steffen Weißmann. 2016. <span>“Schr<span>ö</span>dinger’s Smoke.”</span> <em>ACM Transactions on Graphics (TOG)</em> 35 (4): 1–13.
+</div>
+<div id="ref-Dauxois:2008" class="csl-entry" role="doc-biblioentry">
+Dauxois, T., and S. Ruffo. 2008. <span>“<span>F</span>ermi-<span>P</span>asta-<span>U</span>lam Nonlinear Lattice Oscillations.”</span> <em>Scholarpedia</em> 3 (8): 5538. <a href="https://doi.org/10.4249/scholarpedia.5538">https://doi.org/10.4249/scholarpedia.5538</a>.
+</div>
+<div id="ref-jacobs1981multi" class="csl-entry" role="doc-biblioentry">
+Jacobs, Laurence, and Claudio Rebbi. 1981. <span>“Multi-Spin Coding: A Very Efficient Technique for Monte Carlo Simulations of Spin Systems.”</span> <em>Journal of Computational Physics</em> 41 (1): 203–10.
+</div>
+<div id="ref-mertens2022exact" class="csl-entry" role="doc-biblioentry">
+Mertens, Stephan. 2022. <span>“Exact Site-Percolation Probability on the Square Lattice.”</span> <em>Journal of Physics A: Mathematical and Theoretical</em> 55 (33): 334002.
+</div>
+<div id="ref-newman2000efficient" class="csl-entry" role="doc-biblioentry">
+Newman, MEJ, and Robert M Ziff. 2000. <span>“Efficient Monte Carlo Algorithm and High-Precision Results for Percolation.”</span> <em>Physical Review Letters</em> 85 (19): 4104.
+</div>
+<div id="ref-pikovsky2016lyapunov" class="csl-entry" role="doc-biblioentry">
+Pikovsky, Arkady, and Antonio Politi. 2016. <em>Lyapunov Exponents: A Tool to Explore Complex Dynamics</em>. Cambridge University Press.
+</div>
+<div id="ref-sandri1996numerical" class="csl-entry" role="doc-biblioentry">
+Sandri, Marco. 1996. <span>“Numerical Calculation of Lyapunov Exponents.”</span> <em>Mathematica Journal</em> 6 (3): 78–84.
+</div>
+<div id="ref-vidal2004efficient" class="csl-entry" role="doc-biblioentry">
+Vidal, Guifré. 2004. <span>“Efficient Simulation of One-Dimensional Quantum Many-Body Systems.”</span> <em>Physical Review Letters</em> 93 (4): 040502.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>See the <a href="https://www.natsci.tripos.cam.ac.uk/exams/late">NST rules on late submission</a>. For the avoidance of doubt, the project is a piece of work for which the submission date is specified in Examination Regulations (Ordinances), and therefore the final paragraph applies.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Most should be freely available (to you) online: don’t forget the “CU” in CUP stands for Cambridge University.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../exercises/exercises.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exercises</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

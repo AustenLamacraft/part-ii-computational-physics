@@ -1,0 +1,320 @@
+---
+title: Projects
+draft: true
+---
+
+The Computational Physics project — if you choose to submit one — is worth one unit of further work, so roughly 10% of your final mark for the year. It involves choosing a problem from the project list in @sec-projects. You will analyse the problem, write and test Python code to investigate it, then write up your work in a report. Like E1 and E2, you can expect it to involve 40 to 50 hours' work. This includes reading and research, coding, experimentation and gathering results, and writing your report.
+
+Students may start their project work once the project list is published by 17th February. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (1st May 2023)__. Submissions made after that time will not be marked [^1]. I suggest you proceed _as if the deadline is 16.00 on Friday 28th April_, and use the final weekend if you really need to.
+
+[^1]: See the [NST rules on late submission](https://www.natsci.tripos.cam.ac.uk/exams/late). For the avoidance of doubt, the project is a piece of work for which the submission date is specified in Examination Regulations (Ordinances), and therefore the final paragraph applies.
+
+Bear in mind that __everything in your report should be your own work__, and your submission will be treated as a declaration of this fact. The rules regarding cheating and plagiarism in the [Physics course handbook](https://www.phy.cam.ac.uk/files/physics_course_handbook_2022_2023_0.pdf) (Page 34) apply here. It is OK for you to use code that others — that's what a library is, after all — but in all cases the attribution should be clear.
+
+Notwithstanding the above, please also use the [discussions](https://github.com/orgs/Part-II-Computational-Physics/discussions) to ask each other questions and share knowledge. 
+
+# The report
+
+Your report will take the form of repository submitted to GitHub classroom (see @sec-submission). It should consist of a Jupyter notebook containing the body of the report, with all plots rendered (you can check how it will look on GitHub), together with any additional code written for the project as modules in `.py` files, and any data that you have produced in the course of running your code (e.g. simulation data in the form of `.npy` or `.npz` files) that is analyzed further in your report.
+
+When the cells in the notebook are executed, all analysis and figures should be reproduced _quickly_. Execution should not cause long runs of simulation code, for example. While you should feel free to use other (open source) libraries in your code, please limit your report notebook to the standard libraries we have used in the computational physics course (NumPy, SciPy, Matplotlib).
+
+Please see [Keeping Laboratory Notes and
+Writing Formal Reports](https://www-teach.phy.cam.ac.uk/dms/dms_getFile.php?node=43283) for further guidance. There is no prescription on the length of your report, except that it should provide a comprehensive account of the work you have done.
+
+For a guide to the presentation of Python code, see [PEP 8](https://peps.python.org/pep-0008/) and [this explanation](https://realpython.com/python-pep8/).
+
+# Submission {#sec-submission}
+
+The submission instructions are the same as for the [exercises](exercises.qmd). Around 17th February you will receive a GitHub Classroom link inviting you accept the project as an assignment. 
+
+# Marking
+
+The credit for the project is one unit of further work (like TP1, TP2, E1, E2, etc.). The projects are marked out of ten in the four categories:
+
+1. Analysis of the computational physics aspects of the problem (possible algorithms, their complexity, etc.).
+2. Details of implementation of the algorithm and its performance (e.g. in terms of run time on what hardware). This will include the description in the report as well as the accompanying code, and will include a judgement of style, readability (including comments and docstrings) and quality.
+3. Results, analysis of errors (if applicable), tests and discussion of the relevant computational physics.
+4. Overall presentation of the report, structure, etc.
+
+Although presentation only enters in the last category, bear in mind that assessors will not be able to get a good sense of what you have done unless your work is presented clearly throughout. In particular, it will make your assessor's life easier (always a good thing) if there are __sections that clearly refer to the first three points__.
+
+As a general guide, you should present your work as if your assessor is __completely ignorant__ of both the problem and computational approaches to it. Alternatively, present your work as if to yourself before you began working on it.
+
+# The projects {#sec-projects}
+
+For all of these projects the basic protocol is the same:
+
+1. Understand the physical problem 
+2. Learn about the available algorithms, including their theoretical complexity / performance
+3. Implement the algorithm(s)
+4. Gather results about the performance of the method
+
+You will need do some research and reading before starting, so follow the links and references[^2]. _But read pragmatically_: look for the algorithm description or pseudo-code and start thinking about how you will translate it into your own code.
+
+[^2]: Most should be freely available (to you) online: don't forget the "CU" in CUP stands for Cambridge University.
+
+## Percolation
+
+[Percolation](https://en.wikipedia.org/wiki/Percolation_theory) is an extremely simple statistical mechanical model that has been used as a testbed for many theoretical concepts and numerical techniques over the decades. 
+
+One of the most popular and efficient algorithms for percolation is  @newman2000efficient. Implement and study this algorithm. You may wish to compare the Newman–Ziff algorithm with other algorithms e.g. @mertens2022exact.
+
+## Hierarchical methods for $N$-body simulation
+
+The [fast multipole method](https://en.wikipedia.org/wiki/Fast_multipole_method) and the [Barnes Hut method](https://en.wikipedia.org/wiki/Barnes%E2%80%93Hut_simulation) are two methods to study pairwise interactions in $N$-body systems that lower the complexity to $O(N\log N)$ from the naive $O(N^2)$. Implement these methods and compare their performance on different tasks.
+
+## Cluster algorithms for Monte Carlo
+
+Study the performance of cluster algorithms for statistical mechanics models such as the Ising model and hard disks — as described in [these lectures](https://hef.ru.nl/~tbudd/mct/lectures/cluster_algorithms.html) — and compare them with the Metropolis algorithm. You should analyze the autocorrelation time of the algorithms and the issue of critical slowing down.
+
+## Lyapunov exponents
+
+Lyapunov exponents quantify chaos in a dynamical system by the exponential divergence of neighbouring trajectories. @sandri1996numerical as well as Chapter 3 of @pikovsky2016lyapunov describe numerical methods for their computation.
+
+It's probably easier to start with _discrete time_ dynamical systems, moving on to the continuous time case if you have time. Wikipedia has an [extensive list of chaotic maps](https://en.wikipedia.org/wiki/List_of_chaotic_maps) e.g. the [Hénon map](https://en.wikipedia.org/wiki/H%C3%A9non_map). See the section "LCEs of of Discrete Systems" of @sandri1996numerical.
+
+## Multi-spin encoding for Ising models
+
+In an Ising model the lattice variables can take only two values. The idea behind multispin encoding is to use 64 bit data (`uint64` say) to simulate multiple copies of the Ising model, so that a degree of parallelism comes "for free". This requires _bitwise_ operations to be performed on the integers.
+
+Implement and test multispin encoding for the square lattice Ising model. Multispin encoding is introduced in @jacobs1981multi and also described in Section 10.1 of @bottcher2021computational.
+
+## The Fermi–Pasta–Ulam–Tsingou problem
+
+A fundamental problem in statistical physics is: how does a mechanical system thermalize? FPUT studied this question in a model of a chain of masses coupled by weakly anharmonic springs. @Dauxois:2008 is a nice review of the problem, which also includes sample [MATLAB code](http://www.scholarpedia.org/article/Fermi-Pasta-Ulam_nonlinear_lattice_oscillations#MATLAB_Code) that you could use as a starting point. You may have to explore other integration schemes (e.g. [symplectic integrators](https://en.wikipedia.org/wiki/Symplectic_integrator)). 
+
+## Lenia
+
+[Lenia](https://en.wikipedia.org/wiki/Lenia) is a recently invented (discovered?) [cellular automaton](https://en.wikipedia.org/wiki/Cellular_automaton): somewhat similar to [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) but with continuous variables. 
+
+There are lots of resources on Lenia, including the original paper (@chan2018lenia), a [GitHub repo](https://github.com/Chakazul/Lenia), [webpage](https://chakazul.github.io/lenia.html), as well as [this article](https://google-research.github.io/self-organising-systems/particle-lenia/) and [colab notebook](https://colab.research.google.com/github/OpenLenia/Lenia-Tutorial/blob/main/Tutorial_From_Conway_to_Lenia.ipynb) from Google research. Produce your own implementation and investigate its properties!
+
+## Time evolving block decimation (TEBD)
+
+Using [Glen Evenbly's site](https://www.tensors.net/mps) as a starting point, investigate the use of TEBD to solve quantum spin chains (see the [linear algebra lecture](../notes/linear.qmd)). Investigate real and imaginary time dynamics (the latter for finding the ground state), including the evolution of the expectation values of spins, starting from different initial states. See the original paper (@vidal2004efficient) for ideas of what to calculate.
+
+## The Wavefunction Collapse Algorithm
+
+Despite the name, the [wavefunction collapse algorithm](https://github.com/mxgmn/WaveFunctionCollapse) is not _strictly_ about physics but rather [texture synthesis](https://en.wikipedia.org/wiki/Texture_synthesis): think making landscapes in computer games procedurally. There are potential connections with statistical physics: see [this Twitter thread](https://twitter.com/ExUtumno/status/1119996186663030784)
+
+There is an implementation in Python [here](https://github.com/ikarth/wfc_2019f), but you will need to write your own. [Markov Junior](https://github.com/mxgmn/MarkovJunior) is a newer algorithm by the same author. 
+
+## Schrödinger's smoke
+
+[Schrödinger's smoke](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) is a recent alogrithm for the simulation of incompressible fluids. The original paper (@chern2016schrodinger) describes the algorithm in Section 2: it is based on the split-step method and FFT as discussed in the [FFT lecture](../notes/fourier.qmd).
+ 
+The [project webpage](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) includes [Matlab code](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/SchrodingersSmokeCode.zip). _This is an ambitious project_. It's probably best starting with a two dimensional fluid as a proof of principle.
+
+
+<!-- ## Gross–Pitaevskii equation
+
+Solitons, vortices
+
+https://en.wikipedia.org/wiki/Nonlinear_Schr%C3%B6dinger_equation
+
+https://www.sciencedirect.com/science/article/pii/S0021999103001025
+
+
+
+
+
+
+
+## Path tracing
+
+https://blog.evjang.com/2019/11/jaxpt.html
+https://google-research.github.io/self-organising-systems/2022/jax-raycast/
+
+
+## Foldy–Lax
+
+Multiple Scattering Interaction of Time-Harmonic Wave with N Obstacles
+
+Study Anderson localization like @skipetrov2014absence (for light) or @skipetrov2018ioffe (for scalar waves)
+
+## Directed polymers
+
+Chapter 10 of @kardar2007statistical
+
+https://inordinatum.wordpress.com/2014/01/22/simulating-directed-polymers-and-the-tracy-widom-distribution/
+
+https://arxiv.org/pdf/1909.03841.pdf
+
+High-precision simulation of the height distribution for the KPZ equation
+
+https://iopscience.iop.org/article/10.1209/0295-5075/121/67004
+
+First / last passage percolation
+
+
+## Stokes drift
+
+[Stokes drift](https://en.wikipedia.org/wiki/Stokes_drift) is a phenomenon in fluid dynamics. 
+
+
+
+
+
+## Transfer matrix in statistical mechanics
+
+https://en.wikipedia.org/wiki/Transfer-matrix_method
+
+An alternative to Monte Carlo
+
+Efficient numerical routines
+
+https://journals.aps.org/prb/abstract/10.1103/PhysRevB.103.094441
+https://arxiv.org/abs/2106.08442
+
+
+https://github.com/stack-of-tasks/eigenpy
+
+https://github.com/TsuyoshiOkubo/classical_iTEBD
+
+
+## Nested sampling
+
+Try @ashton2022nested
+
+Potts model @pfeifenberger2018nested or hard spheres @partay2014nested
+
+## Hamiltonian Monte Carlo
+
+See Chapter 30 of @mackay2003information
+
+
+
+## Perfect / exact sampling
+
+See Chapter 32 of @mackay2003information, Section 12.6 of @moore2011nature
+
+or [David Wilson's page](http://www.dbwilson.com/exact/)
+
+## Long time tails in molecular dynamics??
+
+1D codes here
+
+[pylj](https://pythoninchemistry.org/pylj), described in @mccluskey2018pylj
+
+https://pythoninchemistry.org/sim_and_scat/intro.html
+
+https://github.com/jax-md/jax-md
+
+https://www.youtube.com/watch?v=Bkm8tGET7-w
+
+## Korteweg–De Vries equation
+
+
+https://en.wikipedia.org/wiki/Korteweg%E2%80%93De_Vries_equation
+
+## Aubry–André model
+
+https://iopscience.iop.org/article/10.1088/1361-6404/ab1670/meta?casa_token=rSQ28xYtP-IAAAAA:2L4ueVu_fmFdsyi76hDIFoMFNBHIrtfw77tt79iPmeKvhE34EpfDeAxXi0ySHAg3DL1auanpvi0
+
+## Frenkel–Kontorova
+
+## Worm algorithm for the Ising model
+
+Introduced in @prokof2001worm, the Worm algorithm is (yet another) Monte Carlo algorithm for statistical mechanical models. It differs from most others in that the configurations explored by the algorithm are _not_ those of the underlying model, but rather represent different terms in an expansion of the partition function.
+
+Compare with the newer _lifted_ version of the worm algorithm @elcci2018lifted.
+
+https://arxiv.org/abs/cond-mat/0703787
+
+## Event chain Monte Carlo
+
+## Diffusion-limited aggregation
+
+[DLA](https://en.wikipedia.org/wiki/Diffusion-limited_aggregation) is a process describing the formation 
+
+## Reaction–diffusion systems
+
+https://github.com/benmaier/reaction-diffusion
+
+http://www.karlsims.com/rd.html
+
+
+## ASEP 
+
+Shocks
+
+https://simulations.lpma.math.upmc.fr/asep/
+
+https://github.com/caley/OpenEPSim
+
+https://joss.theoj.org/papers/10.21105/joss.00650
+
+## Barabási–Albert model
+
+https://en.wikipedia.org/wiki/Barab%C3%A1si%E2%80%93Albert_model
+
+
+Watts–Strogatz model
+
+## Logistic map
+
+[Great resource](https://www.complexity-explorables.org/flongs/logistic/)
+
+
+---
+
+1.  
+2. Quantum circuits
+3.  Ising / XY model
+4.  Phase space visualization. Chaotic dynamics
+5.  Caustics
+6. Foldy-Lax scattering https://twitter.com/j_bertolotti/status/1477020799064330242
+
+8. Kinetically constrained models
+
+
+11.  Simple band structures
+12.  Transfer matrix
+
+
+16. Feigenbaum constant
+17. Cat maps and other chaotic maps
+18.  Visualizing hyperbolic space
+19.  Neural net
+20.  Support vector machine
+21.  Fast Fourier Transform and use in solving PDEs
+22.  Split step schrodinger for BECs
+23.  Corner growth - suitable for webgl?
+24.  Longest increasing subsequence
+26.  Maxwell-Boltzmann distribution. Kinetic theory. Try different dimensions. Diffusion constant. Landau-Placzek formula
+27. Perfect sampling
+28. Ray tracing!!
+29. Black hole lensing
+30. Wavefunction collapse algorithm / Markov Junior
+31. Cherenkov radiation and Kelvin wedge
+32. Lagrange points!
+33. Gravity waves. Solitons. KdV
+34. Localization https://twitter.com/adad8m/status/1525336769029603329
+35. Lennard Jones gas (dynamics)
+36. Glass / jamming?
+37. Graphs as matrices: https://twitter.com/TivadarDanka/status/1502215264544296962
+38. FPU chains and thermalization
+39. Mr Tompkins features a discussion of how things look at relativistic speeds. See Penrose's introduction, where he corrects this
+40. Stokes drift
+41. Darwin shift
+42. Lagrangian trajectories of fluid particles. Examples of chaotic flows
+43. Chaos and numerical computation of Lyapunov exponents
+44. Thomas precession https://en.wikipedia.org/wiki/Thomas_precession
+45. Lotka-Volterra dynamics
+46. Some kind of computational geometry a la Keenan Crane. Walk on Spheres
+
+48. Web GL physics
+49. Symplectic conservation laws
+50. Schrodinger bridge (for solving maze see e.g. this [Numberphile episode](https://www.youtube.com/watch?v=BvwgdrC8vlE) 
+51. Battlesnake!
+52. Belman / Reinforcement learning
+53. Connect 4 solver
+54. https://google-research.github.io/self-organising-systems/2022/jax-raycast/
+55. Cellular automata. Lattice Boltzmann methods
+56. Directed polymer / directed percolation. Limit shapes and KPZ scaling. Universality. Dynamic programming 
+57. Kalman filter. Ensemble Kalman. 
+58. Barabási–Albert model.
+59. Wordle solution. RL paper from MIT
+
+61. Multi-spin encoding for the Ising model -->

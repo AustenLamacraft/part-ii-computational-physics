@@ -1,4 +1,0 @@
-# Divide and Conquer
-
-FFT. Use split step as illustration
-Matrix multiplication

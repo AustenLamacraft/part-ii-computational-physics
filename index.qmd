@@ -2,11 +2,17 @@
 title: Course outline 
 ---
 
+::: {.callout-warning}
+## Feedback
+
+Please fill out the [feedback form](https://cambridge.eu.qualtrics.com/jfe/form/SV_9QSb24qEdt29kmq) before 12th March.
+:::
+
 These are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge. 
 
 # Schedule
 
-The course of eight Lectures will take place at 10.00 on Mondays and Fridays in the Pippard Lecture Theatre. After the lectures there will be __four computing exercises__ to be completed in the last four weeks of full Lent term; one per week. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. 
+The course of eight Lectures will take place at 10.00 on Mondays and Fridays in the Pippard Lecture Theatre. After the lectures there will be [four computing exercises](exercises/exercises.qmd) to be completed in the last four weeks of full Lent term; one per week. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. 
 
 The schedule is as follows
 
@@ -19,7 +25,7 @@ The schedule is as follows
 
 ## Computing Project
 
-Additionally, you may choose to offer a Computational Physics project for one unit of further work. This involves choosing a problem from the project list. You will analyse the problem, write and test Python code to investigate it, then write up your work in a report. 
+Additionally, you may choose to offer a [Computational Physics project](exercises/projects.qmd) for one unit of further work. This involves choosing a problem from the [project list](exercises/projects.qmd#sec-projects). You will analyse the problem, write and test Python code to investigate it, then write up your work in a report. 
 
 Students may start their project work once the project list is published by 17th February. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (1st May 2023)__. 
 

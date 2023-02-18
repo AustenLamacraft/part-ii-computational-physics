@@ -134,7 +134,7 @@ $$
 
 involves $n$ terms for each of the $n^2$ assignments of $i$ and $k$. Complexity: $O(n^3)$
 
-Thus, if you have to calculate something like $M_1 M_2\cdots M_n \mathbf{v}$, you should _not_ calculate the matrix product first, but instead do it like this
+Thus, if you have to calculate something like $M_1 M_2\cdots M_n \mathbf{v}$, you should _not_ calculate the matrix products first, but instead do it like this
 
 $$
  M_1\left(M_2\cdots \left(M_n \mathbf{v}\right)\right)
