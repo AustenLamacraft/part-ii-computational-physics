@@ -260,7 +260,7 @@ $$
 
 - If $M$ is $m\times n$, $U$ is $m\times m$, $V$ is $n\times n$, and $\Sigma$ is $m\times n$
 
-- $\min(m,n)$ diagonal elements of $\Sigma$ are _singular values_
+- $\min(m,n)$ diagonal elements $\sigma_i of $\Sigma$ are _singular values_
 
 ---
 
@@ -270,7 +270,7 @@ $$
 
 - $U$ defines a basis $\mathbf{u}_i\in \mathbb{C}^m$ $i=1,\ldots m$
 
-- If we act on $\mathbf{v}_i$ with $M$ (to the left) we get $\lambda_i \mathbf{u}_i$
+- If we act on $\mathbf{v}_i$ with $M$ (to the left) we get $\sigma_i \mathbf{u}_i$
 
 ---
 

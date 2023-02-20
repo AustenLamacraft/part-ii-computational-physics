@@ -415,13 +415,13 @@
 <span id="cb1-2"><a href="#cb1-2"></a>A <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a>B <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb1-4"><a href="#cb1-4"></a>np.matmul(A, B), A <span class="op">@</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="133">
-<pre><code>(array([[0.7645529 , 0.86089973, 0.19282863],
-        [1.58670982, 1.82148007, 1.0988854 ],
-        [1.31940987, 1.40988888, 1.02203438]]),
- array([[0.7645529 , 0.86089973, 0.19282863],
-        [1.58670982, 1.82148007, 1.0988854 ],
-        [1.31940987, 1.40988888, 1.02203438]]))</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(array([[0.64405657, 0.71384765, 0.29837612],
+        [1.18686062, 1.33454843, 0.59619047],
+        [1.6478261 , 1.57803648, 0.85193837]]),
+ array([[0.64405657, 0.71384765, 0.29837612],
+        [1.18686062, 1.33454843, 0.59619047],
+        [1.6478261 , 1.57803648, 0.85193837]]))</code></pre>
 </div>
 </div>
 </section>
@@ -446,7 +446,7 @@
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>C <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb5-2"><a href="#cb5-2"></a>D <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb5-3"><a href="#cb5-3"></a>(C <span class="op">@</span> D).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="135">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(4, 3, 3)</code></pre>
 </div>
 </div>
@@ -472,10 +472,10 @@
 \]</span></p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>np.einsum(<span class="st">'ij,jk-&gt;ik'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="136">
-<pre><code>array([[0.7645529 , 0.86089973, 0.19282863],
-       [1.58670982, 1.82148007, 1.0988854 ],
-       [1.31940987, 1.40988888, 1.02203438]])</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>array([[0.64405657, 0.71384765, 0.29837612],
+       [1.18686062, 1.33454843, 0.59619047],
+       [1.6478261 , 1.57803648, 0.85193837]])</code></pre>
 </div>
 </div>
 <p><span class="math display">\[
@@ -483,8 +483,8 @@
 \]</span></p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>np.einsum(<span class="st">'ij,ji-&gt;'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="137">
-<pre><code>3.6080673448392226</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>2.830543378941007</code></pre>
 </div>
 </div>
 </section>
@@ -663,7 +663,7 @@ M = U\Sigma V
 <li><p><span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> unitary; <span class="math inline">\(\Sigma\)</span> diagonal with non-negative real entries</p></li>
 <li><p>SVD <em>completely general</em>: applies to <em>rectangular matrices</em></p></li>
 <li><p>If <span class="math inline">\(M\)</span> is <span class="math inline">\(m\times n\)</span>, <span class="math inline">\(U\)</span> is <span class="math inline">\(m\times m\)</span>, <span class="math inline">\(V\)</span> is <span class="math inline">\(n\times n\)</span>, and <span class="math inline">\(\Sigma\)</span> is <span class="math inline">\(m\times n\)</span></p></li>
-<li><p><span class="math inline">\(\min(m,n)\)</span> diagonal elements of <span class="math inline">\(\Sigma\)</span> are <em>singular values</em></p></li>
+<li><p><span class="math inline">\(\min(m,n)\)</span> diagonal elements $_i of <span class="math inline">\(\Sigma\)</span> are <em>singular values</em></p></li>
 </ul>
 </section>
 <section id="geometrical-interpretation" class="slide level2 center">
@@ -671,7 +671,7 @@ M = U\Sigma V
 <ul>
 <li><p>Columns of <span class="math inline">\(V\)</span> define an orthonormal basis <span class="math inline">\(\mathbf{v}_i\in \mathbb{C}^n\)</span> (<span class="math inline">\(i=1,\ldots n\)</span>)</p></li>
 <li><p><span class="math inline">\(U\)</span> defines a basis <span class="math inline">\(\mathbf{u}_i\in \mathbb{C}^m\)</span> <span class="math inline">\(i=1,\ldots m\)</span></p></li>
-<li><p>If we act on <span class="math inline">\(\mathbf{v}_i\)</span> with <span class="math inline">\(M\)</span> (to the left) we get <span class="math inline">\(\lambda_i \mathbf{u}_i\)</span></p></li>
+<li><p>If we act on <span class="math inline">\(\mathbf{v}_i\)</span> with <span class="math inline">\(M\)</span> (to the left) we get <span class="math inline">\(\sigma_i \mathbf{u}_i\)</span></p></li>
 </ul>
 </section>
 <section class="slide level2 center">
@@ -946,7 +946,7 @@ H\ket{\Psi} = E\ket{\Psi}
 <span id="cb12-44"><a href="#cb12-44"></a><span class="bu">print</span>(<span class="st">'NumSites: </span><span class="sc">%d</span><span class="st">, Time: </span><span class="sc">%1.2f</span><span class="st">, Energy: </span><span class="sc">%e</span><span class="st">, EnErr: </span><span class="sc">%e</span><span class="st">'</span> <span class="op">%</span></span>
 <span id="cb12-45"><a href="#cb12-45"></a>      (Nsites, diag_time, Energy[<span class="dv">0</span>], EnErr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumSites: 18, Time: 3.27, Energy: -2.303508e+01, EnErr: 0.000000e+00</code></pre>
+<pre><code>NumSites: 18, Time: 3.00, Energy: -2.303508e+01, EnErr: 0.000000e+00</code></pre>
 </div>
 </div>
 </section>

@@ -26,7 +26,7 @@ For a guide to the presentation of Python code, see [PEP 8](https://peps.python.
 
 # Submission {#sec-submission}
 
-The submission instructions are the same as for the [exercises](exercises.qmd). Around 17th February you will receive a GitHub Classroom link inviting you accept the project as an assignment. 
+The submission instructions are the same as for the [exercises](exercises.qmd). Around 17th February you will receive a GitHub Classroom link inviting you to accept the project as an assignment. 
 
 # Marking
 

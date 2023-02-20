@@ -184,9 +184,9 @@ $$
 M = U\Sigma V
 $$
 
-where $U$ and $V$ are unitary and $\Sigma$ is diagonal with non-negative real entries. Note that SVD is _completely general_, and applies to _rectangular matrices_ as well as square! If $M$ is $m\times n$, then $U$ is $m\times m$, $V$ is $n\times n$, and $\Sigma$ is $m\times n$. The diagonal elements of $\Sigma$ are called the _singular values_ and they number $\min(m,n)$.
+where $U$ and $V$ are unitary and $\Sigma$ is diagonal with non-negative real entries. Note that SVD is _completely general_, and applies to _rectangular matrices_ as well as square! If $M$ is $m\times n$, then $U$ is $m\times m$, $V$ is $n\times n$, and $\Sigma$ is $m\times n$. The diagonal elements $\sigma_i$ of $\Sigma$ are called the _singular values_ and they number $\min(m,n)$.
 
-One geometrical interpretation of the SVD is as follows. The columns of $V$ define an orthonormal basis $\mathbf{v}_i\in \mathbb{C}^n$ ($i=1,\ldots n$). Likewise $U$ defines a basis $\mathbf{u}_i\in \mathbb{C}^m$ $i=1,\ldots m$. If we act on $\mathbf{v}_i$ with $M$ (to the left) we get $\lambda_i \mathbf{u}_i$. 
+One geometrical interpretation of the SVD is as follows. The columns of $V$ define an orthonormal basis $\mathbf{v}_i\in \mathbb{C}^n$ ($i=1,\ldots n$). Likewise $U$ defines a basis $\mathbf{u}_i\in \mathbb{C}^m$ $i=1,\ldots m$. If we act on $\mathbf{v}_i$ with $M$ (to the left) we get $\sigma_i \mathbf{u}_i$. 
 
 The number of nonzero singular values is called the [rank](https://en.wikipedia.org/wiki/Rank_(linear_algebra)) of the matrix: it is equal to the number of independent rows or columns (the two definitions are equivalent). For a general rectangular matrix the rank is $\min(m,n)$.
 

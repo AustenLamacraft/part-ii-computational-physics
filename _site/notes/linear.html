@@ -368,12 +368,12 @@ div.csl-indent {
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>np.matmul(A, B), A <span class="op">@</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>(array([[0.84516081, 0.89670732, 0.43218596],
-        [0.32224427, 0.19835096, 0.22433793],
-        [0.65834523, 0.65778613, 0.67064311]]),
- array([[0.84516081, 0.89670732, 0.43218596],
-        [0.32224427, 0.19835096, 0.22433793],
-        [0.65834523, 0.65778613, 0.67064311]]))</code></pre>
+<pre><code>(array([[0.54587868, 0.48116503, 0.39026894],
+        [1.014039  , 0.80824406, 0.71267536],
+        [1.06661496, 0.90480776, 0.72501894]]),
+ array([[0.54587868, 0.48116503, 0.39026894],
+        [1.014039  , 0.80824406, 0.71267536],
+        [1.06661496, 0.90480776, 0.72501894]]))</code></pre>
 </div>
 </div>
 <p>You’ll get an error if your matrices don’t match…</p>
@@ -403,9 +403,9 @@ div.csl-indent {
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.einsum(<span class="st">'ij,jk-&gt;ik'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array([[0.84516081, 0.89670732, 0.43218596],
-       [0.32224427, 0.19835096, 0.22433793],
-       [0.65834523, 0.65778613, 0.67064311]])</code></pre>
+<pre><code>array([[0.54587868, 0.48116503, 0.39026894],
+       [1.014039  , 0.80824406, 0.71267536],
+       [1.06661496, 0.90480776, 0.72501894]])</code></pre>
 </div>
 </div>
 <p>If I want to take to multiply and take the trace</p>
@@ -415,7 +415,7 @@ div.csl-indent {
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>np.einsum(<span class="st">'ij,ji-&gt;'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>1.7141548819705075</code></pre>
+<pre><code>2.0791416829902523</code></pre>
 </div>
 </div>
 <p>This is great for people already familiar with the Einstein convention (like you): it’s very explicit.</p>
@@ -516,8 +516,8 @@ http://infolab.stanford.edu/~ullman/mmds/ch5.pdf -->
 <p><span class="math display">\[
 M = U\Sigma V
 \]</span></p>
-<p>where <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> are unitary and <span class="math inline">\(\Sigma\)</span> is diagonal with non-negative real entries. Note that SVD is <em>completely general</em>, and applies to <em>rectangular matrices</em> as well as square! If <span class="math inline">\(M\)</span> is <span class="math inline">\(m\times n\)</span>, then <span class="math inline">\(U\)</span> is <span class="math inline">\(m\times m\)</span>, <span class="math inline">\(V\)</span> is <span class="math inline">\(n\times n\)</span>, and <span class="math inline">\(\Sigma\)</span> is <span class="math inline">\(m\times n\)</span>. The diagonal elements of <span class="math inline">\(\Sigma\)</span> are called the <em>singular values</em> and they number <span class="math inline">\(\min(m,n)\)</span>.</p>
-<p>One geometrical interpretation of the SVD is as follows. The columns of <span class="math inline">\(V\)</span> define an orthonormal basis <span class="math inline">\(\mathbf{v}_i\in \mathbb{C}^n\)</span> (<span class="math inline">\(i=1,\ldots n\)</span>). Likewise <span class="math inline">\(U\)</span> defines a basis <span class="math inline">\(\mathbf{u}_i\in \mathbb{C}^m\)</span> <span class="math inline">\(i=1,\ldots m\)</span>. If we act on <span class="math inline">\(\mathbf{v}_i\)</span> with <span class="math inline">\(M\)</span> (to the left) we get <span class="math inline">\(\lambda_i \mathbf{u}_i\)</span>.</p>
+<p>where <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> are unitary and <span class="math inline">\(\Sigma\)</span> is diagonal with non-negative real entries. Note that SVD is <em>completely general</em>, and applies to <em>rectangular matrices</em> as well as square! If <span class="math inline">\(M\)</span> is <span class="math inline">\(m\times n\)</span>, then <span class="math inline">\(U\)</span> is <span class="math inline">\(m\times m\)</span>, <span class="math inline">\(V\)</span> is <span class="math inline">\(n\times n\)</span>, and <span class="math inline">\(\Sigma\)</span> is <span class="math inline">\(m\times n\)</span>. The diagonal elements <span class="math inline">\(\sigma_i\)</span> of <span class="math inline">\(\Sigma\)</span> are called the <em>singular values</em> and they number <span class="math inline">\(\min(m,n)\)</span>.</p>
+<p>One geometrical interpretation of the SVD is as follows. The columns of <span class="math inline">\(V\)</span> define an orthonormal basis <span class="math inline">\(\mathbf{v}_i\in \mathbb{C}^n\)</span> (<span class="math inline">\(i=1,\ldots n\)</span>). Likewise <span class="math inline">\(U\)</span> defines a basis <span class="math inline">\(\mathbf{u}_i\in \mathbb{C}^m\)</span> <span class="math inline">\(i=1,\ldots m\)</span>. If we act on <span class="math inline">\(\mathbf{v}_i\)</span> with <span class="math inline">\(M\)</span> (to the left) we get <span class="math inline">\(\sigma_i \mathbf{u}_i\)</span>.</p>
 <p>The number of nonzero singular values is called the <a href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">rank</a> of the matrix: it is equal to the number of independent rows or columns (the two definitions are equivalent). For a general rectangular matrix the rank is <span class="math inline">\(\min(m,n)\)</span>.</p>
 <p>Often we want to produce a <a href="https://en.wikipedia.org/wiki/Low-rank_approximation">low rank approximation</a> to a matrix. This requires us to define how well the matrix is approximated by the lower rank matrix <span class="math inline">\(M_r\)</span> of rank <span class="math inline">\(r&lt;\min(m,n)\)</span>. One definition is that the <a href="https://en.wikipedia.org/wiki/Matrix_norm#Frobenius_norm">Frobenius norm</a> of the difference <span class="math inline">\(M-M_r\)</span> should be as small as possible. The Frobenius norm <span class="math inline">\(\|A\|_{\mathrm{F}}\)</span> of a matrix <span class="math inline">\(A\)</span> is</p>
 <p><span class="math display">\[
@@ -672,7 +672,7 @@ H\ket{\Psi} = E\ket{\Psi}
 <span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'NumSites: </span><span class="sc">%d</span><span class="st">, Time: </span><span class="sc">%1.2f</span><span class="st">, Energy: </span><span class="sc">%e</span><span class="st">, EnErr: </span><span class="sc">%e</span><span class="st">'</span> <span class="op">%</span></span>
 <span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>      (Nsites, diag_time, Energy[<span class="dv">0</span>], EnErr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumSites: 18, Time: 3.68, Energy: -2.303508e+01, EnErr: 0.000000e+00</code></pre>
+<pre><code>NumSites: 18, Time: 3.31, Energy: -2.303508e+01, EnErr: 0.000000e+00</code></pre>
 </div>
 </div>
 <p>The two models tested here are in fact the XX and Quantum Ising models — which have a slightly different form — because there is a simple expression for the exact ground state energy.</p>
