@@ -9,7 +9,7 @@ There are __four computing exercises__ to be completed in the last four weeks of
 - Third exercise: Friday 3rd March – Friday 10th March
 - Fourth exercise: Friday 10th March – Friday 17th March (last day of full Lent term)
 
-The deadline for every exercise is __12 noon__ on the final day (i.e. Friday 24th February for the first exercise).
+You will receive a link to the exercise via email on the first day before noon (i.e. Friday 17th February for the first exercise). The deadline for every exercise is __12 noon__ on the final day (i.e. Friday 24th February for the first exercise).
 
 # How to submit
 
@@ -17,7 +17,7 @@ You will be using [GitHub classroom](https://classroom.github.com/) to submit yo
 
 If you've never used GitHub before, you can try out the [starter course](https://classroom.github.com/a/w9VOOLL8). On clicking this link you will be asked to pick your identifier (CRSid) in order to join the classroom. Let me know if your id is missing.
 
-Each week I will email you a link to a new exercise. Once you accept the assignment, GitHub will create a repository called `<exercise-name>-<your-username>` in the `Part-II-Computational-Physics` organization on GitHub. Only you and the course admins (the demonstrators and I) can see this repo.
+Each week I will email you a link to a new exercise. Once you accept the assignment, GitHub will create a repository called `<exercise-name>-<your-username>` in the `Part-II-Computational-Physics` organization on GitHub. Please __change the name of the repo to `<exercise-name>-<CRSid>`__ for ease of marking. Only you and the course admins (the demonstrators and me) can see this repo.
 
 Note that _there is no explicit "submit" button_. You submit your work by making changes to a copy of the repository containing the exercise description. You can make as many changes ("commits") as you like up until the deadline. Note that you can continue to add commits to the repo after the deadline, but only the last commit before the deadline is counted as the submission.
 
