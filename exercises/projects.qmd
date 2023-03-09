@@ -28,6 +28,8 @@ For a guide to the presentation of Python code, see [PEP 8](https://peps.python.
 
 The submission instructions are the same as for the [exercises](exercises.qmd). Around 17th February you will receive a GitHub Classroom link inviting you to accept the project as an assignment. Please __change the name of your repo to `<project-name>-<CRSid>`__ for ease of marking. 
 
+You should take advantage of the fact that you are using GitHub to _regularly commit to your project repository_ and _push the commits to GitHub_. That way there is no danger of you accidentally missing the deadline: your last commit to the repository on GitHub will constitute your submission. 
+
 # Marking
 
 The credit for the project is one unit of further work (like TP1, TP2, E1, E2, etc.). The projects are marked out of ten in the four categories:

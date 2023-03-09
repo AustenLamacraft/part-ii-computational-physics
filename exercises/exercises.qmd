@@ -28,3 +28,15 @@ If you're using VS Code, there is a [GitHub Classroom extension](https://marketp
 # First exercise: PDEs
 
 The first exercise concerns solving a simple PDE using different methods. Your demonstrator for this exercise is Nathan Magnan, a PhD student from DAMTP. 
+
+# Second exercise: exact diagonalization
+
+The second exercise is about using some of the linear algebra techniques from the [linear algebra lecture](../notes/linear.qmd) to study spin chains. Your demonstrator is Jonathan Hallén, a PhD student from TCM. You can read about some of Joanthan's recent research [here](https://www.tcm.phy.cam.ac.uk/highlights/221216EB5_ejn41/).
+
+# Third exercise: Monte Carlo
+
+The third exercise is about Monte Carlo techniques applied to the Ising model. You demonstrator is Danny van der Haven, a PhD student from Materials Science.
+
+# Fourth exercise: automatic differentiation
+
+The fourth exercise is about using automatic differentiation to train a simple neural network. Your demonstrator is Cecilie Glittum, a PhD student from TCM.
