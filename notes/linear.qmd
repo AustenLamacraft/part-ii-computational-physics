@@ -244,7 +244,7 @@ In the previous section we have seen that the state of a quantum system composed
 
 [^3]: I have to point out that the word "rank" is used for two totally different things: the rank of a matrix (discussed in @sec-svd) and the rank of a tensor (number of indices, or length of the `shape` tuple) as used when discussing the shape of NumPy arrays in the [NumPy lecture](numpy.qmd), or when you learnt about tensors (so a matrix has tensor rank 2: perhaps it's easier to stick with "second rank tensor"). To make matters worse, there is something _else_ called tensor rank which generalizes the idea of the matrix rank to tensors. Sorry.
 
-There is a convenient graphical notation for these higher rank tensors, orignally due to [Roger Penrose](https://en.wikipedia.org/wiki/Penrose_graphical_notation). A rank $N$ tensor is represented as blob with $N$ legs:
+There is a convenient graphical notation for these higher rank tensors, orignally due to [Roger Penrose](https://en.wikipedia.org/wiki/Penrose_graphical_notation). A rank $N$ tensor is represented as a blob with $N$ legs:
 
 ![The tensor notation. Source: [Glen Evenbly](https://www.tensors.net/)](../assets/tensor-pics.png)
 

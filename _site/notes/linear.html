@@ -368,12 +368,12 @@ div.csl-indent {
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>np.matmul(A, B), A <span class="op">@</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>(array([[0.54587868, 0.48116503, 0.39026894],
-        [1.014039  , 0.80824406, 0.71267536],
-        [1.06661496, 0.90480776, 0.72501894]]),
- array([[0.54587868, 0.48116503, 0.39026894],
-        [1.014039  , 0.80824406, 0.71267536],
-        [1.06661496, 0.90480776, 0.72501894]]))</code></pre>
+<pre><code>(array([[0.16785844, 0.98629011, 1.35950238],
+        [0.27143219, 1.20583441, 1.66891772],
+        [0.31959616, 1.43656879, 1.96265693]]),
+ array([[0.16785844, 0.98629011, 1.35950238],
+        [0.27143219, 1.20583441, 1.66891772],
+        [0.31959616, 1.43656879, 1.96265693]]))</code></pre>
 </div>
 </div>
 <p>You’ll get an error if your matrices don’t match…</p>
@@ -403,9 +403,9 @@ div.csl-indent {
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.einsum(<span class="st">'ij,jk-&gt;ik'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array([[0.54587868, 0.48116503, 0.39026894],
-       [1.014039  , 0.80824406, 0.71267536],
-       [1.06661496, 0.90480776, 0.72501894]])</code></pre>
+<pre><code>array([[0.16785844, 0.98629011, 1.35950238],
+       [0.27143219, 1.20583441, 1.66891772],
+       [0.31959616, 1.43656879, 1.96265693]])</code></pre>
 </div>
 </div>
 <p>If I want to take to multiply and take the trace</p>
@@ -415,7 +415,7 @@ div.csl-indent {
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>np.einsum(<span class="st">'ij,ji-&gt;'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>2.0791416829902523</code></pre>
+<pre><code>3.336349783424737</code></pre>
 </div>
 </div>
 <p>This is great for people already familiar with the Einstein convention (like you): it’s very explicit.</p>
@@ -556,7 +556,7 @@ M = U\Sigma V
 <section id="sec-many" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Quantum many body physics and tensor methods</h1>
 <p>In the previous section we have seen that the state of a quantum system composed of two subsystems can be represented (<a href="#eq-gen-state">Equation&nbsp;1</a>) as a matrix or second rank tensor <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. This idea generalizes to <span class="math inline">\(N\)</span> subsystems: the wavefunction may be regarded as a tensor of rank <span class="math inline">\(N\)</span>: <span class="math inline">\(\psi_{a_1,\ldots a_N}\)</span>. Each of the indices <span class="math inline">\(a_i\)</span> ranges over the dimension of the Hilbert space of the corresponding subsystem.</p>
-<p>There is a convenient graphical notation for these higher rank tensors, orignally due to <a href="https://en.wikipedia.org/wiki/Penrose_graphical_notation">Roger Penrose</a>. A rank <span class="math inline">\(N\)</span> tensor is represented as blob with <span class="math inline">\(N\)</span> legs:</p>
+<p>There is a convenient graphical notation for these higher rank tensors, orignally due to <a href="https://en.wikipedia.org/wiki/Penrose_graphical_notation">Roger Penrose</a>. A rank <span class="math inline">\(N\)</span> tensor is represented as a blob with <span class="math inline">\(N\)</span> legs:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/tensor-pics.png" class="img-fluid figure-img"></p>
@@ -672,7 +672,7 @@ H\ket{\Psi} = E\ket{\Psi}
 <span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'NumSites: </span><span class="sc">%d</span><span class="st">, Time: </span><span class="sc">%1.2f</span><span class="st">, Energy: </span><span class="sc">%e</span><span class="st">, EnErr: </span><span class="sc">%e</span><span class="st">'</span> <span class="op">%</span></span>
 <span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>      (Nsites, diag_time, Energy[<span class="dv">0</span>], EnErr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumSites: 18, Time: 3.31, Energy: -2.303508e+01, EnErr: 0.000000e+00</code></pre>
+<pre><code>NumSites: 18, Time: 2.95, Energy: -2.303508e+01, EnErr: 0.000000e+00</code></pre>
 </div>
 </div>
 <p>The two models tested here are in fact the XX and Quantum Ising models — which have a slightly different form — because there is a simple expression for the exact ground state energy.</p>

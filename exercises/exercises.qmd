@@ -17,9 +17,9 @@ You will be using [GitHub classroom](https://classroom.github.com/) to submit yo
 
 If you've never used GitHub before, you can try out the [starter course](https://classroom.github.com/a/w9VOOLL8). On clicking this link you will be asked to pick your identifier (CRSid) in order to join the classroom. Let me know if your id is missing.
 
-Each week I will email you a link to a new exercise. Once you accept the assignment, GitHub will create a repository called `<exercise-name>-<your-username>` in the `Part-II-Computational-Physics` organization on GitHub. Please __change the name of the repo to `<exercise-name>-<CRSid>`__ for ease of marking. Only you and the course admins (the demonstrators and me) can see this repo.
+Each week I will email you a link to a new exercise. Once you accept the assignment, GitHub will create a repository called `<exercise-name>-<your-username>` in the `Part-II-Computational-Physics` organization on GitHub. This repository will contain the exercise description. Please __change the name of the repo to `<exercise-name>-<CRSid>`__ for ease of marking. Only you and the course admins (the demonstrators and me) can see this repo.
 
-Note that _there is no explicit "submit" button_. You submit your work by making changes to a copy of the repository containing the exercise description. You can make as many changes ("commits") as you like up until the deadline. Note that you can continue to add commits to the repo after the deadline, but only the last commit before the deadline is counted as the submission.
+Note that _there is no explicit "submit" button_. You submit your work by making changes ("commits") to the repository _on GitHub_ (if you make commits to a copy of the repository on your computer, you must "push" them to GitHub). You can make as many commits as you like up until the deadline. Note that you can continue to add commits to the repo after the deadline, but only the last commit before the deadline is counted as the submission.
 
 Please use the [discussions](https://github.com/orgs/Part-II-Computational-Physics/discussions) section to ask questions to your demonstrators (about the exercises) and me (about everything else). Treat the discussions as if they are a real life examples class where others can learn from your questions and the answers to them.
 
