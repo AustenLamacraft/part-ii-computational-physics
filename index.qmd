@@ -8,7 +8,7 @@ title: Course outline
 Please fill out the [feedback form](https://cambridge.eu.qualtrics.com/jfe/form/SV_9QSb24qEdt29kmq) before 12th March.
 :::
 
-These are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge. 
+These are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge.
 
 # Schedule
 
