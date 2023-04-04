@@ -395,7 +395,7 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="monte-carlo_files/figure-html/cell-2-output-1.png" width="589" height="422"></p>
+<p><img src="monte-carlo_files/figure-html/cell-2-output-1.png" width="597" height="422"></p>
 </div>
 </div>
 <p>For complex multivariate (i.e.&nbsp;high dimensional) distributions there is no general recipe to construct an appropriate <span class="math inline">\(f\)</span>. One very recent application of these ideas is in machine learning models called <a href="https://arxiv.org/abs/1908.09257">normalizing flows</a> that use a mapping <span class="math inline">\(f\)</span> parameterized by a neural network. The workhorse for sampling from complicated distributions is Markov chain Monte Carlo, as we discuss in <a href="#sec-mcmc">Section&nbsp;2.3</a>.</p>
@@ -426,7 +426,7 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, max_samples <span class="op">+</span> <span class="dv">1</span>), np.pi <span class="op">*</span> np.ones(max_samples), linestyle<span class="op">=</span><span class="st">'dashed'</span>)</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="monte-carlo_files/figure-html/cell-3-output-1.png" width="579" height="404"></p>
+<p><img src="monte-carlo_files/figure-html/cell-3-output-1.png" width="571" height="404"></p>
 </div>
 </div>
 <p>In terms of integration, you can think of this as a way to compute the integral of a function which is one inside the unit disc, and zero outside it.</p>
@@ -448,7 +448,7 @@ I(f,D) = \frac{V_D}{N}\sum_{i=1}^N f(\mathbf{x}_i)
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> integrate</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>integrate.quadrature(np.cos, <span class="dv">0</span>, np.pi <span class="op">/</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>(0.9999999999999536, 3.9611425250996035e-11)</code></pre>
 </div>
 </div>

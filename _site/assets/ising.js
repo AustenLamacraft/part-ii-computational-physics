@@ -5,7 +5,7 @@ async function loadSim() {
     // Code has to be loaded into virtual file system
     await pyodide.runPythonAsync(`
     from pyodide.http import pyfetch
-    response = await pyfetch("assets/ising.py")
+    response = await pyfetch("../assets/ising.py")
     with open("ising.py", "wb") as f:
         f.write(await response.bytes())
         `)
