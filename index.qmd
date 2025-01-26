@@ -2,26 +2,28 @@
 title: Course outline 
 ---
 
-::: {.callout-warning}
+<!-- ::: {.callout-warning}
 ## Feedback
 
 Please fill out the [feedback form](https://cambridge.eu.qualtrics.com/jfe/form/SV_9QSb24qEdt29kmq) before 12th March.
-:::
+::: -->
 
-These are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2023 at the University of Cambridge.
+These are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2025 at the University of Cambridge.
 
 # Schedule
 
-The course of eight Lectures will take place at 10.00 on Mondays and Fridays in the Pippard Lecture Theatre. After the lectures there will be [four computing exercises](exercises/exercises.qmd) to be completed in the last four weeks of full Lent term; one per week. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. 
+The course of eight Lectures will take place at 10.00 on Mondays and Wednesdays in the Ray Dolby Auditorium in the Ray Dolby Centre. After the lectures there will be [four computing exercises](exercises/exercises.qmd) to be completed. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. 
 
-The schedule is as follows
+There will be six lectures, followed by a one week break for the first exercise starting Friday 14th February. The schedule is as follows:
 
-- First lecture: Monday 23th January
-- Last lecture: Friday 17th February
-- First exercise: Friday 17th February – Friday 24th February
-- Second exercise: Friday 24th February – Friday 3rd March
-- Third exercise: Friday 3rd March – Friday 10th March
-- Fourth exercise: Friday 10th March – Friday 17th March (last day of full Lent term)
+- First lecture: Monday 27th January
+- Sixth lecture: Wednesday 12th February
+- First exercise: Friday 14th February – Friday 21st February
+- Seventh lecture: Monday 24th February
+- Eighth lecture: Wednesday 26th February
+- Second exercise: Friday 28th February – Friday 7th March
+- Third exercise: Friday 7th March – Friday 14th March
+- Fourth exercise: Friday 14th March – Friday 21st March (last day of full Lent term)
 
 ## Computing Project
 

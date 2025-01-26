@@ -5,7 +5,7 @@ draft: true
 
 The Computational Physics project — if you choose to submit one — is worth one unit of further work, so roughly 10% of your final mark for the year. It involves choosing a problem from the project list in @sec-projects. You will analyse the problem, write and test Python code to investigate it, then write up your work in a report. Like E1 and E2, you can expect it to involve 40 to 50 hours' work. This includes reading and research, coding, experimentation and gathering results, and writing your report.
 
-Students may start their project work once the project list is published by 17th February. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (1st May 2023)__. Submissions made after that time will not be marked [^1]. I suggest you proceed _as if the deadline is 16.00 on Friday 28th April_, and use the final weekend if you really need to.
+Students may start their project work once the project list is published by 17th February. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (5th May 2025)__. Submissions made after that time will not be marked [^1]. I suggest you proceed _as if the deadline is 16.00 on Friday 2nd May_, and use the final weekend if you really need to.
 
 [^1]: See the [NST rules on late submission](https://www.natsci.tripos.cam.ac.uk/exams/late). For the avoidance of doubt, the project is a piece of work for which the submission date is specified in Examination Regulations (Ordinances), and therefore the final paragraph applies.
 

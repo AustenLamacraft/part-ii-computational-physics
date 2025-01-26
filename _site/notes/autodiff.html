@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Part II Computational Physics - Automatic differentiation and neural networks</title>
+<title>Automatic differentiation and neural networks – Part II Computational Physics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,14 +17,16 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -38,8 +40,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -66,7 +67,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -75,12 +82,42 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -88,11 +125,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Automatic differentiation and neural networks</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/autodiff.html">Automatic differentiation and neural networks</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -100,150 +142,168 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Part II Computational Physics</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Notes</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Course outline</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course outline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="../notes/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/getting-going.html" class="sidebar-item-text sidebar-link">Getting going</a>
+  <a href="../notes/getting-going.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting going</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/numpy.html" class="sidebar-item-text sidebar-link">NumPy and friends</a>
+  <a href="../notes/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy and friends</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/numbers.html" class="sidebar-item-text sidebar-link">Floating point and all that</a>
+  <a href="../notes/numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Floating point and all that</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/ode.html" class="sidebar-item-text sidebar-link">Solving differential equations with SciPy</a>
+  <a href="../notes/ode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solving differential equations with SciPy</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/monte-carlo.html" class="sidebar-item-text sidebar-link">Monte Carlo methods</a>
+  <a href="../notes/monte-carlo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Monte Carlo methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
+  <a href="../notes/complexity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algorithms and computational complexity</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/fourier.html" class="sidebar-item-text sidebar-link">Fast Fourier transform</a>
+  <a href="../notes/fourier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fast Fourier transform</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/autodiff.html" class="sidebar-item-text sidebar-link active">Automatic differentiation and neural networks</a>
+  <a href="../notes/autodiff.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Automatic differentiation and neural networks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/linear.html" class="sidebar-item-text sidebar-link">Linear algebra</a>
+  <a href="../notes/linear.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear algebra</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Slides</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Slides</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">Getting going</a>
+  <a href="../slides/getting-going.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting going</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/numpy.html" class="sidebar-item-text sidebar-link">NumPy and friends</a>
+  <a href="../slides/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy and friends</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/numbers-and-odes.html" class="sidebar-item-text sidebar-link">Floating point and ODEs</a>
+  <a href="../slides/numbers-and-odes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Floating point and ODEs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/monte-carlo.html" class="sidebar-item-text sidebar-link">Monte Carlo methods</a>
+  <a href="../slides/monte-carlo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Monte Carlo methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/complexity.html" class="sidebar-item-text sidebar-link">Algorithms and computational complexity</a>
+  <a href="../slides/complexity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algorithms and computational complexity</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/fourier.html" class="sidebar-item-text sidebar-link">Fast Fourier transform</a>
+  <a href="../slides/fourier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fast Fourier transform</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/autodiff.html" class="sidebar-item-text sidebar-link">Autodiff and neural nets</a>
+  <a href="../slides/autodiff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Autodiff and neural nets</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/linear.html" class="sidebar-item-text sidebar-link">Linear algebra</a>
+  <a href="../slides/linear.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear algebra</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Exercises and Projects</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Exercises and Projects</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/exercises.html" class="sidebar-item-text sidebar-link">Exercises</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../exercises/projects.html" class="sidebar-item-text sidebar-link">Projects</a>
+  <a href="../exercises/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
@@ -251,38 +311,39 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="toc-section-number">1</span>  Background</a>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">1</span> Background</a>
   <ul class="collapse">
-  <li><a href="#sec-cost" id="toc-sec-cost" class="nav-link" data-scroll-target="#sec-cost"><span class="toc-section-number">1.1</span>  The cost function</a></li>
-  <li><a href="#sec-grad" id="toc-sec-grad" class="nav-link" data-scroll-target="#sec-grad"><span class="toc-section-number">1.2</span>  Gradient descent</a></li>
-  <li><a href="#sec-nn" id="toc-sec-nn" class="nav-link" data-scroll-target="#sec-nn"><span class="toc-section-number">1.3</span>  The network</a>
+  <li><a href="#sec-cost" id="toc-sec-cost" class="nav-link" data-scroll-target="#sec-cost"><span class="header-section-number">1.1</span> The cost function</a></li>
+  <li><a href="#sec-grad" id="toc-sec-grad" class="nav-link" data-scroll-target="#sec-grad"><span class="header-section-number">1.2</span> Gradient descent</a></li>
+  <li><a href="#sec-nn" id="toc-sec-nn" class="nav-link" data-scroll-target="#sec-nn"><span class="header-section-number">1.3</span> The network</a>
   <ul class="collapse">
-  <li><a href="#why-neural" id="toc-why-neural" class="nav-link" data-scroll-target="#why-neural"><span class="toc-section-number">1.3.1</span>  Why neural?</a></li>
+  <li><a href="#why-neural" id="toc-why-neural" class="nav-link" data-scroll-target="#why-neural"><span class="header-section-number">1.3.1</span> Why neural?</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#sec-backprop" id="toc-sec-backprop" class="nav-link" data-scroll-target="#sec-backprop"><span class="toc-section-number">2</span>  Automatic differentiation and backpropagation</a>
+  <li><a href="#sec-backprop" id="toc-sec-backprop" class="nav-link" data-scroll-target="#sec-backprop"><span class="header-section-number">2</span> Automatic differentiation and backpropagation</a>
   <ul class="collapse">
-  <li><a href="#evaluating-the-derivatives" id="toc-evaluating-the-derivatives" class="nav-link" data-scroll-target="#evaluating-the-derivatives"><span class="toc-section-number">2.1</span>  Evaluating the derivatives</a></li>
-  <li><a href="#forward-accumulation" id="toc-forward-accumulation" class="nav-link" data-scroll-target="#forward-accumulation"><span class="toc-section-number">2.2</span>  Forward accumulation</a></li>
-  <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation"><span class="toc-section-number">2.3</span>  Backpropagation</a></li>
+  <li><a href="#evaluating-the-derivatives" id="toc-evaluating-the-derivatives" class="nav-link" data-scroll-target="#evaluating-the-derivatives"><span class="header-section-number">2.1</span> Evaluating the derivatives</a></li>
+  <li><a href="#forward-accumulation" id="toc-forward-accumulation" class="nav-link" data-scroll-target="#forward-accumulation"><span class="header-section-number">2.2</span> Forward accumulation</a></li>
+  <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation"><span class="header-section-number">2.3</span> Backpropagation</a></li>
   </ul></li>
-  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="toc-section-number">3</span>  Implementation</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="toc-section-number">4</span>  Further reading</a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">3</span> Implementation</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">4</span> Further reading</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/autodiff.html">Automatic differentiation and neural networks</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Automatic differentiation and neural networks</h1>
+<h1 class="title">Automatic differentiation and neural networks</h1>
 </div>
 
 
@@ -295,7 +356,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <p>In this lecture we are going to look at the algorithms that underlie the training of <a href="https://en.wikipedia.org/wiki/Neural_network">neural networks</a>, which are the dominant model in the field of machine learning.</p>
 <section id="background" class="level1" data-number="1">
@@ -322,7 +385,7 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/dog-or-food.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<p></p><figcaption class="figure-caption">Muffin or chihuahua?</figcaption><p></p>
+<figcaption>Muffin or chihuahua?</figcaption>
 </figure>
 </div>
 <p>The idea is now to minimize <span class="math inline">\(\mathcal{C}(\theta)\)</span> over the parameters of the network. The rest of this lecture concerns the practicalities of how this is done. When it comes to <em>using</em> the model for identifying previously unseen data, we need a procedure for turning the output <span class="math inline">\(\mathsf{NN}_\theta(\mathbf{x})\)</span> — an <span class="math inline">\(N_L\)</span> dimensional vector — into a discrete label. If the network has been defined so that the components of the output are non-negative, and recalling that the labels were encoded as one hot vectors, the simplest way to do this is to find the maximum component and make the prediction that the corresponding label is the correct one. This is written as</p>
@@ -334,20 +397,20 @@ l_* = \underset{l}{\operatorname{argmax}} \left[\mathsf{NN}_\theta(\mathbf{x})\r
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/overfitting.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<p></p><figcaption class="figure-caption">Simple illustration of overfitting, from <a href="https://en.wikipedia.org/wiki/Overfitting">Wikipeda</a>. The black line represents a “reasonable” model that does a decent job of distinguishing between the two labels in the data (red and blue), while the green line represents an “unreasonable” model that does a better job.</figcaption><p></p>
+<figcaption>Simple illustration of overfitting, from <a href="https://en.wikipedia.org/wiki/Overfitting">Wikipeda</a>. The black line represents a “reasonable” model that does a decent job of distinguishing between the two labels in the data (red and blue), while the green line represents an “unreasonable” model that does a better job.</figcaption>
 </figure>
 </div>
 <p>A particularly vivid example appears in <span class="citation" data-cites="zhang2021understanding">Zhang et al. (<a href="#ref-zhang2021understanding" role="doc-biblioref">2021</a>)</span>. They showed that popular computer vision models can be trained on <em>randomly</em> labelled data (where the labels have no connection to the image) to achieve perfect accuracy on the training set. Of course, the resulting performance on the test set was no better than random guessing. This is a natural consequence of <em>overparameterization</em> — having more parameters than data points in your training data — and shows that much of the success in training models with good generalization is down to the details of how the training is done (for example, by stopping before the training error gets too low).</p>
 </section>
 <section id="sec-grad" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="sec-grad"><span class="header-section-number">1.2</span> Gradient descent</h2>
-<p>Leaving these questions aside, the basic idea underlying training is an extremely simple algorithm called <a href="https://en.wikipedia.org/wiki/Gradient_descent">gradient descent</a>. If our network <span class="math inline">\(\mathsf{NN}_\theta\)</span> is designed appropriately, our cost function <a href="#eq-cost">Equation&nbsp;1</a> is a differentiable function of the parameters <span class="math inline">\(\theta\)</span>. The minimum cost that we seek therefore corresponds to a stationary point where <span class="math inline">\(\nabla_\theta \mathcal{C}(\theta)|_{\theta_*}=0\)</span>. The idea of gradient descent is to take steps “downhill” i.e.&nbsp;in the direction <span class="math inline">\(-\mathcal{C}(\theta)\)</span> in the high dimensional space of all the parameters, where each step corresponds to an update of the parameters according to</p>
+<p>Leaving these questions aside, the basic idea underlying training is an extremely simple algorithm called <a href="https://en.wikipedia.org/wiki/Gradient_descent">gradient descent</a>. If our network <span class="math inline">\(\mathsf{NN}_\theta\)</span> is designed appropriately, our cost function <a href="#eq-cost" class="quarto-xref">Equation&nbsp;1</a> is a differentiable function of the parameters <span class="math inline">\(\theta\)</span>. The minimum cost that we seek therefore corresponds to a stationary point where <span class="math inline">\(\nabla_\theta \mathcal{C}(\theta)|_{\theta_*}=0\)</span>. The idea of gradient descent is to take steps “downhill” i.e.&nbsp;in the direction <span class="math inline">\(-\mathcal{C}(\theta)\)</span> in the high dimensional space of all the parameters, where each step corresponds to an update of the parameters according to</p>
 <p><span id="eq-grad-descent"><span class="math display">\[
 \theta_i\longrightarrow \theta'_i = \theta_i - \eta \frac{\partial\mathcal{C}}{\partial \theta_i}
 \tag{2}\]</span></span></p>
-<p>where <span class="math inline">\(\eta\)</span> is a hyperparameter<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> called the <em>learning rate</em>. Choosing the learning rate is an important part of the craft of training models: too large and the first order approximation underlying <a href="#eq-grad-descent">Equation&nbsp;2</a> breaks down and the cost may end up increasing; too small and the network will take too long to train. Often a <em>learning rate schedule</em> is used where the rate is adjusted during training to optimize convergence. You might guess that starting off with a large learning rate and then reducing it is the right way to go, and this is correct, but people do all sort of exotic things.</p>
-<p>You might find it surprising that such a simple approach plays such an important role in machine learning. All of the sophistication lies in how the model is defined (<a href="#sec-nn">Section&nbsp;1.3</a>) and how the gradients are calculated (<a href="#sec-backprop">Section&nbsp;2</a>): for a complicated function with many parameters <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> this is a highly nontrivial task. While there are plenty of more sophisticated optimization methods they often involve more information about the model’s dependence on its parameters, and this is more costly to evaluate. For example <a href="https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization">Newton’s method</a> — which you may have encountered before — requires knowledge of first <em>and second</em> derivatives at each step, and this is normally less practical.</p>
-<p>Another issue that relates to scale concerns the definition of our cost function <a href="#eq-cost">Equation&nbsp;1</a> as an average over the dataset. For large datasets consisting of high dimensional data (e.g.&nbsp;images) it is usually not practical to calculate the gradient of the cost using the entire dataset. The usual procedure is then to split the data up into batches (usually called <em>minibatches</em>, confusingly), and perform each step of gradient descent by evaluating the gradient only on the batch, moving on to a new batch at the next step. Eventually this will lead to all the data in the dataset being used, which is usually known as one <em>epoch</em> of training. Training a model can involve many epochs (passes through the dataset).</p>
+<p>where <span class="math inline">\(\eta\)</span> is a hyperparameter<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> called the <em>learning rate</em>. Choosing the learning rate is an important part of the craft of training models: too large and the first order approximation underlying <a href="#eq-grad-descent" class="quarto-xref">Equation&nbsp;2</a> breaks down and the cost may end up increasing; too small and the network will take too long to train. Often a <em>learning rate schedule</em> is used where the rate is adjusted during training to optimize convergence. You might guess that starting off with a large learning rate and then reducing it is the right way to go, and this is correct, but people do all sort of exotic things.</p>
+<p>You might find it surprising that such a simple approach plays such an important role in machine learning. All of the sophistication lies in how the model is defined (<a href="#sec-nn" class="quarto-xref">Section&nbsp;1.3</a>) and how the gradients are calculated (<a href="#sec-backprop" class="quarto-xref">Section&nbsp;2</a>): for a complicated function with many parameters <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> this is a highly nontrivial task. While there are plenty of more sophisticated optimization methods they often involve more information about the model’s dependence on its parameters, and this is more costly to evaluate. For example <a href="https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization">Newton’s method</a> — which you may have encountered before — requires knowledge of first <em>and second</em> derivatives at each step, and this is normally less practical.</p>
+<p>Another issue that relates to scale concerns the definition of our cost function <a href="#eq-cost" class="quarto-xref">Equation&nbsp;1</a> as an average over the dataset. For large datasets consisting of high dimensional data (e.g.&nbsp;images) it is usually not practical to calculate the gradient of the cost using the entire dataset. The usual procedure is then to split the data up into batches (usually called <em>minibatches</em>, confusingly), and perform each step of gradient descent by evaluating the gradient only on the batch, moving on to a new batch at the next step. Eventually this will lead to all the data in the dataset being used, which is usually known as one <em>epoch</em> of training. Training a model can involve many epochs (passes through the dataset).</p>
 <p>Because each step only uses part of the data, the gradients calculated are going to be more “noisy” than the “true” gradients involving the whole dataset. Because of this, training by gradient descent with minibatches is known as <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">stochastic gradient descent</a>. It is generally thought that the noise introduced by minibatching plays a role in improving the generalization performance of neural networks.</p>
 </section>
 <section id="sec-nn" class="level2" data-number="1.3">
@@ -368,38 +431,42 @@ l_* = \underset{l}{\operatorname{argmax}} \left[\mathsf{NN}_\theta(\mathbf{x})\r
 \sigma(x) = \frac{1}{1+e^{-x}},
 \]</span></p>
 <p>probably more familiar to you as the Fermi-Dirac distribution, and the <a href="https://en.wikipedia.org/wiki/Rectifier_(neural_networks)">ReLU</a> function <span class="math inline">\(\max(0,x)\)</span> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
-<p><a href="#eq-fdef">Equation&nbsp;4</a> is sometimes written more compactly as</p>
+<p><a href="#eq-fdef" class="quarto-xref">Equation&nbsp;4</a> is sometimes written more compactly as</p>
 <p><span class="math display">\[
 f(\mathbf{x}) = \phi(w\cdot\mathbf{x} + \mathbf{b}).
 \]</span></p>
 <p>You should understand this expression in the sense of vectorized functions (like NumPy’s ufuncs): <span class="math inline">\(\phi()\)</span> is applied to each element of <span class="math inline">\(w\cdot\mathbf{x} + \mathbf{b}\)</span>.</p>
-<p>Activation functions should be differentiable but <em>nonlinear</em>. A linear function would mean that the function compositions in <a href="#eq-composed">Equation&nbsp;3</a> collapse into matrix multiplications, producing a single overall weight matrix and bias vector. There wouldn’t be any point having separate functions: one would do the same job.</p>
+<p>Activation functions should be differentiable but <em>nonlinear</em>. A linear function would mean that the function compositions in <a href="#eq-composed" class="quarto-xref">Equation&nbsp;3</a> collapse into matrix multiplications, producing a single overall weight matrix and bias vector. There wouldn’t be any point having separate functions: one would do the same job.</p>
 <p>The result of composing functions like this many times, each with their own set of weights and biases, is a highly complex function. The term <em>deep learning</em>, which you will often here these days in the context of neural networks, refers to models with many function applications, or <em>layers</em>, which is the source of the networks’ expressiveness.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/loss-landscape.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<p></p><figcaption class="figure-caption">A two dimensional section through the cost function (“loss landscape”) of a neural network from <span class="citation" data-cites="li2018visualizing">Li et al. (<a href="#ref-li2018visualizing" role="doc-biblioref">2018</a>)</span>.</figcaption><p></p>
+<figcaption>A two dimensional section through the cost function (“loss landscape”) of a neural network from <span class="citation" data-cites="li2018visualizing">Li et al. (<a href="#ref-li2018visualizing" role="doc-biblioref">2018</a>)</span>.</figcaption>
 </figure>
 </div>
-<p>The network that we have described so far is called <em>fully connected</em>, because in <a href="#eq-fdef">Equation&nbsp;4</a> the matrix of weights means that every input dimension is coupled to every output dimension. Most of the innovation in neural networks over the past decade has been in creating and refining architectures that exploit the structure of the data in some way. For example, in a network to be used for computer vision (image recognition), it makes sense that the model “knows” that two input pixels are near or far from each other. This means that the input dimensions corresponding to two nearby pixels should be treated differently at the outset (i.e.&nbsp;before training) than two separated pixels. Also, the way the network responds to an image should not be strongly dependent on translations of that image. This implies that the weight matrices <span class="math inline">\(w\)</span> should have some structure to them. In the case of vision this lead to the <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">convolutional neural network</a>, where the <span class="math inline">\(w\)</span>’s act like convolutions, exploiting translational invariance but still retaining many parameters. We won’t go any further into these different architectures in this lecture.</p>
+<p>The network that we have described so far is called <em>fully connected</em>, because in <a href="#eq-fdef" class="quarto-xref">Equation&nbsp;4</a> the matrix of weights means that every input dimension is coupled to every output dimension. Most of the innovation in neural networks over the past decade has been in creating and refining architectures that exploit the structure of the data in some way. For example, in a network to be used for computer vision (image recognition), it makes sense that the model “knows” that two input pixels are near or far from each other. This means that the input dimensions corresponding to two nearby pixels should be treated differently at the outset (i.e.&nbsp;before training) than two separated pixels. Also, the way the network responds to an image should not be strongly dependent on translations of that image. This implies that the weight matrices <span class="math inline">\(w\)</span> should have some structure to them. In the case of vision this lead to the <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">convolutional neural network</a>, where the <span class="math inline">\(w\)</span>’s act like convolutions, exploiting translational invariance but still retaining many parameters. We won’t go any further into these different architectures in this lecture.</p>
 <section id="why-neural" class="level3" data-number="1.3.1">
 <h3 data-number="1.3.1" class="anchored" data-anchor-id="why-neural"><span class="header-section-number">1.3.1</span> Why neural?</h3>
-<p>You may still be wondering where the network is, let alone the neurons. I’ve decide to present the neural network model in an ahistorical way, but if you look at other presentations you will tend to see the function <a href="#eq-fdef">Equation&nbsp;4</a> represented graphically as</p>
-<div id="fig-neuron" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="../assets/nielsen-single-neuron.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: A single artifical neuron. From <span class="citation" data-cites="nielsen2015neural">Nielsen (<a href="#ref-nielsen2015neural" role="doc-biblioref">2015</a>)</span>.</figcaption><p></p>
+<p>You may still be wondering where the network is, let alone the neurons. I’ve decide to present the neural network model in an ahistorical way, but if you look at other presentations you will tend to see the function <a href="#eq-fdef" class="quarto-xref">Equation&nbsp;4</a> represented graphically as</p>
+<div id="fig-neuron" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-neuron-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/nielsen-single-neuron.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-neuron-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A single artifical neuron. From <span class="citation" data-cites="nielsen2015neural">Nielsen (<a href="#ref-nielsen2015neural" role="doc-biblioref">2015</a>)</span>.
+</figcaption>
 </figure>
 </div>
 <p>which reflects the dependence of the output on the inputs (and not much else). The result of composing several such functions then looks like this:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/nielsen-nn.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">An artifical neural network. From <span class="citation" data-cites="nielsen2015neural">Nielsen (<a href="#ref-nielsen2015neural" role="doc-biblioref">2015</a>)</span>.</figcaption><p></p>
+<figcaption>An artifical neural network. From <span class="citation" data-cites="nielsen2015neural">Nielsen (<a href="#ref-nielsen2015neural" role="doc-biblioref">2015</a>)</span>.</figcaption>
 </figure>
 </div>
 <p><em>This</em> is the network we have been talking about all along! Specifically, it is a network called a <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">directed acylic graph</a> (DAG), meaning that the connections have a direction to them (input to output) and there are no loops.</p>
-<p>Neural networks have long been used as a model for what goes on in the brain, with <a href="#fig-neuron">Figure&nbsp;1</a> playing the role of the neuron. There are many differences, however, including the absence of any particular role for time<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, and the fact that (real) neural networks are not DAGs! This latter property plays a decisive role in the training of artificial neural networks, as we’ll see in the next section. In general, I feel that neural networks have outgrown their biological inspiration, which is the reason I’ve downplayed it here.</p>
+<p>Neural networks have long been used as a model for what goes on in the brain, with <a href="#fig-neuron" class="quarto-xref">Figure&nbsp;1</a> playing the role of the neuron. There are many differences, however, including the absence of any particular role for time<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, and the fact that (real) neural networks are not DAGs! This latter property plays a decisive role in the training of artificial neural networks, as we’ll see in the next section. In general, I feel that neural networks have outgrown their biological inspiration, which is the reason I’ve downplayed it here.</p>
 </section>
 </section>
 </section>
@@ -417,13 +484,13 @@ f(\mathbf{x}) = \phi(w\cdot\mathbf{x} + \mathbf{b}).
 \mathsf{NN}_\theta = f_\theta^{(L)} \circ f_\theta^{(L-1)} \cdots \circ f_\theta^{(2)} \circ f_\theta^{(1)}
 \tag{5}\]</span></span></li>
 </ol>
-<p>In order to perform a gradient step in training a neural network we have to calculate the gradients <span class="math inline">\(\partial\mathcal{C}/\partial \theta_i\)</span>. In this section we are going to see how the structure in <a href="#eq-composed2">Equation&nbsp;5</a> allows these gradients to be calculated efficiently, using an algorithm called <a href="https://en.wikipedia.org/wiki/Backpropagation">backpropagation</a>.</p>
+<p>In order to perform a gradient step in training a neural network we have to calculate the gradients <span class="math inline">\(\partial\mathcal{C}/\partial \theta_i\)</span>. In this section we are going to see how the structure in <a href="#eq-composed2" class="quarto-xref">Equation&nbsp;5</a> allows these gradients to be calculated efficiently, using an algorithm called <a href="https://en.wikipedia.org/wiki/Backpropagation">backpropagation</a>.</p>
 <p>Backpropagation is an example of <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">automatic differentiation</a> (AD): the algorithmic evaluation of derivatives of a function. When people first hear about AD they sometimes guess that it must be something like this</p>
 <p><span id="eq-nd"><span class="math display">\[
 \frac{\partial\mathcal{C}}{\partial \theta_i} \approx \frac{\mathcal{C}(\theta_i+\Delta\theta_i)- \mathcal{C}(\theta_i)}{\Delta \theta_i}
 \tag{6}\]</span></span></p>
 <p>i.e.&nbsp;the numerical evaluation of a derivative. This is called <a href="https://en.wikipedia.org/wiki/Numerical_differentiation">numerical differentiation</a> and it’s what you would be forced to do if you only had access to <span class="math inline">\(\mathcal{C}(\theta)\)</span> as a <a href="https://en.wikipedia.org/wiki/Black_box">black box</a> function: one you can evaluate but otherwise have no knowledge of. AD is a different beast altogether: it uses knowledge about how the function <span class="math inline">\(\mathcal{C}\)</span> is formed by composing many simpler functions, together with the (analytic) derivatives of those functions, to find the overall gradient.</p>
-<p>As well as being a bit more elegant than the brute force approach, there is another reason why AD is preferred over the (conceptually simpler) approach <a href="#eq-nd">Equation&nbsp;6</a>. That approach would require us to vary each of the parameters in the network separately: think of those 175 billion parameters of ChatGPT! AD uses the network structure to simplify things drastically, as we’ll now see.</p>
+<p>As well as being a bit more elegant than the brute force approach, there is another reason why AD is preferred over the (conceptually simpler) approach <a href="#eq-nd" class="quarto-xref">Equation&nbsp;6</a>. That approach would require us to vary each of the parameters in the network separately: think of those 175 billion parameters of ChatGPT! AD uses the network structure to simplify things drastically, as we’ll now see.</p>
 <section id="evaluating-the-derivatives" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="evaluating-the-derivatives"><span class="header-section-number">2.1</span> Evaluating the derivatives</h2>
 <p>Let’s just plow on and evaluate <span class="math inline">\(\partial\mathcal{C}/\partial \theta_i\)</span>. Remember that the parameters are the set of weights and biases in each layer:</p>
@@ -434,7 +501,7 @@ f(\mathbf{x}) = \phi(w\cdot\mathbf{x} + \mathbf{b}).
 <p><span id="eq-composed3"><span class="math display">\[
 \mathsf{NN}_\theta = f_{w^{(L)}, \mathbf{b}^{(L)}}^{(L)} \circ f_{w^{(L-1)}, \mathbf{b}^{(L-1)}}^{(L-1)} \cdots \circ f_{w^{(2)}, \mathbf{b}^{(2)}}^{(2)} \circ f_{w^{(1)}, \mathbf{b}^{(1)}}^{(1)}.
 \tag{7}\]</span></span></p>
-<p>Evaluating the derivative with respect to weights and biases in layer <span class="math inline">\(l\)</span> is therefore going to involve applying the chain rule to <a href="#eq-composed3">Equation&nbsp;7</a>. In the following we’re going to denote the input to the <span class="math inline">\(l\)</span>th layer as</p>
+<p>Evaluating the derivative with respect to weights and biases in layer <span class="math inline">\(l\)</span> is therefore going to involve applying the chain rule to <a href="#eq-composed3" class="quarto-xref">Equation&nbsp;7</a>. In the following we’re going to denote the input to the <span class="math inline">\(l\)</span>th layer as</p>
 <p><span class="math display">\[
 \mathbf{z}^{(l)} \equiv w^{(l)} \cdot \mathbf{x}^{(l)} + \mathbf{b}^{(l)}
 \]</span></p>
@@ -456,11 +523,11 @@ f(\mathbf{x}) = \phi(w\cdot\mathbf{x} + \mathbf{b}).
 \frac{\partial f_j^{(l)}}{\partial z_k^{(l)}} =  \phi'(z^{(l)}_j)\delta_{jk}.
 \]</span></p>
 <p>We find a similar expression for the derivative with respect to the weights in the <span class="math inline">\(l\)</span>th layer. These expressions all involve the deriviative of the activation function. When AD is implemented in code, the definition of any function is always supplemented with the derivative of that function.</p>
-<p>In <a href="#eq-bias-chain">Equation&nbsp;8</a> the matrices are composed by matrix multiplication. How should they be evaluated? There are two possibilities:</p>
+<p>In <a href="#eq-bias-chain" class="quarto-xref">Equation&nbsp;8</a> the matrices are composed by matrix multiplication. How should they be evaluated? There are two possibilities:</p>
 </section>
 <section id="forward-accumulation" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="forward-accumulation"><span class="header-section-number">2.2</span> Forward accumulation</h2>
-<p>We go from right to left. Starting from the input <span class="math inline">\(\mathbf{x}\)</span>, we evaluate <span class="math inline">\(\mathbf{z}^{(l)}\)</span> by evaluating the first <span class="math inline">\(l-1\)</span> functions, passing the output from each to the input of the next. Once we reach <span class="math inline">\(f^{(l)}\)</span>, we have to start keeping track of a matrix as well as the values <span class="math inline">\(\mathbf{z}^{(l')}\)</span>. This matrix is initialized with components <span class="math inline">\(\phi'(\mathbf{z}^{(l)})\delta_{jk}\)</span>. It is then acted on by each of the Jacobians in <a href="#eq-jac">Equation&nbsp;9</a> until we get to the final layer. This procedure is called <em>forward accumulation</em>.</p>
+<p>We go from right to left. Starting from the input <span class="math inline">\(\mathbf{x}\)</span>, we evaluate <span class="math inline">\(\mathbf{z}^{(l)}\)</span> by evaluating the first <span class="math inline">\(l-1\)</span> functions, passing the output from each to the input of the next. Once we reach <span class="math inline">\(f^{(l)}\)</span>, we have to start keeping track of a matrix as well as the values <span class="math inline">\(\mathbf{z}^{(l')}\)</span>. This matrix is initialized with components <span class="math inline">\(\phi'(\mathbf{z}^{(l)})\delta_{jk}\)</span>. It is then acted on by each of the Jacobians in <a href="#eq-jac" class="quarto-xref">Equation&nbsp;9</a> until we get to the final layer. This procedure is called <em>forward accumulation</em>.</p>
 <p>The advantage of forward accumulation is that during evaluation we only have to store the current <span class="math inline">\(\mathbf{z}^{(l')}\)</span> and the corresponding matrix. The disadvantage is that we are dealing with <em>matrix multiplication</em>. For matrices <span class="math inline">\(M_1\in \mathbb{R}^{N_1\times N_2}\)</span> and <span class="math inline">\(M_2\in \mathbb{R}^{N_2\times N_3}\)</span> matrix multiplication <span class="math inline">\(M_1\cdot M_2\)</span> is <span class="math inline">\(O(N_1 N_2 N_3)\)</span>. Since we are interested in models with large numbers of parameters in each layer, this is a problem.</p>
 </section>
 <section id="backpropagation" class="level2" data-number="2.3">
@@ -492,17 +559,17 @@ C_i(\theta) \equiv \frac{1}{2}\lVert\mathbf{y}_i-\mathsf{NN}_\theta(\mathbf{x}_i
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-goodfellow2016deep" class="csl-entry" role="doc-biblioentry">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-goodfellow2016deep" class="csl-entry" role="listitem">
 Goodfellow, Ian, Yoshua Bengio, and Aaron Courville. 2016. <em>Deep Learning</em>. MIT press.
 </div>
-<div id="ref-li2018visualizing" class="csl-entry" role="doc-biblioentry">
+<div id="ref-li2018visualizing" class="csl-entry" role="listitem">
 Li, Hao, Zheng Xu, Gavin Taylor, Christoph Studer, and Tom Goldstein. 2018. <span>“Visualizing the Loss Landscape of Neural Nets.”</span> <em>Advances in Neural Information Processing Systems</em> 31.
 </div>
-<div id="ref-nielsen2015neural" class="csl-entry" role="doc-biblioentry">
+<div id="ref-nielsen2015neural" class="csl-entry" role="listitem">
 Nielsen, Michael A. 2015. <em>Neural Networks and Deep Learning</em>. Vol. 25. Determination press San Francisco, CA, USA. <a href="http://neuralnetworksanddeeplearning.com">http://neuralnetworksanddeeplearning.com</a>.
 </div>
-<div id="ref-zhang2021understanding" class="csl-entry" role="doc-biblioentry">
+<div id="ref-zhang2021understanding" class="csl-entry" role="listitem">
 Zhang, Chiyuan, Samy Bengio, Moritz Hardt, Benjamin Recht, and Oriol Vinyals. 2021. <span>“Understanding Deep Learning (Still) Requires Rethinking Generalization.”</span> <em>Communications of the ACM</em> 64 (3): 107–15.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
@@ -542,12 +609,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -579,11 +649,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -593,8 +702,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -606,9 +724,245 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -650,17 +1004,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../notes/fourier.html" class="pagination-link">
+      <a href="../notes/fourier.html" class="pagination-link" aria-label="Fast Fourier transform">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Fast Fourier transform</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notes/linear.html" class="pagination-link">
+      <a href="../notes/linear.html" class="pagination-link" aria-label="Linear algebra">
         <span class="nav-page-text">Linear algebra</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
