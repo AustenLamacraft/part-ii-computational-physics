@@ -1,4 +1,4 @@
 - source: project
   netlify:
     - id: 427db742-cd3c-4bda-a1ea-219d57ce6d40
-      url: 'https://computational-physics.tripos.org'
+      url: https://computational-physics.tripos.org

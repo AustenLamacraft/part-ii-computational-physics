@@ -9,7 +9,9 @@ Students may start their project work once the project list is published by 17th
 
 [^1]: See the [NST rules on late submission](https://www.natsci.tripos.cam.ac.uk/exams/late). For the avoidance of doubt, the project is a piece of work for which the submission date is specified in Examination Regulations (Ordinances), and therefore the final paragraph applies.
 
-Bear in mind that __everything in your report should be your own work__, and your submission will be treated as a declaration of this fact. The rules regarding cheating and plagiarism in the [Physics course handbook](https://www.phy.cam.ac.uk/files/physics_course_handbook_2022_2023_0.pdf) (Page 34) apply here. It is OK for you to use code that others — that's what a library is, after all — but in all cases the attribution should be clear.
+https://forms.office.com/pages/responsepage.aspx?id=RQSlSfq9eUut41R7TzmG6Y64hS-YY0NHhP2hmw9lbpdUNFdLU01PRTFXVURORUhBVllUS0QwSkxBRS4u&route=shorturl
+
+Bear in mind that __everything in your report should be your own work__, and your submission will be treated as a declaration of this fact. The rules regarding cheating and plagiarism in the [Physics course handbook](https://www.phy.cam.ac.uk/files/physics_course_handbook_2024_2025_v3.pdf) (Page 33) apply here. It is OK for you to use code that others — that's what a library is, after all — but in all cases the attribution should be clear.
 
 Notwithstanding the above, please also use the [discussions](https://github.com/orgs/Part-II-Computational-Physics/discussions) to ask each other questions and share knowledge. 
 

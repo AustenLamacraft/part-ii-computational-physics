@@ -2,6 +2,7 @@
 number-sections: false
 format:
   revealjs: 
+    theme: [default, reveal_custom.scss]
     slide-number: true
     hash: true
     center: true
@@ -52,7 +53,7 @@ my_list
 
 - In IPython you can see all the available methods by hitting tab:
 
-![](../assets/tab-complete.gif)
+![](../assets/tab-complete-slow.gif)
 
 ---
 
@@ -169,7 +170,7 @@ my_array[3,1]
 my_array
 ```
 
-- Also have a generalization of the _slice syntax 
+- Also have a generalization of the _slice_ syntax 
 
 ```{python}
 #| echo: true
@@ -228,9 +229,7 @@ my_array[1:, 1].shape
 
 - __Note:__ `(3,)` is _tuple_ giving the shape while `(3)` is just the number 3 in brackets
 
-## Other ways to make arrays
-
-- NumPy has lots of methods to create arrays
+## Lots of methods to create arrays
 
 ```{python}
 #| echo: true
@@ -676,6 +675,8 @@ random_matrix_2 = np.random.rand(4, 4)
 np.savez("../assets/my-matrices", first_matrix=random_matrix_1, second_matrix=random_matrix_2)
 %ls ../assets
 ```
+
+---
 
 ```{python}
 #| echo: true

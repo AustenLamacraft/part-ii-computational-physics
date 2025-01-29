@@ -13,8 +13,7 @@ To run Python code on your computer you will need to have installed the Python l
 Try running `python` at the command line. You should get something like
 
 ```
-Python 3.9.12 (main, Apr  5 2022, 01:53:17) 
-[Clang 12.0.0 ] :: Anaconda, Inc. on darwin
+Python 3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 08:28:27) [Clang 14.0.6 ] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 >>> 
 ```
@@ -37,7 +36,7 @@ If you ran the above command from within `python` you may have noticed that the 
 Among the most helpful features of IPython are: 
 
 1. Tab completion: hit `tab` to autocomplete. This is particularly useful for viewing all properties or methods of an object:
-![](../assets/tab-complete.gif)
+![](../assets/tab-complete-slow.gif)
 2. Typing `?obj` or `obj?` prints detailed information about the object `obj` (`??` provides additional detail). 
 3. Certain _magic commands_ prefixed by `%` that provide certain additional functionality. For example, `%timeit` finds the executation time of a single line statement, which is useful when profiling the performance of code:
 ```{python}
@@ -111,7 +110,8 @@ Full details about where the interpreter looks to find modules you try to import
 
 # Editors
 
-Modern editors come with a huge number of tools that make writing code much easier, and you would be crazy not to take advantage of them. These range from the visual cues provided by syntax highlighting – which we've already met – to code completion, parameter information and documentation popups as you type. These go under the general heading [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense). The latest hotness is [GitHub Copilot](https://github.com/features/copilot), which uses AI to make code suggestions. In my view, these are all part of a continuum of productivity enhancements that enable people to write better code faster. Use them (wisely). 
+Modern editors come with a huge number of tools that make writing code much easier, and you would be crazy not to take advantage of them. These range from the visual cues provided by syntax highlighting – which we've already met – to code completion, parameter information and documentation popups as you type. These go under the general heading [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense). 
+The next stage of evolution is AI code assistants like [GitHub Copilot](https://github.com/features/copilot). In my view, these are all part of a continuum of productivity enhancements that enable people to write better code faster. Use them (wisely). 
 
 I use [Visual Studio Code](https://code.visualstudio.com/).
 
@@ -123,7 +123,7 @@ Jupyter notebooks can actually run code in different languages (the processes ru
 
 The text cells can be formatted using [Markdown](https://jupyter-notebook.readthedocs.io/en/latest/examples/Notebook/Working%20With%20Markdown%20Cells.html) and also support $\LaTeX$ equations, which is pretty handy for us.
 
-Google has their own cloud version of the Jupyter notebook called [Colab](https://colab.research.google.com/). You can try it out for free, though you have to pay for significant compute. The "next generation" of the Jupyter notebook is called JupyterLab and can be started with `jupyter lab`. Notebook files can be opened in either Jupyter Lab or Jupyter Notebook
+Google has their own cloud version of the Jupyter notebook called [Colab](https://colab.research.google.com/). You can try it out for free, though you have to pay for significant compute. The "next generation" of the Jupyter notebook is called JupyterLab and can be started with `jupyter lab`. Notebook files can be opened in either JupyterLab or Jupyter Notebook
 
 <!-- ## Codespaces
 

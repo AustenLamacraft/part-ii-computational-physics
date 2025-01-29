@@ -14,26 +14,26 @@ These are the materials for the Part II Physics course Computational Physics, ta
 
 The course of eight Lectures will take place at 10.00 on Mondays and Wednesdays in the Ray Dolby Auditorium in the Ray Dolby Centre. After the lectures there will be [four computing exercises](exercises/exercises.qmd) to be completed. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. 
 
-There will be six lectures, followed by a one week break for the first exercise starting Friday 14th February. The schedule is as follows:
+There will be six lectures, followed by __a one week break__ for the first exercise starting Friday 14th February. The schedule is as follows:
 
 - First lecture: Monday 27th January
 - Sixth lecture: Wednesday 12th February
-- First exercise: Friday 14th February – Friday 21st February
+- __First exercise__: Friday 14th February – Friday 21st February
 - Seventh lecture: Monday 24th February
 - Eighth lecture: Wednesday 26th February
-- Second exercise: Friday 28th February – Friday 7th March
-- Third exercise: Friday 7th March – Friday 14th March
-- Fourth exercise: Friday 14th March – Friday 21st March (last day of full Lent term)
+- __Second exercise__: Friday 28th February – Friday 7th March
+- __Third exercise__: Friday 7th March – Friday 14th March
+- __Fourth exercise__: Friday 14th March – Friday 21st March (last day of full Lent term)
 
 ## Computing Project
 
 Additionally, you may choose to offer a [Computational Physics project](exercises/projects.qmd) for one unit of further work. This involves choosing a problem from the [project list](exercises/projects.qmd#sec-projects). You will analyse the problem, write and test Python code to investigate it, then write up your work in a report. 
 
-Students may start their project work once the project list is published by 17th February. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (1st May 2023)__. 
+Students may start their project work once the project list is published by 24th February. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (5th May 2025)__. 
 
 # Prerequisites
 
-This course assumes a basic knowledge of the Python language, including variables, control flow, and writing and using functions, at the level of last year's IB course (which had an excellent handout). 
+This course assumes a basic knowledge of the Python language, including variables, control flow, and writing and using functions, at the level of last year's IB course (which has an excellent handout). 
 
 If you want an absolute bare bones intro to Python try the first half of [this tutorial](https://cs231n.github.io/python-numpy-tutorial/) (which then goes on to introduce NumPy).
 

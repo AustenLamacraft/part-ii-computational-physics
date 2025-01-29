@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,10 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -256,6 +256,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises/projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projects</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -312,26 +318,26 @@ Please fill out the [feedback form](https://cambridge.eu.qualtrics.com/jfe/form/
 <section id="schedule" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Schedule</h1>
 <p>The course of eight Lectures will take place at 10.00 on Mondays and Wednesdays in the Ray Dolby Auditorium in the Ray Dolby Centre. After the lectures there will be <a href="./exercises/exercises.html">four computing exercises</a> to be completed. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours.</p>
-<p>There will be six lectures, followed by a one week break for the first exercise starting Monday 17th February. The schedule is as follows:</p>
+<p>There will be six lectures, followed by <strong>a one week break</strong> for the first exercise starting Friday 14th February. The schedule is as follows:</p>
 <ul>
 <li>First lecture: Monday 27th January</li>
 <li>Sixth lecture: Wednesday 12th February</li>
-<li>First exercise: Friday 14th February – Friday 21st February</li>
+<li><strong>First exercise</strong>: Friday 14th February – Friday 21st February</li>
 <li>Seventh lecture: Monday 24th February</li>
 <li>Eighth lecture: Wednesday 26th February</li>
-<li>Second exercise: Friday 28th February – Friday 7th March</li>
-<li>Third exercise: Friday 7th March – Friday 14th March</li>
-<li>Fourth exercise: Friday 14th March – Friday 21st March (last day of full Lent term)</li>
+<li><strong>Second exercise</strong>: Friday 28th February – Friday 7th March</li>
+<li><strong>Third exercise</strong>: Friday 7th March – Friday 14th March</li>
+<li><strong>Fourth exercise</strong>: Friday 14th March – Friday 21st March (last day of full Lent term)</li>
 </ul>
 <section id="computing-project" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="computing-project"><span class="header-section-number">1.1</span> Computing Project</h2>
-<p>Additionally, you may choose to offer a Computational Physics project for one unit of further work. This involves choosing a problem from the project list.&nbsp;You will analyse the problem, write and test Python code to investigate it, then write up your work in a report.&nbsp;</p>
-<p>Students may start their project work once the project list is published by 17th February. The deadline for submission of the project report is <strong>16:00 on the first Monday of Full Easter term (1st May 2023)</strong>.</p>
+<p>Additionally, you may choose to offer a <a href="./exercises/projects.html">Computational Physics project</a> for one unit of further work. This involves choosing a problem from the <a href="./exercises/projects.html#sec-projects">project list</a>.&nbsp;You will analyse the problem, write and test Python code to investigate it, then write up your work in a report.&nbsp;</p>
+<p>Students may start their project work once the project list is published by 24th February. The deadline for submission of the project report is <strong>16:00 on the first Monday of Full Easter term (5th May 2025)</strong>.</p>
 </section>
 </section>
 <section id="prerequisites" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Prerequisites</h1>
-<p>This course assumes a basic knowledge of the Python language, including variables, control flow, and writing and using functions, at the level of last year’s IB course (which had an excellent handout).</p>
+<p>This course assumes a basic knowledge of the Python language, including variables, control flow, and writing and using functions, at the level of last year’s IB course (which has an excellent handout).</p>
 <p>If you want an absolute bare bones intro to Python try the first half of <a href="https://cs231n.github.io/python-numpy-tutorial/">this tutorial</a> (which then goes on to introduce NumPy).</p>
 </section>
 <section id="learning-outcomes" class="level1" data-number="3">
@@ -504,8 +510,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -514,7 +518,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -616,7 +620,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

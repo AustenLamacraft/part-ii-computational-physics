@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -314,12 +314,6 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../exercises/exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exercises</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -373,12 +367,11 @@ window.Quarto = {
 <h1 data-number="2"><span class="header-section-number">2</span> Your coding environment</h1>
 <p>To run Python code on your computer you will need to have installed the Python language. I recommend the <a href="https://www.anaconda.com/products/distribution">Anaconda distribution</a> as it comes with all the parts of the toolkit we’ll need such as <a href="https://jupyter.org/">Jupyter notebooks</a> and the major libraries <a href="https://numpy.org/">NumPy</a> and <a href="https://scipy.org/">SciPy</a>.</p>
 <p>Try running <code>python</code> at the command line. You should get something like</p>
-<pre><code>Python 3.9.12 (main, Apr  5 2022, 01:53:17) 
-[Clang 12.0.0 ] :: Anaconda, Inc. on darwin
+<pre><code>Python 3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 08:28:27) [Clang 14.0.6 ] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 &gt;&gt;&gt; </code></pre>
 <p>You should confirm that you are using Python 3 (the command <code>python3</code> will also work and guarantee this if you happen to have Python 2 as the default). The prompt <code>&gt;&gt;&gt;</code> indicates that you have started the Python interactive shell or <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> and are good to go:</p>
-<div class="cell" data-execution_count="1">
+<div id="6c60d740" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello world!"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -396,14 +389,14 @@ Type "help", "copyright", "credits" or "license" for more information.
 <p><a href="https://ipython.readthedocs.io/en/stable/">IPython</a> is an interactive shell that provides syntax highlighting and much more. If you have installed IPython (it comes with Anaconda) you can start it from the command line with <code>ipython</code>.</p>
 <p>Among the most helpful features of IPython are:</p>
 <ol type="1">
-<li>Tab completion: hit <code>tab</code> to autocomplete. This is particularly useful for viewing all properties or methods of an object: <img src="../assets/tab-complete.gif" class="img-fluid"></li>
+<li>Tab completion: hit <code>tab</code> to autocomplete. This is particularly useful for viewing all properties or methods of an object: <img src="../assets/tab-complete-slow.gif" class="img-fluid"></li>
 <li>Typing <code>?obj</code> or <code>obj?</code> prints detailed information about the object <code>obj</code> (<code>??</code> provides additional detail).</li>
 <li>Certain <em>magic commands</em> prefixed by <code>%</code> that provide certain additional functionality. For example, <code>%timeit</code> finds the executation time of a single line statement, which is useful when profiling the performance of code:</li>
 </ol>
-<div class="cell" data-execution_count="2">
+<div id="7545e1a9" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit L <span class="op">=</span> [n <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>222 µs ± 8.48 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
+<pre><code>65.1 μs ± 4.66 μs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
 </div>
 </div>
 <p><code>%timeit</code> automatically runs several times to give some statistics on the execution time. For multiple lines you can use the <code>%%timeit</code> magic.</p>
@@ -419,12 +412,12 @@ Type "help", "copyright", "credits" or "license" for more information.
 <h1 data-number="5"><span class="header-section-number">5</span> Importing code</h1>
 <p>A Python <a href="https://docs.python.org/3/tutorial/modules.html">module</a> is just a file containing definition and statements. Breaking long code into modules is good practice for writing clear and reusable software. Users may not want to delve into the details of some function you have written in order to be able to us it, and separating the corresponding code into a separate file is a hygienic way to handle this.</p>
 <p>Thus if I make the file <code>hello_world.py</code> containing the function:</p>
-<div class="cell" data-execution_count="3">
+<div id="4c3d9f3a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hello():</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hello world!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>I can run this function by first importing the module:</p>
-<div class="cell" data-execution_count="4">
+<div id="27585e40" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hello_world</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>hello_world.hello()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -432,7 +425,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 </div>
 </div>
 <p>Notice that the function <code>hello</code> is accessed from the <code>hello_world</code> <em>namespace</em>. This is to avoid any confusion that may arise if more that one imported module has a function of the same name. If you are confident that’s not an issue and want more concise code you can do this:</p>
-<div class="cell" data-execution_count="5">
+<div id="43a0b7b7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> hello_world <span class="im">import</span> hello</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>hello()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -440,7 +433,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 </div>
 </div>
 <p>or even import everything with the wildcard <code>*</code>:</p>
-<div class="cell" data-execution_count="6">
+<div id="b83c32a2" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> hello_world <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>hello()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -450,7 +443,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <p>The issue with the latter is that it may introduce a whole bunch of names that may interfere with things you already defined.</p>
 <p>A collection of modules in a folder is called a <em>package</em>. You can import a package in the same way and access all the modules using the same <code>.</code> notation i.e.&nbsp;<code>package.module1</code>, <code>package.module2</code>, etc..</p>
 <p>Since explicit namespaces are preferred to avoid ambiguity it’s common to introduce shorthand names for the package or module you are importing, hence the ubiquitous:</p>
-<div class="cell" data-execution_count="7">
+<div id="a5aef272" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -466,7 +459,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 </section>
 <section id="editors" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Editors</h1>
-<p>Modern editors come with a huge number of tools that make writing code much easier, and you would be crazy not to take advantage of them. These range from the visual cues provided by syntax highlighting – which we’ve already met – to code completion, parameter information and documentation popups as you type. These go under the general heading <a href="https://code.visualstudio.com/docs/editor/intellisense">IntelliSense</a>. The latest hotness is <a href="https://github.com/features/copilot">GitHub Copilot</a>, which uses AI to make code suggestions. In my view, these are all part of a continuum of productivity enhancements that enable people to write better code faster. Use them (wisely).</p>
+<p>Modern editors come with a huge number of tools that make writing code much easier, and you would be crazy not to take advantage of them. These range from the visual cues provided by syntax highlighting – which we’ve already met – to code completion, parameter information and documentation popups as you type. These go under the general heading <a href="https://code.visualstudio.com/docs/editor/intellisense">IntelliSense</a>. The next stage of evolution is AI code assistants like <a href="https://github.com/features/copilot">GitHub Copilot</a>. In my view, these are all part of a continuum of productivity enhancements that enable people to write better code faster. Use them (wisely).</p>
 <p>I use <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</p>
 </section>
 <section id="notebooks" class="level1" data-number="8">
@@ -474,7 +467,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <p>While software developers write <code>.py</code> files, modules and packages, scientists and others doing more exploratory work tend to favour a Notebook format that mixes code, text, and plots. The dominant option is the <a href="https://jupyter-notebook.readthedocs.io/en/latest/">Jupyter notebook</a>, which comes with the Anaconda distribution and can be started from the command line with <code>jupyter notebook</code> (or from the Anaconda Navigator application). This will open the notebook as a web page in your browser, where it can be edited and saved. The default extension is <code>.ipynb</code>.</p>
 <p>Jupyter notebooks can actually run code in different languages (the processes running a particular language is called a <a href="https://docs.jupyter.org/en/latest/projects/kernels.html">kernel</a>), but the default process is IPython with all the benefits described above.</p>
 <p>The text cells can be formatted using <a href="https://jupyter-notebook.readthedocs.io/en/latest/examples/Notebook/Working%20With%20Markdown%20Cells.html">Markdown</a> and also support <span class="math inline">\(\LaTeX\)</span> equations, which is pretty handy for us.</p>
-<p>Google has their own cloud version of the Jupyter notebook called <a href="https://colab.research.google.com/">Colab</a>. You can try it out for free, though you have to pay for significant compute. The “next generation” of the Jupyter notebook is called JupyterLab and can be started with <code>jupyter lab</code>. Notebook files can be opened in either Jupyter Lab or Jupyter Notebook</p>
+<p>Google has their own cloud version of the Jupyter notebook called <a href="https://colab.research.google.com/">Colab</a>. You can try it out for free, though you have to pay for significant compute. The “next generation” of the Jupyter notebook is called JupyterLab and can be started with <code>jupyter lab</code>. Notebook files can be opened in either JupyterLab or Jupyter Notebook</p>
 <!-- ## Codespaces
 
 TODO 
@@ -573,8 +566,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -685,7 +676,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

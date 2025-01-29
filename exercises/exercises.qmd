@@ -1,5 +1,6 @@
 ---
 title: Exercises
+draft: true
 ---
 
 There are __four computing exercises__ to be completed in the last four weeks of full Lent term; one per week. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. Each of the four exercises is marked out of 5 for a total of 20 marks. Marks will be awarded in proportion to the amount of each exercise you successfully complete. _Successfully complete_ means that at the very least the relevant code should run!
