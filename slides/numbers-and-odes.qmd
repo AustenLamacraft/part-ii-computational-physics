@@ -2,6 +2,7 @@
 number-sections: false
 format:
   revealjs: 
+    theme: [default, reveal_custom.scss]
     slide-number: true
     hash: true
     center: true
