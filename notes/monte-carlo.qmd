@@ -202,7 +202,7 @@ $$
 In a single step the marginal probabilities are updated as
 
 $$
-\mathbf{p}^{(n)} = \mathsf{P}^{n}\mathbf{p}^{(n-1)}.
+\mathbf{p}^{(n)} = \mathsf{P}\mathbf{p}^{(n-1)}.
 $$
 
 $\mathsf{P}$ has some structure. The matrix elements are positive, as they represent probabilities, and each row sums to one
@@ -235,7 +235,7 @@ $$
 
 is the joint distribution of seeing state $k$ followed by state $j$ in the stationary distribution. A *reversible* Markov chain is one where $p(j,k)=p(k,j)$. Roughly, you can't tell the direction of time because any transition is equally likely to happen forward in time as backward. Random physical processes that respect time reversal symmetry are often modeled as reversible Markov processes.
 
-Combining reversibility with the definition of the stationary state yields the condition of [detailed balance](https://en.wikipedia.org/wiki/Detailed_balance)
+The condition for reversibility is known as [detailed balance](https://en.wikipedia.org/wiki/Detailed_balance)
 
 $$
  \mathsf{P}_{jk}\pi_k = \pi_j\mathsf{P}_{kj}.

@@ -2,11 +2,11 @@
 number-sections: false
 format:
   revealjs: 
+    theme: [default, reveal_custom.scss]
     slide-number: true
     hash: true
     center: true
     auto-stretch: false
-    theme: default
     html-math-method: mathjax
     preview-links: true
 
@@ -129,8 +129,6 @@ plt.show()
 - One very recent application of these ideas is in machine learning models called [normalizing flows](https://arxiv.org/abs/1908.09257) that use a mapping $f$ parameterized by a neural network. 
 
 - Workhorse for sampling from complicated distributions is _Markov chain Monte Carlo_
-
----
 
 # Monte Carlo method
 
@@ -314,7 +312,7 @@ You know the [random walk](https://en.wikipedia.org/wiki/Random_walk), perhaps a
 
 ---
 
-![](../assets/Random_walk_25000.svg)
+![](../assets/Random_walk_25000.svg){width=60%}
 
 ---
 
@@ -322,7 +320,7 @@ You know the [random walk](https://en.wikipedia.org/wiki/Random_walk), perhaps a
 
 - Defined in terms of **transition probabilities** $p(X_{n}=x_n|X_{n-1}=x_{n-1})$ (hence a "chain")
 
-- Pprobability of a particular sequence $X_1=x_1\ldots X_n=x_n$ is therefore
+- Probability of a particular sequence $X_1=x_1\ldots X_n=x_n$ is therefore
 
 $$
 p(x_n|x_{n-1})p(x_{n-1}|x_{n-2})\cdots p(x_2|x_{1})p^{(1)}(x_1)
@@ -361,7 +359,7 @@ $$
 - In a single step the marginal probabilities are updated as
 
 $$
-\mathbf{p}^{(n)} = \mathsf{P}^{n}\mathbf{p}^{(n-1)}
+\mathbf{p}^{(n)} = \mathsf{P}\mathbf{p}^{(n-1)}
 $$
 
 ---
@@ -378,7 +376,7 @@ $$
 ---
 
 $$
-\mathbf{p}^{(n)} = \mathsf{P}^{n}\mathbf{p}^{(n-1)}
+\mathbf{p}^{(n)} = \mathsf{P}\mathbf{p}^{(n-1)}
 $$
 
 - After many steps $\mathbf{p}^{(n)}$ tends to converge to a **stationary distribution** $p^{(n)}\to\boldsymbol{\pi}$
@@ -414,7 +412,7 @@ is the joint distribution of seeing state $k$ followed by state $j$ in the stati
 
 - Any transition is equally likely to happen forward in time as backward
 
-- Combining reversibility with definition of stationary state yields the condition of [detailed balance](https://en.wikipedia.org/wiki/Detailed_balance)
+- The condition for reversibility is known as [detailed balance](https://en.wikipedia.org/wiki/Detailed_balance)
 
 $$
  \mathsf{P}_{jk}\pi_k = \pi_j\mathsf{P}_{kj}.

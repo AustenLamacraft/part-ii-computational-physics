@@ -543,7 +543,7 @@ $$
 x = x_1 B^m + x_0
 $$
 
-where $B$ is the base and $m=\lceil n\rceil$. Thus in base 10 $x=12345$ is written as $12 * 1000 + 345$. If we do this for two  $n$-digit numbers $x$ and $y$, their product can be written
+where $B$ is the base and $m=\lceil n / 2\rceil$ works best (as we'll see). Thus in base 10 $x=12345$ is written as $12 * 1000 + 345$. If we do this for two  $n$-digit numbers $x$ and $y$, their product can be written
 
 $$
 xy = x_1 y_1 B^{2m} + (x_1 y_0 + x_0 y_1) B^{m} + x_0 y_0,

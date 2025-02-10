@@ -474,7 +474,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>We can check the average case performance experimentally by using randomly chosen lists: <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<div class="cell" data-execution_count="1">
+<div id="09c4de34" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> linear_search(x, val):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Return True if val is in x, otherwise return False"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item <span class="kw">in</span> x:</span>
@@ -482,7 +482,7 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">True</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div id="20abc67e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array of problem sizes n we want to test (powers of 2)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>np.arange(<span class="dv">2</span>, <span class="dv">20</span>)</span>
@@ -502,7 +502,7 @@ window.Quarto = {
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store best case time (best on a randomly chosen problem)</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    times.append(t.best)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="3">
+<div id="64873ea4" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code for plot</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -523,7 +523,7 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="complexity_files/figure-html/cell-4-output-1.png" width="600" height="444" class="figure-img"></p>
+<p><img src="complexity_files/figure-html/cell-4-output-1.png" width="600" height="451" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -555,7 +555,7 @@ M_1\left(M_2\cdots \left(M_n \mathbf{v}\right)\right)
 <section id="better-than-linear" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="better-than-linear"><span class="header-section-number">2.3</span> Better than linear?</h2>
 <p>It seems obvious that for search you can’t do better than linear: you have to look at roughly half the items before you should expect to find the one you’re looking for <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. What if the list is <em>ordered</em>? Any order will do: numerical for numbers, or lexicographic for strings. This extra structure allows us to use an algorithm called <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a> that you may have seen before <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. The idea is pretty intuitive: look in the middle of the list and see if the item you seek should be in the top half or bottom half. Take the relevant half and divide it in half again to determine which quarter of the list your item is in, and so on. Here’s how it looks in code:</p>
-<div class="cell" data-execution_count="4">
+<div id="674efb7b" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binary_search(x, val):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Peform binary search on x to find val. If found returns position, otherwise returns None."""</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -585,7 +585,7 @@ M_1\left(M_2\cdots \left(M_n \mathbf{v}\right)\right)
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And here’s the performance</p>
-<div class="cell" data-execution_count="5">
+<div id="7a85a4e3" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code for plot</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array of problem sizes we want to test (powers of 2)</span></span>
@@ -619,7 +619,7 @@ M_1\left(M_2\cdots \left(M_n \mathbf{v}\right)\right)
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="complexity_files/figure-html/cell-6-output-1.png" width="577" height="444" class="figure-img"></p>
+<p><img src="complexity_files/figure-html/cell-6-output-1.png" width="577" height="451" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -641,7 +641,7 @@ b^n = \begin{cases}
 \end{cases}
 \]</span></p>
 <p>Here’s a way to implement this in code.</p>
-<div class="cell" data-execution_count="6">
+<div id="637e0134" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exp(b, n):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -656,7 +656,7 @@ b^n = \begin{cases}
 </div>
 </div>
 <p>This implementation is <em>recursive</em>: the function <code>exp(b, n)</code> <em>calls itself</em>. If this seems a bit self-referential, notice that it only calls itself with <em>lower values of the exponent <span class="math inline">\(n\)</span></em>. This process continues until we hit <span class="math inline">\(n=0\)</span>, and 1 is returned by the first part of the <code>if ... else</code>. Any recursive function has to have such a <em>base case</em> to avoid an infinite regress. You’ll know if you haven’t provided one correctly:</p>
-<div class="cell" data-execution_count="7">
+<div id="b6c5a2cf" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exp_no_base_case(b, n):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> exp_no_base_case(b, n <span class="op">//</span> <span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
@@ -665,7 +665,63 @@ b^n = \begin{cases}
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>exp_no_base_case(<span class="dv">2</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>RecursionError: maximum recursion depth exceeded in comparison</code></pre>
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">RecursionError</span>                            Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[7], line 7</span>
+<span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">      5</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>) 
+<span class="ansi-green-fg">----&gt; 7</span> exp_no_base_case(<span style="color:rgb(98,98,98)">2</span>, <span style="color:rgb(98,98,98)">6</span>)
+
+Cell <span class="ansi-green-fg">In[7], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">exp_no_base_case</span>(b, n):
+<span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> n <span style="color:rgb(98,98,98)">%</span> <span style="color:rgb(98,98,98)">2</span> <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(98,98,98)">0</span>:
+<span class="ansi-green-fg">----&gt; 3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
+<span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">      5</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
+
+Cell <span class="ansi-green-fg">In[7], line 5</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+<span class="ansi-green-fg ansi-bold">      3</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
+<span class="ansi-green-fg ansi-bold">      4</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">----&gt; 5</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
+
+Cell <span class="ansi-green-fg">In[7], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">exp_no_base_case</span>(b, n):
+<span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> n <span style="color:rgb(98,98,98)">%</span> <span style="color:rgb(98,98,98)">2</span> <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(98,98,98)">0</span>:
+<span class="ansi-green-fg">----&gt; 3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
+<span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">      5</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
+
+Cell <span class="ansi-green-fg">In[7], line 5</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+<span class="ansi-green-fg ansi-bold">      3</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
+<span class="ansi-green-fg ansi-bold">      4</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">----&gt; 5</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
+
+Cell <span class="ansi-green-fg">In[7], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">exp_no_base_case</span>(b, n):
+<span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> n <span style="color:rgb(98,98,98)">%</span> <span style="color:rgb(98,98,98)">2</span> <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(98,98,98)">0</span>:
+<span class="ansi-green-fg">----&gt; 3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
+<span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">      5</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
+
+Cell <span class="ansi-green-fg">In[7], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">exp_no_base_case</span>(b, n):
+<span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> n <span style="color:rgb(98,98,98)">%</span> <span style="color:rgb(98,98,98)">2</span> <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(98,98,98)">0</span>:
+<span class="ansi-green-fg">----&gt; 3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
+<span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">      5</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
+
+    <span class="ansi-red-fg">[... skipping similar frames: exp_no_base_case at line 3 (2971 times)]</span>
+
+Cell <span class="ansi-green-fg">In[7], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">exp_no_base_case</span>(b, n):
+<span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> n <span style="color:rgb(98,98,98)">%</span> <span style="color:rgb(98,98,98)">2</span> <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(98,98,98)">0</span>:
+<span class="ansi-green-fg">----&gt; 3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
+<span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg ansi-bold">      5</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
+
+<span class="ansi-red-fg">RecursionError</span>: maximum recursion depth exceeded</pre>
+</div>
 </div>
 </div>
 <p>One interesting thing about exponentiation is that while it can be done efficiently, the inverse — finding the logarithm — cannot. To make this more precise one has to work with modular arithmetic e.g.&nbsp;do all operations modulo some prime number <span class="math inline">\(p\)</span>. Then for <span class="math inline">\(b, y=0,\ldots p-1\)</span> we are guaranteed that there is some number <span class="math inline">\(x\)</span> such that <span class="math inline">\(b^x=y\)</span> (this is called the <a href="https://en.wikipedia.org/wiki/Discrete_logarithm">discrete logarithm</a>). Finding this number is hard: there is no known method for computing it efficiently. Certain <a href="https://en.wikipedia.org/wiki/Public-key_cryptography">public-key cryptosystems</a> are based on the difficulty of the discrete log (for carefully chosen <span class="math inline">\(b\)</span>, <span class="math inline">\(p\)</span> and <span class="math inline">\(y\)</span>).</p>
@@ -681,16 +737,16 @@ b^n = \begin{cases}
 \text{Fib}(n) = \text{Fib}(n-1) + \text{Fib}(n-2)
 \]</span></p>
 <p>The fact that the value <span class="math inline">\(\text{Fib}(n)\)</span> is defined in terms of lower values of <span class="math inline">\(n\)</span> makes a recursive definition possible</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fib(n):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fib(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fib(n <span class="op">-</span> <span class="dv">2</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fib(<span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e75f4a98" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fib(n):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> n <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fib(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fib(n <span class="op">-</span> <span class="dv">2</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>fib(<span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>233</code></pre>
 </div>
@@ -741,11 +797,11 @@ b^n = \begin{cases}
 <h1 data-number="3"><span class="header-section-number">3</span> Sorted</h1>
 <p>If an improved algorithm takes us from exponential to polynomial complexity it’s a huge deal. It means that even moderately sized problems that were intractable become tractable. But even improvements in the <em>exponent</em> of polynomial scaling make a huge difference.</p>
 <p>One problem that illustrates nicely the benefits of such improvements is <em>sorting</em>, turning a list or array into a sorted list (conventionally in <em>ascending</em> order):</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>random_array <span class="op">=</span> np.random.randint(<span class="dv">0</span>,<span class="dv">100</span>, <span class="dv">10</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(random_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cbb8ff69" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>random_array <span class="op">=</span> np.random.randint(<span class="dv">0</span>,<span class="dv">100</span>, <span class="dv">10</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(random_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>[0, 6, 31, 35, 63, 67, 77, 79, 82, 89]</code></pre>
+<pre><code>[10, 31, 38, 40, 48, 49, 51, 53, 70, 75]</code></pre>
 </div>
 </div>
 <p>But what is Python actually <em>doing</em>? There are many algorithms: the <a href="https://en.wikipedia.org/wiki/Sorting_algorithm">Wikipedia page on sorting</a> is particularly extensive. Here we’ll explore just a couple to get a sense of the variety of algorithms and their possible complexities. The site <a href="https://www.sortvisualizer.com/">sort visualizer</a> animates the action of various algorithms. It’s fun to try and figure out what the algorithm is from its animation.</p>
@@ -753,53 +809,53 @@ b^n = \begin{cases}
 <h2 data-number="3.1" class="anchored" data-anchor-id="bubble-sort"><span class="header-section-number">3.1</span> Bubble sort</h2>
 <p>This one is very simple: repeatedly pass through the array, comparing neighbouring pairs of elements and switching them if they are out of order. After the first pass the largest element is in the rightmost position (largest index). That means the second pass can finish before reaching the last element, as we know that it is already in place. After the second pass the final two elements are correctly ordered. Continue in this way, stopping one place earlier each time, until the array is sorted.</p>
 <p>Here’s a simple implementation: <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bubble_sort(A):</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Sort A and return"</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> A.copy()</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(A)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>):</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Swap data if in wrong order</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> A[i] <span class="op">&gt;</span> A[i <span class="op">+</span> <span class="dv">1</span>]:</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                A[i <span class="op">+</span> <span class="dv">1</span>], A[i] <span class="op">=</span> A[i], A[i <span class="op">+</span> <span class="dv">1</span>]</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="825eb62b" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bubble_sort(A):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Sort A and return"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> A.copy()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(A)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Swap data if in wrong order</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> A[i] <span class="op">&gt;</span> A[i <span class="op">+</span> <span class="dv">1</span>]:</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                A[i <span class="op">+</span> <span class="dv">1</span>], A[i] <span class="op">=</span> A[i], A[i <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What is the complexity of this algorithm? From the code we can see immediately that there are two nested loops: one to implement each pass and one to loop over the <span class="math inline">\(n-1\)</span> passes. This suggests that the complexity is quadratic i.e.&nbsp;<span class="math inline">\(O(n^2)\)</span>. A numerical check verifies this:</p>
-<div class="cell" data-execution_count="11">
+<div id="4a73f29a" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code for plot</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array of problem sizes we want to test (powers of 2)</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>np.arange(<span class="dv">2</span>, <span class="dv">10</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an array of random numbers</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.rand(N[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Time bubble sort on arrays of different lengths  </span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> []</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> N:</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="op">%</span>timeit <span class="op">-</span>q <span class="op">-</span>n2 <span class="op">-</span>r2 <span class="op">-</span>o bubble_sort(x[:n])</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    times.append(t.best)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot bubble sort timing</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, times, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'bubble sort'</span>)</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Show reference line of O(n^2)</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, <span class="fl">1e-6</span><span class="op">*</span>N<span class="op">**</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'$O(n^2)$'</span>)</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and legend</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$t$ (s)'</span>)</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array of problem sizes we want to test (powers of 2)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>np.arange(<span class="dv">2</span>, <span class="dv">10</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an array of random numbers</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.rand(N[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Time bubble sort on arrays of different lengths  </span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> []</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> N:</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="op">%</span>timeit <span class="op">-</span>q <span class="op">-</span>n2 <span class="op">-</span>r2 <span class="op">-</span>o bubble_sort(x[:n])</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    times.append(t.best)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot bubble sort timing</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, times, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'bubble sort'</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Show reference line of O(n^2)</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, <span class="fl">1e-6</span><span class="op">*</span>N<span class="op">**</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'$O(n^2)$'</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and legend</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$t$ (s)'</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="complexity_files/figure-html/cell-12-output-1.png" width="600" height="424" class="figure-img"></p>
+<p><img src="complexity_files/figure-html/cell-12-output-1.png" width="600" height="431" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -815,67 +871,81 @@ b^n = \begin{cases}
 <li>Acting recursively on each partition requires only <span class="math inline">\(O(\log n)\)</span> partitions to completely sort the array.</li>
 </ol>
 <p>Here’s an implementation. See <a href="https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme">this discussion</a> of the partitioning scheme for more information.</p>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quicksort(A, lo<span class="op">=</span><span class="dv">0</span>, hi<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Sort A and return sorted array"</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialise data the first time function is called    </span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hi <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        hi <span class="op">=</span> <span class="bu">len</span>(A) <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> A.copy()</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sort    </span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> lo <span class="op">&lt;</span> hi:</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> partition(A, lo,  hi)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        quicksort(A, lo, p <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        quicksort(A, p <span class="op">+</span> <span class="dv">1</span>, hi)</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partition(A, lo, hi):</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Partitioning function for use in quicksort"</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    pivot <span class="op">=</span> A[hi]</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> lo</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(lo,  hi):</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> A[j] <span class="op">&lt;=</span> pivot:</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>            A[i], A[j] <span class="op">=</span> A[j], A[i]</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    A[i], A[hi] <span class="op">=</span> A[hi], A[i]</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0082eb0c" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quicksort(A, lo<span class="op">=</span><span class="dv">0</span>, hi<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Sort A and return sorted array"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialise data the first time function is called    </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hi <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        hi <span class="op">=</span> <span class="bu">len</span>(A) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> A.copy()</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sort    </span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> lo <span class="op">&lt;</span> hi:</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> partition(A, lo,  hi)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        quicksort(A, lo, p <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        quicksort(A, p <span class="op">+</span> <span class="dv">1</span>, hi)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partition(A, lo, hi):</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Partitioning function for use in quicksort"</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    pivot <span class="op">=</span> A[hi]</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> lo</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(lo,  hi):</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> A[j] <span class="op">&lt;=</span> pivot:</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>            A[i], A[j] <span class="op">=</span> A[j], A[i]</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    A[i], A[hi] <span class="op">=</span> A[hi], A[i]</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And here’s a demonstration of the <span class="math inline">\(O(n\log n)\)</span> performance</p>
-<div class="cell" data-execution_count="13">
+<div id="d4fa9a00" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code for plot</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array of problem sizes we want to test (powers of 2)</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>np.arange(<span class="dv">2</span>, <span class="dv">14</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an array of random numbers</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.rand(N[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Time quicksort on arrays of different lengths</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> []</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> N:</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="op">%</span>timeit <span class="op">-</span>n1 <span class="op">-</span>r1 <span class="op">-</span>o <span class="op">-</span>q quicksort(x[:n])</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    times.append(t.best)</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot quicksort timings</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, times, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'quicksort'</span>)</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Show reference line of O(n*log(n))</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, <span class="fl">1e-6</span><span class="op">*</span>N<span class="op">*</span>np.log(N), label<span class="op">=</span><span class="st">'$O(n\log\, n)$'</span>)</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$t$ (s)'</span>)</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array of problem sizes we want to test (powers of 2)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">2</span><span class="op">**</span>np.arange(<span class="dv">2</span>, <span class="dv">14</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an array of random numbers</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.rand(N[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Time quicksort on arrays of different lengths</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> []</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> N:</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="op">%</span>timeit <span class="op">-</span>n1 <span class="op">-</span>r1 <span class="op">-</span>o <span class="op">-</span>q quicksort(x[:n])</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    times.append(t.best)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot quicksort timings</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, times, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'quicksort'</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Show reference line of O(n*log(n))</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>plt.loglog(N, <span class="fl">1e-6</span><span class="op">*</span>N<span class="op">*</span>np.log(N), label<span class="op">=</span><span class="st">'$O(n\log\, n)$'</span>)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$t$ (s)'</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;&gt;:17: SyntaxWarning:
+
+invalid escape sequence '\l'
+
+&lt;&gt;:17: SyntaxWarning:
+
+invalid escape sequence '\l'
+
+/var/folders/xs/y8sn45v943s2_62flnxw0p940000gn/T/ipykernel_95474/37802936.py:17: SyntaxWarning:
+
+invalid escape sequence '\l'
+</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="complexity_files/figure-html/cell-14-output-1.png" width="600" height="424" class="figure-img"></p>
+<p><img src="complexity_files/figure-html/cell-14-output-2.png" width="600" height="431" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -888,7 +958,7 @@ b^n = \begin{cases}
 </ol>
 <p>Funnily enough, the worst case occurs when the array is already sorted. Because the pivot is chosen as the last element of the array, one of the partitions is always empty. Thus, instead of the problem being cut roughly in half at each stage, it is merely reduced in size by 1.</p>
 <p>NumPy’s <code>sort</code> uses quicksort, whereas Python’s <code>sorted</code> uses a hybrid algorithm called <a href="https://en.wikipedia.org/wiki/Timsort">Timsort</a>, which also has <span class="math inline">\(O(n\log n)\)</span> average case performance.</p>
-<div class="cell" data-execution_count="14">
+<div id="1cd928c7" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code for plot</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create array of problem sizes we want to test (powers of 2)</span></span>
@@ -931,7 +1001,7 @@ b^n = \begin{cases}
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="complexity_files/figure-html/cell-15-output-1.png" width="600" height="424" class="figure-img"></p>
+<p><img src="complexity_files/figure-html/cell-15-output-1.png" width="600" height="431" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -945,7 +1015,7 @@ b^n = \begin{cases}
 <p><span class="math display">\[
 x = x_1 B^m + x_0
 \]</span></p>
-<p>where <span class="math inline">\(B\)</span> is the base and <span class="math inline">\(m=\lceil n\rceil\)</span>. Thus in base 10 <span class="math inline">\(x=12345\)</span> is written as <span class="math inline">\(12 * 1000 + 345\)</span>. If we do this for two <span class="math inline">\(n\)</span>-digit numbers <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, their product can be written</p>
+<p>where <span class="math inline">\(B\)</span> is the base and <span class="math inline">\(m=\lceil n / 2\rceil\)</span> works best (as we’ll see). Thus in base 10 <span class="math inline">\(x=12345\)</span> is written as <span class="math inline">\(12 * 1000 + 345\)</span>. If we do this for two <span class="math inline">\(n\)</span>-digit numbers <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, their product can be written</p>
 <p><span class="math display">\[
 xy = x_1 y_1 B^{2m} + (x_1 y_0 + x_0 y_1) B^{m} + x_0 y_0,
 \]</span></p>
@@ -1113,7 +1183,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

@@ -2,11 +2,11 @@
 number-sections: false
 format:
   revealjs: 
+    theme: [default, reveal_custom.scss]
     slide-number: true
     hash: true
     center: true
     auto-stretch: false
-    theme: default
     html-math-method: mathjax
     preview-links: true
 ---
@@ -177,7 +177,7 @@ $$
 \sum_{j} A_{ij}B_{jk}
 $$
 
-- Involves $n$ terms for each of the $n^2$ assignments of $i$ and $k$. Complexity: $O(n^3)$
+- $n$ terms for each of the $n^2$ assignments of $i$ and $k$. Complexity: $O(n^3)$
 
 --- 
 
@@ -538,7 +538,7 @@ plt.show()
 
 - Can't be faster than $O(n)$: at the very least one has to look at each element
 
-- While one can't actually achieve linear scaling, many algorithms which achieve the next best thing: $O(n\log n)$. 
+- While one can't actually achieve linear scaling, many algorithms which achieve the next best thing: $O(n\log n)$
 
 ---
 
@@ -687,7 +687,7 @@ plt.show()
 $$
 x = x_1 B^m + x_0
 $$
-- $B$ is base and $m=\lceil n\rceil$
+- $B$ is base and $m=\lceil n / 2\rceil$ works best (as we'll see)
 
 - In base 10 $x=12345$ is written as $12 * 1000 + 345$
 
