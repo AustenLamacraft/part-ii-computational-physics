@@ -1,12 +1,12 @@
 ---
 number-sections: false
 format:
-  revealjs: 
+  revealjs:
+    theme: [default, reveal_custom.scss]
     slide-number: true
     hash: true
     center: true
     auto-stretch: false
-    theme: default
     html-math-method: mathjax
     preview-links: true
 ---
@@ -16,6 +16,12 @@ format:
 - Fourier transforms are useful
 
 - Can we calculate them _efficiently_?
+
+## No lectures next week!
+
+- Next lecture Monday 24th February
+- First exercise starts noon Friday 14th February
+
 
 ## The discrete Fourier transform
 
@@ -437,10 +443,10 @@ $$
 
 ---
 
-When potential is absent, solutions are plane waves
+When potential is absent, solutions are superpositions of plane waves
 
 $$
-\Psi(\mathbf{r}, t) = \exp\left[-i\frac{\hbar^2 \mathbf{k}^2 t}{2m} +i\mathbf{k}\cdot\mathbf{r}\right]
+\Psi_\mathbf{k}(\mathbf{r}, t) = \exp\left[-i\frac{\hbar^2 \mathbf{k}^2 t}{2m} +i\mathbf{k}\cdot\mathbf{r}\right]
 $$ {#eq-momentum}
 
 - If KE absent, evolution would be 
@@ -450,6 +456,8 @@ $$
 $$ {#eq-position}
 
 - Idea behind [split-step method](https://en.wikipedia.org/wiki/Split-step_method) is that time evolution can be approximated by alternating @eq-momentum and @eq-position
+
+- @eq-momentum requires that we express the solution in terms of plane wave components... FFT!
 
 ---
 

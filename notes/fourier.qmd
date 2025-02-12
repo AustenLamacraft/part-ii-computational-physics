@@ -277,10 +277,10 @@ $$
 i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m}\nabla^2 \psi + V(\mathbf{r})\psi.
 $$ {#eq-schrodinger}
 
-When the potential is absent, the solutions are plane waves
+When the potential is absent, the solutions are superpositions of plane waves
 
 $$
-\Psi(\mathbf{r}, t) = \exp\left[-i\frac{\hbar^2 \mathbf{k}^2 t}{2m} +i\mathbf{k}\cdot\mathbf{r}\right].
+\Psi_\mathbf{k}(\mathbf{r}, t) = \exp\left[-i\frac{\hbar \mathbf{k}^2 t}{2m} +i\mathbf{k}\cdot\mathbf{r}\right].
 $$ {#eq-momentum}
 
 On the other hand, if the first term on the right hand side of @eq-schrodinger — representing the kinetic energy — were absent, then the evolution of the wavefunction would be 

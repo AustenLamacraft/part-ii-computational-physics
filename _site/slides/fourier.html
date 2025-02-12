@@ -113,7 +113,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-f2546a389b66af0b6a5ea4b708d7867d.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -217,6 +217,13 @@
 <ul>
 <li><p>Fourier transforms are useful</p></li>
 <li><p>Can we calculate them <em>efficiently</em>?</p></li>
+</ul>
+</section>
+<section id="no-lectures-next-week" class="slide level2 center">
+<h2>No lectures next week!</h2>
+<ul>
+<li>Next lecture Monday 24th February</li>
+<li>First exercise starts noon Friday 14th February</li>
 </ul>
 </section>
 <section id="the-discrete-fourier-transform" class="slide level2 center">
@@ -478,11 +485,11 @@ T(N) = 2T(N/2) +\Theta(N)
 <ul>
 <li>Signal consisting of two sinusoids at 12 Hz and 34 Hz:</li>
 </ul>
-<div class="cell" data-execution_count="1">
+<div id="7e38d02a" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="fourier_files/figure-revealjs/cell-2-output-1.png" width="805" height="422"></p>
+<p><img data-src="fourier_files/figure-revealjs/cell-2-output-1.png" width="805" height="429"></p>
 </figure>
 </div>
 </div>
@@ -493,13 +500,13 @@ T(N) = 2T(N/2) +\Theta(N)
 <ul>
 <li>Take FFT and plot vs array index</li>
 </ul>
-<div class="cell" data-execution_count="2">
+<div id="f6085632" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>Y<span class="op">=</span>np.fft.fft(y)</span>
 <span id="cb1-2"><a></a>plt.plot(<span class="bu">abs</span>(Y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="fourier_files/figure-revealjs/cell-3-output-1.png" width="798" height="404"></p>
+<p><img data-src="fourier_files/figure-revealjs/cell-3-output-1.png" width="798" height="411"></p>
 </figure>
 </div>
 </div>
@@ -510,7 +517,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <ul>
 <li>Or against real frequency (sample spacing of <span class="math inline">\(dt=0.01\)</span>)</li>
 </ul>
-<div class="cell" data-execution_count="3">
+<div id="fbfe6c0e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>f<span class="op">=</span>np.fft.fftfreq(fftsize, dt)</span>
 <span id="cb2-2"><a></a><span class="co"># Reordering makes a tidier plot...</span></span>
 <span id="cb2-3"><a></a>Y<span class="op">=</span>np.fft.fftshift(Y)</span>
@@ -521,7 +528,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="fourier_files/figure-revealjs/cell-4-output-1.png" width="798" height="422"></p>
+<p><img data-src="fourier_files/figure-revealjs/cell-4-output-1.png" width="798" height="429"></p>
 </figure>
 </div>
 </div>
@@ -532,11 +539,11 @@ T(N) = 2T(N/2) +\Theta(N)
 <ul>
 <li>Fourier transform of real valued data has property <span class="math inline">\(F_n = \left[F_{-n}\right]^*\)</span>:</li>
 </ul>
-<div class="cell" data-execution_count="4">
+<div id="6e7618a2" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="fourier_files/figure-revealjs/cell-5-output-1.png" width="819" height="422"></p>
+<p><img data-src="fourier_files/figure-revealjs/cell-5-output-1.png" width="819" height="429"></p>
 </figure>
 </div>
 </div>
@@ -547,11 +554,11 @@ T(N) = 2T(N/2) +\Theta(N)
 <ul>
 <li>Signal a pair of sinusoids, but FFT <em>not</em> just <span class="math inline">\(\delta\)</span>-functions</li>
 </ul>
-<div class="cell" data-execution_count="5">
+<div id="5163359e" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="fourier_files/figure-revealjs/cell-6-output-1.png" width="828" height="422"></p>
+<p><img data-src="fourier_files/figure-revealjs/cell-6-output-1.png" width="828" height="429"></p>
 </figure>
 </div>
 </div>
@@ -667,9 +674,9 @@ i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m}\nabla^2 \psi + V(\
 </section>
 <section class="slide level2 center">
 
-<p>When potential is absent, solutions are plane waves</p>
+<p>When potential is absent, solutions are superpositions of plane waves</p>
 <p><span id="eq-momentum"><span class="math display">\[
-\Psi(\mathbf{r}, t) = \exp\left[-i\frac{\hbar^2 \mathbf{k}^2 t}{2m} +i\mathbf{k}\cdot\mathbf{r}\right]
+\Psi_\mathbf{k}(\mathbf{r}, t) = \exp\left[-i\frac{\hbar^2 \mathbf{k}^2 t}{2m} +i\mathbf{k}\cdot\mathbf{r}\right]
 \tag{1}\]</span></span></p>
 <ul>
 <li>If KE absent, evolution would be</li>
@@ -678,7 +685,8 @@ i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m}\nabla^2 \psi + V(\
 \Psi(\mathbf{r}, t) = \Psi(\mathbf{r}, 0)\exp\left[-iV(\mathbf{r})t/\hbar\right]
 \tag{2}\]</span></span></p>
 <ul>
-<li>Idea behind <a href="https://en.wikipedia.org/wiki/Split-step_method">split-step method</a> is that time evolution can be approximated by alternating <a href="#/eq-momentum" class="quarto-xref">Equation&nbsp;1</a> and <a href="#/eq-position" class="quarto-xref">Equation&nbsp;2</a></li>
+<li><p>Idea behind <a href="https://en.wikipedia.org/wiki/Split-step_method">split-step method</a> is that time evolution can be approximated by alternating <a href="#/eq-momentum" class="quarto-xref">Equation&nbsp;1</a> and <a href="#/eq-position" class="quarto-xref">Equation&nbsp;2</a></p></li>
+<li><p><a href="#/eq-momentum" class="quarto-xref">Equation&nbsp;1</a> requires that we express the solution in terms of plane wave components… FFT!</p></li>
 </ul>
 </section>
 <section class="slide level2 center">
@@ -714,7 +722,7 @@ e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}
 <ul>
 <li>Here’s a simple 1D example:</li>
 </ul>
-<div class="cell" data-execution_count="6">
+<div id="089a9f21" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> split_step_schrodinger(psi_0, dx, dt, V, N, x_0 <span class="op">=</span> <span class="fl">0.</span>, k_0 <span class="op">=</span> <span class="va">None</span>, m <span class="op">=</span> <span class="fl">1.0</span>, non_linear <span class="op">=</span> <span class="va">False</span>):</span>
 <span id="cb3-2"><a></a></span>
 <span id="cb3-3"><a></a>    len_x <span class="op">=</span> psi_0.shape[<span class="dv">0</span>]</span>

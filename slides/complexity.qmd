@@ -291,7 +291,7 @@ $$
 \begin{align}
 b^2 &= b\cdot b\\
 b^4 &= b^2\cdot b^2\\
-b^4 &= b^4\cdot b^4
+b^8 &= b^4\cdot b^4
 \end{align}
 $$
 - Only have to do _three_ multiplications! 

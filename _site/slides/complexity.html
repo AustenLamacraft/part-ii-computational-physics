@@ -317,7 +317,7 @@
 <section class="slide level2 center">
 
 <p>We can check the average case performance experimentally by using randomly chosen lists:</p>
-<div id="b0d659f3" class="cell" data-execution_count="1">
+<div id="e5fec094" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="kw">def</span> linear_search(x, val):</span>
 <span id="cb1-2"><a></a>    <span class="co">"Return True if val is in x, otherwise return False"</span></span>
 <span id="cb1-3"><a></a>    <span class="cf">for</span> item <span class="kw">in</span> x:</span>
@@ -328,7 +328,7 @@
 </section>
 <section class="slide level2 center">
 
-<div id="52f39a5d" class="cell" data-execution_count="2">
+<div id="df97df48" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -405,7 +405,7 @@ M_1\left(M_2\cdots \left(M_n \mathbf{v}\right)\right)
 </section>
 <section class="slide level2 center">
 
-<div id="d10ff674" class="cell" data-execution_count="3">
+<div id="53a10f70" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="kw">def</span> binary_search(x, val):</span>
 <span id="cb2-2"><a></a>    <span class="co">"""Peform binary search on x to find val. If found returns position, otherwise returns None."""</span></span>
 <span id="cb2-3"><a></a></span>
@@ -437,11 +437,11 @@ M_1\left(M_2\cdots \left(M_n \mathbf{v}\right)\right)
 </section>
 <section class="slide level2 center">
 
-<div id="d119b13e" class="cell" data-execution_count="4">
+<div id="60abb603" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="complexity_files/figure-revealjs/cell-5-output-1.png" width="800" height="451"></p>
+<p><img data-src="complexity_files/figure-revealjs/cell-5-output-1.png" width="813" height="451"></p>
 </figure>
 </div>
 </div>
@@ -463,7 +463,7 @@ M_1\left(M_2\cdots \left(M_n \mathbf{v}\right)\right)
 \begin{align}
 b^2 &amp;= b\cdot b\\
 b^4 &amp;= b^2\cdot b^2\\
-b^4 &amp;= b^4\cdot b^4
+b^8 &amp;= b^4\cdot b^4
 \end{align}
 \]</span></p></li>
 <li><p>Only have to do <em>three</em> multiplications!</p></li>
@@ -484,7 +484,7 @@ b^n = \begin{cases}
 </section>
 <section class="slide level2 center">
 
-<div id="6df1cb3e" class="cell" data-execution_count="5">
+<div id="78a80708" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> exp(b, n):</span>
 <span id="cb3-2"><a></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb3-3"><a></a>        <span class="cf">return</span> <span class="dv">1</span></span>
@@ -494,7 +494,7 @@ b^n = \begin{cases}
 <span id="cb3-7"><a></a>        <span class="cf">return</span> b <span class="op">*</span> exp(b, n <span class="op">-</span> <span class="dv">1</span>) </span>
 <span id="cb3-8"><a></a></span>
 <span id="cb3-9"><a></a>exp(<span class="dv">2</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>64</code></pre>
 </div>
 </div>
@@ -509,7 +509,7 @@ b^n = \begin{cases}
 <ul>
 <li>Any recursive function has to have a <em>base case</em> to avoid an infinite regress</li>
 </ul>
-<div id="c53e2a1e" class="cell" data-execution_count="6">
+<div id="a1630949" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="kw">def</span> exp_no_base_case(b, n):</span>
 <span id="cb5-2"><a></a>    <span class="cf">if</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb5-3"><a></a>        <span class="cf">return</span> exp_no_base_case(b, n <span class="op">//</span> <span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span></span>
@@ -521,43 +521,43 @@ b^n = \begin{cases}
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">RecursionError</span>                            Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[19], line 7</span>
+Cell <span class="ansi-green-fg">In[6], line 7</span>
 <span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
 <span class="ansi-green-fg ansi-bold">      5</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>) 
 <span class="ansi-green-fg">----&gt; 7</span> exp_no_base_case(<span style="color:rgb(98,98,98)">2</span>, <span style="color:rgb(98,98,98)">6</span>)
 
-Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+Cell <span class="ansi-green-fg">In[6], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
 <span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">exp_no_base_case</span>(b, n):
 <span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> n <span style="color:rgb(98,98,98)">%</span> <span style="color:rgb(98,98,98)">2</span> <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(98,98,98)">0</span>:
 <span class="ansi-green-fg">----&gt; 3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
 <span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
 <span class="ansi-green-fg ansi-bold">      5</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
 
-Cell <span class="ansi-green-fg">In[19], line 5</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+Cell <span class="ansi-green-fg">In[6], line 5</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
 <span class="ansi-green-fg ansi-bold">      3</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
 <span class="ansi-green-fg ansi-bold">      4</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
 <span class="ansi-green-fg">----&gt; 5</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
 
-Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+Cell <span class="ansi-green-fg">In[6], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
 <span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">exp_no_base_case</span>(b, n):
 <span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> n <span style="color:rgb(98,98,98)">%</span> <span style="color:rgb(98,98,98)">2</span> <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(98,98,98)">0</span>:
 <span class="ansi-green-fg">----&gt; 3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
 <span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
 <span class="ansi-green-fg ansi-bold">      5</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
 
-Cell <span class="ansi-green-fg">In[19], line 5</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+Cell <span class="ansi-green-fg">In[6], line 5</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
 <span class="ansi-green-fg ansi-bold">      3</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
 <span class="ansi-green-fg ansi-bold">      4</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
 <span class="ansi-green-fg">----&gt; 5</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
 
-Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+Cell <span class="ansi-green-fg">In[6], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
 <span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">exp_no_base_case</span>(b, n):
 <span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> n <span style="color:rgb(98,98,98)">%</span> <span style="color:rgb(98,98,98)">2</span> <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(98,98,98)">0</span>:
 <span class="ansi-green-fg">----&gt; 3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
 <span class="ansi-green-fg ansi-bold">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
 <span class="ansi-green-fg ansi-bold">      5</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> b <span style="color:rgb(98,98,98)">*</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">-</span> <span style="color:rgb(98,98,98)">1</span>)
 
-Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+Cell <span class="ansi-green-fg">In[6], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
 <span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">exp_no_base_case</span>(b, n):
 <span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> n <span style="color:rgb(98,98,98)">%</span> <span style="color:rgb(98,98,98)">2</span> <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(98,98,98)">0</span>:
 <span class="ansi-green-fg">----&gt; 3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
@@ -566,7 +566,7 @@ Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cya
 
     <span class="ansi-red-fg">[... skipping similar frames: exp_no_base_case at line 3 (2971 times)]</span>
 
-Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
+Cell <span class="ansi-green-fg">In[6], line 3</span>, in <span class="ansi-cyan-fg">exp_no_base_case</span><span class="ansi-blue-fg">(b, n)</span>
 <span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">exp_no_base_case</span>(b, n):
 <span class="ansi-green-fg ansi-bold">      2</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> n <span style="color:rgb(98,98,98)">%</span> <span style="color:rgb(98,98,98)">2</span> <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(98,98,98)">0</span>:
 <span class="ansi-green-fg">----&gt; 3</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> exp_no_base_case(b, n <span style="color:rgb(98,98,98)">/</span><span style="color:rgb(98,98,98)">/</span> <span style="color:rgb(98,98,98)">2</span>)<span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">2</span>
@@ -605,7 +605,7 @@ Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cya
 </section>
 <section class="slide level2 center">
 
-<div id="8f0ae60d" class="cell" data-execution_count="7">
+<div id="e252e631" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="kw">def</span> fib(n):</span>
 <span id="cb6-2"><a></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb6-3"><a></a>        <span class="cf">return</span> <span class="dv">0</span></span>
@@ -615,7 +615,7 @@ Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cya
 <span id="cb6-7"><a></a>        <span class="cf">return</span> fib(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fib(n <span class="op">-</span> <span class="dv">2</span>)</span>
 <span id="cb6-8"><a></a></span>
 <span id="cb6-9"><a></a>fib(<span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>233</code></pre>
 </div>
 </div>
@@ -680,11 +680,11 @@ Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cya
 <ul>
 <li>Turning a list or array into a sorted list (conventionally in <em>ascending</em> order):</li>
 </ul>
-<div id="ad5b5874" class="cell" data-execution_count="8">
+<div id="bcd55c7d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>random_array <span class="op">=</span> np.random.randint(<span class="dv">0</span>,<span class="dv">100</span>, <span class="dv">10</span>)</span>
 <span id="cb8-2"><a></a><span class="bu">sorted</span>(random_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
-<pre><code>[4, 8, 17, 31, 39, 46, 68, 75, 85, 93]</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>[4, 20, 48, 50, 65, 73, 75, 77, 86, 91]</code></pre>
 </div>
 </div>
 <ul>
@@ -705,7 +705,7 @@ Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cya
 </section>
 <section class="slide level2 center">
 
-<div id="62e96cbd" class="cell" data-execution_count="9">
+<div id="20414c1d" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="kw">def</span> bubble_sort(A):</span>
 <span id="cb10-2"><a></a>    <span class="co">"Sort A and return"</span></span>
 <span id="cb10-3"><a></a>    A <span class="op">=</span> A.copy()</span>
@@ -730,7 +730,7 @@ Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cya
 </section>
 <section class="slide level2 center">
 
-<div id="e2c40d27" class="cell" data-execution_count="10">
+<div id="59ca976f" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -767,7 +767,7 @@ Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cya
 </section>
 <section class="slide level2 center">
 
-<div id="995dbf26" class="cell" data-execution_count="11">
+<div id="91de80e7" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="kw">def</span> quicksort(A, lo<span class="op">=</span><span class="dv">0</span>, hi<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb11-2"><a></a>    <span class="co">"Sort A and return sorted array"</span></span>
 <span id="cb11-3"><a></a></span>
@@ -801,7 +801,7 @@ Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cya
 </section>
 <section class="slide level2 center">
 
-<div id="b85e5b38" class="cell" data-execution_count="12">
+<div id="66b2ff6d" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -828,7 +828,7 @@ Cell <span class="ansi-green-fg">In[19], line 3</span>, in <span class="ansi-cya
 <section class="slide level2 center">
 
 <p>NumPy’s <code>sort</code> uses quicksort, whereas Python’s <code>sorted</code> uses a hybrid algorithm called <a href="https://en.wikipedia.org/wiki/Timsort">Timsort</a>, which also has <span class="math inline">\(O(n\log n)\)</span> average case performance</p>
-<div id="9727a661" class="cell" data-execution_count="13">
+<div id="1d0797c6" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1220,7 +1220,7 @@ Insertion in a list etc. -->
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
+          var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }

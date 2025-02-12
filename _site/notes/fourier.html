@@ -527,7 +527,7 @@ T(N) = 2T(N/2) +\alpha N
 <li><code>np.fft.ifftshift(A)</code> inverts this.</li>
 </ol>
 <p>Here are some simple examples of their use, applied to a very simple signal consisting of two sinusoids at 12 Hz and 34 Hz:</p>
-<div class="cell" data-execution_count="1">
+<div id="e37e91a6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dt<span class="op">=</span><span class="fl">0.01</span></span>
@@ -543,13 +543,13 @@ T(N) = 2T(N/2) +\alpha N
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="fourier_files/figure-html/cell-2-output-2.png" width="582" height="422" class="figure-img"></p>
+<p><img src="fourier_files/figure-html/cell-2-output-2.png" width="582" height="429" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Now we can take the FFT and plot vs array index, or against the real frequency (with the given sample spacing of <span class="math inline">\(dt=0.01\)</span>)</p>
-<div class="cell" data-execution_count="2">
+<div id="9cdb78fd" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Y<span class="op">=</span>np.fft.fft(y)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot FFT modulus versus array index</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)<span class="op">;</span> plt.plot(<span class="bu">abs</span>(Y))</span>
@@ -564,13 +564,13 @@ T(N) = 2T(N/2) +\alpha N
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="fourier_files/figure-html/cell-3-output-1.png" width="575" height="422" class="figure-img"></p>
+<p><img src="fourier_files/figure-html/cell-3-output-1.png" width="575" height="429" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>As we discussed in <a href="#sec-properties" class="quarto-xref">Section&nbsp;1.4</a>, the Fourier transform of real valued data has the property <span class="math inline">\(F_n = \left[F_{-n}\right]^*\)</span>:</p>
-<div class="cell" data-execution_count="3">
+<div id="3adc10c1" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)<span class="op">;</span> plt.plot(f,Y.real)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>)<span class="op">;</span> plt.plot(f,Y.imag)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Frequency / Hz"</span>)</span>
@@ -578,7 +578,7 @@ T(N) = 2T(N/2) +\alpha N
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="fourier_files/figure-html/cell-4-output-1.png" width="578" height="422" class="figure-img"></p>
+<p><img src="fourier_files/figure-html/cell-4-output-1.png" width="578" height="429" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -587,13 +587,13 @@ T(N) = 2T(N/2) +\alpha N
 <section id="windowing" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="windowing"><span class="header-section-number">2.4</span> Windowing</h2>
 <p>Note that, even though our signal consists of just a pair of sinusoids, the FFT does <em>not</em> just consist of <span class="math inline">\(\delta\)</span>-functions, which is more obvious on a log-scale:</p>
-<div class="cell" data-execution_count="4">
+<div id="d70b8b90" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.magnitude_spectrum(y, Fs<span class="op">=</span><span class="dv">100</span>, scale<span class="op">=</span><span class="st">'dB'</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="fourier_files/figure-html/cell-5-output-1.png" width="604" height="422" class="figure-img"></p>
+<p><img src="fourier_files/figure-html/cell-5-output-1.png" width="604" height="429" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -649,9 +649,9 @@ Figure&nbsp;2: Residuals from the modelled signal, from <span class="citation" d
 <p><span id="eq-schrodinger"><span class="math display">\[
 i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m}\nabla^2 \psi + V(\mathbf{r})\psi.
 \tag{6}\]</span></span></p>
-<p>When the potential is absent, the solutions are plane waves</p>
+<p>When the potential is absent, the solutions are superpositions of plane waves</p>
 <p><span id="eq-momentum"><span class="math display">\[
-\Psi(\mathbf{r}, t) = \exp\left[-i\frac{\hbar^2 \mathbf{k}^2 t}{2m} +i\mathbf{k}\cdot\mathbf{r}\right].
+\Psi_\mathbf{k}(\mathbf{r}, t) = \exp\left[-i\frac{\hbar \mathbf{k}^2 t}{2m} +i\mathbf{k}\cdot\mathbf{r}\right].
 \tag{7}\]</span></span></p>
 <p>On the other hand, if the first term on the right hand side of <a href="#eq-schrodinger" class="quarto-xref">Equation&nbsp;6</a> — representing the kinetic energy — were absent, then the evolution of the wavefunction would be</p>
 <p><span id="eq-position"><span class="math display">\[
@@ -673,7 +673,7 @@ e^{xA}e^{xB} = e^{x(A+B) + O(x^2)}.
 e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
 \]</span></p>
 <p>In any case, the practical algorithm suggested by these formulas is implemented for the Schrödinger equation by switching between real space and Fourier space, where the two kinds of evolution are implemented. Here’s a simple 1D example:</p>
-<div class="cell" data-execution_count="5">
+<div id="55cdafa5" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_step_schrodinger(psi_0, dx, dt, V, N, x_0 <span class="op">=</span> <span class="fl">0.</span>, k_0 <span class="op">=</span> <span class="va">None</span>, m <span class="op">=</span> <span class="fl">1.0</span>, non_linear <span class="op">=</span> <span class="va">False</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    len_x <span class="op">=</span> psi_0.shape[<span class="dv">0</span>]</span>
@@ -727,7 +727,7 @@ e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
 <span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> psi_x,psi_k,k_x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
+<div id="fcfb2536" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> oneD_gaussian(x,mean,std,k0):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="op">-</span>((x<span class="op">-</span>mean)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>std<span class="op">**</span><span class="dv">2</span>)<span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>x<span class="op">*</span>k0)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>std<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="fl">0.25</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -736,7 +736,7 @@ e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    V_x[np.where(<span class="bu">abs</span>(x) <span class="op">&lt;</span> <span class="fl">0.5</span>)] <span class="op">=</span> <span class="fl">1.5</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> V_x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="7">
+<div id="d2e04ade" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>N_x <span class="op">=</span> <span class="dv">2</span><span class="op">**</span><span class="dv">11</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> <span class="fl">0.05</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> dx <span class="op">*</span> (np.arange(N_x) <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> N_x)</span>
@@ -751,7 +751,7 @@ e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>psi_x,psi_k,k <span class="op">=</span> split_step_schrodinger(psi_0, dx, dt, V, N_t, x_0 <span class="op">=</span> x[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="8">
+<div id="d7f1501f" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Animation code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation</span>
