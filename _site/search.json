@@ -1,5 +1,16 @@
 [
   {
+    "objectID": "exercises/exercises.html",
+    "href": "exercises/exercises.html",
+    "title": "Exercises",
+    "section": "",
+    "text": "There are four computing exercises to be completed in the last four weeks of full Lent term; one per week. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. Each of the four exercises is marked out of 5 for a total of 20 marks. Marks will be awarded in proportion to the amount of each exercise you successfully complete. Successfully complete means that at the very least the relevant code should run!\n\nFirst exercise: Friday 14th February – Friday 21st February\nSecond exercise: 28th February – Friday 7th March\nThird exercise: Friday 7th March – Friday 14th March\nFourth exercise: Friday 14th March – Friday 21st March (last day of full Lent term)\n\nYou will receive a link to the exercise via email on the first day before noon (i.e. Friday 14th February for the first exercise). The deadline for every exercise is 12 noon on the final day (i.e. Friday 21st February for the first exercise).\n\n1 How to submit\nYou will be using GitHub classroom to submit your work, so you will need a GitHub account if you don’t already have one.\nIf you’ve never used GitHub before, you can try out the starter course. On clicking this link you will be asked to pick your identifier (CRSid) in order to join the classroom. Let me know if your id is missing.\nEach week I will email you a link to a new exercise. Once you accept the assignment, GitHub will create a repository called &lt;exercise-name&gt;-&lt;your-username&gt; in the Part-II-Computational-Physics organization on GitHub. This repository will contain the exercise description. Please change the name of the repo to &lt;exercise-name&gt;-&lt;CRSid&gt; for ease of marking. Only you and the course admins (the demonstrators and me) can see this repo.\nNote that there is no explicit “submit” button. You submit your work by making changes (“commits”) to the repository on GitHub (if you make commits to a copy of the repository on your computer, you must “push” them to GitHub). You can make as many commits as you like up until the deadline. Note that you can continue to add commits to the repo after the deadline, but only the last commit before the deadline is counted as the submission.\nPlease use the discussions section to ask questions to your demonstrators (about the exercises) and me (about everything else). Treat the discussions as if they are a real life examples class where others can learn from your questions and the answers to them.\nIf you’re using VS Code, there is a GitHub Classroom extension that allows you to view, work on, and submit assignments directly within the editor.\n\n\n2 First exercise: PDEs\nThe first exercise concerns solving a simple PDE using different methods. Your demonstrator for this exercise is Arshad Kamal. The deadline is 12 noon on Friday 21st February.",
+    "crumbs": [
+      "Exercises and Projects",
+      "Exercises"
+    ]
+  },
+  {
     "objectID": "notes/numpy.html",
     "href": "notes/numpy.html",
     "title": "NumPy and friends",
@@ -565,7 +576,7 @@
     "href": "slides/autodiff.html#the-cost-function",
     "title": "Part II Computational Physics",
     "section": "The cost function",
-    "text": "The cost function\n\nDataset of size \\(N\\) consisting of data \\(\\mathbf{x}_i=1,\\ldots N\\) together with labels \\(l_i\\)\nEncode labels in vectors \\(\\mathbf{y}_i\\) to be compared with output of the neural network\nPopular choice is one hot encoding. \\(\\mathbf{y}_i\\) is \\(N_L\\) dimensional vector. Label \\(n\\) encoded as \\((0,0,\\ldots, 1, \\ldots, 0)\\), with \\(1\\) in \\(n\\text{th}\\) place",
+    "text": "The cost function\n\nDataset of size \\(N\\) consisting of data \\(\\mathbf{x}_i=1,\\ldots N\\) together with labels \\(l_i\\)\nEncode labels in vectors \\(\\mathbf{y}_i\\) to be compared with output of the neural network\nPopular choice is one hot encoding. \\(\\mathbf{y}_i\\) is \\(N_L\\) dimensional vector (\\(N_L\\) is number of labels)\nLabel \\(n\\) encoded as \\((0,0,\\ldots, 1, \\ldots, 0)\\), with \\(1\\) in \\(n\\text{th}\\) place",
     "crumbs": [
       "Slides",
       "Autodiff and neural nets"
@@ -620,7 +631,7 @@
     "href": "slides/autodiff.html#why-so-simple",
     "title": "Part II Computational Physics",
     "section": "Why so simple?",
-    "text": "Why so simple?\n\nAll sophistication lies in how model is defined and how gradients are calculated\nNot a trvial task: ChatGPT has 175 billion parameters!\nMany more sophisticated optimization methods, but often involve more information about model’s dependence on parameters\nNewton’s method requires knowledge of first and second derivatives at each step: too costly to evaluate",
+    "text": "Why so simple?\n\nAll sophistication lies in how model is defined and how gradients are calculated\nNot a trvial task: GPT and other LLMs have hundreds of trillions of parameters!\nMany more sophisticated optimization methods, but often involve more information about model’s dependence on parameters\nNewton’s method requires knowledge of first and second derivatives at each step: too costly to evaluate",
     "crumbs": [
       "Slides",
       "Autodiff and neural nets"
@@ -664,7 +675,7 @@
     "href": "slides/autodiff.html#why-network",
     "title": "Part II Computational Physics",
     "section": "Why network?",
-    "text": "Why network?\n\\[\nf(\\mathbf{x}) = \\phi(w\\cdot\\mathbf{x} + \\mathbf{b}).\n\\]\n\nRepresented graphically as\n\n\n\n\n\n\n\nFigure 1: Nielsen (2015)",
+    "text": "Why network?\n\\[\nf(\\mathbf{x}) = \\phi(w\\cdot\\mathbf{x} + \\mathbf{b})\n\\]\n\nRepresented graphically as\n\n\n\n\n\n\n\nFigure 1: Nielsen (2015)",
     "crumbs": [
       "Slides",
       "Autodiff and neural nets"
@@ -1690,7 +1701,7 @@
     "href": "notes/autodiff.html#footnotes",
     "title": "Automatic differentiation and neural networks",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nThis is a slight exaggeration, but what people often do these days is augment symbolic approaches with neural approaches.↩︎\nThe term parameter is normally reserved for the \\(\\theta\\)’s that appear in the definition of the model. Numbers like the learning rate that describe how the model is trained are usually referred to as hyperparameters.↩︎\nGPT-3, the model from OpenAI underlying ChatGPT, has 175 billion parameters!↩︎\nNote that you don’t have to use the same activation function throughout. Typically the output layer of a network used for classification uses the softmax function to output probabilities over the labels.↩︎\nSpiking neural networks are a model in which time plays a more serious role.↩︎",
+    "text": "Footnotes\n\n\nThis is a slight exaggeration, but what people often do these days is augment symbolic approaches with neural approaches.↩︎\nThe term parameter is normally reserved for the \\(\\theta\\)’s that appear in the definition of the model. Numbers like the learning rate that describe how the model is trained are usually referred to as hyperparameters.↩︎\nGPT, the model from OpenAI underlying ChatGPT, has hundreds of trillions of parameters!↩︎\nNote that you don’t have to use the same activation function throughout. Typically the output layer of a network used for classification uses the softmax function to output probabilities over the labels.↩︎\nSpiking neural networks are a model in which time plays a more serious role.↩︎",
     "crumbs": [
       "Notes",
       "Automatic differentiation and neural networks"

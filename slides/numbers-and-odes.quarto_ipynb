@@ -1,0 +1,944 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "number-sections: false\n",
+        "format:\n",
+        "  revealjs: \n",
+        "    theme: [default, reveal_custom.scss]\n",
+        "    slide-number: true\n",
+        "    hash: true\n",
+        "    center: true\n",
+        "    auto-stretch: false\n",
+        "    html-math-method: mathjax\n",
+        "    preview-links: true\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# Floating point and ODEs\n",
+        "\n",
+        "---\n"
+      ],
+      "id": "c6b2eb2b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "0.1  + 0.2 == 0.3"
+      ],
+      "id": "a051af25",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- What's going on?\n",
+        "\n",
+        "## Integers\n",
+        "\n",
+        " - Something simpler\n"
+      ],
+      "id": "73b99f69"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "1 + 1 == 2"
+      ],
+      "id": "219f50a2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- Integers can be represented in binary\n"
+      ],
+      "id": "0d8de4ec"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "3 == 0b11 # Ooctal `0o` or hexadecimal `0h`"
+      ],
+      "id": "c35423a5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- Binary string representation using `bin` function\n"
+      ],
+      "id": "64bc6ea4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "bin(-2)"
+      ],
+      "id": "dd9d2e5d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "- Python allows for arbitrarily large integers\n",
+        "\n",
+        "- No possibility of overflow or rounding error\n"
+      ],
+      "id": "ab23c942"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "2**100"
+      ],
+      "id": "103dcce1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- Only limitation is memory!\n",
+        "\n",
+        "---\n",
+        "\n",
+        "- Numpy integers are a different story \n"
+      ],
+      "id": "91ae2eb6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| error: true\n",
+        "#| echo: true\n",
+        "import numpy as np\n",
+        "np.int64(2**100)"
+      ],
+      "id": "2bcd82c3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- Since NumPy is using C the types have to play nicely\n",
+        "\n",
+        "- Range of integers that represented with 32 bit `numpy.int32`s is $\\approx\\pm 2^{31} \\approx \\pm 2.1 × 10^9$ (one bit for sign) \n",
+        "\n",
+        "- 64 bit `numpy.int64`s lie in range $\\approx\\pm 2^{63} \\approx \\pm 9.2 × 10^{18}$\n",
+        "\n",
+        "- Apart from the risk of overflow when working NumPy's integers there are no other gotchas to worry about\n",
+        "\n",
+        "\n",
+        "## Floating point numbers\n",
+        "\n",
+        "- $0.1 + 0.2 \\neq 0.3$ in Python is that __specifying a real number exactly would involve an infinite number of bits__\n",
+        "\n",
+        "- Any finite representation necessarily approximate\n",
+        "\n",
+        "- Representation for reals is called [floating point arithmetic](https://en.wikipedia.org/wiki/Floating-point_arithmetic)\n",
+        "\n",
+        "- Essentially scientific notation\n",
+        "\n",
+        "$$\\text{significand}  \\times \\text{exponent}\n",
+        "$$\n",
+        "\n",
+        "- Named _floating point_ because number of digits after decimal point not fixed \n",
+        "\n",
+        "---\n",
+        "\n",
+        "- Requires choice of base, and Python's floating point numbers use binary\n",
+        "\n",
+        "- _Numbers with finite binary representations behave nicely_\n"
+      ],
+      "id": "b54f8922"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "0.125 + 0.25 == 0.375"
+      ],
+      "id": "0b25fcc2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- For decimal numbers to be represented exactly we'd have to use base ten. Can be achieved with `decimal` module:\n"
+      ],
+      "id": "b6e35e96"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "from decimal import *\n",
+        "Decimal('0.1') + Decimal('0.2')"
+      ],
+      "id": "96965d32",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- But: there's nothing to single out decimal representation in physics (as opposed to, say, finance)\n",
+        "\n",
+        "---\n",
+        "\n",
+        "- A specification for floating point numbers must give\n",
+        "\n",
+        "    1. Base (or _radix_) $b$\n",
+        "    2. Precision $p$, the number of digits in the significand $c$. Thus $0\\leq c \\leq b^{p}-1$.\n",
+        "    3. A range of exponents $q$ specifed by $\\text{emin}$ and $\\text{emax}$ with $\\text{emin}\\leq q+p-1 \\leq \\text{emax}$.\n",
+        "\n",
+        "- With one bit $s$ for overall sign, a number then has form $(-1)^s\\times c \\times b^q$. \n",
+        "\n",
+        "- Smallest positive nonzero number that can be represented is $b^{1 + \\text{emin} - p}$ (corresponding to the smallest value of the exponent) and largest is $b^{1 + \\text{emax}} - 1$. \n",
+        "\n",
+        "---\n",
+        "\n",
+        "$$\n",
+        "(-1)^s\\times c \\times b^q\n",
+        "$$\n",
+        "\n",
+        "- Representation isn't unique: (sometimes) could make significand smaller and exponent bigger\n",
+        "\n",
+        "- A unique representation is fixed by choosing the exponent to be as small as possible.\n",
+        "\n",
+        "- Representing numbers smaller than $b^{\\text{emin}}$ involves a loss of precision, as number of digits in significand $<p$ and exponent takes its minimum value ([subnormal numbers](https://en.wikipedia.org/wiki/Subnormal_number))\n",
+        "\n",
+        "- If we stick with normal numbers and a $p$-bit significand, leading bit will be 1 and so can be dropped from the representation: only requires $p-1$ bits.    \n",
+        "\n",
+        "---\n",
+        " \n",
+        "- Specification for floating point numbers used by Python (and many other languages) is contained in the IEEE Standard for Floating Point Arithmetic [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754)\n",
+        "\n",
+        "- Default Python `float` uses 64 bit _binary64_ representation (often called _double precision_)\n",
+        "\n",
+        "- Here's how those 64 bits are used:\n",
+        "\n",
+        "    - $p=53$ for the significand, encoded in 52 bits\n",
+        "    - 11 bits for the exponent\n",
+        "    - 1 bit for the sign\n",
+        "\n",
+        "---\n",
+        "\n",
+        "- Another common representation is 32 bit _binary32_ (_single precision_) with:\n",
+        "\n",
+        "    - $p=24$ for the significand, encoded in 23 bits\n",
+        "    - 8 bits for the exponent\n",
+        "    - 1 bit for the sign\n",
+        "\n",
+        "\n",
+        "## Floating point numbers in NumPy {#sec-fp-numpy}\n",
+        "\n",
+        "- NumPy's [finfo](https://numpy.org/doc/stable/reference/generated/numpy.finfo.html) function tells all [machine precision](https://en.wikipedia.org/wiki/Machine_epsilon)\n"
+      ],
+      "id": "c06e493e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "np.finfo(np.float64)"
+      ],
+      "id": "a7e46a0b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- Note that $2^{-52}=2.22\\times 10^{-16}$ which accounts for resolution $10^{-15}$\n",
+        "\n",
+        "- This can be checked by finding when a number is close enough to treated as 1.0.\n"
+      ],
+      "id": "77eb308a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "x=1.0\n",
+        "while 1.0 + x != 1.0:\n",
+        "    x /= 1.01 \n",
+        "print(x)"
+      ],
+      "id": "db8c0d1f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "- For binary32 we have a resolution of $10^{-6}$.\n"
+      ],
+      "id": "862aba86"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "np.finfo(np.float32)"
+      ],
+      "id": "98d0036a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "- Taking small differences between numbers is a potential source of rounding error\n",
+        "\n",
+        "![](../assets/ia-question.png)\n",
+        "\n",
+        "- Solution: $x-x'=x(1-\\gamma^{-1})\\sim x\\beta^2/2\\sim 4.2\\text{mm}$. \n"
+      ],
+      "id": "bd54eb6d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "import numpy as np\n",
+        "from scipy.constants import c\n",
+        "beta = 384400e3 / (76 * 3600) / c\n",
+        "gamma = 1/np.sqrt(1 - beta**2)\n",
+        "print(1 - np.float32(1/gamma), 1 - np.float64(1/gamma))"
+      ],
+      "id": "af26ca71",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## The dreaded NaN\n",
+        "\n",
+        "- As well as a floating point system, IEEE 754 defines `Infinity` and `NaN` (Not a Number)\n"
+      ],
+      "id": "7d61879b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "np.array([1, -1, 0]) / 0"
+      ],
+      "id": "8df89c45",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- They behave as you might guess\n"
+      ],
+      "id": "5645c036"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "2 * np.inf, 0 * np.inf, np.inf > np.nan"
+      ],
+      "id": "fde97a63",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "- NaNs propagate through subsequent operations\n"
+      ],
+      "id": "ad96a8ee"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "2 * np.nan"
+      ],
+      "id": "d90a0a14",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- If you get a NaN somewhere in your calculation, you'll probably end up seeing it somewhere in the output\n",
+        "\n",
+        "::: incremental\n",
+        "- (this is the idea)\n",
+        ":::\n",
+        "  <!-- https://pythonspeed.com/articles/float64-float32-precision/ -->\n",
+        "\n",
+        "\n",
+        "# Differential equations with SciPy\n",
+        "\n",
+        "---\n",
+        "\n",
+        "> Newton's fundamental discovery, the one which he considered necessary to keep secret and published only in the form of an anagram, consists of the following: _Data aequatione quotcunque fluentes quantitates involvente, fluxiones invenire; et vice versa_. In contemporary mathematical language, this means: \"It is useful to solve differential equations\".\n",
+        ">\n",
+        ">Vladimir Arnold, _Geometrical Methods in the Theory of Ordinary Differential Equations_\n",
+        "\n",
+        "---\n",
+        "\n",
+        "- Solving differential equations is _not possible in general_\n",
+        "\n",
+        "$$\n",
+        "\\frac{dx}{dt} = f(x, t)\n",
+        "$$\n",
+        "\n",
+        "- Cannot be solved for general $f(x,t)$ \n",
+        "\n",
+        "- Formulating a system in terms of differential equations represents an important first step\n",
+        "\n",
+        "- Numerical analysis of differential equations is a colossal topic in applied mathematics\n",
+        "\n",
+        "- Important thing is to access existing solvers (and implement your own if necessary) and to _understand their limitations_\n",
+        "\n",
+        "---\n",
+        "\n",
+        "- Basic idea is to _discretize_ equation and solution $x_j\\equiv x(t_j)$ at time points $t_j = hj$ with some _step size_ $h$\n",
+        "\n",
+        "![Taraji P. Henson as Katherine Johnson in _Hidden Figures_](../assets/Hidden-Figures-scene_Katherine-Johnson-calculates-orbital-insertion-trajectories_Credit_TM-and-C-2017-Twentieth-Century-Fox-Film-Corporation_All-rights-reserved.webp){fig-align=\"center\" width=\"700\"}\n",
+        "\n",
+        "---\n",
+        "\n",
+        "## Euler's method\n",
+        "\n",
+        "$$\n",
+        "\\frac{dx}{dt} = f(x, t)\n",
+        "$$\n",
+        "\n",
+        "- Simplest approach: approximate LHS of ODE\n",
+        "\n",
+        "$$\n",
+        "\\frac{dx}{dt}\\Bigg|_{t=t_j} \\approx \\frac{x_{j+1} - x_j}{h}\n",
+        "$$ \n",
+        "\n",
+        "$$\n",
+        "x_{j+1} = x_j + hf(x_j, t_j)\n",
+        "$$\n",
+        "\n",
+        "---\n",
+        "\n",
+        "$$\n",
+        "x_{j+1} = x_j + hf(x_j, t_j)\n",
+        "$$\n",
+        "\n",
+        "- Once _initial condition_ $x_0$ is specified, subsequent values obtained by iteration\n",
+        "\n",
+        "---\n",
+        "\n",
+        "$$\n",
+        "\\frac{dx}{dt}\\Bigg|_{t=t_j} \\approx \\frac{x_{j+1} - x_j}{h}\n",
+        "$$ \n",
+        "\n",
+        "- [forward finite difference](https://en.wikipedia.org/wiki/Finite_difference): why?\n",
+        "\n",
+        "- So that update rule is _explicit_ formula for $x_{j+1}$ in terms of $x_j$\n",
+        "\n",
+        "- If we had used backward derivative we would end up with [backward Euler method](https://en.wikipedia.org/wiki/Backward_Euler_method)\n",
+        "$$\n",
+        "x_{j+1} = x_j + hf(x_{j+1}, t_{j+1})\n",
+        "$$\n",
+        "which is _implicit_\n",
+        "\n",
+        "--- \n",
+        "\n",
+        "- This means that the update requires an additional step to numerically solve for $x_{j+1}$\n",
+        "\n",
+        "- Although this is more costly, there are benefits to the backward method associated with stability (as we'll see)\n",
+        "\n",
+        "---\n",
+        "\n",
+        "### Truncation error\n",
+        "\n",
+        "- In Euler scheme we make an $O(h^2)$ _local truncation error_\n",
+        "\n",
+        "- To integrate for a fixed time number of steps required is proportional to $h^{-1}$\n",
+        "\n",
+        "- The worst case error at fixed time (the _global truncation error_) is $O(h)$\n",
+        "\n",
+        "- For this reason Euler's method is _first order_\n",
+        "\n",
+        "- More sophisticated methods typically higher order: the SciPy function [scipy.integrate.solve_ivp](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#r179348322575-1) uses fifth order method by default\n",
+        "\n",
+        "---\n",
+        "\n",
+        "### Midpoint method\n",
+        "\n",
+        "- [Midpoint method](https://en.wikipedia.org/wiki/Midpoint_method) is a simple example of a higher order integration scheme\n",
+        "\n",
+        "$$\n",
+        "\\begin{align}\n",
+        "k_1 &\\equiv h f(x_j,t_j) \\\\\n",
+        "k_2 &\\equiv h f(x_i + k_1/2, t_j + h/2) \\\\\n",
+        "x_{j+1} &= x_j + k_2 +O(h^3)\n",
+        "\\end{align}\n",
+        "$$\n",
+        "\n",
+        "- $O(h^2)$ error cancels! \n",
+        "\n",
+        "- Downside is that we have two function evaluations to perform per step, but this is often worthwhile\n",
+        "\n",
+        "---\n",
+        "\n",
+        "### Rounding error\n",
+        "\n",
+        "- More computer time $\\longrightarrow$ smaller $h$ $\\longrightarrow$ better accuracy?\n",
+        "\n",
+        "- This ignores machine precision $\\epsilon$\n",
+        "\n",
+        "- Rounding error is roughly $\\epsilon x_j$\n",
+        "\n",
+        "- If $N\\propto h^{-1}$ errors in successive steps treated as independent random variables, relative total rounding error will be $\\propto \\sqrt{N}\\epsilon=\\frac{\\epsilon}{\\sqrt{h}}$\n",
+        "\n",
+        "- Will dominate for $h$ small\n",
+        "\n",
+        "---\n",
+        "\n",
+        "### Stability\n",
+        "\n",
+        "- Euler method may be unstable, depending on equation\n",
+        "\n",
+        "- Simple example:\n",
+        "\n",
+        "$$\n",
+        "\\frac{dx}{dt} = kx\n",
+        "$$\n",
+        "\n",
+        "---\n"
+      ],
+      "id": "7ebca218"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "def euler(h, t_max, k=1):\n",
+        "    \"\"\"\n",
+        "    Solve the equation x' = k x, with x(0) = 1 using\n",
+        "    the Euler method. \n",
+        "\n",
+        "    Integrate from t=0 to t=t_max using stepsize h for\n",
+        "    num_steps = t_max / h.\n",
+        "    \n",
+        "    Returns two arrays of length num_steps: t, the time coordinate, and x_0, the position.\n",
+        "    \"\"\"\n",
+        "    num_steps = int(t_max / h)\n",
+        "    # Allocate return arrays\n",
+        "    x = np.zeros(num_steps, dtype=np.float32)\n",
+        "    t = np.zeros(num_steps, dtype=np.float32)\n",
+        "    x[0] = 1.0  # Initial condition\n",
+        "    for i in range(num_steps - 1):\n",
+        "        x[i+1] = x[i] + k * x[i] * h\n",
+        "        t[i+1] = t[i] + h  # Time step\n",
+        "    return t, x"
+      ],
+      "id": "304fa213",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n"
+      ],
+      "id": "b2854c18"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "k = -2.3\n",
+        "t_max = 5\n",
+        "t, x = euler(1, t_max, k)\n",
+        "plt.plot(t, x, label=\"h=1 Euler\")\n",
+        "t, x = euler(0.7, t_max, k)\n",
+        "plt.plot(t, x, label=\"h=0.7 Euler\")\n",
+        "t = np.linspace(0, t_max, 100)\n",
+        "plt.plot(t, np.exp(k * t), label=\"exact solution\")\n",
+        "plt.title(\"k=-2.3\")\n",
+        "plt.legend()\n",
+        "plt.show()"
+      ],
+      "id": "e8cef670",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "- For a linear equation Euler update is a simple rescaling\n",
+        "\n",
+        "$$\n",
+        "x_{j+1} = x_j(1 + hk)\n",
+        "$$\n",
+        "\n",
+        "- Region of stability is $|1 + hk|\\leq 1$\n",
+        "\n",
+        "- You can check that backward Euler method eliminates the instability for $k<0$.\n",
+        "\n",
+        "---\n",
+        "\n",
+        "## Using SciPy\n",
+        "\n",
+        "- Coming up with integration schemes is best left to the professionals\n",
+        "\n",
+        "- Try [integrate](https://docs.scipy.org/doc/scipy/tutorial/integrate.html) module of the [SciPy](https://scipy.org/) library\n",
+        "\n",
+        "- [scipy.integrate.solve_ivp](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#r179348322575-1) provides a versatile API\n",
+        "\n",
+        "---\n",
+        "\n",
+        "### Reduction to first order system\n",
+        "\n",
+        "- All these integration schemes apply to systems of _first order_ differential equations\n",
+        "\n",
+        "- Higher order equations can always be presented as a first order system\n",
+        "\n",
+        "---\n",
+        "\n",
+        "- We are often concerned with Newton's equation \n",
+        "\n",
+        "$$\n",
+        "m\\frac{d^2 \\mathbf{x}}{dt^2} = \\mathbf{f}(\\mathbf{x},t)\n",
+        "$$\n",
+        "which is three second order equations\n",
+        "\n",
+        "- Turn this into a first order system by introducing the velocity $\\mathbf{v}=\\dot{\\mathbf{x}}$, giving six equations\n",
+        "\n",
+        "$$\n",
+        "\\begin{align}\n",
+        "\\frac{d\\mathbf{x}}{dt} &= \\mathbf{v}\\\\\n",
+        "m\\frac{d \\mathbf{v}}{dt} &= \\mathbf{f}(\\mathbf{x},t)\n",
+        "\\end{align}\n",
+        "$$\n",
+        "\n",
+        "---\n",
+        "\n",
+        "- Pendulum equation\n",
+        "\n",
+        "$$\n",
+        "\\ddot \\theta = -\\sin\\theta\n",
+        "$$\n",
+        "which can be cast as\n",
+        "\n",
+        "$$\n",
+        "\\begin{align}\n",
+        "\\dot\\theta &= l\\\\\n",
+        "\\dot l &= -\\sin\\theta\n",
+        "\\end{align}\n",
+        "$$\n",
+        "\n",
+        "- Solving using SciPy requires defining a function giving RHS\n"
+      ],
+      "id": "7ff3db45"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "def pendulum(t, y): return [y[1], -np.sin(y[0])]\n",
+        "# The pendulum equation: y[0] is theta and y[1] is l"
+      ],
+      "id": "b7c41b31",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "Then call `solve_ivp`\n"
+      ],
+      "id": "d66eefc4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "from scipy.integrate import solve_ivp\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "t_max = 1000\n",
+        "pendulum_motion = solve_ivp(pendulum, [0, t_max], [2, 0], dense_output=True)"
+      ],
+      "id": "161bf0b9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- Option `dense_output=True` specifies that a continuous solution should be found\n",
+        "\n",
+        "-  Returned object `pendulum_motion` has `sol` property that is an instance of [OdeSolution](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.OdeSolution.html#scipy.integrate.OdeSolution). `sol(t)` returns the computed solution at $t$ (this involves interpolation)\n",
+        "\n",
+        "---\n",
+        "\n",
+        "- Use this to plot pendulum's trajectory in $\\theta- l$ [phase plane](https://en.wikipedia.org/wiki/Phase_plane), along with contours of conserved energy function\n",
+        "\n",
+        "$$\n",
+        "E(\\theta, l) = \\frac{1}{2}l^2 - \\cos\\theta\n",
+        "$$\n"
+      ],
+      "id": "468bf63d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| code-summary: \"Code for plot\"\n",
+        "fig, ax = plt.subplots()\n",
+        "\n",
+        "theta = np.linspace(-1.1 * np.pi, 1.1 * np.pi, 60)\n",
+        "l = np.linspace(-2, 2, 60)\n",
+        "E = -np.cos(theta[np.newaxis,:]) + (l[:,np.newaxis])**2 / 2\n",
+        "# Note the use of broadcasting to obtain the energy as a function of the phase space coordinates\n",
+        "\n",
+        "xx, yy = np.meshgrid(theta, l)\n",
+        "\n",
+        "ax.contourf(xx, yy, E, cmap='Reds')\n",
+        "t = np.linspace(0, t_max, 10000)\n",
+        "ax.plot(*pendulum_motion.sol(t))\n",
+        "plt.xlabel(r'$\\theta$')\n",
+        "plt.ylabel(r'$l$')\n",
+        "plt.show()"
+      ],
+      "id": "53b5dccc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Thickness of blue line is due to variation of energy over $t=1000$ trajectory (measured in units where the frequency of linear oscillation is $2\\pi$)\n",
+        "\n",
+        "---\n",
+        "\n",
+        "- We did not have to specify a time step\n",
+        "\n",
+        "- This is determined _adaptively_ by solver to keep estimate of local error below `atol + rtol * abs(y)`\n",
+        "\n",
+        "- Default values of $10^{-6}$ and $10^{-3}$ respectively\n",
+        "\n",
+        "- Monitoring conserved quantities is a good experimental method for assessing the accuracy of integration\n",
+        "\n",
+        "--- \n",
+        "\n",
+        "- Alternative `dense_output=True` is to track \"events\"\n",
+        "\n",
+        "- User-defined points of interest on trajectory\n",
+        "\n",
+        "- Supply `solve_ivp` with functions `event(t, x)` whose zeros define the events. We can use events to take a \"cross section\" of higher dimensional motion\n",
+        "\n",
+        "---\n",
+        "\n",
+        "## [Hénon–Heiles system](https://en.wikipedia.org/wiki/H%C3%A9non%E2%80%93Heiles_system)\n",
+        "\n",
+        "- Model chaotic system with origins in stellar dynamics\n",
+        "\n",
+        "$$\n",
+        "\\begin{align}\n",
+        "\\dot x &= p_x \\\\\n",
+        "\\dot p_x &= -x -2\\lambda xy \\\\\n",
+        "\\dot y &= p_y \\\\\n",
+        "\\dot p_y &=  - y -\\lambda(x^2-y^2).\n",
+        "\\end{align}\n",
+        "$$\n",
+        "\n",
+        "- Example of [Hamilton's equations](https://en.wikipedia.org/wiki/Hamiltonian_mechanics)\n",
+        "\n",
+        "- Phase space is now four dimensional and impossible to visualize. \n",
+        "\n",
+        "---\n",
+        "\n",
+        "- Conserved energy is\n",
+        "\n",
+        "$$\n",
+        "E = \\frac{1}{2}\\left(p_x^2+p_y^2 + x^2 + y^2\\right) + \\lambda\\left(x^2y-\\frac{1}{3}y^3\\right)\n",
+        "$$\n",
+        "\n",
+        "- $\\lambda=0$ the HH system corresponds to an isotropic 2D harmonic oscillator with conserved angular momentum \n",
+        "\n",
+        "$$\n",
+        "J = x p_y - y p_x\n",
+        "$$\n",
+        "\n",
+        "---\n",
+        "\n",
+        "- Take [Poincaré section](https://en.wikipedia.org/wiki/Poincar%C3%A9_map) with $x=0$. A system with energy $E$ must lie within the curve defined by\n",
+        "\n",
+        "$$\n",
+        "E = \\frac{1}{2}\\left(p_y^2 + y^2\\right) -\\frac{\\lambda}{3}y^3\n",
+        "$$\n",
+        "\n",
+        "- From $x=0$ generate section of given $E$ by solving for $p_x$\n",
+        "\n",
+        "$$\n",
+        "p_x = \\sqrt{2E-y^2-p_y^2 + \\frac{2\\lambda}{3}y^3}\n",
+        "$$\n",
+        "\n",
+        "---\n"
+      ],
+      "id": "0f2f3376"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: true\n",
+        "def henon_heiles(t, z, 𝜆): \n",
+        "    x, px, y, py = z\n",
+        "    return [px, -x - 2 * 𝜆 * x * y, py, -y - 𝜆 * (x**2 - y**2)]\n",
+        "\n",
+        "def px(E, y, py, 𝜆):\n",
+        "    return np.sqrt(2 * E - y**2 - py**2 + 2 * 𝜆 * y**3 / 3)\n",
+        "\n",
+        "def section(t, y, 𝜆): return y[0] # The section with x=0\n",
+        "\n",
+        "t_max = 10000\n",
+        "𝜆 = 1\n",
+        "hh_motion = []\n",
+        "for E in [1/10, 1/8, 1/6]:\n",
+        "    hh_motion.append(solve_ivp(henon_heiles, [0, t_max], [0, px(E, 0.1, -0.1, 𝜆), 0.1, -0.1], events=section, args=[𝜆], atol=1e-7, rtol=1e-7))"
+      ],
+      "id": "6de22e7c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "- Plot a section of phase space with increasing energy, showing transition from regular to chaotic dynamics\n"
+      ],
+      "id": "e84e6e8b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| code-summary: \"Code for plot\"\n",
+        "fig, ax = plt.subplots(1, 3)\n",
+        "energies = [\"1/10\", \"1/8\", \"1/6\"]\n",
+        "for idx, data in enumerate(hh_motion): \n",
+        "        ax[idx].scatter(*data.y_events[0][:, 2:].T, s=0.1)\n",
+        "        ax[idx].title.set_text(f\"E={energies[idx]}\")        \n",
+        "        ax[idx].set_xlabel(r'$y$')\n",
+        "\n",
+        "ax[0].set_ylabel(r'$p_y$')\n",
+        "plt.show()"
+      ],
+      "id": "963eba7c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "- [Nice demo on Poincaré sections](https://duetosymmetry.com/tool/poincare-section-clicker-toy/) if you'd like to learn more\n",
+        "\n",
+        "<!-- TODO Leapfrog?\n",
+        "\n",
+        "Symplectic integrator see e.g. \n",
+        "\n",
+        "Look at leapfrog?\n",
+        "\n",
+        "https://github.com/scipy/scipy/issues/12690\n",
+        "\n",
+        "Problem is that it's hard to do in scipy\n",
+        "\n",
+        "https://stackoverflow.com/questions/60338471/lyapunov-spectrum-for-known-odes-python-3 -->\n"
+      ],
+      "id": "9630ef9a"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/opt/anaconda3/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

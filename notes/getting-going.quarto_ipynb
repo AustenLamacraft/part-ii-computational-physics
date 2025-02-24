@@ -1,0 +1,241 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: Getting going\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# Finding your way\n",
+        "\n",
+        "Everyone finds their own workflow for coding, depending on their preferred language, editor, how they run their code, and so on. The aim of the sections below is to give a roundup of some popular tools in the Python ecosystem. \n",
+        "\n",
+        "# Your coding environment\n",
+        "\n",
+        "To run Python code on your computer you will need to have installed the Python language. I recommend the [Anaconda distribution](https://www.anaconda.com/products/distribution) as it comes with all the parts of the toolkit we'll need such as [Jupyter notebooks](https://jupyter.org/) and the major libraries [NumPy](https://numpy.org/) and [SciPy](https://scipy.org/).\n",
+        "\n",
+        "Try running `python` at the command line. You should get something like\n",
+        "\n",
+        "```\n",
+        "Python 3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 08:28:27) [Clang 14.0.6 ] on darwin\n",
+        "Type \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n",
+        ">>> \n",
+        "```\n",
+        "\n",
+        "You should confirm that you are using Python 3 (the command `python3` will also work and guarantee this if you happen to have Python 2 as the default). The prompt `>>>` indicates that you have started the Python interactive shell or [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) and are good to go:  \n"
+      ],
+      "id": "048942c0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(\"Hello world!\")\n",
+        "1 + 2"
+      ],
+      "id": "c965d2a4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "To leave and return to the command line, you can run `quit()` or `exit()`.  \n",
+        "\n",
+        "# IPython\n",
+        "\n",
+        "If you ran the above command from within `python` you may have noticed that the nice colour scheme that you see above was absent. This is called [syntax highlighting](https://en.wikipedia.org/wiki/Syntax_highlighting) and provides a visual guide to the syntax of the language.\n",
+        "\n",
+        "[IPython](https://ipython.readthedocs.io/en/stable/) is an interactive shell that provides syntax highlighting and much more. If you have installed IPython (it comes with Anaconda) you can start it from the command line with `ipython`.\n",
+        "\n",
+        "Among the most helpful features of IPython are: \n",
+        "\n",
+        "1. Tab completion: hit `tab` to autocomplete. This is particularly useful for viewing all properties or methods of an object:\n",
+        "![](../assets/tab-complete-slow.gif)\n",
+        "2. Typing `?obj` or `obj?` prints detailed information about the object `obj` (`??` provides additional detail). \n",
+        "3. Certain _magic commands_ prefixed by `%` that provide certain additional functionality. For example, `%timeit` finds the executation time of a single line statement, which is useful when profiling the performance of code:"
+      ],
+      "id": "08a430f4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "%timeit L = [n ** 2 for n in range(1000)]"
+      ],
+      "id": "ca51d81d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "`%timeit` automatically runs several times to give some statistics on the execution time. For multiple lines you can use the `%%timeit` magic.\n",
+        "\n",
+        "You can find much more exploring the [documentation](https://ipython.readthedocs.io/en/stable/).\n",
+        "\n",
+        "# Running a Python program \n",
+        "\n",
+        "Python code in a file with a `.py` extension can be run from the command line with `python hello_world.py` or `python -m hello_world`. In the latter case the `-m` option tells the interpreter to look for a _module_ called `hello_world`. More on modules below. \n",
+        "\n",
+        "From the IPython shell you can instead use `run hello_world.py` or just `run hello_world`.\n",
+        "\n",
+        "<!-- TODO: These magics are normally documented with a `%`. When is it necessary? -->\n",
+        "\n",
+        "# Importing code\n",
+        "\n",
+        "A Python [module](https://docs.python.org/3/tutorial/modules.html) is just a file containing definition and statements. Breaking long code into modules is good practice for writing clear and reusable software. Users may not want to delve into the details of some function you have written in order to be able to us it, and separating the corresponding code into a separate file is a hygienic way to handle this. \n",
+        "\n",
+        "Thus if I make the file `hello_world.py` containing the function:\n"
+      ],
+      "id": "6cca5554"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def hello():\n",
+        "    print(\"Hello world!\")"
+      ],
+      "id": "c84cd5b0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "I can run this function by first importing the module:\n"
+      ],
+      "id": "1d123ecc"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import hello_world\n",
+        "hello_world.hello()"
+      ],
+      "id": "fdcb48e2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Notice that the function `hello` is accessed from the `hello_world` _namespace_. This is to avoid any confusion that may arise if more that one imported module has a function of the same name. If you are confident that's not an issue and want more concise code you can do this:\n"
+      ],
+      "id": "15669d86"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from hello_world import hello\n",
+        "hello()"
+      ],
+      "id": "58c27386",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "or even import everything with the wildcard `*`:\n"
+      ],
+      "id": "63d8c1ee"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from hello_world import *\n",
+        "hello()"
+      ],
+      "id": "eef4d118",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The issue with the latter is that it may introduce a whole bunch of names that may interfere with things you already defined.\n",
+        "\n",
+        "A collection of modules in a folder is called a _package_. You can import a package in the same way and access all the modules using the same `.` notation i.e. `package.module1`, `package.module2`, etc..\n",
+        "\n",
+        "Since explicit namespaces are preferred to avoid ambiguity it's common to introduce shorthand names for the package or module you are importing, hence the ubiquitous: \n"
+      ],
+      "id": "4ae9db0c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "np.arange(10)"
+      ],
+      "id": "896b647e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "(You can call it what you like, of course!) \n",
+        "\n",
+        "Full details about where the interpreter looks to find modules you try to import are in the [documentation](https://docs.python.org/3/tutorial/modules.html).\n",
+        "\n",
+        "\n",
+        "# Installing libraries\n",
+        "\n",
+        "99% of the code [^1] you run will have been written by somebody else in the form of a library (a collection of modules or packages). Package installation is handled by the command line utilities `pip` or `conda`, the latter being the package manager for the Anaconda distribution. If you have NumPy and SciPy installed you won't need to worry about this too much in this course.  \n",
+        "\n",
+        "[^1]: This is a conservative estimate\n",
+        "\n",
+        "\n",
+        "# Editors\n",
+        "\n",
+        "Modern editors come with a huge number of tools that make writing code much easier, and you would be crazy not to take advantage of them. These range from the visual cues provided by syntax highlighting – which we've already met – to code completion, parameter information and documentation popups as you type. These go under the general heading [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense). \n",
+        "The next stage of evolution is AI code assistants like [GitHub Copilot](https://github.com/features/copilot). In my view, these are all part of a continuum of productivity enhancements that enable people to write better code faster. Use them (wisely). \n",
+        "\n",
+        "I use [Visual Studio Code](https://code.visualstudio.com/).\n",
+        "\n",
+        "# Notebooks\n",
+        "\n",
+        "While software developers write `.py` files, modules and packages, scientists and others doing more exploratory work tend to favour a Notebook format that mixes code, text, and plots. The dominant option is the [Jupyter notebook](https://jupyter-notebook.readthedocs.io/en/latest/), which comes with the Anaconda distribution and can be started from the command line with `jupyter notebook` (or from the Anaconda Navigator application). This will open the notebook as a web page in your browser, where it can be edited and saved. The default extension is `.ipynb`.\n",
+        "\n",
+        "Jupyter notebooks can actually run code in different languages (the processes running a particular language is called a [kernel](https://docs.jupyter.org/en/latest/projects/kernels.html)), but the default process is IPython with all the benefits described above.\n",
+        "\n",
+        "The text cells can be formatted using [Markdown](https://jupyter-notebook.readthedocs.io/en/latest/examples/Notebook/Working%20With%20Markdown%20Cells.html) and also support $\\LaTeX$ equations, which is pretty handy for us.\n",
+        "\n",
+        "Google has their own cloud version of the Jupyter notebook called [Colab](https://colab.research.google.com/). You can try it out for free, though you have to pay for significant compute. The \"next generation\" of the Jupyter notebook is called JupyterLab and can be started with `jupyter lab`. Notebook files can be opened in either JupyterLab or Jupyter Notebook\n",
+        "\n",
+        "<!-- ## Codespaces\n",
+        "\n",
+        "TODO \n",
+        "\n",
+        "New from Github... -->"
+      ],
+      "id": "d4510f7a"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/opt/anaconda3/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

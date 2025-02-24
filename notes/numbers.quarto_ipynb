@@ -1,0 +1,362 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: Floating point and all that\n",
+        "---\n",
+        "\n",
+        "\n",
+        "<!-- https://pythonspeed.com/articles/float64-float32-precision/ -->\n",
+        "\n",
+        "Since physics is all about numbers we had better develop some understanding of how computers represent them, and the limitations of this representation. Hopefully this example is sufficiently motivating:\n"
+      ],
+      "id": "7ae95ea6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "0.1  + 0.2 == 0.3"
+      ],
+      "id": "0c300675",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Ah...\n",
+        "\n",
+        "# Integers\n",
+        "\n",
+        "Let's begin with something simpler\n"
+      ],
+      "id": "09a43ea6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "1 + 1 == 2"
+      ],
+      "id": "40b661a4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "which is a bit more reassuring. Integers can be represented in binary\n"
+      ],
+      "id": "0d97fec8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "3 == 0b11"
+      ],
+      "id": "065f5da4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "or octal or hexadecimal (with a prefix `0o` or `0h`). You can get the binary string representing an integer using the `bin` function\n"
+      ],
+      "id": "cd7fbdb7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "bin(-2)"
+      ],
+      "id": "67734e8d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Python allows for arbitrarily large integers, so there is no possibility of overflow or rounding error\n"
+      ],
+      "id": "c991ab0c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "2**100"
+      ],
+      "id": "ba6dd664",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The only limitation is the memory required to store it. \n",
+        "\n",
+        "Numpy integers are a different story \n"
+      ],
+      "id": "b83e2ea4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| error: true\n",
+        "import numpy as np\n",
+        "np.int64(2**100)"
+      ],
+      "id": "91f90052",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Since NumPy is using C the types have to play nicely. The range of integers that can be represented with 32 bit `numpy.int32`s is $\\approx\\pm 2^{31} \\approx \\pm 2.1 × 10^9$ (one bit is for the sign) and 64 bit `numpy.int64`s is $\\approx\\pm 2^{63} \\approx \\pm 9.2 × 10^{18}$. Apart from the risk of overflow when working NumPy's integers there are no other gotchas to worry about.\n",
+        "\n",
+        "\n",
+        "# Floating point numbers\n",
+        "\n",
+        "The reason why $0.1 + 0.2 \\neq 0.3$ in Python is that specifying a real number exactly would involve an infinite number of bits, so that any finite representation is necessarily approximate.\n",
+        "\n",
+        "The representation computers use for the reals is called [floating point arithmetic](https://en.wikipedia.org/wiki/Floating-point_arithmetic). It is essentially a form of scientific notation, in which a [significand](https://en.wikipedia.org/wiki/Significand) (it contains the significant figures) is multiplied by an _exponent_. The name _floating point_ reflects the fact that the number of digits after the decimal point is not fixed (I'm using the base ten terms for convenience)\n",
+        "\n",
+        "This representation requires the choice of a base, and Python's floating point numbers use binary. Numbers with finite binary representations therefore behave nicely\n"
+      ],
+      "id": "278a68f6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "0.125 + 0.25 == 0.375"
+      ],
+      "id": "3a4b0611",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "For decimal numbers to be represented exactly we'd have to use base ten. This can be achieved with the `decimal` module. Our $0.1+0.2$ example then works as expected\n"
+      ],
+      "id": "ba6ef93b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from decimal import *\n",
+        "Decimal('0.1') + Decimal('0.2')"
+      ],
+      "id": "74edf407",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Since there is nothing to single out the decimal representation in physics (as opposed to, say, finance) we won't have any need for it.\n",
+        "\n",
+        "A specification for floating point numbers must give\n",
+        "\n",
+        "1. A base (or _radix_) $b$\n",
+        "2. A precision $p$, the number of digits in the significand $c$. Thus $0\\leq c \\leq b^{p}-1$.\n",
+        "3. A range of exponents $q$ specifed by $\\text{emin}$ and $\\text{emax}$ with $\\text{emin}\\leq q+p-1 \\leq \\text{emax}$.\n",
+        "\n",
+        "Including one bit $s$ for the overall sign, a number then has the form $(-1)^s\\times c \\times b^q$. The smallest positive nonzero number that can be represented is therefore $b^{1 + \\text{emin} - p}$ (corresponding to the smallest value of the exponent) and the largest is $b^{1 + \\text{emax}} - 1$. \n",
+        "\n",
+        "The above representation isn't unique: for some numbers you could make the significand smaller and the exponent bigger. A unique representation is fixed by choosing the exponent to be as small as possible.\n",
+        "\n",
+        "Representing numbers smaller than $b^{\\text{emin}}$ involves a loss of precision, as the number of digits in the significand falls below $p$ and the exponent has taken its minimum value . These are called [subnormal numbers](https://en.wikipedia.org/wiki/Subnormal_number). For binary floats, if we stick with the normal numbers and a $p$-bit significand the leading bit will be 1 and so can be dropped from the representation, which then only requires $p-1$ bits.    \n",
+        " \n",
+        "The specification for the floating point numbers used by Python (and many other languages) is contained in the IEEE Standard for Floating Point Arithmetic [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754). The default Python `float` uses the 64 bit _binary64_ representation (often called _double precision_). Here's how those 64 bits are used\n",
+        "\n",
+        "- $p=53$ for the significand, encoded in 52 bits\n",
+        "- 11 bits for the exponent\n",
+        "- 1 bit for the sign\n",
+        "\n",
+        "Another common representation is the 32 bit _binary32_ (_single precision_) with \n",
+        "\n",
+        "- $p=24$ for the significand, encoded in 23 bits\n",
+        "- 8 bits for the exponent\n",
+        "- 1 bit for the sign \n",
+        "\n",
+        "## Floating point numbers in NumPy {#sec-fp-numpy}\n",
+        "\n",
+        "If this all a bit theoretical you can just get NumPy's [finfo](https://numpy.org/doc/stable/reference/generated/numpy.finfo.html) function to tell all about the [machine precision](https://en.wikipedia.org/wiki/Machine_epsilon)\n"
+      ],
+      "id": "cab22022"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "np.finfo(np.float64)"
+      ],
+      "id": "c4dbb277",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Note that $2^{-52}=2.22\\times 10^{-16}$ which accounts for the value $10^{-15}$ of the resolution. This can be checked by finding when a number is close enough to treated as 1.0.\n"
+      ],
+      "id": "98fcadc7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "x=1.0\n",
+        "while 1.0 + x != 1.0:\n",
+        "    x /= 1.01 \n",
+        "print(x)"
+      ],
+      "id": "a3a78574",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "For binary32 we have a resolution of $10^{-6}$.\n"
+      ],
+      "id": "06368d4f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "np.finfo(np.float32)"
+      ],
+      "id": "632f48cc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "One lesson from this is that taking small differences between numbers is a potential source of rounding error, as in this somewhat mean exam question\n",
+        "\n",
+        "![](../assets/ia-question.png)\n",
+        "\n",
+        "::: {.callout-tip collapse=\"true\"}\n",
+        "# Solution\n",
+        "Solution: $x-x'=x(1-\\gamma^{-1})\\sim x\\beta^2/2\\sim 4.2\\text{mm}$. \n"
+      ],
+      "id": "a4593c30"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "from scipy.constants import c\n",
+        "beta = 384400e3 / (76 * 3600) / c\n",
+        "gamma = 1/np.sqrt(1 - beta**2)\n",
+        "print(1 - np.float32(1/gamma), 1 - np.float64(1/gamma))"
+      ],
+      "id": "8aa9a696",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "## The dreaded NaN\n",
+        "\n",
+        "As well as a floating point system, IEEE 754 defines Infinity and NaN (Not a Number)\n"
+      ],
+      "id": "1c16ada7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "np.array([1, -1, 0]) / 0"
+      ],
+      "id": "708957b9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "They behave as you might guess\n"
+      ],
+      "id": "98de3665"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "2 * np.inf, 0 * np.inf, np.inf > np.nan"
+      ],
+      "id": "dc04bea3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "NaNs propagate through subsequent operations\n"
+      ],
+      "id": "aa913086"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "2 * np.nan"
+      ],
+      "id": "6b25c5f0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "which means that if you get a NaN somewhere in your calculation, you'll probably end up seeing it somewhere in the output (which is the idea). \n"
+      ],
+      "id": "650ed9c3"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/opt/anaconda3/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

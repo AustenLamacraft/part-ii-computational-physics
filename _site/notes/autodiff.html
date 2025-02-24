@@ -300,6 +300,12 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -484,7 +490,7 @@ Figure&nbsp;1: A single artifical neuron. From <span class="citation" data-cites
 \frac{\partial\mathcal{C}}{\partial \theta_i} \approx \frac{\mathcal{C}(\theta_i+\Delta\theta_i)- \mathcal{C}(\theta_i)}{\Delta \theta_i}
 \tag{6}\]</span></span></p>
 <p>i.e.&nbsp;the numerical evaluation of a derivative. This is called <a href="https://en.wikipedia.org/wiki/Numerical_differentiation">numerical differentiation</a> and it’s what you would be forced to do if you only had access to <span class="math inline">\(\mathcal{C}(\theta)\)</span> as a <a href="https://en.wikipedia.org/wiki/Black_box">black box</a> function: one you can evaluate but otherwise have no knowledge of. AD is a different beast altogether: it uses knowledge about how the function <span class="math inline">\(\mathcal{C}\)</span> is formed by composing many simpler functions, together with the (analytic) derivatives of those functions, to find the overall gradient.</p>
-<p>As well as being a bit more elegant than the brute force approach, there is another reason why AD is preferred over the (conceptually simpler) approach <a href="#eq-nd" class="quarto-xref">Equation&nbsp;6</a>. That approach would require us to vary each of the parameters in the network separately: think of those 175 billion parameters of ChatGPT! AD uses the network structure to simplify things drastically, as we’ll now see.</p>
+<p>As well as being a bit more elegant than the brute force approach, there is another reason why AD is preferred over the (conceptually simpler) approach <a href="#eq-nd" class="quarto-xref">Equation&nbsp;6</a>. That approach would require us to vary each of the parameters in the network separately: think of those hundreds of billions of parameters of ChatGPT! AD uses the network structure to simplify things drastically, as we’ll now see.</p>
 <section id="evaluating-the-derivatives" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="evaluating-the-derivatives"><span class="header-section-number">2.1</span> Evaluating the derivatives</h2>
 <p>Let’s just plow on and evaluate <span class="math inline">\(\partial\mathcal{C}/\partial \theta_i\)</span>. Remember that the parameters are the set of weights and biases in each layer:</p>
@@ -571,7 +577,7 @@ Zhang, Chiyuan, Samy Bengio, Moritz Hardt, Benjamin Recht, and Oriol Vinyals. 20
 <ol>
 <li id="fn1"><p>This is a slight exaggeration, but what people often do these days is augment symbolic approaches with neural approaches.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>The term <em>parameter</em> is normally reserved for the <span class="math inline">\(\theta\)</span>’s that appear in the definition of the model. Numbers like the learning rate that describe how the model is trained are usually referred to as <em>hyperparameters</em>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>GPT-3, the model from OpenAI underlying ChatGPT, has 175 <em>billion</em> parameters!<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>GPT, the model from OpenAI underlying ChatGPT, has <em>hundreds of trillions</em> of parameters!<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Note that you don’t have to use the same activation function throughout. Typically the output layer of a network used for classification uses the <a href="https://en.wikipedia.org/wiki/Softmax_function">softmax function</a> to output probabilities over the labels.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p><a href="https://en.wikipedia.org/wiki/Spiking_neural_network">Spiking neural networks</a> are a model in which time plays a more serious role.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
@@ -666,7 +672,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

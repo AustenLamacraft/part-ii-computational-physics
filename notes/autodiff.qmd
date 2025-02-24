@@ -64,7 +64,7 @@ where $\eta$ is a hyperparameter[^2] called the _learning rate_. Choosing the le
 
 You might find it surprising that such a simple approach plays such an important role in machine learning. All of the sophistication lies in how the model is defined (@sec-nn) and how the gradients are calculated (@sec-backprop): for a complicated function with many parameters [^3] this is a highly nontrivial task. While there are plenty of more sophisticated optimization methods they often involve more information about the model's dependence on its parameters, and this is more costly to evaluate. For example [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization) — which you may have encountered before — requires knowledge of first _and second_ derivatives at each step, and this is normally less practical. 
 
-[^3]: GPT-3, the model from OpenAI underlying ChatGPT, has 175 _billion_ parameters!
+[^3]: GPT, the model from OpenAI underlying ChatGPT, has _hundreds of trillions_ of parameters!
 
 Another issue that relates to scale concerns the definition of our cost function @eq-cost as an average over the dataset. For large datasets consisting of high dimensional data (e.g. images) it is usually not practical to calculate the gradient of the cost using the entire dataset. The usual procedure is then to split the data up into batches (usually called _minibatches_, confusingly), and perform each step of gradient descent by evaluating the gradient only on the batch, moving on to a new batch at the next step. Eventually this will lead to all the data in the dataset being used, which is usually known as one _epoch_ of training. Training a model can involve many epochs (passes through the dataset). 
 
@@ -159,7 +159,7 @@ $$ {#eq-nd}
 
 i.e. the numerical evaluation of a derivative. This is called [numerical differentiation](https://en.wikipedia.org/wiki/Numerical_differentiation) and it's what you would be forced to do if you only had access to $\mathcal{C}(\theta)$ as a [black box](https://en.wikipedia.org/wiki/Black_box) function: one you can evaluate but otherwise have no knowledge of. AD is a different beast altogether: it uses knowledge about how the function $\mathcal{C}$ is formed by composing many simpler functions, together with the (analytic) derivatives of those functions, to find the overall gradient.
 
-As well as being a bit more elegant than the brute force approach, there is another reason why AD is preferred over the (conceptually simpler) approach @eq-nd. That approach would require us to vary each of the parameters in the network separately: think of those 175 billion parameters of ChatGPT! AD uses the network structure to simplify things drastically, as we'll now see.
+As well as being a bit more elegant than the brute force approach, there is another reason why AD is preferred over the (conceptually simpler) approach @eq-nd. That approach would require us to vary each of the parameters in the network separately: think of those hundreds of billions of parameters of ChatGPT! AD uses the network structure to simplify things drastically, as we'll now see.
 
 ## Evaluating the derivatives
 

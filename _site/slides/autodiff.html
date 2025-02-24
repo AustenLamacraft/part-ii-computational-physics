@@ -113,7 +113,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-f2546a389b66af0b6a5ea4b708d7867d.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -217,7 +217,7 @@
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="../assets/nielsen-nn.png"></p>
-<figcaption><span class="citation" data-cites="nielsen2015neural">Nielsen (<a href="#/references" role="doc-biblioref" onclick="">2015</a>)</span>.</figcaption>
+<figcaption><span class="citation" data-cites="nielsen2015neural">Nielsen (<a href="#/references" role="doc-biblioref" onclick="">2015</a>)</span></figcaption>
 </figure>
 </div>
 </section>
@@ -269,7 +269,8 @@
 <ul>
 <li><p>Dataset of size <span class="math inline">\(N\)</span> consisting of data <span class="math inline">\(\mathbf{x}_i=1,\ldots N\)</span> together with labels <span class="math inline">\(l_i\)</span></p></li>
 <li><p>Encode labels in vectors <span class="math inline">\(\mathbf{y}_i\)</span> to be compared with output of the neural network</p></li>
-<li><p>Popular choice is <em>one hot encoding</em>. <span class="math inline">\(\mathbf{y}_i\)</span> is <span class="math inline">\(N_L\)</span> dimensional vector. Label <span class="math inline">\(n\)</span> encoded as <span class="math inline">\((0,0,\ldots, 1, \ldots, 0)\)</span>, with <span class="math inline">\(1\)</span> in <span class="math inline">\(n\text{th}\)</span> place</p></li>
+<li><p>Popular choice is <em>one hot encoding</em>. <span class="math inline">\(\mathbf{y}_i\)</span> is <span class="math inline">\(N_L\)</span> dimensional vector (<span class="math inline">\(N_L\)</span> is number of labels)</p></li>
+<li><p>Label <span class="math inline">\(n\)</span> encoded as <span class="math inline">\((0,0,\ldots, 1, \ldots, 0)\)</span>, with <span class="math inline">\(1\)</span> in <span class="math inline">\(n\text{th}\)</span> place</p></li>
 </ul>
 </section>
 <section class="slide level2 center">
@@ -381,7 +382,7 @@ l_* = \underset{l}{\operatorname{argmax}} \left[\mathsf{NN}_\theta(\mathbf{x})\r
 <h2>Why so simple?</h2>
 <ul>
 <li><p>All sophistication lies in how model is <em>defined</em> and how <em>gradients</em> are calculated</p></li>
-<li><p>Not a trvial task: ChatGPT has 175 <em>billion</em> parameters!</p></li>
+<li><p>Not a trvial task: GPT and other LLMs have hundreds of <em>trillions</em> of parameters!</p></li>
 <li><p>Many more sophisticated optimization methods, but often involve more information about model’s dependence on parameters</p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization">Newton’s method</a> requires knowledge of first <em>and second</em> derivatives at each step: too costly to evaluate</p></li>
 </ul>
@@ -516,7 +517,7 @@ f(\mathbf{x}) = \phi(w\cdot\mathbf{x} + \mathbf{b})
 <section id="why-network" class="slide level2 center">
 <h2>Why network?</h2>
 <p><span class="math display">\[
-f(\mathbf{x}) = \phi(w\cdot\mathbf{x} + \mathbf{b}).
+f(\mathbf{x}) = \phi(w\cdot\mathbf{x} + \mathbf{b})
 \]</span></p>
 <ul>
 <li>Represented graphically as</li>
@@ -598,7 +599,7 @@ Figure&nbsp;1: <span class="citation" data-cites="nielsen2015neural">Nielsen (<a
 
 <ul>
 <li><p>Another reason to prefer AD: efficiency</p></li>
-<li><p>Numerical differentiation would require us to vary each of the parameters in the network separately (175 billion parameters of ChatGPT!)</p></li>
+<li><p>Numerical differentiation would require us to vary each of the parameters in the network separately (hundreds of trillions of parameters)</p></li>
 </ul>
 </section>
 <section id="evaluating-the-derivatives" class="slide level2 center">
@@ -1117,7 +1118,7 @@ Zhang, Chiyuan, Samy Bengio, Moritz Hardt, Benjamin Recht, and Oriol Vinyals. 20
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+          var filterRegex = new RegExp('/' + window.location.host + '/');
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }

@@ -2,18 +2,18 @@
 number-sections: false
 format:
   revealjs: 
+    theme: [default, reveal_custom.scss]
     slide-number: true
     hash: true
     center: true
     auto-stretch: false
-    theme: default
     html-math-method: mathjax
     preview-links: true
 ---
 
 # Autodiff and neural nets
 
-![@nielsen2015neural.](../assets/nielsen-nn.png)
+![@nielsen2015neural](../assets/nielsen-nn.png)
 
 ---
 
@@ -69,7 +69,9 @@ $$
 
 - Encode labels in vectors $\mathbf{y}_i$ to be compared with output of the neural network
 
-- Popular choice is _one hot encoding_. $\mathbf{y}_i$ is $N_L$ dimensional vector. Label $n$ encoded as $(0,0,\ldots, 1, \ldots, 0)$, with $1$ in $n\text{th}$ place 
+- Popular choice is _one hot encoding_. $\mathbf{y}_i$ is $N_L$ dimensional vector ($N_L$ is number of labels)
+
+- Label $n$ encoded as $(0,0,\ldots, 1, \ldots, 0)$, with $1$ in $n\text{th}$ place 
 
 ---
 
@@ -184,7 +186,7 @@ $$
 
 - All sophistication lies in how model is _defined_ and how _gradients_ are calculated 
 
-- Not a trvial task: ChatGPT has 175 _billion_ parameters!
+- Not a trvial task: GPT and other LLMs have hundreds of _trillions_ of parameters!
 
 - Many more sophisticated optimization methods, but often involve more information about model's dependence on parameters
 
@@ -324,7 +326,7 @@ $$
 ## Why network?
 
 $$
-f(\mathbf{x}) = \phi(w\cdot\mathbf{x} + \mathbf{b}).
+f(\mathbf{x}) = \phi(w\cdot\mathbf{x} + \mathbf{b})
 $$
 
 - Represented graphically as
@@ -400,7 +402,7 @@ $$ {#eq-nd}
 
 - Another reason to prefer AD: efficiency
 
-- Numerical differentiation would require us to vary each of the parameters in the network separately (175 billion parameters of ChatGPT!)
+- Numerical differentiation would require us to vary each of the parameters in the network separately (hundreds of trillions of parameters)
 
 ## Evaluating the derivatives
 

@@ -1,0 +1,946 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: NumPy and friends\n",
+        "---\n",
+        "\n",
+        "\n",
+        "The [NumPy](https://numpy.org/) package is _the_ key building block of the Python scientific ecosystem.\n",
+        "\n",
+        "In this chapter we introduce a few of the key concepts. You should refer to the [documentation](https://numpy.org/doc/stable/user/index.html) for details. As with any mature software ecosystem, you should first __assume that what you want to achieve _can_ be achieved in a highly optimised way within the existing framework__, and only resort to creating your own solution if and when you satisfy yourself that this is not the case.\n",
+        "\n",
+        "There are a huge number of resources for learning NumPy online. Here are a couple of good ones:\n",
+        "\n",
+        " - [NumPy: the absolute basics for beginners](https://numpy.org/doc/stable/user/absolute_beginners.html) from the NumPy documentation is pretty great. \n",
+        " \n",
+        " - [This tutorial](https://cs231n.github.io/python-numpy-tutorial/) from a machine learning course at Stanford is also particularly nice and compact.\n",
+        "\n",
+        "# Preamble: objects in Python\n",
+        "\n",
+        "Everything in Python is an _object_. For example `[1,2,3]` is a `list`:\n"
+      ],
+      "id": "d6ac40d9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_list = [1, 2, 3]\n",
+        "type(my_list)"
+      ],
+      "id": "fb139484",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "You can think of an object as a container for _properties_ and _methods_, the latter being functions associated with the object. Properties and methods are accessed with the `.` syntax. For example, lists have the `append` method, which adds an element to the end of the list:\n"
+      ],
+      "id": "fc63e3ca"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_list.append(\"boop\")\n",
+        "my_list"
+      ],
+      "id": "039a6eee",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "With IPython you can see all the available methods by hitting tab:\n",
+        "\n",
+        "![](../assets/tab-complete.gif)\n",
+        "\n",
+        "::: {.callout-tip collapse=\"true\"}\n",
+        "# Dunder methods\n",
+        "\n",
+        "You can list all of an objects properties and methods using `dir`:\n"
+      ],
+      "id": "4c4f9e26"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "dir(my_list)"
+      ],
+      "id": "9bc6a2b3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Notice that lots of these are methods have a name sandwiched between double underscores and for this reason are called _dunder methods_ (or _magic methods_, or just _special methods_). This is to indicate that they are not to be used by you, but by the Python interpreter to implement certain standard functions that apply to many different classes of objects. For instance, when you write `len(my_list)` to find the length of `my_list` Python is actually calling the dunder method `my_list.__len__` which does the job of actually finding the length.\n"
+      ],
+      "id": "afeb153c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_list.__len__()"
+      ],
+      "id": "023ca9be",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "In this way the same function (`len` in this case) can operate on many different objects, an example of what is called [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) in object oriented programming.\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "# Arrays\n"
+      ],
+      "id": "36031681"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np"
+      ],
+      "id": "5e4208ce",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The fundamental object in NumPy is the _Array_ (or `ndarray`), which you can think of as a multidimensional version of a list. If we were representing two dimensional data — or a matrix — in plain old Python you would use a list of lists.\n"
+      ],
+      "id": "283c7c3e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]"
+      ],
+      "id": "0c89a9d4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Here `data[i]` represents each row:\n"
+      ],
+      "id": "f23b17dd"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data[1]"
+      ],
+      "id": "dbb8f4b4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "If I wanted to multiply every element by a number I would have to do something like this:\n"
+      ],
+      "id": "30fd5c26"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "for row in data:\n",
+        "    for j, _ in enumerate(row):\n",
+        "        row[j] *= 2\n",
+        "data"
+      ],
+      "id": "b5a32af5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "If the details here are a bit unfamiliar don't worry. The point I want to emphasize is: _don't do this_. \n",
+        "\n",
+        "NumPy provides us with the tools to perform this kind of operation with minimum code and maximum efficiency. First we create our data as an array. There are numerous NumPy functions that produce arrays. The simplest is [numpy.array](https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array). It takes data in the \"Pythonic\" list-of-lists(-of-lists-of... etc.) form and produces the corresponding `ndarray`\n"
+      ],
+      "id": "d2f39624"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_array = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])\n",
+        "type(my_array)"
+      ],
+      "id": "055ed048",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Now, how do we multiply the whole array by a number? Like this, of course\n"
+      ],
+      "id": "94987d94"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "2 * my_array"
+      ],
+      "id": "77e9b1d2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "It even prints nicely\n"
+      ],
+      "id": "196919de"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(my_array)"
+      ],
+      "id": "38d3ad25",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Arrays can be indexed, similar to lists\n"
+      ],
+      "id": "9f73e463"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(my_array[0], my_array[1], my_array[3][1])"
+      ],
+      "id": "6dbe8204",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "but — different from a ordinary list of lists — the last one can be much more pleasantly achieved with the syntax\n"
+      ],
+      "id": "6336ccb8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_array[3,1]"
+      ],
+      "id": "e04c73c5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "We also have a generalization of the slice syntax \n"
+      ],
+      "id": "33880f7f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_array[1:, 1:]"
+      ],
+      "id": "7f68e01b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Slicing can be mixed with integer indexing\n"
+      ],
+      "id": "35c26854"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_array[1:, 1]"
+      ],
+      "id": "76d7e637",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "NumPy offers all sorts of fancy indexing options for slicing and dicing your data: see the [documentation](https://numpy.org/doc/stable/user/basics.indexing.html) for details.\n",
+        "\n",
+        "A fundamental property of an array is its `shape`:\n"
+      ],
+      "id": "4418897c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]\n",
+        "my_array.shape"
+      ],
+      "id": "977a309b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The way to read off the shape of an array is as follows. To begin with you encounter a number of `[` corresponding to the rank of the array (two in the above example). You then scan over a number of entries that give the rightmost (innermost) dimension in the shape tuple before closing `]` (3 here). After a number of 1D arrays `[...]` equal to the next innermost dimension (4 here), we have another closing `]`, and so on.\n",
+        "  \n",
+        "It's definitely something that will take a bit of time getting used to!\n",
+        "\n",
+        "Notice that slicing does not change the rank of the array\n"
+      ],
+      "id": "8bce5086"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_array[1:, 1:].shape"
+      ],
+      "id": "b4f682f2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "but integer indexing does\n"
+      ],
+      "id": "1738b277"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_array[1:, 1].shape"
+      ],
+      "id": "068aa4b1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "::: {.callout-note collapse=\"true\"}\n",
+        "# What's with the comma?\n",
+        "\n",
+        "It's to distinguish the tuple `(3,)` giving the shape from `(3)` which is just the number 3 in brackets\n"
+      ],
+      "id": "f57d95a3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "type((3,))"
+      ],
+      "id": "c235b8cc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "type((3))"
+      ],
+      "id": "b25d8e02",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        ":::\n",
+        "\n",
+        "It wouldn't be very convenient if you always had to create your arrays from nested lists using `np.array`. Fortunately NumPy has lots of methods to create arrays with a given shape and populated in different ways:\n"
+      ],
+      "id": "48722245"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "a = np.zeros((2,2))\n",
+        "print(a)\n",
+        "\n",
+        "b = np.ones((2,2))\n",
+        "print(b)\n",
+        "\n",
+        "c = np.full((2,2), 5)\n",
+        "print(c)\n",
+        "\n",
+        "d = np.random.random((2,2)) # random numbers uniformly in [0.0, 1.0)\n",
+        "print(d)"
+      ],
+      "id": "90c7d44b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "There are also lots of methods to change the shape of arrays, for example\n",
+        "\n",
+        "- [numpy.reshape](https://numpy.org/doc/stable/reference/generated/numpy.reshape.html#numpy-reshape) to change the shape of an array.\n",
+        "\n",
+        "- [numpy.expand_dims](https://numpy.org/doc/stable/reference/generated/numpy.expand_dims.html) to insert new axes of length one.\n",
+        "\n",
+        "- [numpy.squeeze](https://numpy.org/doc/stable/reference/generated/numpy.squeeze.html#numpy.squeeze) (the opposite) to remove new axes of length one.\n",
+        "\n",
+        "Let's see an example of the first one:\n"
+      ],
+      "id": "9d9b19e1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_array.reshape(2, 2, 3)"
+      ],
+      "id": "3fa7541e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Reshaping only works if the shapes are compatible. In this case it's OK because the original shape was $(4,3)$ and $4\\times 3 = 2\\times 2\\times 3$. If the shapes aren't compatible, we'll get an error\n"
+      ],
+      "id": "4e51d786"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| error: true\n",
+        "my_array.reshape(2, 3, 3)"
+      ],
+      "id": "eac6f577",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "A NumPy array has a `dtype` property that gives the datatype. If the array was created from data, this will be inferred\n"
+      ],
+      "id": "70cceda7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_array.dtype"
+      ],
+      "id": "181b9e8a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Functions that construct arrays also have an optional argument to specify the datatype\n"
+      ],
+      "id": "a2c3a324"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_float_array = np.array([1,2,3], dtype=np.float64)\n",
+        "my_float_array.dtype"
+      ],
+      "id": "f9918672",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Importantly, complex numbers are supported\n"
+      ],
+      "id": "f18aabbb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_float_array = np.array([1.1 + 2.3j,2.2,3.6])\n",
+        "my_float_array.dtype"
+      ],
+      "id": "62519664",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Examples of array-like data\n",
+        "\n",
+        "It's not hard to come up with examples of array-like data in physics. The position, velocity, or acceleration of a particle will be three dimensional vectors, so have shape `(3,)`. If we had $N$ particles you could either put them in a $3N$ dimensional vector, but for reasons that will become clear it would be better to store them in an array of shape `(N,3)`, so that the first index indexes the particle number and the second the particle coordinate.\n",
+        "\n",
+        "An $N\\times M$ matrix has shape `(N,M)`. The Riemann curvature tensor in General Relativity $R_{abcd}$ has shape `(4,4,4,4)`. \n",
+        "\n",
+        "Often we deal with _fields_ which are functions of space and time e.g. the electric potential $\\phi(\\mathbf{r},t)$. On a computer we often approximate these using a grid of space-time points $N_x\\times N_y \\times N_z\\times N_t$. Thus the values of a scalar field could be stored in an array of shape `(N_x,N_y,N_z,N_t)`. If we had a vector field like $\\mathbf{E}(\\mathbf{r},t)$ this would be `(N_x,N_y,N_z,N_t,3)`. You get the idea.\n",
+        "\n",
+        "A very useful method to create a grid of coordinate values (at which you can evaluate a function, say) is as follows"
+      ],
+      "id": "f713b971"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Grid of x, y points\n",
+        "nx, ny = 64, 64\n",
+        "x = np.linspace(-2, 2, nx)\n",
+        "y = np.linspace(-2, 2, ny)\n",
+        "X, Y = np.meshgrid(x, y)"
+      ],
+      "id": "64ef993d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: true\n",
+        "#| code-summary: \"Dipole electric field\"\n",
+        "# Example from https://scipython.com/blog/visualizing-a-vector-field-with-matplotlib/\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "from matplotlib.patches import Circle\n",
+        "\n",
+        "def E(q, r0, x, y):\n",
+        "    \"\"\"Return the electric field vector E=(Ex,Ey) due to charge q at r0.\"\"\"\n",
+        "    den = np.hypot(x-r0[0], y-r0[1])**3\n",
+        "    return q * (x - r0[0]) / den, q * (y - r0[1]) / den\n",
+        "\n",
+        "# Dipole\n",
+        "charges = [(1, (1, 0)), (-1, (-1, 0))]\n",
+        "\n",
+        "# Electric field vector, E=(Ex, Ey), as separate components\n",
+        "Ex, Ey = np.zeros((ny, nx)), np.zeros((ny, nx))\n",
+        "for charge in charges:\n",
+        "    ex, ey = E(*charge, x=X, y=Y)\n",
+        "    Ex += ex\n",
+        "    Ey += ey\n",
+        "\n",
+        "fig = plt.figure()\n",
+        "ax = fig.add_subplot(111)\n",
+        "\n",
+        "# Plot the streamlines with an appropriate arrow style\n",
+        "color = 2 * np.log(np.hypot(Ex, Ey))\n",
+        "ax.streamplot(x, y, Ex, Ey, color=color, linewidth=1,\n",
+        "              density=2, arrowstyle='->', arrowsize=1.5)\n",
+        "\n",
+        "# Add filled circles for the charges themselves\n",
+        "charge_colors = {True: '#aa0000', False: '#0000aa'}\n",
+        "for q, pos in charges:\n",
+        "    ax.add_artist(Circle(pos, 0.05, color=charge_colors[q>0]))\n",
+        "\n",
+        "ax.set_xlabel('$x$')\n",
+        "ax.set_ylabel('$y$')\n",
+        "ax.set_xlim(-2,2)\n",
+        "ax.set_ylim(-2,2)\n",
+        "ax.set_aspect('equal')\n",
+        "plt.show()"
+      ],
+      "id": "bb15370c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Mathematical operations with arrays\n",
+        "\n",
+        "I've already hinted at the payoff from all of this. On lists, multiplication by an integer concatentates multiple copies\n"
+      ],
+      "id": "3500a856"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "2 * [1, 2, 3]"
+      ],
+      "id": "cbff572d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "which is sometimes useful. But in numerical applications what we really want is this\n"
+      ],
+      "id": "41647843"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "2 * np.array([1, 2, 3])"
+      ],
+      "id": "a1e70c9d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This illustrates a general feature of NumPy that __all mathematical operations are performed elementwise on arrays!__\n"
+      ],
+      "id": "3f110c89"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(np.array([1, 2, 3]) + np.array([4, 5, 6]))\n",
+        "print(np.array([1, 2, 3])**2)\n",
+        "print(np.sqrt(np.array([1, 2, 3])))"
+      ],
+      "id": "59104378",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This avoids the need to write nested loops to perform some operation on each element of some multidimensional data. Of course, the loops are still there, it's just that NumPy handles them in highly optimized C rather than Python. Code which operates in this way – rather than with explicit loops – is often described as _vectorized_, and in NumPy-speak vectorized functions are called _ufuncs_, short for _universal functions_ (you can [write your own](https://numpy.org/doc/stable/reference/ufuncs.html) if you need to). As a basic principle you should _never_ use a Python loop to access your data in NumPy code. Loops may appear at a high level in stepping through time steps in a simulation, for example.\n",
+        "\n",
+        "# Broadcasting\n",
+        "\n",
+        "Vectorization is even more versatile than the above examples might suggest. _Broadcasting_ is a powerful protocol that allows us to combine arrays of different shapes. Thus we can add a number to an array\n"
+      ],
+      "id": "c0ffad2f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "np.array([1, 2, 3]) + 2.3"
+      ],
+      "id": "df97e084",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "More generally, elementwise operations can be performed on two arrays of the same rank if in each dimension the sizes either match or one array has size 1.\n"
+      ],
+      "id": "1203d3ee"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# These have shape (2, 3) and (1, 3)\n",
+        "np.array([[1, 2, 3], [4, 5, 6]]) + np.array([[4, 3, 2]])"
+      ],
+      "id": "1f8a1049",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "In fact, we can simplify this last example\n"
+      ],
+      "id": "5b8699d2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# These have shape (2, 3) and (3,)\n",
+        "np.array([[1, 2, 3], [4, 5, 6]]) + np.array([4, 3, 2])"
+      ],
+      "id": "cee064ff",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Broadcasting two arrays follows these rules:\n",
+        "\n",
+        "1. If the arrays do not have the same rank, prepend the shape of the lower rank array with 1s until both shapes have the same length.\n",
+        "\n",
+        "2. The two arrays are said to be compatible in a dimension if they have the same size in the dimension, or if one of the arrays has size 1 in that dimension.\n",
+        "\n",
+        "3. The arrays can be broadcast together if they are compatible in all dimensions.\n",
+        "After broadcasting, each array behaves as if it had shape equal to the elementwise maximum of shapes of the two input arrays.\n",
+        "\n",
+        "4. In any dimension where one array had size 1 and the other array had size greater than 1, the first array behaves as if it were copied along that dimension.\n",
+        "\n",
+        "[The documentation](https://numpy.org/doc/stable/user/basics.broadcasting.html) has more detail.\n",
+        "\n",
+        "Recall our earlier example of an $N$-particle system described by a position array of shape `(N,3)`. If we want to shift the entire system by a vector, we can just add a vector of shape `(3,)` and broadcasting will ensure that this applied correctly to each particle.\n",
+        "\n",
+        "# Plotting with Matplotlib\n",
+        "\n",
+        "There are various specialized Python plotting libraries but the entry-level option is the catchily named [Matplotlib](https://matplotlib.org/). The `pyplot` module provides a plotting system that is similar to MATLAB (I'm told)\n"
+      ],
+      "id": "ec17d45d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import matplotlib.pyplot as plt"
+      ],
+      "id": "8a5222ca",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This is probably the second most common import you will make. Here's a simple example of the `plot` function, used to plot 2D data\n"
+      ],
+      "id": "657559c0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Compute the x and y coordinates for points on a sine curve\n",
+        "x = np.arange(0, 3 * np.pi, 0.1)\n",
+        "y = np.sin(x)\n",
+        "\n",
+        "# Plot the points using matplotlib\n",
+        "plt.plot(x, y)\n",
+        "plt.show()"
+      ],
+      "id": "df283645",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "__Note__: you must call plt.show() to make graphics appear. Here's a fancier example with some labelling\n"
+      ],
+      "id": "17c90af7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Compute the x and y coordinates for points on sine and cosine curves\n",
+        "x = np.arange(0, 3 * np.pi, 0.1)\n",
+        "y_sin = np.sin(x)\n",
+        "y_cos = np.cos(x)\n",
+        "\n",
+        "# Plot the points using matplotlib\n",
+        "plt.plot(x, y_sin)\n",
+        "plt.plot(x, y_cos)\n",
+        "plt.xlabel('x axis label')\n",
+        "plt.ylabel('y axis label')\n",
+        "plt.title('Sine and Cosine')\n",
+        "plt.legend(['Sine', 'Cosine'])\n",
+        "plt.show()"
+      ],
+      "id": "d7b68414",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Often you'll want to make several related plots and present them together, which can be achieved using the `subplot` function\n"
+      ],
+      "id": "4ed72c54"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "# Compute the x and y coordinates for points on sine and cosine curves\n",
+        "x = np.arange(0, 3 * np.pi, 0.1)\n",
+        "y_sin = np.sin(x)\n",
+        "y_cos = np.cos(x)\n",
+        "\n",
+        "# Set up a subplot grid that has height 2 and width 1,\n",
+        "# and set the first such subplot as active.\n",
+        "plt.subplot(2, 1, 1)\n",
+        "\n",
+        "# Make the first plot\n",
+        "plt.plot(x, y_sin)\n",
+        "plt.title('Sine')\n",
+        "\n",
+        "# Set the second subplot as active, and make the second plot.\n",
+        "plt.subplot(2, 1, 2)\n",
+        "plt.plot(x, y_cos)\n",
+        "plt.title('Cosine')\n",
+        "\n",
+        "# Show the figure.\n",
+        "plt.show()"
+      ],
+      "id": "56a0cf58",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Example: playing with images\n",
+        "\n",
+        "Pixels in an image are encoded as a triple of RGB values in the range [0,255] i.e. 8 bits of type `uint8` (the \"u\" is for \"unsigned\"). Tinting an image gives us a nice example of broadcasting\n"
+      ],
+      "id": "e3d8dacf"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "img = plt.imread('../assets/lucian.jpeg')\n",
+        "\n",
+        "img_tinted = img * [1, 0.55, 1]\n",
+        "\n",
+        "# Show the original image\n",
+        "plt.subplot(1, 2, 1)\n",
+        "plt.imshow(img)\n",
+        "plt.title(\"Lucian\")\n",
+        "\n",
+        "# Show the tinted image\n",
+        "plt.subplot(1, 2, 2)\n",
+        "plt.title(\"Pink Panther\")\n",
+        "# Having multiplied by floats, \n",
+        "# we must cast the image to uint8 before displaying it.\n",
+        "plt.imshow(np.uint8(img_tinted))\n",
+        "\n",
+        "plt.show()\n",
+        "img.shape, img.dtype"
+      ],
+      "id": "b75db1bc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This is a standard 12 megapixel image.\n",
+        "\n",
+        "# Saving and loading data\n",
+        "\n",
+        "In the course of your work you are likely to produce, as well as consume lots of data. While it's good practice to keep notebooks capable of reproducing any of your analyses, this could be time consuming and resource heavy for larger computations. Thus at some point you'll probably want to save and load data. For example, after saving the data of a large scale simulation you'd like to load it and perform some analysis.\n",
+        "\n",
+        "NumPy comes with its own [save](https://numpy.org/doc/stable/reference/generated/numpy.save.html) and [load](https://numpy.org/doc/stable/reference/generated/numpy.load.html) functions and associated binary format `.npy`. The benefit of using these is that after loading you get back a NumPy array ready to be used.\n",
+        "\n",
+        "A related function [savez](https://numpy.org/doc/stable/reference/generated/numpy.savez.html) allows several arrays to be saved and then loaded as a dictionary-like object.\n"
+      ],
+      "id": "ee014967"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "random_matrix_1 = np.random.rand(4, 4)\n",
+        "random_matrix_2 = np.random.rand(4, 4)\n",
+        "np.savez(\"../assets/my-matrices\", first_matrix=random_matrix_1, second_matrix=random_matrix_2)\n",
+        "%ls ../assets"
+      ],
+      "id": "52508d50",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "my_matrix_file = np.load(\"../assets/my-matrices.npz\")\n",
+        "my_matrix_file['first_matrix']"
+      ],
+      "id": "5e674142",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/opt/anaconda3/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
