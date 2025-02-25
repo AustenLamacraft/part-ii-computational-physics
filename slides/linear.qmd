@@ -3,16 +3,16 @@ number-sections: false
 echo: true
 format:
   revealjs: 
+    theme: [default, reveal_custom.scss]
     slide-number: true
     hash: true
     center: true
     auto-stretch: false
-    theme: default
     html-math-method: mathjax
     preview-links: true
 ---
 
-![Please fill out the [feedback form](https://cambridge.eu.qualtrics.com/jfe/form/SV_9QSb24qEdt29kmq)](../assets/feedback-qr.png){width=50%}
+![Please fill out the [feedback form](https://cambridge.eu.qualtrics.com/jfe/form/SV_1Aditea2hGfPFHg)](../assets/II%20Computational%20Physics.png){width=50%}
 
 # Linear algebra
 

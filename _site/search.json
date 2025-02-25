@@ -862,7 +862,7 @@
     "href": "index.html",
     "title": "Course outline",
     "section": "",
-    "text": "These are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2025 at the University of Cambridge.",
+    "text": "Feedback\n\n\n\nPlease fill out the feedback form before 16th March.\nThese are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2025 at the University of Cambridge.",
     "crumbs": [
       "Notes",
       "Course outline"
@@ -1269,7 +1269,7 @@
     "href": "slides/linear.html#linear-algebra-with-numpy",
     "title": "Part II Computational Physics",
     "section": "Linear algebra with NumPy",
-    "text": "Linear algebra with NumPy\n\nMultiplying matrices is easy in NumPy using np.matmul\n@ operator gives shortcut\n\n\nimport numpy as np\nA = np.random.rand(3, 3)\nB = np.random.rand(3, 3)\nnp.matmul(A, B), A @ B\n\n(array([[0.64405657, 0.71384765, 0.29837612],\n        [1.18686062, 1.33454843, 0.59619047],\n        [1.6478261 , 1.57803648, 0.85193837]]),\n array([[0.64405657, 0.71384765, 0.29837612],\n        [1.18686062, 1.33454843, 0.59619047],\n        [1.6478261 , 1.57803648, 0.85193837]]))",
+    "text": "Linear algebra with NumPy\n\nMultiplying matrices is easy in NumPy using np.matmul\n@ operator gives shortcut\n\n\nimport numpy as np\nA = np.random.rand(3, 3)\nB = np.random.rand(3, 3)\nnp.matmul(A, B), A @ B\n\n(array([[0.91705879, 0.57255833, 0.97110254],\n        [0.69765067, 0.69304618, 0.73797223],\n        [0.87688322, 0.80424394, 0.54128271]]),\n array([[0.91705879, 0.57255833, 0.97110254],\n        [0.69765067, 0.69304618, 0.73797223],\n        [0.87688322, 0.80424394, 0.54128271]]))",
     "crumbs": [
       "Slides",
       "Linear algebra"

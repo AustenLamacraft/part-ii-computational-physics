@@ -93,7 +93,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-f2546a389b66af0b6a5ea4b708d7867d.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -195,8 +195,8 @@
 
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="../assets/feedback-qr.png" style="width:50.0%"></p>
-<figcaption>Please fill out the <a href="https://cambridge.eu.qualtrics.com/jfe/form/SV_9QSb24qEdt29kmq">feedback form</a></figcaption>
+<p><img data-src="../assets/II Computational Physics.png" style="width:50.0%"></p>
+<figcaption>Please fill out the <a href="https://cambridge.eu.qualtrics.com/jfe/form/SV_1Aditea2hGfPFHg">feedback form</a></figcaption>
 </figure>
 </div>
 </section>
@@ -214,18 +214,18 @@
 <li><p>Multiplying matrices is easy in NumPy using <a href="https://numpy.org/doc/stable/reference/generated/numpy.matmul.html"><code>np.matmul</code></a></p></li>
 <li><p><code>@</code> operator gives shortcut</p></li>
 </ul>
-<div class="cell" data-execution_count="1">
+<div id="2792f2fd" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a></a>A <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb1-3"><a></a>B <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb1-4"><a></a>np.matmul(A, B), A <span class="op">@</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>(array([[0.64405657, 0.71384765, 0.29837612],
-        [1.18686062, 1.33454843, 0.59619047],
-        [1.6478261 , 1.57803648, 0.85193837]]),
- array([[0.64405657, 0.71384765, 0.29837612],
-        [1.18686062, 1.33454843, 0.59619047],
-        [1.6478261 , 1.57803648, 0.85193837]]))</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>(array([[0.91705879, 0.57255833, 0.97110254],
+        [0.69765067, 0.69304618, 0.73797223],
+        [0.87688322, 0.80424394, 0.54128271]]),
+ array([[0.91705879, 0.57255833, 0.97110254],
+        [0.69765067, 0.69304618, 0.73797223],
+        [0.87688322, 0.80424394, 0.54128271]]))</code></pre>
 </div>
 </div>
 </section>
@@ -234,23 +234,32 @@
 <ul>
 <li>You’ll get an error if your matrices don’t match…</li>
 </ul>
-<div class="cell" data-execution_count="2">
+<div id="722fdb36" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>C <span class="op">=</span> np.random.rand(<span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb3-2"><a></a>D <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">2</span>)</span>
 <span id="cb3-3"><a></a>C <span class="op">@</span> D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)-&gt;(n?,m?) (size 4 is different from 3)</code></pre>
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[9], line 3</span>
+<span class="ansi-green-fg ansi-bold">      1</span> C <span style="color:rgb(98,98,98)">=</span> np<span style="color:rgb(98,98,98)">.</span>random<span style="color:rgb(98,98,98)">.</span>rand(<span style="color:rgb(98,98,98)">2</span>, <span style="color:rgb(98,98,98)">3</span>)
+<span class="ansi-green-fg ansi-bold">      2</span> D <span style="color:rgb(98,98,98)">=</span> np<span style="color:rgb(98,98,98)">.</span>random<span style="color:rgb(98,98,98)">.</span>rand(<span style="color:rgb(98,98,98)">4</span>, <span style="color:rgb(98,98,98)">2</span>)
+<span class="ansi-green-fg">----&gt; 3</span> C <span style="color:rgb(98,98,98)">@</span> D
+
+<span class="ansi-red-fg">ValueError</span>: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)-&gt;(n?,m?) (size 4 is different from 3)</pre>
+</div>
 </div>
 </div>
 <ul>
 <li><p>If either <code>A</code> or <code>B</code> has rank greater than two: treat as a stack of matrices, with each matrix in last two indices</p></li>
 <li><p>Usual broadcasting rules then apply to remaining indices</p></li>
 </ul>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>C <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb5-2"><a></a>D <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb5-3"><a></a>(C <span class="op">@</span> D).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div id="3eb40d8f" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>C <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb4-2"><a></a>D <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb4-3"><a></a>(C <span class="op">@</span> D).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>(4, 3, 3)</code></pre>
 </div>
 </div>
@@ -274,21 +283,21 @@
 <p><span class="math display">\[
 \left[A\cdot B\right]_{ik} = \sum_{j} A_{ij}B_{jk} = A_{ij}B_{jk}
 \]</span></p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>np.einsum(<span class="st">'ij,jk-&gt;ik'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array([[0.64405657, 0.71384765, 0.29837612],
-       [1.18686062, 1.33454843, 0.59619047],
-       [1.6478261 , 1.57803648, 0.85193837]])</code></pre>
+<div id="978f8834" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>np.einsum(<span class="st">'ij,jk-&gt;ik'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>array([[0.91705879, 0.57255833, 0.97110254],
+       [0.69765067, 0.69304618, 0.73797223],
+       [0.87688322, 0.80424394, 0.54128271]])</code></pre>
 </div>
 </div>
 <p><span class="math display">\[
 \operatorname{tr}\left[A\cdot B\right] = \sum_{i,j} A_{ij}B_{ji} = A_{ij}B_{ji}
 \]</span></p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>np.einsum(<span class="st">'ij,ji-&gt;'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>2.830543378941007</code></pre>
+<div id="b76df128" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>np.einsum(<span class="st">'ij,ji-&gt;'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>2.1513876805668266</code></pre>
 </div>
 </div>
 </section>
@@ -659,40 +668,40 @@ H\ket{\Psi} = E\ket{\Psi}
 <ul>
 <li>Define function that acts on wavefunction with each <span class="math inline">\(h_{j,j+1}\)</span></li>
 </ul>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="co"># by Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 6/2019</span></span>
-<span id="cb11-2"><a></a></span>
-<span id="cb11-3"><a></a><span class="kw">def</span> doApplyHam(psiIn: np.ndarray,</span>
-<span id="cb11-4"><a></a>               hloc: np.ndarray,</span>
-<span id="cb11-5"><a></a>               N: <span class="bu">int</span>,</span>
-<span id="cb11-6"><a></a>               usePBC: <span class="bu">bool</span>):</span>
-<span id="cb11-7"><a></a>  <span class="co">"""</span></span>
-<span id="cb11-8"><a></a><span class="co">  Applies local Hamiltonian, given as sum of nearest neighbor terms, to</span></span>
-<span id="cb11-9"><a></a><span class="co">  an input quantum state.</span></span>
-<span id="cb11-10"><a></a><span class="co">  Args:</span></span>
-<span id="cb11-11"><a></a><span class="co">    psiIn: vector of length d**N describing the quantum state.</span></span>
-<span id="cb11-12"><a></a><span class="co">    hloc: array of ndim=4 describing the nearest neighbor coupling.</span></span>
-<span id="cb11-13"><a></a><span class="co">    N: the number of lattice sites.</span></span>
-<span id="cb11-14"><a></a><span class="co">    usePBC: sets whether to include periodic boundary term.</span></span>
-<span id="cb11-15"><a></a><span class="co">  Returns:</span></span>
-<span id="cb11-16"><a></a><span class="co">    np.ndarray: state psi after application of the Hamiltonian.</span></span>
-<span id="cb11-17"><a></a><span class="co">  """</span></span>
-<span id="cb11-18"><a></a>  d <span class="op">=</span> hloc.shape[<span class="dv">0</span>]</span>
-<span id="cb11-19"><a></a>  psiOut <span class="op">=</span> np.zeros(psiIn.size)</span>
-<span id="cb11-20"><a></a>  <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(N <span class="op">-</span> <span class="dv">1</span>):</span>
-<span id="cb11-21"><a></a>    <span class="co"># apply local Hamiltonian terms to sites [k,k+1]</span></span>
-<span id="cb11-22"><a></a>    psiOut <span class="op">+=</span> np.tensordot(hloc.reshape(d<span class="op">**</span><span class="dv">2</span>, d<span class="op">**</span><span class="dv">2</span>),</span>
-<span id="cb11-23"><a></a>                           psiIn.reshape(d<span class="op">**</span>k, d<span class="op">**</span><span class="dv">2</span>, d<span class="op">**</span>(N <span class="op">-</span> <span class="dv">2</span> <span class="op">-</span> k)),</span>
-<span id="cb11-24"><a></a>                           axes<span class="op">=</span>[[<span class="dv">1</span>], [<span class="dv">1</span>]]).transpose(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>).reshape(d<span class="op">**</span>N)</span>
-<span id="cb11-25"><a></a></span>
-<span id="cb11-26"><a></a>  <span class="cf">if</span> usePBC:</span>
-<span id="cb11-27"><a></a>    <span class="co"># apply periodic term</span></span>
-<span id="cb11-28"><a></a>    psiOut <span class="op">+=</span> np.tensordot(hloc.reshape(d, d, d, d),</span>
-<span id="cb11-29"><a></a>                           psiIn.reshape(d, d<span class="op">**</span>(N <span class="op">-</span> <span class="dv">2</span>), d),</span>
-<span id="cb11-30"><a></a>                           axes<span class="op">=</span>[[<span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">0</span>]]</span>
-<span id="cb11-31"><a></a>                           ).transpose(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>).reshape(d<span class="op">**</span>N)</span>
-<span id="cb11-32"><a></a></span>
-<span id="cb11-33"><a></a>  <span class="cf">return</span> psiOut</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2ad06008" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="co"># by Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 6/2019</span></span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a><span class="kw">def</span> doApplyHam(psiIn: np.ndarray,</span>
+<span id="cb10-4"><a></a>               hloc: np.ndarray,</span>
+<span id="cb10-5"><a></a>               N: <span class="bu">int</span>,</span>
+<span id="cb10-6"><a></a>               usePBC: <span class="bu">bool</span>):</span>
+<span id="cb10-7"><a></a>  <span class="co">"""</span></span>
+<span id="cb10-8"><a></a><span class="co">  Applies local Hamiltonian, given as sum of nearest neighbor terms, to</span></span>
+<span id="cb10-9"><a></a><span class="co">  an input quantum state.</span></span>
+<span id="cb10-10"><a></a><span class="co">  Args:</span></span>
+<span id="cb10-11"><a></a><span class="co">    psiIn: vector of length d**N describing the quantum state.</span></span>
+<span id="cb10-12"><a></a><span class="co">    hloc: array of ndim=4 describing the nearest neighbor coupling.</span></span>
+<span id="cb10-13"><a></a><span class="co">    N: the number of lattice sites.</span></span>
+<span id="cb10-14"><a></a><span class="co">    usePBC: sets whether to include periodic boundary term.</span></span>
+<span id="cb10-15"><a></a><span class="co">  Returns:</span></span>
+<span id="cb10-16"><a></a><span class="co">    np.ndarray: state psi after application of the Hamiltonian.</span></span>
+<span id="cb10-17"><a></a><span class="co">  """</span></span>
+<span id="cb10-18"><a></a>  d <span class="op">=</span> hloc.shape[<span class="dv">0</span>]</span>
+<span id="cb10-19"><a></a>  psiOut <span class="op">=</span> np.zeros(psiIn.size)</span>
+<span id="cb10-20"><a></a>  <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(N <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb10-21"><a></a>    <span class="co"># apply local Hamiltonian terms to sites [k,k+1]</span></span>
+<span id="cb10-22"><a></a>    psiOut <span class="op">+=</span> np.tensordot(hloc.reshape(d<span class="op">**</span><span class="dv">2</span>, d<span class="op">**</span><span class="dv">2</span>),</span>
+<span id="cb10-23"><a></a>                           psiIn.reshape(d<span class="op">**</span>k, d<span class="op">**</span><span class="dv">2</span>, d<span class="op">**</span>(N <span class="op">-</span> <span class="dv">2</span> <span class="op">-</span> k)),</span>
+<span id="cb10-24"><a></a>                           axes<span class="op">=</span>[[<span class="dv">1</span>], [<span class="dv">1</span>]]).transpose(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>).reshape(d<span class="op">**</span>N)</span>
+<span id="cb10-25"><a></a></span>
+<span id="cb10-26"><a></a>  <span class="cf">if</span> usePBC:</span>
+<span id="cb10-27"><a></a>    <span class="co"># apply periodic term</span></span>
+<span id="cb10-28"><a></a>    psiOut <span class="op">+=</span> np.tensordot(hloc.reshape(d, d, d, d),</span>
+<span id="cb10-29"><a></a>                           psiIn.reshape(d, d<span class="op">**</span>(N <span class="op">-</span> <span class="dv">2</span>), d),</span>
+<span id="cb10-30"><a></a>                           axes<span class="op">=</span>[[<span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">2</span>, <span class="dv">0</span>]]</span>
+<span id="cb10-31"><a></a>                           ).transpose(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>).reshape(d<span class="op">**</span>N)</span>
+<span id="cb10-32"><a></a></span>
+<span id="cb10-33"><a></a>  <span class="cf">return</span> psiOut</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2 center">
@@ -708,54 +717,54 @@ H\ket{\Psi} = E\ket{\Psi}
 <ul>
 <li>Use this to instantiate a <code>LinearOperator</code> which is passed into eigenvalue solver (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigsh.html#scipy.sparse.linalg.eigsh"><code>scipy.sparse.linalg.eigsh</code></a>)</li>
 </ul>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="co">"""</span></span>
-<span id="cb12-2"><a></a><span class="co">by Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 06/2020</span></span>
-<span id="cb12-3"><a></a><span class="co">"""</span></span>
-<span id="cb12-4"><a></a></span>
-<span id="cb12-5"><a></a><span class="im">from</span> scipy.sparse.linalg <span class="im">import</span> LinearOperator, eigsh</span>
-<span id="cb12-6"><a></a><span class="im">from</span> timeit <span class="im">import</span> default_timer <span class="im">as</span> timer</span>
-<span id="cb12-7"><a></a></span>
-<span id="cb12-8"><a></a><span class="co"># Simulation parameters</span></span>
-<span id="cb12-9"><a></a>model <span class="op">=</span> <span class="st">'XX'</span>  <span class="co"># select 'XX' model of 'ising' model</span></span>
-<span id="cb12-10"><a></a>Nsites <span class="op">=</span> <span class="dv">18</span>  <span class="co"># number of lattice sites</span></span>
-<span id="cb12-11"><a></a>usePBC <span class="op">=</span> <span class="va">True</span>  <span class="co"># use periodic or open boundaries</span></span>
-<span id="cb12-12"><a></a>numval <span class="op">=</span> <span class="dv">1</span>  <span class="co"># number of eigenstates to compute</span></span>
-<span id="cb12-13"><a></a></span>
-<span id="cb12-14"><a></a><span class="co"># Define Hamiltonian (quantum XX model)</span></span>
-<span id="cb12-15"><a></a>d <span class="op">=</span> <span class="dv">2</span>  <span class="co"># local dimension</span></span>
-<span id="cb12-16"><a></a>sX <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="dv">0</span>]])</span>
-<span id="cb12-17"><a></a>sY <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="op">-</span><span class="ot">1.0j</span>], [<span class="ot">1.0j</span>, <span class="dv">0</span>]])</span>
-<span id="cb12-18"><a></a>sZ <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="fl">1.0</span>]])</span>
-<span id="cb12-19"><a></a>sI <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="fl">1.0</span>]])</span>
-<span id="cb12-20"><a></a><span class="cf">if</span> model <span class="op">==</span> <span class="st">'XX'</span>:</span>
-<span id="cb12-21"><a></a>  hloc <span class="op">=</span> (np.real(np.kron(sX, sX) <span class="op">+</span> np.kron(sY, sY))).reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb12-22"><a></a>  EnExact <span class="op">=</span> <span class="op">-</span><span class="dv">4</span> <span class="op">/</span> np.sin(np.pi <span class="op">/</span> Nsites)  <span class="co"># Note: only for PBC</span></span>
-<span id="cb12-23"><a></a><span class="cf">elif</span> model <span class="op">==</span> <span class="st">'ising'</span>:</span>
-<span id="cb12-24"><a></a>  hloc <span class="op">=</span> (<span class="op">-</span>np.kron(sX, sX) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.kron(sZ, sI) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.kron(sI, sZ)</span>
-<span id="cb12-25"><a></a>          ).reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb12-26"><a></a>  EnExact <span class="op">=</span> <span class="op">-</span><span class="dv">2</span> <span class="op">/</span> np.sin(np.pi <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> Nsites))  <span class="co"># Note: only for PBC</span></span>
-<span id="cb12-27"><a></a></span>
-<span id="cb12-28"><a></a></span>
-<span id="cb12-29"><a></a><span class="co"># cast the Hamiltonian 'H' as a linear operator</span></span>
-<span id="cb12-30"><a></a><span class="kw">def</span> doApplyHamClosed(psiIn):</span>
-<span id="cb12-31"><a></a>  <span class="cf">return</span> doApplyHam(psiIn, hloc, Nsites, usePBC)</span>
-<span id="cb12-32"><a></a></span>
-<span id="cb12-33"><a></a></span>
-<span id="cb12-34"><a></a>H <span class="op">=</span> LinearOperator((<span class="dv">2</span><span class="op">**</span>Nsites, <span class="dv">2</span><span class="op">**</span>Nsites), matvec<span class="op">=</span>doApplyHamClosed)</span>
-<span id="cb12-35"><a></a></span>
-<span id="cb12-36"><a></a><span class="co"># do the exact diag</span></span>
-<span id="cb12-37"><a></a>start_time <span class="op">=</span> timer()</span>
-<span id="cb12-38"><a></a>Energy, psi <span class="op">=</span> eigsh(H, k<span class="op">=</span>numval, which<span class="op">=</span><span class="st">'SA'</span>)</span>
-<span id="cb12-39"><a></a>diag_time <span class="op">=</span> timer() <span class="op">-</span> start_time</span>
-<span id="cb12-40"><a></a></span>
-<span id="cb12-41"><a></a><span class="co"># check with exact energy</span></span>
-<span id="cb12-42"><a></a>EnErr <span class="op">=</span> Energy[<span class="dv">0</span>] <span class="op">-</span> EnExact  <span class="co"># should equal to zero</span></span>
-<span id="cb12-43"><a></a></span>
-<span id="cb12-44"><a></a><span class="bu">print</span>(<span class="st">'NumSites: </span><span class="sc">%d</span><span class="st">, Time: </span><span class="sc">%1.2f</span><span class="st">, Energy: </span><span class="sc">%e</span><span class="st">, EnErr: </span><span class="sc">%e</span><span class="st">'</span> <span class="op">%</span></span>
-<span id="cb12-45"><a></a>      (Nsites, diag_time, Energy[<span class="dv">0</span>], EnErr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2a93223d" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="co">"""</span></span>
+<span id="cb11-2"><a></a><span class="co">by Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 06/2020</span></span>
+<span id="cb11-3"><a></a><span class="co">"""</span></span>
+<span id="cb11-4"><a></a></span>
+<span id="cb11-5"><a></a><span class="im">from</span> scipy.sparse.linalg <span class="im">import</span> LinearOperator, eigsh</span>
+<span id="cb11-6"><a></a><span class="im">from</span> timeit <span class="im">import</span> default_timer <span class="im">as</span> timer</span>
+<span id="cb11-7"><a></a></span>
+<span id="cb11-8"><a></a><span class="co"># Simulation parameters</span></span>
+<span id="cb11-9"><a></a>model <span class="op">=</span> <span class="st">'XX'</span>  <span class="co"># select 'XX' model of 'ising' model</span></span>
+<span id="cb11-10"><a></a>Nsites <span class="op">=</span> <span class="dv">18</span>  <span class="co"># number of lattice sites</span></span>
+<span id="cb11-11"><a></a>usePBC <span class="op">=</span> <span class="va">True</span>  <span class="co"># use periodic or open boundaries</span></span>
+<span id="cb11-12"><a></a>numval <span class="op">=</span> <span class="dv">1</span>  <span class="co"># number of eigenstates to compute</span></span>
+<span id="cb11-13"><a></a></span>
+<span id="cb11-14"><a></a><span class="co"># Define Hamiltonian (quantum XX model)</span></span>
+<span id="cb11-15"><a></a>d <span class="op">=</span> <span class="dv">2</span>  <span class="co"># local dimension</span></span>
+<span id="cb11-16"><a></a>sX <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="dv">0</span>]])</span>
+<span id="cb11-17"><a></a>sY <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="op">-</span><span class="ot">1.0j</span>], [<span class="ot">1.0j</span>, <span class="dv">0</span>]])</span>
+<span id="cb11-18"><a></a>sZ <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="op">-</span><span class="fl">1.0</span>]])</span>
+<span id="cb11-19"><a></a>sI <span class="op">=</span> np.array([[<span class="fl">1.0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="fl">1.0</span>]])</span>
+<span id="cb11-20"><a></a><span class="cf">if</span> model <span class="op">==</span> <span class="st">'XX'</span>:</span>
+<span id="cb11-21"><a></a>  hloc <span class="op">=</span> (np.real(np.kron(sX, sX) <span class="op">+</span> np.kron(sY, sY))).reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb11-22"><a></a>  EnExact <span class="op">=</span> <span class="op">-</span><span class="dv">4</span> <span class="op">/</span> np.sin(np.pi <span class="op">/</span> Nsites)  <span class="co"># Note: only for PBC</span></span>
+<span id="cb11-23"><a></a><span class="cf">elif</span> model <span class="op">==</span> <span class="st">'ising'</span>:</span>
+<span id="cb11-24"><a></a>  hloc <span class="op">=</span> (<span class="op">-</span>np.kron(sX, sX) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.kron(sZ, sI) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.kron(sI, sZ)</span>
+<span id="cb11-25"><a></a>          ).reshape(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb11-26"><a></a>  EnExact <span class="op">=</span> <span class="op">-</span><span class="dv">2</span> <span class="op">/</span> np.sin(np.pi <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> Nsites))  <span class="co"># Note: only for PBC</span></span>
+<span id="cb11-27"><a></a></span>
+<span id="cb11-28"><a></a></span>
+<span id="cb11-29"><a></a><span class="co"># cast the Hamiltonian 'H' as a linear operator</span></span>
+<span id="cb11-30"><a></a><span class="kw">def</span> doApplyHamClosed(psiIn):</span>
+<span id="cb11-31"><a></a>  <span class="cf">return</span> doApplyHam(psiIn, hloc, Nsites, usePBC)</span>
+<span id="cb11-32"><a></a></span>
+<span id="cb11-33"><a></a></span>
+<span id="cb11-34"><a></a>H <span class="op">=</span> LinearOperator((<span class="dv">2</span><span class="op">**</span>Nsites, <span class="dv">2</span><span class="op">**</span>Nsites), matvec<span class="op">=</span>doApplyHamClosed)</span>
+<span id="cb11-35"><a></a></span>
+<span id="cb11-36"><a></a><span class="co"># do the exact diag</span></span>
+<span id="cb11-37"><a></a>start_time <span class="op">=</span> timer()</span>
+<span id="cb11-38"><a></a>Energy, psi <span class="op">=</span> eigsh(H, k<span class="op">=</span>numval, which<span class="op">=</span><span class="st">'SA'</span>)</span>
+<span id="cb11-39"><a></a>diag_time <span class="op">=</span> timer() <span class="op">-</span> start_time</span>
+<span id="cb11-40"><a></a></span>
+<span id="cb11-41"><a></a><span class="co"># check with exact energy</span></span>
+<span id="cb11-42"><a></a>EnErr <span class="op">=</span> Energy[<span class="dv">0</span>] <span class="op">-</span> EnExact  <span class="co"># should equal to zero</span></span>
+<span id="cb11-43"><a></a></span>
+<span id="cb11-44"><a></a><span class="bu">print</span>(<span class="st">'NumSites: </span><span class="sc">%d</span><span class="st">, Time: </span><span class="sc">%1.2f</span><span class="st">, Energy: </span><span class="sc">%e</span><span class="st">, EnErr: </span><span class="sc">%e</span><span class="st">'</span> <span class="op">%</span></span>
+<span id="cb11-45"><a></a>      (Nsites, diag_time, Energy[<span class="dv">0</span>], EnErr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumSites: 18, Time: 3.00, Energy: -2.303508e+01, EnErr: 0.000000e+00</code></pre>
+<pre><code>NumSites: 18, Time: 4.02, Energy: -2.303508e+01, EnErr: 5.329071e-14</code></pre>
 </div>
 </div>
 </section>
@@ -1069,7 +1078,7 @@ H\ket{\Psi} = E\ket{\Psi}
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+          var filterRegex = new RegExp('/' + window.location.host + '/');
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
