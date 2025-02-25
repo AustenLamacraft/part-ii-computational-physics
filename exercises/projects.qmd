@@ -1,15 +1,15 @@
 ---
 title: Projects
-draft: true
+draft: false
 ---
 
 The Computational Physics project — if you choose to submit one — is worth one unit of further work, so roughly 10% of your final mark for the year. It involves choosing a problem from the project list in @sec-projects. You will analyse the problem, write and test Python code to investigate it, then write up your work in a report. Like E1 and E2, you can expect it to involve 40 to 50 hours' work. This includes reading and research, coding, experimentation and gathering results, and writing your report.
 
-Students may start their project work once the project list is published by 17th February. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (5th May 2025)__. Submissions made after that time will not be marked [^1]. I suggest you proceed _as if the deadline is 16.00 on Friday 2nd May_, and use the final weekend if you really need to.
+Students may start their project work once the project list is published by 24th February. Click on the [GitHub Classroom link](https://classroom.github.com/a/H82NKbAw) to accept the project as an assignment. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (5th May 2025)__. Submissions made after that time will not be marked [^1]. I suggest you proceed _as if the deadline is 16.00 on Friday 2nd May_, and use the final weekend if you really need to.
 
 [^1]: See the [NST rules on late submission](https://www.natsci.tripos.cam.ac.uk/exams/late). For the avoidance of doubt, the project is a piece of work for which the submission date is specified in Examination Regulations (Ordinances), and therefore the final paragraph applies.
 
-https://forms.office.com/pages/responsepage.aspx?id=RQSlSfq9eUut41R7TzmG6Y64hS-YY0NHhP2hmw9lbpdUNFdLU01PRTFXVURORUhBVllUS0QwSkxBRS4u&route=shorturl
+<!-- https://forms.office.com/pages/responsepage.aspx?id=RQSlSfq9eUut41R7TzmG6Y64hS-YY0NHhP2hmw9lbpdUNFdLU01PRTFXVURORUhBVllUS0QwSkxBRS4u&route=shorturl -->
 
 Bear in mind that __everything in your report should be your own work__, and your submission will be treated as a declaration of this fact. The rules regarding cheating and plagiarism in the [Physics course handbook](https://www.phy.cam.ac.uk/files/physics_course_handbook_2024_2025_v3.pdf) (Page 33) apply here. It is OK for you to use code that others — that's what a library is, after all — but in all cases the attribution should be clear.
 
@@ -22,13 +22,13 @@ Your report will take the form of repository submitted to GitHub classroom (see 
 When the cells in the notebook are executed, all analysis and figures should be reproduced _quickly_. Execution should not cause long runs of simulation code, for example. While you should feel free to use other (open source) libraries in your code, please limit your report notebook to the standard libraries we have used in the computational physics course (NumPy, SciPy, Matplotlib).
 
 Please see [Keeping Laboratory Notes and
-Writing Formal Reports](https://www-teach.phy.cam.ac.uk/dms/dms_getFile.php?node=43283) for further guidance. There is no prescription on the length of your report, except that it should provide a comprehensive account of the work you have done.
+Writing Formal Reports](https://www-teach.phy.cam.ac.uk/dms/dms_getFile.php?node=54292) for further guidance. There is no prescription on the length of your report, except that it should provide a comprehensive account of the work you have done.
 
 For a guide to the presentation of Python code, see [PEP 8](https://peps.python.org/pep-0008/) and [this explanation](https://realpython.com/python-pep8/).
 
 # Submission {#sec-submission}
 
-The submission instructions are the same as for the [exercises](exercises.qmd). Around 17th February you will receive a GitHub Classroom link inviting you to accept the project as an assignment. Please __change the name of your repo to `<project-name>-<CRSid>`__ for ease of marking. 
+The submission instructions are the same as for the [exercises](exercises.qmd). Click on the [GitHub Classroom link](https://classroom.github.com/a/H82NKbAw) to accept the project as an assignment. Please __change the name of your repo to `<project-name>-<CRSid>`__ for ease of marking. 
 
 You should take advantage of the fact that you are using GitHub to _regularly commit to your project repository_ and _push the commits to GitHub_. That way there is no danger of you accidentally missing the deadline: your last commit to the repository on GitHub will constitute your submission. 
 
@@ -72,11 +72,12 @@ The [fast multipole method](https://en.wikipedia.org/wiki/Fast_multipole_method)
 
 Study the performance of cluster algorithms for statistical mechanics models such as the Ising model and hard disks — as described in [these lectures](https://hef.ru.nl/~tbudd/mct/lectures/cluster_algorithms.html) — and compare them with the Metropolis algorithm. You should analyze the autocorrelation time of the algorithms and the issue of critical slowing down.
 
+<!-- 
 ## Lyapunov exponents
 
 Lyapunov exponents quantify chaos in a dynamical system by the exponential divergence of neighbouring trajectories. @sandri1996numerical as well as Chapter 3 of @pikovsky2016lyapunov describe numerical methods for their computation.
 
-It's probably easier to start with _discrete time_ dynamical systems, moving on to the continuous time case if you have time. Wikipedia has an [extensive list of chaotic maps](https://en.wikipedia.org/wiki/List_of_chaotic_maps) e.g. the [Hénon map](https://en.wikipedia.org/wiki/H%C3%A9non_map). See the section "LCEs of of Discrete Systems" of @sandri1996numerical.
+It's probably easier to start with _discrete time_ dynamical systems, moving on to the continuous time case if you have time. Wikipedia has an [extensive list of chaotic maps](https://en.wikipedia.org/wiki/List_of_chaotic_maps) e.g. the [Hénon map](https://en.wikipedia.org/wiki/H%C3%A9non_map). See the section "LCEs of of Discrete Systems" of @sandri1996numerical. -->
 
 ## Multi-spin encoding for Ising models
 
@@ -100,15 +101,21 @@ Using [Glen Evenbly's site](https://www.tensors.net/mps) as a starting point, in
 
 ## The Wavefunction Collapse Algorithm
 
-Despite the name, the [wavefunction collapse algorithm](https://github.com/mxgmn/WaveFunctionCollapse) is not _strictly_ about physics but rather [texture synthesis](https://en.wikipedia.org/wiki/Texture_synthesis): think making landscapes in computer games procedurally. There are potential connections with statistical physics: see [this Twitter thread](https://twitter.com/ExUtumno/status/1119996186663030784)
+Despite the name, the [wavefunction collapse algorithm](https://en.wikipedia.org/wiki/Model_synthesis) (see also [this GitHub repo](https://github.com/mxgmn/WaveFunctionCollapse)) is not _strictly_ about physics but rather [texture synthesis](https://en.wikipedia.org/wiki/Texture_synthesis): think making landscapes in computer games procedurally. There are potential connections with statistical physics: see [this Twitter thread](https://twitter.com/ExUtumno/status/1119996186663030784)
 
 There is an implementation in Python [here](https://github.com/ikarth/wfc_2019f), but you will need to write your own. [Markov Junior](https://github.com/mxgmn/MarkovJunior) is a newer algorithm by the same author. 
 
-## Schrödinger's smoke
+## Language Modeling 
+
+By following along [this YouTube video](https://www.youtube.com/watch?v=PaCmpygFfXo) and the associated GitHub repository [makemore](https://github.com/karpathy/makemore), investigate ngram and neural network approaches to language modeling. The video description contains a set of exercises to get you going. Think of a fun/interesting exercise and complete it!
+
+As well as the lecture and exercise on neural nets, the 3Blue1Brown [series on deep learning](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) and [Michael Nielsen's online book](http://neuralnetworksanddeeplearning.com/index.html) are two additional useful resources.
+
+<!-- ## Schrödinger's smoke
 
 [Schrödinger's smoke](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) is a recent alogrithm for the simulation of incompressible fluids. The original paper (@chern2016schrodinger) describes the algorithm in Section 2: it is based on the split-step method and FFT as discussed in the [FFT lecture](../notes/fourier.qmd).
  
-The [project webpage](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) includes [Matlab code](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/SchrodingersSmokeCode.zip). _This is an ambitious project_. It's probably best starting with a two dimensional fluid as a proof of principle.
+The [project webpage](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) includes [Matlab code](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/SchrodingersSmokeCode.zip). _This is an ambitious project_. It's probably best starting with a two dimensional fluid as a proof of principle. -->
 
 
 <!-- ## Gross–Pitaevskii equation

@@ -1838,5 +1838,126 @@
       "Notes",
       "Solving differential equations with SciPy"
     ]
+  },
+  {
+    "objectID": "exercises/projects.html",
+    "href": "exercises/projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "The Computational Physics project — if you choose to submit one — is worth one unit of further work, so roughly 10% of your final mark for the year. It involves choosing a problem from the project list in Section 4. You will analyse the problem, write and test Python code to investigate it, then write up your work in a report. Like E1 and E2, you can expect it to involve 40 to 50 hours’ work. This includes reading and research, coding, experimentation and gathering results, and writing your report.\nStudents may start their project work once the project list is published by 24th February. Click on the GitHub Classroom link to accept the project as an assignment. The deadline for submission of the project report is 16:00 on the first Monday of Full Easter term (5th May 2025). Submissions made after that time will not be marked 1. I suggest you proceed as if the deadline is 16.00 on Friday 2nd May, and use the final weekend if you really need to.\nBear in mind that everything in your report should be your own work, and your submission will be treated as a declaration of this fact. The rules regarding cheating and plagiarism in the Physics course handbook (Page 33) apply here. It is OK for you to use code that others — that’s what a library is, after all — but in all cases the attribution should be clear.\nNotwithstanding the above, please also use the discussions to ask each other questions and share knowledge.",
+    "crumbs": [
+      "Exercises and Projects",
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "exercises/projects.html#percolation",
+    "href": "exercises/projects.html#percolation",
+    "title": "Projects",
+    "section": "4.1 Percolation",
+    "text": "4.1 Percolation\nPercolation is an extremely simple statistical mechanical model that has been used as a testbed for many theoretical concepts and numerical techniques over the decades.\nOne of the most popular and efficient algorithms for percolation is Newman and Ziff (2000). Implement and study this algorithm. You may wish to compare the Newman–Ziff algorithm with other algorithms e.g. Mertens (2022).",
+    "crumbs": [
+      "Exercises and Projects",
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "exercises/projects.html#hierarchical-methods-for-n-body-simulation",
+    "href": "exercises/projects.html#hierarchical-methods-for-n-body-simulation",
+    "title": "Projects",
+    "section": "4.2 Hierarchical methods for \\(N\\)-body simulation",
+    "text": "4.2 Hierarchical methods for \\(N\\)-body simulation\nThe fast multipole method and the Barnes Hut method are two methods to study pairwise interactions in \\(N\\)-body systems that lower the complexity to \\(O(N\\log N)\\) from the naive \\(O(N^2)\\). Implement these methods and compare their performance on different tasks.",
+    "crumbs": [
+      "Exercises and Projects",
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "exercises/projects.html#cluster-algorithms-for-monte-carlo",
+    "href": "exercises/projects.html#cluster-algorithms-for-monte-carlo",
+    "title": "Projects",
+    "section": "4.3 Cluster algorithms for Monte Carlo",
+    "text": "4.3 Cluster algorithms for Monte Carlo\nStudy the performance of cluster algorithms for statistical mechanics models such as the Ising model and hard disks — as described in these lectures — and compare them with the Metropolis algorithm. You should analyze the autocorrelation time of the algorithms and the issue of critical slowing down.",
+    "crumbs": [
+      "Exercises and Projects",
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "exercises/projects.html#multi-spin-encoding-for-ising-models",
+    "href": "exercises/projects.html#multi-spin-encoding-for-ising-models",
+    "title": "Projects",
+    "section": "4.4 Multi-spin encoding for Ising models",
+    "text": "4.4 Multi-spin encoding for Ising models\nIn an Ising model the lattice variables can take only two values. The idea behind multispin encoding is to use 64 bit data (uint64 say) to simulate multiple copies of the Ising model, so that a degree of parallelism comes “for free”. This requires bitwise operations to be performed on the integers.\nImplement and test multispin encoding for the square lattice Ising model. Multispin encoding is introduced in Jacobs and Rebbi (1981) and also described in Section 10.1 of Böttcher and Herrmann (2021).",
+    "crumbs": [
+      "Exercises and Projects",
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "exercises/projects.html#the-fermipastaulamtsingou-problem",
+    "href": "exercises/projects.html#the-fermipastaulamtsingou-problem",
+    "title": "Projects",
+    "section": "4.5 The Fermi–Pasta–Ulam–Tsingou problem",
+    "text": "4.5 The Fermi–Pasta–Ulam–Tsingou problem\nA fundamental problem in statistical physics is: how does a mechanical system thermalize? FPUT studied this question in a model of a chain of masses coupled by weakly anharmonic springs. Dauxois and Ruffo (2008) is a nice review of the problem, which also includes sample MATLAB code that you could use as a starting point. You may have to explore other integration schemes (e.g. symplectic integrators).",
+    "crumbs": [
+      "Exercises and Projects",
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "exercises/projects.html#lenia",
+    "href": "exercises/projects.html#lenia",
+    "title": "Projects",
+    "section": "4.6 Lenia",
+    "text": "4.6 Lenia\nLenia is a recently invented (discovered?) cellular automaton: somewhat similar to Conway’s Game of Life but with continuous variables.\nThere are lots of resources on Lenia, including the original paper (Chan (2018)), a GitHub repo, webpage, as well as this article and colab notebook from Google research. Produce your own implementation and investigate its properties!",
+    "crumbs": [
+      "Exercises and Projects",
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "exercises/projects.html#time-evolving-block-decimation-tebd",
+    "href": "exercises/projects.html#time-evolving-block-decimation-tebd",
+    "title": "Projects",
+    "section": "4.7 Time evolving block decimation (TEBD)",
+    "text": "4.7 Time evolving block decimation (TEBD)\nUsing Glen Evenbly’s site as a starting point, investigate the use of TEBD to solve quantum spin chains (see the linear algebra lecture). Investigate real and imaginary time dynamics (the latter for finding the ground state), including the evolution of the expectation values of spins, starting from different initial states. See the original paper (Vidal (2004)) for ideas of what to calculate.",
+    "crumbs": [
+      "Exercises and Projects",
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "exercises/projects.html#the-wavefunction-collapse-algorithm",
+    "href": "exercises/projects.html#the-wavefunction-collapse-algorithm",
+    "title": "Projects",
+    "section": "4.8 The Wavefunction Collapse Algorithm",
+    "text": "4.8 The Wavefunction Collapse Algorithm\nDespite the name, the wavefunction collapse algorithm (see also this GitHub repo) is not strictly about physics but rather texture synthesis: think making landscapes in computer games procedurally. There are potential connections with statistical physics: see this Twitter thread\nThere is an implementation in Python here, but you will need to write your own. Markov Junior is a newer algorithm by the same author.",
+    "crumbs": [
+      "Exercises and Projects",
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "exercises/projects.html#language-modeling",
+    "href": "exercises/projects.html#language-modeling",
+    "title": "Projects",
+    "section": "4.9 Language Modeling",
+    "text": "4.9 Language Modeling\nBy following along this YouTube video and the associated GitHub repository makemore, investigate ngram and neural network approaches to language modeling. The video description contains a set of exercises to get you going. Think of a fun/interesting exercise and complete it!\nAs well as the lecture and exercise on neural nets, the 3Blue1Brown series on deep learning and Michael Nielsen’s online book are two additional useful resources.",
+    "crumbs": [
+      "Exercises and Projects",
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "exercises/projects.html#footnotes",
+    "href": "exercises/projects.html#footnotes",
+    "title": "Projects",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nSee the NST rules on late submission. For the avoidance of doubt, the project is a piece of work for which the submission date is specified in Examination Regulations (Ordinances), and therefore the final paragraph applies.↩︎\nMost should be freely available (to you) online: don’t forget the “CU” in CUP stands for Cambridge University.↩︎",
+    "crumbs": [
+      "Exercises and Projects",
+      "Projects"
+    ]
   }
 ]
