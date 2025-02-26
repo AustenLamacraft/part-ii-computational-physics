@@ -260,7 +260,7 @@ $$
 
 - If $M$ is $m\times n$, $U$ is $m\times m$, $V$ is $n\times n$, and $\Sigma$ is $m\times n$
 
-- $\min(m,n)$ diagonal elements $\sigma_i of $\Sigma$ are _singular values_
+- $\min(m,n)$ diagonal elements $\sigma_i$ of $\Sigma$ are _singular values_
 
 ---
 
@@ -327,7 +327,7 @@ $$
 
 - Regard components $\psi_{ab}$ as a matrix and perform SVD
 
-- Equivalent to finding new orthonormal bases $\ket{\tilde n}_{A,B}$ for two spaces s.t. action of $\psi_{ab}$ maps between basis vectors of two susbsystems (with rescaling)
+- Equivalent to finding new orthonormal bases $\ket{\tilde n}_{A,B}$ for two spaces s.t. action of $\psi_{ab}$ maps between basis vectors of two subsystems (with rescaling)
 
 ---
 

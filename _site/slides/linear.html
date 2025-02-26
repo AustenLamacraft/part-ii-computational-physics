@@ -214,18 +214,18 @@
 <li><p>Multiplying matrices is easy in NumPy using <a href="https://numpy.org/doc/stable/reference/generated/numpy.matmul.html"><code>np.matmul</code></a></p></li>
 <li><p><code>@</code> operator gives shortcut</p></li>
 </ul>
-<div id="2792f2fd" class="cell" data-execution_count="1">
+<div id="5a578ded" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a></a>A <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb1-3"><a></a>B <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb1-4"><a></a>np.matmul(A, B), A <span class="op">@</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>(array([[0.91705879, 0.57255833, 0.97110254],
-        [0.69765067, 0.69304618, 0.73797223],
-        [0.87688322, 0.80424394, 0.54128271]]),
- array([[0.91705879, 0.57255833, 0.97110254],
-        [0.69765067, 0.69304618, 0.73797223],
-        [0.87688322, 0.80424394, 0.54128271]]))</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(array([[0.53036987, 1.08642938, 1.11731659],
+        [0.7311074 , 1.3489778 , 1.28995269],
+        [0.82320476, 1.23275261, 1.02558923]]),
+ array([[0.53036987, 1.08642938, 1.11731659],
+        [0.7311074 , 1.3489778 , 1.28995269],
+        [0.82320476, 1.23275261, 1.02558923]]))</code></pre>
 </div>
 </div>
 </section>
@@ -234,7 +234,7 @@
 <ul>
 <li>You’ll get an error if your matrices don’t match…</li>
 </ul>
-<div id="722fdb36" class="cell" data-execution_count="2">
+<div id="9985314d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>C <span class="op">=</span> np.random.rand(<span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb3-2"><a></a>D <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">2</span>)</span>
 <span id="cb3-3"><a></a>C <span class="op">@</span> D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -242,7 +242,7 @@
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[9], line 3</span>
+Cell <span class="ansi-green-fg">In[2], line 3</span>
 <span class="ansi-green-fg ansi-bold">      1</span> C <span style="color:rgb(98,98,98)">=</span> np<span style="color:rgb(98,98,98)">.</span>random<span style="color:rgb(98,98,98)">.</span>rand(<span style="color:rgb(98,98,98)">2</span>, <span style="color:rgb(98,98,98)">3</span>)
 <span class="ansi-green-fg ansi-bold">      2</span> D <span style="color:rgb(98,98,98)">=</span> np<span style="color:rgb(98,98,98)">.</span>random<span style="color:rgb(98,98,98)">.</span>rand(<span style="color:rgb(98,98,98)">4</span>, <span style="color:rgb(98,98,98)">2</span>)
 <span class="ansi-green-fg">----&gt; 3</span> C <span style="color:rgb(98,98,98)">@</span> D
@@ -255,11 +255,11 @@ Cell <span class="ansi-green-fg">In[9], line 3</span>
 <li><p>If either <code>A</code> or <code>B</code> has rank greater than two: treat as a stack of matrices, with each matrix in last two indices</p></li>
 <li><p>Usual broadcasting rules then apply to remaining indices</p></li>
 </ul>
-<div id="3eb40d8f" class="cell" data-execution_count="3">
+<div id="061afedd" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>C <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb4-2"><a></a>D <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb4-3"><a></a>(C <span class="op">@</span> D).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(4, 3, 3)</code></pre>
 </div>
 </div>
@@ -283,21 +283,21 @@ Cell <span class="ansi-green-fg">In[9], line 3</span>
 <p><span class="math display">\[
 \left[A\cdot B\right]_{ik} = \sum_{j} A_{ij}B_{jk} = A_{ij}B_{jk}
 \]</span></p>
-<div id="978f8834" class="cell" data-execution_count="4">
+<div id="bfbf7caa" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>np.einsum(<span class="st">'ij,jk-&gt;ik'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>array([[0.91705879, 0.57255833, 0.97110254],
-       [0.69765067, 0.69304618, 0.73797223],
-       [0.87688322, 0.80424394, 0.54128271]])</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>array([[0.53036987, 1.08642938, 1.11731659],
+       [0.7311074 , 1.3489778 , 1.28995269],
+       [0.82320476, 1.23275261, 1.02558923]])</code></pre>
 </div>
 </div>
 <p><span class="math display">\[
 \operatorname{tr}\left[A\cdot B\right] = \sum_{i,j} A_{ij}B_{ji} = A_{ij}B_{ji}
 \]</span></p>
-<div id="b76df128" class="cell" data-execution_count="5">
+<div id="fd8301c1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>np.einsum(<span class="st">'ij,ji-&gt;'</span>, A, B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>2.1513876805668266</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>2.904936900205072</code></pre>
 </div>
 </div>
 </section>
@@ -481,7 +481,7 @@ M = U\Sigma V
 <li><p><span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> unitary; <span class="math inline">\(\Sigma\)</span> diagonal with non-negative real entries</p></li>
 <li><p>SVD <em>completely general</em>: applies to <em>rectangular matrices</em></p></li>
 <li><p>If <span class="math inline">\(M\)</span> is <span class="math inline">\(m\times n\)</span>, <span class="math inline">\(U\)</span> is <span class="math inline">\(m\times m\)</span>, <span class="math inline">\(V\)</span> is <span class="math inline">\(n\times n\)</span>, and <span class="math inline">\(\Sigma\)</span> is <span class="math inline">\(m\times n\)</span></p></li>
-<li><p><span class="math inline">\(\min(m,n)\)</span> diagonal elements $_i of <span class="math inline">\(\Sigma\)</span> are <em>singular values</em></p></li>
+<li><p><span class="math inline">\(\min(m,n)\)</span> diagonal elements <span class="math inline">\(\sigma_i\)</span> of <span class="math inline">\(\Sigma\)</span> are <em>singular values</em></p></li>
 </ul>
 </section>
 <section id="geometrical-interpretation" class="slide level2 center">
@@ -668,7 +668,7 @@ H\ket{\Psi} = E\ket{\Psi}
 <ul>
 <li>Define function that acts on wavefunction with each <span class="math inline">\(h_{j,j+1}\)</span></li>
 </ul>
-<div id="2ad06008" class="cell" data-execution_count="6">
+<div id="42a909f0" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="co"># by Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 6/2019</span></span>
 <span id="cb10-2"><a></a></span>
 <span id="cb10-3"><a></a><span class="kw">def</span> doApplyHam(psiIn: np.ndarray,</span>
@@ -717,7 +717,7 @@ H\ket{\Psi} = E\ket{\Psi}
 <ul>
 <li>Use this to instantiate a <code>LinearOperator</code> which is passed into eigenvalue solver (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigsh.html#scipy.sparse.linalg.eigsh"><code>scipy.sparse.linalg.eigsh</code></a>)</li>
 </ul>
-<div id="2a93223d" class="cell" data-execution_count="7">
+<div id="b41e0b08" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="co">"""</span></span>
 <span id="cb11-2"><a></a><span class="co">by Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 06/2020</span></span>
 <span id="cb11-3"><a></a><span class="co">"""</span></span>
@@ -764,7 +764,7 @@ H\ket{\Psi} = E\ket{\Psi}
 <span id="cb11-44"><a></a><span class="bu">print</span>(<span class="st">'NumSites: </span><span class="sc">%d</span><span class="st">, Time: </span><span class="sc">%1.2f</span><span class="st">, Energy: </span><span class="sc">%e</span><span class="st">, EnErr: </span><span class="sc">%e</span><span class="st">'</span> <span class="op">%</span></span>
 <span id="cb11-45"><a></a>      (Nsites, diag_time, Energy[<span class="dv">0</span>], EnErr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumSites: 18, Time: 4.02, Energy: -2.303508e+01, EnErr: 5.329071e-14</code></pre>
+<pre><code>NumSites: 18, Time: 4.21, Energy: -2.303508e+01, EnErr: 1.065814e-14</code></pre>
 </div>
 </div>
 </section>
@@ -1078,7 +1078,7 @@ H\ket{\Psi} = E\ket{\Psi}
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
+          var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }

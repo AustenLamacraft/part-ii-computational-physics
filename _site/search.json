@@ -1269,7 +1269,7 @@
     "href": "slides/linear.html#linear-algebra-with-numpy",
     "title": "Part II Computational Physics",
     "section": "Linear algebra with NumPy",
-    "text": "Linear algebra with NumPy\n\nMultiplying matrices is easy in NumPy using np.matmul\n@ operator gives shortcut\n\n\nimport numpy as np\nA = np.random.rand(3, 3)\nB = np.random.rand(3, 3)\nnp.matmul(A, B), A @ B\n\n(array([[0.91705879, 0.57255833, 0.97110254],\n        [0.69765067, 0.69304618, 0.73797223],\n        [0.87688322, 0.80424394, 0.54128271]]),\n array([[0.91705879, 0.57255833, 0.97110254],\n        [0.69765067, 0.69304618, 0.73797223],\n        [0.87688322, 0.80424394, 0.54128271]]))",
+    "text": "Linear algebra with NumPy\n\nMultiplying matrices is easy in NumPy using np.matmul\n@ operator gives shortcut\n\n\nimport numpy as np\nA = np.random.rand(3, 3)\nB = np.random.rand(3, 3)\nnp.matmul(A, B), A @ B\n\n(array([[0.53036987, 1.08642938, 1.11731659],\n        [0.7311074 , 1.3489778 , 1.28995269],\n        [0.82320476, 1.23275261, 1.02558923]]),\n array([[0.53036987, 1.08642938, 1.11731659],\n        [0.7311074 , 1.3489778 , 1.28995269],\n        [0.82320476, 1.23275261, 1.02558923]]))",
     "crumbs": [
       "Slides",
       "Linear algebra"
