@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://computational-physics.tripos.org/exercises/exercises.html</loc>
-    <lastmod>2025-02-14T10:47:36.543Z</lastmod>
+    <lastmod>2025-03-14T11:46:02.925Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/numpy.html</loc>
@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/index.html</loc>
-    <lastmod>2025-02-25T18:51:38.181Z</lastmod>
+    <lastmod>2026-01-19T14:59:02.964Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/slides/getting-going.html</loc>
@@ -54,7 +54,7 @@
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/slides/linear.html</loc>
-    <lastmod>2025-02-26T09:59:18.800Z</lastmod>
+    <lastmod>2025-02-26T11:30:11.945Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/slides/numpy.html</loc>
@@ -86,6 +86,6 @@
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/exercises/projects.html</loc>
-    <lastmod>2025-02-25T12:05:14.040Z</lastmod>
+    <lastmod>2026-01-19T15:06:31.285Z</lastmod>
   </url>
 </urlset>

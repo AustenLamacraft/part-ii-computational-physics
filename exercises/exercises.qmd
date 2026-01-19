@@ -26,18 +26,24 @@ Please use the [discussions](https://github.com/orgs/Part-II-Computational-Physi
 
 If you're using VS Code, there is a [GitHub Classroom extension](https://marketplace.visualstudio.com/items?itemName=GitHub.classroom) that allows you to view, work on, and submit assignments directly within the editor.
 
-# First exercise: PDEs
+# The exercises
+
+## First exercise: PDEs
 
 [The first exercise](https://classroom.github.com/a/Wtp2MN75) concerns solving a simple PDE using different methods. Your demonstrator for this exercise is Arshad Kamal. The deadline is __12 noon__ on Friday 21st February.
 
-<!-- # Second exercise: exact diagonalization
+## Second exercise: Monte Carlo
 
-The second exercise is about using some of the linear algebra techniques from the [linear algebra lecture](../notes/linear.qmd) to study spin chains. Your demonstrator is Jonathan Hallén, a PhD student from TCM. You can read about some of Joanthan's recent research [here](https://www.tcm.phy.cam.ac.uk/highlights/221216EB5_ejn41/).
+[The second exercise](https://classroom.github.com/a/z6tM4QRu) is about Monte Carlo techniques applied to the Ising model. You demonstrator is Cheng-Yu Huang (Kou). The deadline is __12 noon__ on Friday 7th March.
 
-# Third exercise: Monte Carlo
 
-The third exercise is about Monte Carlo techniques applied to the Ising model. You demonstrator is Danny van der Haven, a PhD student from Materials Science.
+## Third exercise: automatic differentiation
 
-# Fourth exercise: automatic differentiation
+[The third exercise](https://classroom.github.com/a/1L52N7h6) is about using automatic differentiation to train a simple neural network. Your demonstrator is Arun Kumar Rajasekaran. The deadline is __12 noon__ on Friday 14th March.
 
-The fourth exercise is about using automatic differentiation to train a simple neural network. Your demonstrator is Cecilie Glittum, a PhD student from TCM. -->
+## Fourth exercise: exact diagonalization
+
+[The fourth exercise](https://classroom.github.com/a/yAW3-xzg) is about using some of the linear algebra techniques from the [linear algebra lecture](../notes/linear.qmd) to study spin chains. Your demonstrator is Sun Woo Kim. The deadline is __12 noon__ on Friday 21st March.
+
+
+

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -51,15 +31,17 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../exercises/exercises.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -88,39 +70,10 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -143,9 +96,8 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Part II Computational Physics</a> 
-    </div>
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -326,18 +278,6 @@ window.Quarto = {
   <li><a href="#the-report" id="toc-the-report" class="nav-link active" data-scroll-target="#the-report"><span class="header-section-number">1</span> The report</a></li>
   <li><a href="#sec-submission" id="toc-sec-submission" class="nav-link" data-scroll-target="#sec-submission"><span class="header-section-number">2</span> Submission</a></li>
   <li><a href="#marking" id="toc-marking" class="nav-link" data-scroll-target="#marking"><span class="header-section-number">3</span> Marking</a></li>
-  <li><a href="#sec-projects" id="toc-sec-projects" class="nav-link" data-scroll-target="#sec-projects"><span class="header-section-number">4</span> The projects</a>
-  <ul class="collapse">
-  <li><a href="#percolation" id="toc-percolation" class="nav-link" data-scroll-target="#percolation"><span class="header-section-number">4.1</span> Percolation</a></li>
-  <li><a href="#hierarchical-methods-for-n-body-simulation" id="toc-hierarchical-methods-for-n-body-simulation" class="nav-link" data-scroll-target="#hierarchical-methods-for-n-body-simulation"><span class="header-section-number">4.2</span> Hierarchical methods for <span class="math inline">\(N\)</span>-body simulation</a></li>
-  <li><a href="#cluster-algorithms-for-monte-carlo" id="toc-cluster-algorithms-for-monte-carlo" class="nav-link" data-scroll-target="#cluster-algorithms-for-monte-carlo"><span class="header-section-number">4.3</span> Cluster algorithms for Monte Carlo</a></li>
-  <li><a href="#multi-spin-encoding-for-ising-models" id="toc-multi-spin-encoding-for-ising-models" class="nav-link" data-scroll-target="#multi-spin-encoding-for-ising-models"><span class="header-section-number">4.4</span> Multi-spin encoding for Ising models</a></li>
-  <li><a href="#the-fermipastaulamtsingou-problem" id="toc-the-fermipastaulamtsingou-problem" class="nav-link" data-scroll-target="#the-fermipastaulamtsingou-problem"><span class="header-section-number">4.5</span> The Fermi–Pasta–Ulam–Tsingou problem</a></li>
-  <li><a href="#lenia" id="toc-lenia" class="nav-link" data-scroll-target="#lenia"><span class="header-section-number">4.6</span> Lenia</a></li>
-  <li><a href="#time-evolving-block-decimation-tebd" id="toc-time-evolving-block-decimation-tebd" class="nav-link" data-scroll-target="#time-evolving-block-decimation-tebd"><span class="header-section-number">4.7</span> Time evolving block decimation (TEBD)</a></li>
-  <li><a href="#the-wavefunction-collapse-algorithm" id="toc-the-wavefunction-collapse-algorithm" class="nav-link" data-scroll-target="#the-wavefunction-collapse-algorithm"><span class="header-section-number">4.8</span> The Wavefunction Collapse Algorithm</a></li>
-  <li><a href="#language-modeling" id="toc-language-modeling" class="nav-link" data-scroll-target="#language-modeling"><span class="header-section-number">4.9</span> Language Modeling</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -363,10 +303,10 @@ window.Quarto = {
 </header>
 
 
-<p>The Computational Physics project — if you choose to submit one — is worth one unit of further work, so roughly 10% of your final mark for the year. It involves choosing a problem from the project list in <a href="#sec-projects" class="quarto-xref">Section&nbsp;4</a>.&nbsp;You will analyse the problem, write and test Python code to investigate it, then write up your work in a report.&nbsp;Like E1 and E2, you can expect it to involve 40 to 50 hours’ work. This includes reading and research, coding, experimentation and gathering results, and writing your report.</p>
-<p>Students may start their project work once the project list is published by 24th February. Click on the <a href="https://classroom.github.com/a/H82NKbAw">GitHub Classroom link</a> to accept the project as an assignment. The deadline for submission of the project report is <strong>16:00 on the first Monday of Full Easter term (5th May 2025)</strong>. Submissions made after that time will not be marked <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. I suggest you proceed <em>as if the deadline is 16.00 on Friday 2nd May</em>, and use the final weekend if you really need to.</p>
+<p>The Computational Physics project — if you choose to submit one — is worth one unit of further work, so roughly 10% of your final mark for the year. It involves choosing a problem from the project list in <strong>?@sec-projects</strong>.&nbsp;You will analyse the problem, write and test Python code to investigate it, then write up your work in a report.&nbsp;Like E1 and E2, you can expect it to involve 40 to 50 hours’ work. This includes reading and research, coding, experimentation and gathering results, and writing your report.</p>
+<p>Students may start their project work once the project list is published by 20th February. Click on the <a href="https://classroom.github.com/a/H82NKbAw">GitHub Classroom link</a> to accept the project as an assignment. The deadline for submission of the project report is <strong>16:00 on the first Monday of Full Easter term (4th May 2026)</strong>. Submissions made after that time will not be marked <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. I suggest you proceed <em>as if the deadline is 16.00 on Friday 1st May</em>, and use the final weekend if you really need to.</p>
 <!-- https://forms.office.com/pages/responsepage.aspx?id=RQSlSfq9eUut41R7TzmG6Y64hS-YY0NHhP2hmw9lbpdUNFdLU01PRTFXVURORUhBVllUS0QwSkxBRS4u&route=shorturl -->
-<p>Bear in mind that <strong>everything in your report should be your own work</strong>, and your submission will be treated as a declaration of this fact. The rules regarding cheating and plagiarism in the <a href="https://www.phy.cam.ac.uk/files/physics_course_handbook_2024_2025_v3.pdf">Physics course handbook</a> (Page 33) apply here. It is OK for you to use code that others — that’s what a library is, after all — but in all cases the attribution should be clear.</p>
+<p>Bear in mind that <strong>everything in your report should be your own work</strong>, and your submission will be treated as a declaration of this fact. The rules regarding cheating and plagiarism in the <a href="https://universityofcambridgecloud.sharepoint.com/sites/PHY_INT_UG/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FPHY%5FINT%5FUG%2FShared%20Documents%2FCurrent%20undergraduates%2FHandbook%2FPhysics%5FCourse%5FHandbook%5F2025%5F2026%20v2%2Epdf&amp;parent=%2Fsites%2FPHY%5FINT%5FUG%2FShared%20Documents%2FCurrent%20undergraduates%2FHandbook">Physics course handbook</a> (Section 6) apply here. It is OK for you to use code that others — that’s what a library is, after all — but in all cases the attribution should be clear.</p>
 <p>Notwithstanding the above, please also use the <a href="https://github.com/orgs/Part-II-Computational-Physics/discussions">discussions</a> to ask each other questions and share knowledge.</p>
 <section id="the-report" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> The report</h1>
@@ -391,66 +331,77 @@ window.Quarto = {
 </ol>
 <p>Although presentation only enters in the last category, bear in mind that assessors will not be able to get a good sense of what you have done unless your work is presented clearly throughout. In particular, it will make your assessor’s life easier (always a good thing) if there are <strong>sections that clearly refer to the first three points</strong>.</p>
 <p>As a general guide, you should present your work as if your assessor is <strong>completely ignorant</strong> of both the problem and computational approaches to it. Alternatively, present your work as if to yourself before you began working on it.</p>
-</section>
-<section id="sec-projects" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> The projects</h1>
-<p>For all of these projects the basic protocol is the same:</p>
-<ol type="1">
-<li>Understand the physical problem</li>
-<li>Learn about the available algorithms, including their theoretical complexity / performance</li>
-<li>Implement the algorithm(s)</li>
-<li>Gather results about the performance of the method</li>
-</ol>
-<p>You will need do some research and reading before starting, so follow the links and references<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. <em>But read pragmatically</em>: look for the algorithm description or pseudo-code and start thinking about how you will translate it into your own code.</p>
-<section id="percolation" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="percolation"><span class="header-section-number">4.1</span> Percolation</h2>
-<p><a href="https://en.wikipedia.org/wiki/Percolation_theory">Percolation</a> is an extremely simple statistical mechanical model that has been used as a testbed for many theoretical concepts and numerical techniques over the decades.</p>
-<p>One of the most popular and efficient algorithms for percolation is <span class="citation" data-cites="newman2000efficient">Newman and Ziff (<a href="#ref-newman2000efficient" role="doc-biblioref">2000</a>)</span>. Implement and study this algorithm. You may wish to compare the Newman–Ziff algorithm with other algorithms e.g. <span class="citation" data-cites="mertens2022exact">Mertens (<a href="#ref-mertens2022exact" role="doc-biblioref">2022</a>)</span>.</p>
-</section>
-<section id="hierarchical-methods-for-n-body-simulation" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="hierarchical-methods-for-n-body-simulation"><span class="header-section-number">4.2</span> Hierarchical methods for <span class="math inline">\(N\)</span>-body simulation</h2>
-<p>The <a href="https://en.wikipedia.org/wiki/Fast_multipole_method">fast multipole method</a> and the <a href="https://en.wikipedia.org/wiki/Barnes%E2%80%93Hut_simulation">Barnes Hut method</a> are two methods to study pairwise interactions in <span class="math inline">\(N\)</span>-body systems that lower the complexity to <span class="math inline">\(O(N\log N)\)</span> from the naive <span class="math inline">\(O(N^2)\)</span>. Implement these methods and compare their performance on different tasks.</p>
-</section>
-<section id="cluster-algorithms-for-monte-carlo" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="cluster-algorithms-for-monte-carlo"><span class="header-section-number">4.3</span> Cluster algorithms for Monte Carlo</h2>
-<p>Study the performance of cluster algorithms for statistical mechanics models such as the Ising model and hard disks — as described in <a href="https://hef.ru.nl/~tbudd/mct/lectures/cluster_algorithms.html">these lectures</a> — and compare them with the Metropolis algorithm. You should analyze the autocorrelation time of the algorithms and the issue of critical slowing down.</p>
+<!-- # The projects {#sec-projects}
+
+For all of these projects the basic protocol is the same:
+
+1. Understand the physical problem 
+2. Learn about the available algorithms, including their theoretical complexity / performance
+3. Implement the algorithm(s)
+4. Gather results about the performance of the method
+
+You will need do some research and reading before starting, so follow the links and references[^2]. _But read pragmatically_: look for the algorithm description or pseudo-code and start thinking about how you will translate it into your own code.
+
+[^2]: Most should be freely available (to you) online: don't forget the "CU" in CUP stands for Cambridge University.
+
+## Percolation
+
+[Percolation](https://en.wikipedia.org/wiki/Percolation_theory) is an extremely simple statistical mechanical model that has been used as a testbed for many theoretical concepts and numerical techniques over the decades. 
+
+One of the most popular and efficient algorithms for percolation is  @newman2000efficient. Implement and study this algorithm. You may wish to compare the Newman–Ziff algorithm with other algorithms e.g. @mertens2022exact.
+
+## Hierarchical methods for $N$-body simulation
+
+The [fast multipole method](https://en.wikipedia.org/wiki/Fast_multipole_method) and the [Barnes Hut method](https://en.wikipedia.org/wiki/Barnes%E2%80%93Hut_simulation) are two methods to study pairwise interactions in $N$-body systems that lower the complexity to $O(N\log N)$ from the naive $O(N^2)$. Implement these methods and compare their performance on different tasks.
+
+## Cluster algorithms for Monte Carlo
+
+Study the performance of cluster algorithms for statistical mechanics models such as the Ising model and hard disks — as described in [these lectures](https://hef.ru.nl/~tbudd/mct/lectures/cluster_algorithms.html) — and compare them with the Metropolis algorithm. You should analyze the autocorrelation time of the algorithms and the issue of critical slowing down.
+
 <!-- 
 ## Lyapunov exponents
 
 Lyapunov exponents quantify chaos in a dynamical system by the exponential divergence of neighbouring trajectories. @sandri1996numerical as well as Chapter 3 of @pikovsky2016lyapunov describe numerical methods for their computation.
 
 It's probably easier to start with _discrete time_ dynamical systems, moving on to the continuous time case if you have time. Wikipedia has an [extensive list of chaotic maps](https://en.wikipedia.org/wiki/List_of_chaotic_maps) e.g. the [Hénon map](https://en.wikipedia.org/wiki/H%C3%A9non_map). See the section "LCEs of of Discrete Systems" of @sandri1996numerical. -->
-</section>
-<section id="multi-spin-encoding-for-ising-models" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="multi-spin-encoding-for-ising-models"><span class="header-section-number">4.4</span> Multi-spin encoding for Ising models</h2>
-<p>In an Ising model the lattice variables can take only two values. The idea behind multispin encoding is to use 64 bit data (<code>uint64</code> say) to simulate multiple copies of the Ising model, so that a degree of parallelism comes “for free”. This requires <em>bitwise</em> operations to be performed on the integers.</p>
-<p>Implement and test multispin encoding for the square lattice Ising model. Multispin encoding is introduced in <span class="citation" data-cites="jacobs1981multi">Jacobs and Rebbi (<a href="#ref-jacobs1981multi" role="doc-biblioref">1981</a>)</span> and also described in Section 10.1 of <span class="citation" data-cites="bottcher2021computational">Böttcher and Herrmann (<a href="#ref-bottcher2021computational" role="doc-biblioref">2021</a>)</span>.</p>
-</section>
-<section id="the-fermipastaulamtsingou-problem" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="the-fermipastaulamtsingou-problem"><span class="header-section-number">4.5</span> The Fermi–Pasta–Ulam–Tsingou problem</h2>
-<p>A fundamental problem in statistical physics is: how does a mechanical system thermalize? FPUT studied this question in a model of a chain of masses coupled by weakly anharmonic springs. <span class="citation" data-cites="Dauxois:2008">Dauxois and Ruffo (<a href="#ref-Dauxois:2008" role="doc-biblioref">2008</a>)</span> is a nice review of the problem, which also includes sample <a href="http://www.scholarpedia.org/article/Fermi-Pasta-Ulam_nonlinear_lattice_oscillations#MATLAB_Code">MATLAB code</a> that you could use as a starting point. You may have to explore other integration schemes (e.g.&nbsp;<a href="https://en.wikipedia.org/wiki/Symplectic_integrator">symplectic integrators</a>).</p>
-</section>
-<section id="lenia" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="lenia"><span class="header-section-number">4.6</span> Lenia</h2>
-<p><a href="https://en.wikipedia.org/wiki/Lenia">Lenia</a> is a recently invented (discovered?) <a href="https://en.wikipedia.org/wiki/Cellular_automaton">cellular automaton</a>: somewhat similar to <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway’s Game of Life</a> but with continuous variables.</p>
-<p>There are lots of resources on Lenia, including the original paper (<span class="citation" data-cites="chan2018lenia">Chan (<a href="#ref-chan2018lenia" role="doc-biblioref">2018</a>)</span>), a <a href="https://github.com/Chakazul/Lenia">GitHub repo</a>, <a href="https://chakazul.github.io/lenia.html">webpage</a>, as well as <a href="https://google-research.github.io/self-organising-systems/particle-lenia/">this article</a> and <a href="https://colab.research.google.com/github/OpenLenia/Lenia-Tutorial/blob/main/Tutorial_From_Conway_to_Lenia.ipynb">colab notebook</a> from Google research. Produce your own implementation and investigate its properties!</p>
-</section>
-<section id="time-evolving-block-decimation-tebd" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="time-evolving-block-decimation-tebd"><span class="header-section-number">4.7</span> Time evolving block decimation (TEBD)</h2>
-<p>Using <a href="https://www.tensors.net/mps">Glen Evenbly’s site</a> as a starting point, investigate the use of TEBD to solve quantum spin chains (see the <a href="../notes/linear.html">linear algebra lecture</a>). Investigate real and imaginary time dynamics (the latter for finding the ground state), including the evolution of the expectation values of spins, starting from different initial states. See the original paper (<span class="citation" data-cites="vidal2004efficient">Vidal (<a href="#ref-vidal2004efficient" role="doc-biblioref">2004</a>)</span>) for ideas of what to calculate.</p>
-</section>
-<section id="the-wavefunction-collapse-algorithm" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="the-wavefunction-collapse-algorithm"><span class="header-section-number">4.8</span> The Wavefunction Collapse Algorithm</h2>
-<p>Despite the name, the <a href="https://en.wikipedia.org/wiki/Model_synthesis">wavefunction collapse algorithm</a> (see also <a href="https://github.com/mxgmn/WaveFunctionCollapse">this GitHub repo</a>) is not <em>strictly</em> about physics but rather <a href="https://en.wikipedia.org/wiki/Texture_synthesis">texture synthesis</a>: think making landscapes in computer games procedurally. There are potential connections with statistical physics: see <a href="https://twitter.com/ExUtumno/status/1119996186663030784">this Twitter thread</a></p>
-<p>There is an implementation in Python <a href="https://github.com/ikarth/wfc_2019f">here</a>, but you will need to write your own. <a href="https://github.com/mxgmn/MarkovJunior">Markov Junior</a> is a newer algorithm by the same author.</p>
-</section>
-<section id="language-modeling" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="language-modeling"><span class="header-section-number">4.9</span> Language Modeling</h2>
-<p>By following along <a href="https://www.youtube.com/watch?v=PaCmpygFfXo">this YouTube video</a> and the associated GitHub repository <a href="https://github.com/karpathy/makemore">makemore</a>, investigate ngram and neural network approaches to language modeling. The video description contains a set of exercises to get you going. Think of a fun/interesting exercise and complete it!</p>
-<p>As well as the lecture and exercise on neural nets, the 3Blue1Brown <a href="https://www.youtube.com/watch?v=aircAruvnKk&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">series on deep learning</a> and <a href="http://neuralnetworksanddeeplearning.com/index.html">Michael Nielsen’s online book</a> are two additional useful resources.</p>
+<!-- ## Multi-spin encoding for Ising models
+
+In an Ising model the lattice variables can take only two values. The idea behind multispin encoding is to use 64 bit data (`uint64` say) to simulate multiple copies of the Ising model, so that a degree of parallelism comes "for free". This requires _bitwise_ operations to be performed on the integers.
+
+Implement and test multispin encoding for the square lattice Ising model. Multispin encoding is introduced in @jacobs1981multi and also described in Section 10.1 of @bottcher2021computational.
+
+## The Fermi–Pasta–Ulam–Tsingou problem
+
+A fundamental problem in statistical physics is: how does a mechanical system thermalize? FPUT studied this question in a model of a chain of masses coupled by weakly anharmonic springs. @Dauxois:2008 is a nice review of the problem, which also includes sample [MATLAB code](http://www.scholarpedia.org/article/Fermi-Pasta-Ulam_nonlinear_lattice_oscillations#MATLAB_Code) that you could use as a starting point. You may have to explore other integration schemes (e.g. [symplectic integrators](https://en.wikipedia.org/wiki/Symplectic_integrator)). 
+
+## Lenia
+
+[Lenia](https://en.wikipedia.org/wiki/Lenia) is a recently invented (discovered?) [cellular automaton](https://en.wikipedia.org/wiki/Cellular_automaton): somewhat similar to [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) but with continuous variables. 
+
+There are lots of resources on Lenia, including the original paper (@chan2018lenia), a [GitHub repo](https://github.com/Chakazul/Lenia), [webpage](https://chakazul.github.io/lenia.html), as well as [this article](https://google-research.github.io/self-organising-systems/particle-lenia/) and [colab notebook](https://colab.research.google.com/github/OpenLenia/Lenia-Tutorial/blob/main/Tutorial_From_Conway_to_Lenia.ipynb) from Google research. Produce your own implementation and investigate its properties!
+
+## Time evolving block decimation (TEBD)
+
+Using [Glen Evenbly's site](https://www.tensors.net/mps) as a starting point, investigate the use of TEBD to solve quantum spin chains (see the [linear algebra lecture](../notes/linear.qmd)). Investigate real and imaginary time dynamics (the latter for finding the ground state), including the evolution of the expectation values of spins, starting from different initial states. See the original paper (@vidal2004efficient) for ideas of what to calculate.
+
+## The Wavefunction Collapse Algorithm
+
+Despite the name, the [wavefunction collapse algorithm](https://en.wikipedia.org/wiki/Model_synthesis) (see also [this GitHub repo](https://github.com/mxgmn/WaveFunctionCollapse)) is not _strictly_ about physics but rather [texture synthesis](https://en.wikipedia.org/wiki/Texture_synthesis): think making landscapes in computer games procedurally. There are potential connections with statistical physics: see [this Twitter thread](https://twitter.com/ExUtumno/status/1119996186663030784)
+
+There is an implementation in Python [here](https://github.com/ikarth/wfc_2019f), but you will need to write your own. [Markov Junior](https://github.com/mxgmn/MarkovJunior) is a newer algorithm by the same author. 
+
+## Language Modeling 
+
+By following along [this YouTube video series](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ) and the associated GitHub repository [makemore](https://github.com/karpathy/makemore), investigate ngram and neural network approaches to language modeling. The video descriptions contains exercises to get you going. Think of a fun / interesting exercise and complete it!
+
+As well as the lecture and exercise on neural nets, the 3Blue1Brown [series on deep learning](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) and [Michael Nielsen's online book](http://neuralnetworksanddeeplearning.com/index.html) are two additional useful resources.
+
+## Physics-Informed Neural Networks
+
+This project explores the use of Physics-Informed Neural Networks (PINNs) (@raissi2019physics) for solving partial differential equations (PDEs) in physics. It could begin with ordinary differential equations (ODEs) in a deep learning framework such as  PyTorch, JAX, or TensorFlow before progressing to more complex PDEs, such as the wave equation, diffusion equation, and Schrödinger equation. A PDE project related to Part II physics lectures, or another relevant topic can be chosen and implemented. The project could analyse PINNs' ability to enforce physical laws through loss functions and compare their performance to traditional numerical solvers, such as finite differences and finite elements. The project could explore PINN structure, exploring different architectures, assessing computational efficiency, and optimising training using methods like Adam. Extensions could apply PINNs to more advanced physics topics such as wave equations in general relativity, fluid dynamics, and Maxwell’s equations. The review (@karniadakis2021physics) is a good introduction to the general area. -->
 <!-- ## Schrödinger's smoke
 
-[Schrödinger's smoke](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) is a recent alogrithm for the simulation of incompressible fluids. The original paper (@chern2016schrodinger) describes the algorithm in Section 2: it is based on the split-step method and FFT as discussed in the [FFT lecture](../notes/fourier.qmd).
+[Schrödinger's smoke](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) is a recent arithm for the simulation of incompressible fluids. The original paper (@chern2016schrodinger) describes the algorithm in Section 2: it is based on the split-step method and FFT as discussed in the [FFT lecture](../notes/fourier.qmd).
  
 The [project webpage](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) includes [Matlab code](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/SchrodingersSmokeCode.zip). _This is an ambitious project_. It's probably best starting with a two dimensional fluid as a proof of principle. -->
 <!-- ## Gross–Pitaevskii equation
@@ -666,271 +617,253 @@ Watts–Strogatz model
 61. Multi-spin encoding for the Ising model -->
 
 
-
-</section>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-bottcher2021computational" class="csl-entry" role="listitem">
-Böttcher, Lucas, and Hans J Herrmann. 2021. <em>Computational Statistical Physics</em>. Cambridge University Press.
-</div>
-<div id="ref-chan2018lenia" class="csl-entry" role="listitem">
-Chan, Bert Wang-Chak. 2018. <span>“Lenia-Biology of Artificial Life.”</span> <em>arXiv Preprint arXiv:1812.05433</em>.
-</div>
-<div id="ref-Dauxois:2008" class="csl-entry" role="listitem">
-Dauxois, T., and S. Ruffo. 2008. <span>“<span>F</span>ermi-<span>P</span>asta-<span>U</span>lam Nonlinear Lattice Oscillations.”</span> <em>Scholarpedia</em> 3 (8): 5538. <a href="https://doi.org/10.4249/scholarpedia.5538">https://doi.org/10.4249/scholarpedia.5538</a>.
-</div>
-<div id="ref-jacobs1981multi" class="csl-entry" role="listitem">
-Jacobs, Laurence, and Claudio Rebbi. 1981. <span>“Multi-Spin Coding: A Very Efficient Technique for Monte Carlo Simulations of Spin Systems.”</span> <em>Journal of Computational Physics</em> 41 (1): 203–10.
-</div>
-<div id="ref-mertens2022exact" class="csl-entry" role="listitem">
-Mertens, Stephan. 2022. <span>“Exact Site-Percolation Probability on the Square Lattice.”</span> <em>Journal of Physics A: Mathematical and Theoretical</em> 55 (33): 334002.
-</div>
-<div id="ref-newman2000efficient" class="csl-entry" role="listitem">
-Newman, MEJ, and Robert M Ziff. 2000. <span>“Efficient Monte Carlo Algorithm and High-Precision Results for Percolation.”</span> <em>Physical Review Letters</em> 85 (19): 4104.
-</div>
-<div id="ref-vidal2004efficient" class="csl-entry" role="listitem">
-Vidal, Guifré. 2004. <span>“Efficient Simulation of One-Dimensional Quantum Many-Body Systems.”</span> <em>Physical Review Letters</em> 93 (4): 040502.
-</div>
-</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>See the <a href="https://www.natsci.tripos.cam.ac.uk/exams/late">NST rules on late submission</a>. For the avoidance of doubt, the project is a piece of work for which the submission date is specified in Examination Regulations (Ordinances), and therefore the final paragraph applies.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Most should be freely available (to you) online: don’t forget the “CU” in CUP stands for Cambridge University.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -938,185 +871,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../exercises/exercises.html" class="pagination-link" aria-label="Exercises">

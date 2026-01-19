@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.40">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
 
   <title>Part II Computational Physics – numbers-and-odes</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,8 +28,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -40,7 +41,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -93,7 +94,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-f2546a389b66af0b6a5ea4b708d7867d.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-db84968dd3a81be0f114100d4bbaf104.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -199,7 +200,7 @@
 <section class="slide level2 center">
 
 <div id="23e74ca4" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="fl">0.1</span>  <span class="op">+</span> <span class="fl">0.2</span> <span class="op">==</span> <span class="fl">0.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="fl">0.1</span>  <span class="op">+</span> <span class="fl">0.2</span> <span class="op">==</span> <span class="fl">0.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>False</code></pre>
 </div>
@@ -214,7 +215,7 @@
 <li>Something simpler</li>
 </ul>
 <div id="a1ec05f6" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">==</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">==</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>True</code></pre>
 </div>
@@ -223,7 +224,7 @@
 <li>Integers can be represented in binary</li>
 </ul>
 <div id="b9f4f6e4" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="dv">3</span> <span class="op">==</span> <span class="bn">0b11</span> <span class="co"># Ooctal `0o` or hexadecimal `0h`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="dv">3</span> <span class="op">==</span> <span class="bn">0b11</span> <span class="co"># Ooctal `0o` or hexadecimal `0h`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>True</code></pre>
 </div>
@@ -232,7 +233,7 @@
 <li>Binary string representation using <code>bin</code> function</li>
 </ul>
 <div id="24ccff47" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="bu">bin</span>(<span class="op">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="bu">bin</span>(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>'-0b10'</code></pre>
 </div>
@@ -245,7 +246,7 @@
 <li><p>No possibility of overflow or rounding error</p></li>
 </ul>
 <div id="599dd4ac" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="dv">2</span><span class="op">**</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="dv">2</span><span class="op">**</span><span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>1267650600228229401496703205376</code></pre>
 </div>
@@ -260,8 +261,8 @@
 <li>Numpy integers are a different story</li>
 </ul>
 <div id="33ecf190" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb11-2"><a></a>np.int64(<span class="dv">2</span><span class="op">**</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-2"><a></a>np.int64(<span class="dv">2</span><span class="op">**</span><span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -302,7 +303,7 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <li><p><em>Numbers with finite binary representations behave nicely</em></p></li>
 </ul>
 <div id="04296573" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="fl">0.125</span> <span class="op">+</span> <span class="fl">0.25</span> <span class="op">==</span> <span class="fl">0.375</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="fl">0.125</span> <span class="op">+</span> <span class="fl">0.25</span> <span class="op">==</span> <span class="fl">0.375</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>True</code></pre>
 </div>
@@ -311,8 +312,8 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <li>For decimal numbers to be represented exactly we’d have to use base ten. Can be achieved with <code>decimal</code> module:</li>
 </ul>
 <div id="4494871a" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> decimal <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb14-2"><a></a>Decimal(<span class="st">'0.1'</span>) <span class="op">+</span> Decimal(<span class="st">'0.2'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> decimal <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb14-2"><a></a>Decimal(<span class="st">'0.1'</span>) <span class="op">+</span> Decimal(<span class="st">'0.2'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>Decimal('0.3')</code></pre>
 </div>
@@ -376,7 +377,7 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <li>NumPy’s <a href="https://numpy.org/doc/stable/reference/generated/numpy.finfo.html">finfo</a> function tells all <a href="https://en.wikipedia.org/wiki/Machine_epsilon">machine precision</a></li>
 </ul>
 <div id="18407f83" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>np.finfo(np.float64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>np.finfo(np.float64)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>finfo(resolution=1e-15, min=-1.7976931348623157e+308, max=1.7976931348623157e+308, dtype=float64)</code></pre>
 </div>
@@ -386,10 +387,10 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <li><p>This can be checked by finding when a number is close enough to treated as 1.0.</p></li>
 </ul>
 <div id="0ea9790e" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a>x<span class="op">=</span><span class="fl">1.0</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a>x<span class="op">=</span><span class="fl">1.0</span></span>
 <span id="cb18-2"><a></a><span class="cf">while</span> <span class="fl">1.0</span> <span class="op">+</span> x <span class="op">!=</span> <span class="fl">1.0</span>:</span>
 <span id="cb18-3"><a></a>    x <span class="op">/=</span> <span class="fl">1.01</span> </span>
-<span id="cb18-4"><a></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-4"><a></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.099427563084686e-16</code></pre>
 </div>
@@ -401,7 +402,7 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <li>For binary32 we have a resolution of <span class="math inline">\(10^{-6}\)</span>.</li>
 </ul>
 <div id="d85a7bc2" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a>np.finfo(np.float32)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a>np.finfo(np.float32)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>finfo(resolution=1e-06, min=-3.4028235e+38, max=3.4028235e+38, dtype=float32)</code></pre>
 </div>
@@ -417,11 +418,11 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <li>Solution: <span class="math inline">\(x-x'=x(1-\gamma^{-1})\sim x\beta^2/2\sim 4.2\text{mm}\)</span>.</li>
 </ul>
 <div id="1c3c4b5e" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb22-2"><a></a><span class="im">from</span> scipy.constants <span class="im">import</span> c</span>
 <span id="cb22-3"><a></a>beta <span class="op">=</span> <span class="fl">384400e3</span> <span class="op">/</span> (<span class="dv">76</span> <span class="op">*</span> <span class="dv">3600</span>) <span class="op">/</span> c</span>
 <span id="cb22-4"><a></a>gamma <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">1</span> <span class="op">-</span> beta<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb22-5"><a></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">-</span> np.float32(<span class="dv">1</span><span class="op">/</span>gamma), <span class="dv">1</span> <span class="op">-</span> np.float64(<span class="dv">1</span><span class="op">/</span>gamma))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-5"><a></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">-</span> np.float32(<span class="dv">1</span><span class="op">/</span>gamma), <span class="dv">1</span> <span class="op">-</span> np.float64(<span class="dv">1</span><span class="op">/</span>gamma))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.0 1.0981660025777273e-11</code></pre>
 </div>
@@ -433,7 +434,7 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <li>As well as a floating point system, IEEE 754 defines <code>Infinity</code> and <code>NaN</code> (Not a Number)</li>
 </ul>
 <div id="fe9ba82a" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a>np.array([<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]) <span class="op">/</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a>np.array([<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]) <span class="op">/</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>array([ inf, -inf,  nan])</code></pre>
 </div>
@@ -442,7 +443,7 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <li>They behave as you might guess</li>
 </ul>
 <div id="01c876c6" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a></a><span class="dv">2</span> <span class="op">*</span> np.inf, <span class="dv">0</span> <span class="op">*</span> np.inf, np.inf <span class="op">&gt;</span> np.nan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a></a><span class="dv">2</span> <span class="op">*</span> np.inf, <span class="dv">0</span> <span class="op">*</span> np.inf, np.inf <span class="op">&gt;</span> np.nan</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>(inf, nan, False)</code></pre>
 </div>
@@ -454,7 +455,7 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <li>NaNs propagate through subsequent operations</li>
 </ul>
 <div id="0918568f" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a></a><span class="dv">2</span> <span class="op">*</span> np.nan</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a></a><span class="dv">2</span> <span class="op">*</span> np.nan</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>nan</code></pre>
 </div>
@@ -462,11 +463,9 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <ul>
 <li>If you get a NaN somewhere in your calculation, you’ll probably end up seeing it somewhere in the output</li>
 </ul>
-<div>
 <ul>
 <li class="fragment">(this is the idea)</li>
 </ul>
-</div>
 <p><!-- https://pythonspeed.com/articles/float64-float32-precision/ --></p>
 </section></section>
 <section>
@@ -606,7 +605,7 @@ x_{j+1} &amp;= x_j + k_2 +O(h^3)
 <section class="slide level2 center">
 
 <div id="60a6b3b5" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb30-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb30-3"><a></a></span>
 <span id="cb30-4"><a></a><span class="kw">def</span> euler(h, t_max, k<span class="op">=</span><span class="dv">1</span>):</span>
@@ -627,7 +626,7 @@ x_{j+1} &amp;= x_j + k_2 +O(h^3)
 <span id="cb30-19"><a></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_steps <span class="op">-</span> <span class="dv">1</span>):</span>
 <span id="cb30-20"><a></a>        x[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> x[i] <span class="op">+</span> k <span class="op">*</span> x[i] <span class="op">*</span> h</span>
 <span id="cb30-21"><a></a>        t[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> t[i] <span class="op">+</span> h  <span class="co"># Time step</span></span>
-<span id="cb30-22"><a></a>    <span class="cf">return</span> t, x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-22"><a></a>    <span class="cf">return</span> t, x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section class="slide level2 center">
@@ -707,19 +706,19 @@ m\frac{d \mathbf{v}}{dt} &amp;= \mathbf{f}(\mathbf{x},t)
 <li>Solving using SciPy requires defining a function giving RHS</li>
 </ul>
 <div id="2cd53bae" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a></a><span class="kw">def</span> pendulum(t, y): <span class="cf">return</span> [y[<span class="dv">1</span>], <span class="op">-</span>np.sin(y[<span class="dv">0</span>])]</span>
-<span id="cb31-2"><a></a><span class="co"># The pendulum equation: y[0] is theta and y[1] is l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a></a><span class="kw">def</span> pendulum(t, y): <span class="cf">return</span> [y[<span class="dv">1</span>], <span class="op">-</span>np.sin(y[<span class="dv">0</span>])]</span>
+<span id="cb31-2"><a></a><span class="co"># The pendulum equation: y[0] is theta and y[1] is l</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section class="slide level2 center">
 
 <p>Then call <code>solve_ivp</code></p>
 <div id="56aa66cc" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a></a><span class="im">from</span> scipy.integrate <span class="im">import</span> solve_ivp</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a></a><span class="im">from</span> scipy.integrate <span class="im">import</span> solve_ivp</span>
 <span id="cb32-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb32-3"><a></a></span>
 <span id="cb32-4"><a></a>t_max <span class="op">=</span> <span class="dv">1000</span></span>
-<span id="cb32-5"><a></a>pendulum_motion <span class="op">=</span> solve_ivp(pendulum, [<span class="dv">0</span>, t_max], [<span class="dv">2</span>, <span class="dv">0</span>], dense_output<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-5"><a></a>pendulum_motion <span class="op">=</span> solve_ivp(pendulum, [<span class="dv">0</span>, t_max], [<span class="dv">2</span>, <span class="dv">0</span>], dense_output<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li><p>Option <code>dense_output=True</code> specifies that a continuous solution should be found</p></li>
@@ -813,7 +812,7 @@ p_x = \sqrt{2E-y^2-p_y^2 + \frac{2\lambda}{3}y^3}
 <section class="slide level2 center">
 
 <div id="6d8f86f5" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a></a><span class="kw">def</span> henon_heiles(t, z, 𝜆): </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a></a><span class="kw">def</span> henon_heiles(t, z, 𝜆): </span>
 <span id="cb33-2"><a></a>    x, px, y, py <span class="op">=</span> z</span>
 <span id="cb33-3"><a></a>    <span class="cf">return</span> [px, <span class="op">-</span>x <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> 𝜆 <span class="op">*</span> x <span class="op">*</span> y, py, <span class="op">-</span>y <span class="op">-</span> 𝜆 <span class="op">*</span> (x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> y<span class="op">**</span><span class="dv">2</span>)]</span>
 <span id="cb33-4"><a></a></span>
@@ -826,7 +825,7 @@ p_x = \sqrt{2E-y^2-p_y^2 + \frac{2\lambda}{3}y^3}
 <span id="cb33-11"><a></a>𝜆 <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb33-12"><a></a>hh_motion <span class="op">=</span> []</span>
 <span id="cb33-13"><a></a><span class="cf">for</span> E <span class="kw">in</span> [<span class="dv">1</span><span class="op">/</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">8</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">6</span>]:</span>
-<span id="cb33-14"><a></a>    hh_motion.append(solve_ivp(henon_heiles, [<span class="dv">0</span>, t_max], [<span class="dv">0</span>, px(E, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>, 𝜆), <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>], events<span class="op">=</span>section, args<span class="op">=</span>[𝜆], atol<span class="op">=</span><span class="fl">1e-7</span>, rtol<span class="op">=</span><span class="fl">1e-7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-14"><a></a>    hh_motion.append(solve_ivp(henon_heiles, [<span class="dv">0</span>, t_max], [<span class="dv">0</span>, px(E, <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>, 𝜆), <span class="fl">0.1</span>, <span class="op">-</span><span class="fl">0.1</span>], events<span class="op">=</span>section, args<span class="op">=</span>[𝜆], atol<span class="op">=</span><span class="fl">1e-7</span>, rtol<span class="op">=</span><span class="fl">1e-7</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section class="slide level2 center">
@@ -1076,190 +1075,173 @@ https://stackoverflow.com/questions/60338471/lyapunov-spectrum-for-known-odes-py
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

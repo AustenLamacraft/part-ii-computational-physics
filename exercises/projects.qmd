@@ -5,13 +5,13 @@ draft: false
 
 The Computational Physics project — if you choose to submit one — is worth one unit of further work, so roughly 10% of your final mark for the year. It involves choosing a problem from the project list in @sec-projects. You will analyse the problem, write and test Python code to investigate it, then write up your work in a report. Like E1 and E2, you can expect it to involve 40 to 50 hours' work. This includes reading and research, coding, experimentation and gathering results, and writing your report.
 
-Students may start their project work once the project list is published by 24th February. Click on the [GitHub Classroom link](https://classroom.github.com/a/H82NKbAw) to accept the project as an assignment. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (5th May 2025)__. Submissions made after that time will not be marked [^1]. I suggest you proceed _as if the deadline is 16.00 on Friday 2nd May_, and use the final weekend if you really need to.
+Students may start their project work once the project list is published by 20th February. Click on the [GitHub Classroom link](https://classroom.github.com/a/H82NKbAw) to accept the project as an assignment. The deadline for submission of the project report is __16:00 on the first Monday of Full Easter term (4th May 2026)__. Submissions made after that time will not be marked [^1]. I suggest you proceed _as if the deadline is 16.00 on Friday 1st May_, and use the final weekend if you really need to.
 
 [^1]: See the [NST rules on late submission](https://www.natsci.tripos.cam.ac.uk/exams/late). For the avoidance of doubt, the project is a piece of work for which the submission date is specified in Examination Regulations (Ordinances), and therefore the final paragraph applies.
 
 <!-- https://forms.office.com/pages/responsepage.aspx?id=RQSlSfq9eUut41R7TzmG6Y64hS-YY0NHhP2hmw9lbpdUNFdLU01PRTFXVURORUhBVllUS0QwSkxBRS4u&route=shorturl -->
 
-Bear in mind that __everything in your report should be your own work__, and your submission will be treated as a declaration of this fact. The rules regarding cheating and plagiarism in the [Physics course handbook](https://www.phy.cam.ac.uk/files/physics_course_handbook_2024_2025_v3.pdf) (Page 33) apply here. It is OK for you to use code that others — that's what a library is, after all — but in all cases the attribution should be clear.
+Bear in mind that __everything in your report should be your own work__, and your submission will be treated as a declaration of this fact. The rules regarding cheating and plagiarism in the [Physics course handbook](https://universityofcambridgecloud.sharepoint.com/sites/PHY_INT_UG/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FPHY%5FINT%5FUG%2FShared%20Documents%2FCurrent%20undergraduates%2FHandbook%2FPhysics%5FCourse%5FHandbook%5F2025%5F2026%20v2%2Epdf&parent=%2Fsites%2FPHY%5FINT%5FUG%2FShared%20Documents%2FCurrent%20undergraduates%2FHandbook) (Section 6) apply here. It is OK for you to use code that others — that's what a library is, after all — but in all cases the attribution should be clear.
 
 Notwithstanding the above, please also use the [discussions](https://github.com/orgs/Part-II-Computational-Physics/discussions) to ask each other questions and share knowledge. 
 
@@ -45,7 +45,7 @@ Although presentation only enters in the last category, bear in mind that assess
 
 As a general guide, you should present your work as if your assessor is __completely ignorant__ of both the problem and computational approaches to it. Alternatively, present your work as if to yourself before you began working on it.
 
-# The projects {#sec-projects}
+<!-- # The projects {#sec-projects}
 
 For all of these projects the basic protocol is the same:
 
@@ -79,7 +79,7 @@ Lyapunov exponents quantify chaos in a dynamical system by the exponential diver
 
 It's probably easier to start with _discrete time_ dynamical systems, moving on to the continuous time case if you have time. Wikipedia has an [extensive list of chaotic maps](https://en.wikipedia.org/wiki/List_of_chaotic_maps) e.g. the [Hénon map](https://en.wikipedia.org/wiki/H%C3%A9non_map). See the section "LCEs of of Discrete Systems" of @sandri1996numerical. -->
 
-## Multi-spin encoding for Ising models
+<!-- ## Multi-spin encoding for Ising models
 
 In an Ising model the lattice variables can take only two values. The idea behind multispin encoding is to use 64 bit data (`uint64` say) to simulate multiple copies of the Ising model, so that a degree of parallelism comes "for free". This requires _bitwise_ operations to be performed on the integers.
 
@@ -107,13 +107,17 @@ There is an implementation in Python [here](https://github.com/ikarth/wfc_2019f)
 
 ## Language Modeling 
 
-By following along [this YouTube video](https://www.youtube.com/watch?v=PaCmpygFfXo) and the associated GitHub repository [makemore](https://github.com/karpathy/makemore), investigate ngram and neural network approaches to language modeling. The video description contains a set of exercises to get you going. Think of a fun/interesting exercise and complete it!
+By following along [this YouTube video series](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ) and the associated GitHub repository [makemore](https://github.com/karpathy/makemore), investigate ngram and neural network approaches to language modeling. The video descriptions contains exercises to get you going. Think of a fun / interesting exercise and complete it!
 
 As well as the lecture and exercise on neural nets, the 3Blue1Brown [series on deep learning](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) and [Michael Nielsen's online book](http://neuralnetworksanddeeplearning.com/index.html) are two additional useful resources.
 
+## Physics-Informed Neural Networks
+
+This project explores the use of Physics-Informed Neural Networks (PINNs) (@raissi2019physics) for solving partial differential equations (PDEs) in physics. It could begin with ordinary differential equations (ODEs) in a deep learning framework such as  PyTorch, JAX, or TensorFlow before progressing to more complex PDEs, such as the wave equation, diffusion equation, and Schrödinger equation. A PDE project related to Part II physics lectures, or another relevant topic can be chosen and implemented. The project could analyse PINNs' ability to enforce physical laws through loss functions and compare their performance to traditional numerical solvers, such as finite differences and finite elements. The project could explore PINN structure, exploring different architectures, assessing computational efficiency, and optimising training using methods like Adam. Extensions could apply PINNs to more advanced physics topics such as wave equations in general relativity, fluid dynamics, and Maxwell’s equations. The review (@karniadakis2021physics) is a good introduction to the general area. -->
+
 <!-- ## Schrödinger's smoke
 
-[Schrödinger's smoke](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) is a recent alogrithm for the simulation of incompressible fluids. The original paper (@chern2016schrodinger) describes the algorithm in Section 2: it is based on the split-step method and FFT as discussed in the [FFT lecture](../notes/fourier.qmd).
+[Schrödinger's smoke](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) is a recent arithm for the simulation of incompressible fluids. The original paper (@chern2016schrodinger) describes the algorithm in Section 2: it is based on the split-step method and FFT as discussed in the [FFT lecture](../notes/fourier.qmd).
  
 The [project webpage](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) includes [Matlab code](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/SchrodingersSmokeCode.zip). _This is an ambitious project_. It's probably best starting with a two dimensional fluid as a proof of principle. -->
 
@@ -328,4 +332,4 @@ Watts–Strogatz model
 58. Barabási–Albert model.
 59. Wordle solution. RL paper from MIT
 
-61. Multi-spin encoding for the Ising model -->
+61. Multi-spin encoding for the Ising model --> 
