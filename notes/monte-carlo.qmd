@@ -415,7 +415,7 @@ class IsingModel:
 Here's a simulation that allows you to compare Glauber dynamics, Block Gibbs sampling and Wolff updates. Change the temperature using the slider. The centre of the slider corresponds to the critical temperature $k_\text{B}T = 2|J|/\log(1+\sqrt{2})\sim 2.269|J|$.
 
 ```{=html}
-<script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js"></script>
 ```
 
 ```{ojs}
@@ -448,7 +448,7 @@ viewof running = Inputs.toggle({label: "Run", value: true})
 viewof T = Inputs.range([0.5, 5], {
   step: 0.05,
   value: 2.269,
-  label: "Temperature T"
+  label: "Temperature"
 })
 
 viewof update = Inputs.select(
@@ -469,7 +469,7 @@ async function* animateIsing() {
   
   let sublattice = true
 
-  while (true) {
+  while (running) {
     if (!running) {
         continue;
     }

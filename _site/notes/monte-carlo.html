@@ -424,7 +424,7 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 \]</span></p>
 <p><span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are independent samples from a <a href="https://en.wikipedia.org/wiki/Standard_normal_distribution">standard normal distribution</a>.</p>
 <p>Various functions are available in the <a href="https://numpy.org/doc/stable/reference/random/index.html#module-numpy.random"><code>numpy.random</code></a> module to generate random arrays drawn from a variety of distributions. Box–Muller has now been retired in favour of the <a href="https://en.wikipedia.org/wiki/Ziggurat_algorithm">Ziggurat algorithm</a>.</p>
-<div id="ad5cad1c" class="cell" data-execution_count="1">
+<div id="6d2136e6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy.random <span class="im">as</span> random</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -458,7 +458,7 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 <section id="monte-carlo-integration" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="monte-carlo-integration"><span class="header-section-number">2.1</span> Monte Carlo integration</h2>
 <p>The technique is exemplified by the following fairly dumb way of estimating <span class="math inline">\(\pi\)</span></p>
-<div id="facf7beb" class="cell" data-execution_count="2">
+<div id="fa88adc7" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>max_samples <span class="op">=</span> <span class="dv">10000</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>inside <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>areas <span class="op">=</span> []</span>
@@ -497,16 +497,16 @@ I(f,D) = \frac{V_D}{N}\sum_{i=1}^N f(\mathbf{x}_i)
 \]</span></p>
 <p>By taking many samples and averaging <span class="math inline">\(f(\mathbf{x}_i)\)</span> we can estimate this average. In the simple example that we started with <span class="math inline">\(f(\mathbf{x})\)</span> would be a “top hat” function that is one inside the circle. As in that example, the relative error is <span class="math inline">\(\propto N^{-1/2}\)</span>, whatever the dimension.</p>
 <p>For this reason Monte Carlo integration comes into its own for high dimensional problems. For low dimensional integrals the quadrature methods in <a href="https://docs.scipy.org/doc/scipy/tutorial/integrate.html"><code>scipy.integrate</code></a> are preferable:</p>
-<div id="89b54c0d" class="cell" data-execution_count="3">
+<div id="78492532" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> integrate</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>integrate.quadrature(np.cos, <span class="dv">0</span>, np.pi <span class="op">/</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/xs/y8sn45v943s2_62flnxw0p940000gn/T/ipykernel_34429/1473371021.py:2: DeprecationWarning:
+<pre><code>/var/folders/xs/y8sn45v943s2_62flnxw0p940000gn/T/ipykernel_78319/1473371021.py:2: DeprecationWarning:
 
 `scipy.integrate.quadrature` is deprecated as of SciPy 1.12.0and will be removed in SciPy 1.15.0. Please use`scipy.integrate.quad` instead.
 </code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(0.9999999999999535, 3.96115362732985e-11)</code></pre>
 </div>
 </div>
@@ -675,7 +675,7 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 </div>
 <p>What happens if we try and come up with more complicated proposals, flipping many spins at once? For Metropolis, the problem is that without a cleverly designed proposal we will be suggesting moves that are likely to be rejected. For the heat bath algorithm, the more spins we flip, the more complicated the evaluation of the corresponding probabilities (<span class="math inline">\(2^n\)</span> outcomes if we flip <span class="math inline">\(n\)</span> spins).</p>
 <p>The good news is that we <em>can</em> do better — much better — than the above algorithms. The <a href="https://en.wikipedia.org/wiki/Wolff_algorithm">Wolff algorithm</a> is one example. This proposes a cluster of spins of the same orientation to be flipped by adding adjacent spins to an initially random chosen spin with probability <span class="math inline">\(p_\text{add}\)</span>. It turns out that for the nearest neighbour Ising model with Ferromagnetic coupling <span class="math inline">\(J&lt;0\)</span> the “magic” value <span class="math inline">\(p_\text{add}=1-e^{2\beta J}\)</span> is <em>rejection free</em>: the probability to flip the whole cluster is always one. This makes for an extremely fast algorithm that is not subject to the usual <em>critical slowing down</em> at phase transitions.</p>
-<div id="49400446" class="cell" data-execution_count="4">
+<div id="d724f354" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Ising model code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> IsingModel:</span>
@@ -723,7 +723,7 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 </details>
 </div>
 <p>Here’s a simulation that allows you to compare Glauber dynamics, Block Gibbs sampling and Wolff updates. Change the temperature using the slider. The centre of the slider corresponds to the critical temperature <span class="math inline">\(k_\text{B}T = 2|J|/\log(1+\sqrt{2})\sim 2.269|J|\)</span>.</p>
-<script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js"></script>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="423" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 422;"><span id="cb7-423"><a href="#cb7-423" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">loadSim</span>() {</span>
 <span id="cb7-424"><a href="#cb7-424" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> pyodide <span class="op">=</span> <span class="cf">await</span> <span class="fu">loadPyodide</span>()<span class="op">;</span></span>
@@ -778,7 +778,7 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 <span id="cb8-448"><a href="#cb8-448" aria-hidden="true" tabindex="-1"></a>viewof T <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span> {</span>
 <span id="cb8-449"><a href="#cb8-449" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span></span>
 <span id="cb8-450"><a href="#cb8-450" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="fl">2.269</span><span class="op">,</span></span>
-<span id="cb8-451"><a href="#cb8-451" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Temperature T"</span></span>
+<span id="cb8-451"><a href="#cb8-451" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Temperature"</span></span>
 <span id="cb8-452"><a href="#cb8-452" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb8-453"><a href="#cb8-453" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-454"><a href="#cb8-454" aria-hidden="true" tabindex="-1"></a>viewof update <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
@@ -816,7 +816,7 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 <span id="cb9-468"><a href="#cb9-468" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb9-469"><a href="#cb9-469" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> sublattice <span class="op">=</span> <span class="kw">true</span></span>
 <span id="cb9-470"><a href="#cb9-470" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-471"><a href="#cb9-471" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (<span class="kw">true</span>) {</span>
+<span id="cb9-471"><a href="#cb9-471" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (running) {</span>
 <span id="cb9-472"><a href="#cb9-472" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>running) {</span>
 <span id="cb9-473"><a href="#cb9-473" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span><span class="op">;</span></span>
 <span id="cb9-474"><a href="#cb9-474" aria-hidden="true" tabindex="-1"></a>    }</span>
@@ -961,7 +961,7 @@ Metropolis, Nicholas, Arianna W Rosenbluth, Marshall N Rosenbluth, Augusta H Tel
 </ol>
 </section></div></main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImFzeW5jIGZ1bmN0aW9uIGxvYWRTaW0oKSB7XG4gICAgbGV0IHB5b2RpZGUgPSBhd2FpdCBsb2FkUHlvZGlkZSgpO1xuICAgIGF3YWl0IHB5b2RpZGUubG9hZFBhY2thZ2UoXCJudW1weVwiKTsgXG4gIFxuICAgIC8vIENvZGUgaGFzIHRvIGJlIGxvYWRlZCBpbnRvIHZpcnR1YWwgZmlsZSBzeXN0ZW1cbiAgICBhd2FpdCBweW9kaWRlLnJ1blB5dGhvbkFzeW5jKGBcbiAgICBmcm9tIHB5b2RpZGUuaHR0cCBpbXBvcnQgcHlmZXRjaFxuICAgIHJlc3BvbnNlID0gYXdhaXQgcHlmZXRjaChcIi4uL2Fzc2V0cy9pc2luZy5weVwiKVxuICAgIHdpdGggb3BlbihcImlzaW5nLnB5XCIsIFwid2JcIikgYXMgZjpcbiAgICAgICAgZi53cml0ZShhd2FpdCByZXNwb25zZS5ieXRlcygpKVxuICAgICAgICBgKVxuXG4gICAgcmV0dXJuIHB5b2RpZGUucHlpbXBvcnQoXCJpc2luZ1wiKVxuICB9XG5cbkwgPSAxMjhcbmlzaW5nID0gYXdhaXQgbG9hZFNpbSgpXG5pc2luZ01vZGVsID0gaXNpbmcuSXNpbmdNb2RlbChMKVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgcnVubmluZyA9IElucHV0cy50b2dnbGUoe2xhYmVsOiBcIlJ1blwiLCB2YWx1ZTogdHJ1ZX0pXG5cbnZpZXdvZiBUID0gSW5wdXRzLnJhbmdlKFswLjUsIDVdLCB7XG4gIHN0ZXA6IDAuMDUsXG4gIHZhbHVlOiAyLjI2OSxcbiAgbGFiZWw6IFwiVGVtcGVyYXR1cmUgVFwiXG59KVxuXG52aWV3b2YgdXBkYXRlID0gSW5wdXRzLnNlbGVjdChcbiAgW1xuICAgIFwiR2xhdWJlclwiLFxuICAgIFwiQmxvY2sgR2liYnNcIixcbiAgICBcIldvbGZmXCJcbiAgXSxcbiAge2xhYmVsOiBcIlVwZGF0ZSBtZXRob2RcIn1cbilcblxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiYXN5bmMgZnVuY3Rpb24qIGFuaW1hdGVJc2luZygpIHtcbiAgXG4gIGxldCBzdWJsYXR0aWNlID0gdHJ1ZVxuXG4gIHdoaWxlICh0cnVlKSB7XG4gICAgaWYgKCFydW5uaW5nKSB7XG4gICAgICAgIGNvbnRpbnVlO1xuICAgIH1cblxuICAgIGNvbnN0IGJldGEgPSAxIC8gVFxuXG4gICAgaWYgKHVwZGF0ZSA9PSBcIkdsYXViZXJcIikge1xuICAgICAgICBpc2luZ01vZGVsLmdsYXViZXJfdXBkYXRlKGJldGEpXG4gICAgICB9XG4gICAgICBlbHNlIGlmICh1cGRhdGUgPT09IFwiQmxvY2sgR2liYnNcIikge1xuICAgICAgICBpc2luZ01vZGVsLmdpYmJzX3VwZGF0ZShiZXRhLCBzdWJsYXR0aWNlKVxuICAgICAgICBzdWJsYXR0aWNlID0gIXN1YmxhdHRpY2UgIFxuICAgICAgfVxuICAgICAgZWxzZSB7XG4gICAgICAgIGlzaW5nTW9kZWwud29sZmZfdXBkYXRlKGJldGEpICBcbiAgICAgIH1cblxuICAgIHlpZWxkIFBsb3QucGxvdCh7XG4gICAgICB3aWR0aDogNDUwLFxuICAgICAgaGVpZ2h0OiA0NTAsXG4gICAgICBhc3BlY3RSYXRpbzogMSxcbiAgICAgIHg6IHtheGlzOiBudWxsfSxcbiAgICAgIHk6IHtheGlzOiBudWxsfSxcbiAgICAgIGNvbG9yOiB7ZG9tYWluOiBbLTEsIDFdfSxcbiAgICAgIG1hcmtzOiBbXG4gICAgICAgIFBsb3QucmFzdGVyKGlzaW5nTW9kZWwudG9fanMoKSwge1xuICAgICAgICAgIHdpZHRoOiBMLFxuICAgICAgICAgIGhlaWdodDogTCxcbiAgICAgICAgICBpbWFnZVJlbmRlcmluZzogXCJwaXhlbGF0ZWRcIlxuICAgICAgICB9KVxuICAgICAgXVxuICAgIH0pO1xuXG4gIH1cbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImFuaW1hdGVJc2luZygpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3J1bm5pbmcnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnVCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd1cGRhdGUnKSJ9XX0=
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImFzeW5jIGZ1bmN0aW9uIGxvYWRTaW0oKSB7XG4gICAgbGV0IHB5b2RpZGUgPSBhd2FpdCBsb2FkUHlvZGlkZSgpO1xuICAgIGF3YWl0IHB5b2RpZGUubG9hZFBhY2thZ2UoXCJudW1weVwiKTsgXG4gIFxuICAgIC8vIENvZGUgaGFzIHRvIGJlIGxvYWRlZCBpbnRvIHZpcnR1YWwgZmlsZSBzeXN0ZW1cbiAgICBhd2FpdCBweW9kaWRlLnJ1blB5dGhvbkFzeW5jKGBcbiAgICBmcm9tIHB5b2RpZGUuaHR0cCBpbXBvcnQgcHlmZXRjaFxuICAgIHJlc3BvbnNlID0gYXdhaXQgcHlmZXRjaChcIi4uL2Fzc2V0cy9pc2luZy5weVwiKVxuICAgIHdpdGggb3BlbihcImlzaW5nLnB5XCIsIFwid2JcIikgYXMgZjpcbiAgICAgICAgZi53cml0ZShhd2FpdCByZXNwb25zZS5ieXRlcygpKVxuICAgICAgICBgKVxuXG4gICAgcmV0dXJuIHB5b2RpZGUucHlpbXBvcnQoXCJpc2luZ1wiKVxuICB9XG5cbkwgPSAxMjhcbmlzaW5nID0gYXdhaXQgbG9hZFNpbSgpXG5pc2luZ01vZGVsID0gaXNpbmcuSXNpbmdNb2RlbChMKVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgcnVubmluZyA9IElucHV0cy50b2dnbGUoe2xhYmVsOiBcIlJ1blwiLCB2YWx1ZTogdHJ1ZX0pXG5cbnZpZXdvZiBUID0gSW5wdXRzLnJhbmdlKFswLjUsIDVdLCB7XG4gIHN0ZXA6IDAuMDUsXG4gIHZhbHVlOiAyLjI2OSxcbiAgbGFiZWw6IFwiVGVtcGVyYXR1cmVcIlxufSlcblxudmlld29mIHVwZGF0ZSA9IElucHV0cy5zZWxlY3QoXG4gIFtcbiAgICBcIkdsYXViZXJcIixcbiAgICBcIkJsb2NrIEdpYmJzXCIsXG4gICAgXCJXb2xmZlwiXG4gIF0sXG4gIHtsYWJlbDogXCJVcGRhdGUgbWV0aG9kXCJ9XG4pXG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImFzeW5jIGZ1bmN0aW9uKiBhbmltYXRlSXNpbmcoKSB7XG4gIFxuICBsZXQgc3VibGF0dGljZSA9IHRydWVcblxuICB3aGlsZSAocnVubmluZykge1xuICAgIGlmICghcnVubmluZykge1xuICAgICAgICBjb250aW51ZTtcbiAgICB9XG5cbiAgICBjb25zdCBiZXRhID0gMSAvIFRcblxuICAgIGlmICh1cGRhdGUgPT0gXCJHbGF1YmVyXCIpIHtcbiAgICAgICAgaXNpbmdNb2RlbC5nbGF1YmVyX3VwZGF0ZShiZXRhKVxuICAgICAgfVxuICAgICAgZWxzZSBpZiAodXBkYXRlID09PSBcIkJsb2NrIEdpYmJzXCIpIHtcbiAgICAgICAgaXNpbmdNb2RlbC5naWJic191cGRhdGUoYmV0YSwgc3VibGF0dGljZSlcbiAgICAgICAgc3VibGF0dGljZSA9ICFzdWJsYXR0aWNlICBcbiAgICAgIH1cbiAgICAgIGVsc2Uge1xuICAgICAgICBpc2luZ01vZGVsLndvbGZmX3VwZGF0ZShiZXRhKSAgXG4gICAgICB9XG5cbiAgICB5aWVsZCBQbG90LnBsb3Qoe1xuICAgICAgd2lkdGg6IDQ1MCxcbiAgICAgIGhlaWdodDogNDUwLFxuICAgICAgYXNwZWN0UmF0aW86IDEsXG4gICAgICB4OiB7YXhpczogbnVsbH0sXG4gICAgICB5OiB7YXhpczogbnVsbH0sXG4gICAgICBjb2xvcjoge2RvbWFpbjogWy0xLCAxXX0sXG4gICAgICBtYXJrczogW1xuICAgICAgICBQbG90LnJhc3Rlcihpc2luZ01vZGVsLnRvX2pzKCksIHtcbiAgICAgICAgICB3aWR0aDogTCxcbiAgICAgICAgICBoZWlnaHQ6IEwsXG4gICAgICAgICAgaW1hZ2VSZW5kZXJpbmc6IFwicGl4ZWxhdGVkXCJcbiAgICAgICAgfSlcbiAgICAgIF1cbiAgICB9KTtcblxuICB9XG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJhbmltYXRlSXNpbmcoKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdydW5uaW5nJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ1QnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgndXBkYXRlJykifV19
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }

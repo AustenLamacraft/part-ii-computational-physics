@@ -186,6 +186,8 @@
       margin-right: 0; 
     }
   </style>
+  <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -281,7 +283,7 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 </section>
 <section class="slide level2 center">
 
-<div id="f1ba3e2a" class="cell" data-execution_count="1">
+<div id="464588a3" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -333,7 +335,7 @@ y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
 </section>
 <section class="slide level2 center">
 
-<div id="63590a46" class="cell" data-execution_count="2">
+<div id="64910735" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -379,10 +381,10 @@ I(f,D) = \frac{V_D}{N}\sum_{i=1}^N f(\mathbf{x}_i)
 <li><p>In our simple example <span class="math inline">\(f(\mathbf{x})\)</span> would be a “top hat” function that is one inside the circle</p></li>
 <li><p>Monte Carlo integration comes into its own for high dimensional problems. For low dimensional integrals quadrature methods in <a href="https://docs.scipy.org/doc/scipy/tutorial/integrate.html"><code>scipy.integrate</code></a> are preferable:</p></li>
 </ul>
-<div id="c046fd70" class="cell" data-execution_count="3">
+<div id="7ac99301" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> scipy <span class="im">import</span> integrate</span>
 <span id="cb3-2"><a></a>integrate.quadrature(np.cos, <span class="dv">0</span>, np.pi <span class="op">/</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(0.9999999999999535, 3.96115362732985e-11)</code></pre>
 </div>
 </div>
@@ -740,7 +742,7 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 </section>
 <section class="slide level2 center">
 
-<div id="ca2f2b5f" class="cell" data-execution_count="4">
+<div id="91f35d6d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="kw">class</span> IsingModel:</span>
 <span id="cb5-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, L):</span>
 <span id="cb5-3"><a></a>        <span class="va">self</span>.L <span class="op">=</span> L</span>
@@ -787,11 +789,145 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
 </section>
 <section class="slide level2 center">
 
-<script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
-<script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
-<script src="../assets/ising.js"></script>
-<div id="ising-simulation" data-align="center">
+<script src="https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js"></script>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="639" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 638;"><span id="cb6-639"><a></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">loadSim</span>() {</span>
+<span id="cb6-640"><a></a>    <span class="kw">let</span> pyodide <span class="op">=</span> <span class="cf">await</span> <span class="fu">loadPyodide</span>()<span class="op">;</span></span>
+<span id="cb6-641"><a></a>    <span class="cf">await</span> pyodide<span class="op">.</span><span class="fu">loadPackage</span>(<span class="st">"numpy"</span>)<span class="op">;</span> </span>
+<span id="cb6-642"><a></a>  </span>
+<span id="cb6-643"><a></a>    <span class="co">// Code has to be loaded into virtual file system</span></span>
+<span id="cb6-644"><a></a>    <span class="cf">await</span> pyodide<span class="op">.</span><span class="fu">runPythonAsync</span>(<span class="vs">`</span></span>
+<span id="cb6-645"><a></a><span class="vs">    from pyodide.http import pyfetch</span></span>
+<span id="cb6-646"><a></a><span class="vs">    response = await pyfetch("../assets/ising.py")</span></span>
+<span id="cb6-647"><a></a><span class="vs">    with open("ising.py", "wb") as f:</span></span>
+<span id="cb6-648"><a></a><span class="vs">        f.write(await response.bytes())</span></span>
+<span id="cb6-649"><a></a><span class="vs">        `</span>)</span>
+<span id="cb6-650"><a></a></span>
+<span id="cb6-651"><a></a>    <span class="cf">return</span> pyodide<span class="op">.</span><span class="fu">pyimport</span>(<span class="st">"ising"</span>)</span>
+<span id="cb6-652"><a></a>  }</span>
+<span id="cb6-653"><a></a></span>
+<span id="cb6-654"><a></a>L <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb6-655"><a></a>ising <span class="op">=</span> <span class="cf">await</span> <span class="fu">loadSim</span>()</span>
+<span id="cb6-656"><a></a>isingModel <span class="op">=</span> ising<span class="op">.</span><span class="fu">IsingModel</span>(L)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
 
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="662" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 661;"><span id="cb7-662"><a></a>viewof running <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"Run"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="kw">true</span>})</span>
+<span id="cb7-663"><a></a></span>
+<span id="cb7-664"><a></a>viewof T <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span> {</span>
+<span id="cb7-665"><a></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span></span>
+<span id="cb7-666"><a></a>  <span class="dt">value</span><span class="op">:</span> <span class="fl">2.269</span><span class="op">,</span></span>
+<span id="cb7-667"><a></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Temp"</span></span>
+<span id="cb7-668"><a></a>})</span>
+<span id="cb7-669"><a></a></span>
+<span id="cb7-670"><a></a>viewof update <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb7-671"><a></a>  [</span>
+<span id="cb7-672"><a></a>    <span class="st">"Glauber"</span><span class="op">,</span></span>
+<span id="cb7-673"><a></a>    <span class="st">"Block Gibbs"</span><span class="op">,</span></span>
+<span id="cb7-674"><a></a>    <span class="st">"Wolff"</span></span>
+<span id="cb7-675"><a></a>  ]<span class="op">,</span></span>
+<span id="cb7-676"><a></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Update"</span>}</span>
+<span id="cb7-677"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="683" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 682;"><span id="cb8-683"><a></a><span class="kw">async</span> <span class="kw">function</span><span class="op">*</span> <span class="fu">animateIsing</span>() {</span>
+<span id="cb8-684"><a></a>  </span>
+<span id="cb8-685"><a></a>  <span class="kw">let</span> sublattice <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb8-686"><a></a></span>
+<span id="cb8-687"><a></a>  <span class="cf">while</span> (running) {</span>
+<span id="cb8-688"><a></a></span>
+<span id="cb8-689"><a></a>    <span class="kw">const</span> beta <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> T</span>
+<span id="cb8-690"><a></a></span>
+<span id="cb8-691"><a></a>    <span class="cf">if</span> (update <span class="op">==</span> <span class="st">"Glauber"</span>) {</span>
+<span id="cb8-692"><a></a>        isingModel<span class="op">.</span><span class="fu">glauber_update</span>(beta)</span>
+<span id="cb8-693"><a></a>      }</span>
+<span id="cb8-694"><a></a>      <span class="cf">else</span> <span class="cf">if</span> (update <span class="op">===</span> <span class="st">"Block Gibbs"</span>) {</span>
+<span id="cb8-695"><a></a>        isingModel<span class="op">.</span><span class="fu">gibbs_update</span>(beta<span class="op">,</span> sublattice)</span>
+<span id="cb8-696"><a></a>        sublattice <span class="op">=</span> <span class="op">!</span>sublattice  </span>
+<span id="cb8-697"><a></a>      }</span>
+<span id="cb8-698"><a></a>      <span class="cf">else</span> {</span>
+<span id="cb8-699"><a></a>        isingModel<span class="op">.</span><span class="fu">wolff_update</span>(beta)  </span>
+<span id="cb8-700"><a></a>      }</span>
+<span id="cb8-701"><a></a></span>
+<span id="cb8-702"><a></a>    <span class="kw">yield</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-703"><a></a>      <span class="dt">width</span><span class="op">:</span> <span class="dv">450</span><span class="op">,</span></span>
+<span id="cb8-704"><a></a>      <span class="dt">height</span><span class="op">:</span> <span class="dv">450</span><span class="op">,</span></span>
+<span id="cb8-705"><a></a>      <span class="dt">aspectRatio</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb8-706"><a></a>      <span class="dt">x</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb8-707"><a></a>      <span class="dt">y</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb8-708"><a></a>      <span class="dt">color</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span>]}<span class="op">,</span></span>
+<span id="cb8-709"><a></a>      <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb8-710"><a></a>        Plot<span class="op">.</span><span class="fu">raster</span>(isingModel<span class="op">.</span><span class="fu">to_js</span>()<span class="op">,</span> {</span>
+<span id="cb8-711"><a></a>          <span class="dt">width</span><span class="op">:</span> L<span class="op">,</span></span>
+<span id="cb8-712"><a></a>          <span class="dt">height</span><span class="op">:</span> L<span class="op">,</span></span>
+<span id="cb8-713"><a></a>          <span class="dt">imageRendering</span><span class="op">:</span> <span class="st">"pixelated"</span></span>
+<span id="cb8-714"><a></a>        })</span>
+<span id="cb8-715"><a></a>      ]</span>
+<span id="cb8-716"><a></a>    })<span class="op">;</span></span>
+<span id="cb8-717"><a></a></span>
+<span id="cb8-718"><a></a>  }</span>
+<span id="cb8-719"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="724" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 723;"><span id="cb9-724"><a></a><span class="fu">animateIsing</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
 </div>
 
 
@@ -1010,6 +1146,17 @@ p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}
           RevealZoom
         ]
       });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImFzeW5jIGZ1bmN0aW9uIGxvYWRTaW0oKSB7XG4gICAgbGV0IHB5b2RpZGUgPSBhd2FpdCBsb2FkUHlvZGlkZSgpO1xuICAgIGF3YWl0IHB5b2RpZGUubG9hZFBhY2thZ2UoXCJudW1weVwiKTsgXG4gIFxuICAgIC8vIENvZGUgaGFzIHRvIGJlIGxvYWRlZCBpbnRvIHZpcnR1YWwgZmlsZSBzeXN0ZW1cbiAgICBhd2FpdCBweW9kaWRlLnJ1blB5dGhvbkFzeW5jKGBcbiAgICBmcm9tIHB5b2RpZGUuaHR0cCBpbXBvcnQgcHlmZXRjaFxuICAgIHJlc3BvbnNlID0gYXdhaXQgcHlmZXRjaChcIi4uL2Fzc2V0cy9pc2luZy5weVwiKVxuICAgIHdpdGggb3BlbihcImlzaW5nLnB5XCIsIFwid2JcIikgYXMgZjpcbiAgICAgICAgZi53cml0ZShhd2FpdCByZXNwb25zZS5ieXRlcygpKVxuICAgICAgICBgKVxuXG4gICAgcmV0dXJuIHB5b2RpZGUucHlpbXBvcnQoXCJpc2luZ1wiKVxuICB9XG5cbkwgPSAxMjhcbmlzaW5nID0gYXdhaXQgbG9hZFNpbSgpXG5pc2luZ01vZGVsID0gaXNpbmcuSXNpbmdNb2RlbChMKVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgcnVubmluZyA9IElucHV0cy50b2dnbGUoe2xhYmVsOiBcIlJ1blwiLCB2YWx1ZTogdHJ1ZX0pXG5cbnZpZXdvZiBUID0gSW5wdXRzLnJhbmdlKFswLjUsIDVdLCB7XG4gIHN0ZXA6IDAuMDUsXG4gIHZhbHVlOiAyLjI2OSxcbiAgbGFiZWw6IFwiVGVtcFwiXG59KVxuXG52aWV3b2YgdXBkYXRlID0gSW5wdXRzLnNlbGVjdChcbiAgW1xuICAgIFwiR2xhdWJlclwiLFxuICAgIFwiQmxvY2sgR2liYnNcIixcbiAgICBcIldvbGZmXCJcbiAgXSxcbiAge2xhYmVsOiBcIlVwZGF0ZVwifVxuKVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJhc3luYyBmdW5jdGlvbiogYW5pbWF0ZUlzaW5nKCkge1xuICBcbiAgbGV0IHN1YmxhdHRpY2UgPSB0cnVlXG5cbiAgd2hpbGUgKHJ1bm5pbmcpIHtcblxuICAgIGNvbnN0IGJldGEgPSAxIC8gVFxuXG4gICAgaWYgKHVwZGF0ZSA9PSBcIkdsYXViZXJcIikge1xuICAgICAgICBpc2luZ01vZGVsLmdsYXViZXJfdXBkYXRlKGJldGEpXG4gICAgICB9XG4gICAgICBlbHNlIGlmICh1cGRhdGUgPT09IFwiQmxvY2sgR2liYnNcIikge1xuICAgICAgICBpc2luZ01vZGVsLmdpYmJzX3VwZGF0ZShiZXRhLCBzdWJsYXR0aWNlKVxuICAgICAgICBzdWJsYXR0aWNlID0gIXN1YmxhdHRpY2UgIFxuICAgICAgfVxuICAgICAgZWxzZSB7XG4gICAgICAgIGlzaW5nTW9kZWwud29sZmZfdXBkYXRlKGJldGEpICBcbiAgICAgIH1cblxuICAgIHlpZWxkIFBsb3QucGxvdCh7XG4gICAgICB3aWR0aDogNDUwLFxuICAgICAgaGVpZ2h0OiA0NTAsXG4gICAgICBhc3BlY3RSYXRpbzogMSxcbiAgICAgIHg6IHtheGlzOiBudWxsfSxcbiAgICAgIHk6IHtheGlzOiBudWxsfSxcbiAgICAgIGNvbG9yOiB7ZG9tYWluOiBbLTEsIDFdfSxcbiAgICAgIG1hcmtzOiBbXG4gICAgICAgIFBsb3QucmFzdGVyKGlzaW5nTW9kZWwudG9fanMoKSwge1xuICAgICAgICAgIHdpZHRoOiBMLFxuICAgICAgICAgIGhlaWdodDogTCxcbiAgICAgICAgICBpbWFnZVJlbmRlcmluZzogXCJwaXhlbGF0ZWRcIlxuICAgICAgICB9KVxuICAgICAgXVxuICAgIH0pO1xuXG4gIH1cbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImFuaW1hdGVJc2luZygpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3J1bm5pbmcnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnVCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd1cGRhdGUnKSJ9XX0=
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../slides";
+    window._ojs.paths.runtimeToRoot = "../..";
+    window._ojs.paths.docToRoot = "..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {

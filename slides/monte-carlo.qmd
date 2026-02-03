@@ -631,15 +631,96 @@ class IsingModel:
 ---
 
 ```{=html}
-<script src = "https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
-```
-```{=html}
-<script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
-```
-```{=html}
-<script src = "../assets/ising.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js"></script>
 ```
 
-::: {#ising-simulation align="center"}
-:::
+```{ojs}
+//| echo: false
+async function loadSim() {
+    let pyodide = await loadPyodide();
+    await pyodide.loadPackage("numpy"); 
+  
+    // Code has to be loaded into virtual file system
+    await pyodide.runPythonAsync(`
+    from pyodide.http import pyfetch
+    response = await pyfetch("../assets/ising.py")
+    with open("ising.py", "wb") as f:
+        f.write(await response.bytes())
+        `)
 
+    return pyodide.pyimport("ising")
+  }
+
+L = 128
+ising = await loadSim()
+isingModel = ising.IsingModel(L)
+
+```
+
+```{ojs}
+//| echo: false
+viewof running = Inputs.toggle({label: "Run", value: true})
+
+viewof T = Inputs.range([0.5, 5], {
+  step: 0.05,
+  value: 2.269,
+  label: "Temp"
+})
+
+viewof update = Inputs.select(
+  [
+    "Glauber",
+    "Block Gibbs",
+    "Wolff"
+  ],
+  {label: "Update"}
+)
+
+```
+
+
+```{ojs}
+//| echo: false
+async function* animateIsing() {
+  
+  let sublattice = true
+
+  while (running) {
+
+    const beta = 1 / T
+
+    if (update == "Glauber") {
+        isingModel.glauber_update(beta)
+      }
+      else if (update === "Block Gibbs") {
+        isingModel.gibbs_update(beta, sublattice)
+        sublattice = !sublattice  
+      }
+      else {
+        isingModel.wolff_update(beta)  
+      }
+
+    yield Plot.plot({
+      width: 450,
+      height: 450,
+      aspectRatio: 1,
+      x: {axis: null},
+      y: {axis: null},
+      color: {domain: [-1, 1]},
+      marks: [
+        Plot.raster(isingModel.to_js(), {
+          width: L,
+          height: L,
+          imageRendering: "pixelated"
+        })
+      ]
+    });
+
+  }
+}
+```
+
+```{ojs}
+//| echo: false
+animateIsing()
+```
