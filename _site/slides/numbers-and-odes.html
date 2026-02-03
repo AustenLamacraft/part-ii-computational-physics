@@ -199,9 +199,9 @@
 </section>
 <section class="slide level2 center">
 
-<div id="23e74ca4" class="cell" data-execution_count="1">
+<div id="2c83c5da" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="fl">0.1</span>  <span class="op">+</span> <span class="fl">0.2</span> <span class="op">==</span> <span class="fl">0.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>False</code></pre>
 </div>
 </div>
@@ -214,27 +214,27 @@
 <ul>
 <li>Something simpler</li>
 </ul>
-<div id="a1ec05f6" class="cell" data-execution_count="2">
+<div id="d1ee7372" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">==</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>True</code></pre>
 </div>
 </div>
 <ul>
 <li>Integers can be represented in binary</li>
 </ul>
-<div id="b9f4f6e4" class="cell" data-execution_count="3">
+<div id="f9942909" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="dv">3</span> <span class="op">==</span> <span class="bn">0b11</span> <span class="co"># Ooctal `0o` or hexadecimal `0h`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>True</code></pre>
 </div>
 </div>
 <ul>
 <li>Binary string representation using <code>bin</code> function</li>
 </ul>
-<div id="24ccff47" class="cell" data-execution_count="4">
+<div id="e297ed2d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="bu">bin</span>(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>'-0b10'</code></pre>
 </div>
 </div>
@@ -245,9 +245,9 @@
 <li><p>Python allows for arbitrarily large integers</p></li>
 <li><p>No possibility of overflow or rounding error</p></li>
 </ul>
-<div id="599dd4ac" class="cell" data-execution_count="5">
+<div id="ea4e2a8f" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="dv">2</span><span class="op">**</span><span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>1267650600228229401496703205376</code></pre>
 </div>
 </div>
@@ -260,14 +260,14 @@
 <ul>
 <li>Numpy integers are a different story</li>
 </ul>
-<div id="33ecf190" class="cell" data-execution_count="6">
+<div id="809339af" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a></a>np.int64(<span class="dv">2</span><span class="op">**</span><span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">OverflowError</span>                             Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[6], line 2</span>
+Cell <span class="ansi-green-fg">In[28], line 2</span>
 <span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="font-weight:bold;color:rgb(0,0,255)">numpy</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> <span style="font-weight:bold;color:rgb(0,0,255)">np</span>
 <span class="ansi-green-fg">----&gt; 2</span> np<span style="color:rgb(98,98,98)">.</span>int64(<span style="color:rgb(98,98,98)">2</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">100</span>)
 
@@ -302,19 +302,19 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <li><p>Requires choice of base, and Python’s floating point numbers use binary</p></li>
 <li><p><em>Numbers with finite binary representations behave nicely</em></p></li>
 </ul>
-<div id="04296573" class="cell" data-execution_count="7">
+<div id="faef9df7" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="fl">0.125</span> <span class="op">+</span> <span class="fl">0.25</span> <span class="op">==</span> <span class="fl">0.375</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>True</code></pre>
 </div>
 </div>
 <ul>
 <li>For decimal numbers to be represented exactly we’d have to use base ten. Can be achieved with <code>decimal</code> module:</li>
 </ul>
-<div id="4494871a" class="cell" data-execution_count="8">
+<div id="0ced50e6" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> decimal <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb14-2"><a></a>Decimal(<span class="st">'0.1'</span>) <span class="op">+</span> Decimal(<span class="st">'0.2'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>Decimal('0.3')</code></pre>
 </div>
 </div>
@@ -324,15 +324,21 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 </section>
 <section class="slide level2 center">
 
+<p><span class="math display">\[
+(-1)^s\times c \times b^q
+\]</span></p>
 <ul>
 <li><p>A specification for floating point numbers must give</p>
 <ol type="1">
 <li>Base (or <em>radix</em>) <span class="math inline">\(b\)</span></li>
 <li>Precision <span class="math inline">\(p\)</span>, the number of digits in the significand <span class="math inline">\(c\)</span>. Thus <span class="math inline">\(0\leq c \leq b^{p}-1\)</span>.</li>
 <li>A range of exponents <span class="math inline">\(q\)</span> specifed by <span class="math inline">\(\text{emin}\)</span> and <span class="math inline">\(\text{emax}\)</span> with <span class="math inline">\(\text{emin}\leq q+p-1 \leq \text{emax}\)</span>.</li>
+<li>One bit <span class="math inline">\(s\)</span> for overall sign</li>
 </ol></li>
-<li><p>With one bit <span class="math inline">\(s\)</span> for overall sign, a number then has form <span class="math inline">\((-1)^s\times c \times b^q\)</span>.</p></li>
-<li><p>Smallest positive nonzero number that can be represented is <span class="math inline">\(b^{1 + \text{emin} - p}\)</span> (corresponding to the smallest value of the exponent) and largest is <span class="math inline">\(b^{1 + \text{emax}} - 1\)</span>.</p></li>
+</ul>
+<!-- - One bit $s$ for overall sign, a number then has form $(-1)^s\times c \times b^q$.  -->
+<ul>
+<li>Smallest positive nonzero number that can be represented is <span class="math inline">\(b^{1 + \text{emin} - p}\)</span> (corresponding to the smallest value of the exponent) and largest is <span class="math inline">\(b^{1 + \text{emax}} - 1\)</span>.</li>
 </ul>
 </section>
 <section class="slide level2 center">
@@ -376,9 +382,9 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <ul>
 <li>NumPy’s <a href="https://numpy.org/doc/stable/reference/generated/numpy.finfo.html">finfo</a> function tells all <a href="https://en.wikipedia.org/wiki/Machine_epsilon">machine precision</a></li>
 </ul>
-<div id="18407f83" class="cell" data-execution_count="9">
+<div id="4172e53a" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>np.finfo(np.float64)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>finfo(resolution=1e-15, min=-1.7976931348623157e+308, max=1.7976931348623157e+308, dtype=float64)</code></pre>
 </div>
 </div>
@@ -386,7 +392,7 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <li><p>Note that <span class="math inline">\(2^{-52}=2.22\times 10^{-16}\)</span> which accounts for resolution <span class="math inline">\(10^{-15}\)</span></p></li>
 <li><p>This can be checked by finding when a number is close enough to treated as 1.0.</p></li>
 </ul>
-<div id="0ea9790e" class="cell" data-execution_count="10">
+<div id="43546034" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a>x<span class="op">=</span><span class="fl">1.0</span></span>
 <span id="cb18-2"><a></a><span class="cf">while</span> <span class="fl">1.0</span> <span class="op">+</span> x <span class="op">!=</span> <span class="fl">1.0</span>:</span>
 <span id="cb18-3"><a></a>    x <span class="op">/=</span> <span class="fl">1.01</span> </span>
@@ -401,9 +407,9 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <ul>
 <li>For binary32 we have a resolution of <span class="math inline">\(10^{-6}\)</span>.</li>
 </ul>
-<div id="d85a7bc2" class="cell" data-execution_count="11">
+<div id="d570189e" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a>np.finfo(np.float32)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>finfo(resolution=1e-06, min=-3.4028235e+38, max=3.4028235e+38, dtype=float32)</code></pre>
 </div>
 </div>
@@ -417,7 +423,7 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <ul>
 <li>Solution: <span class="math inline">\(x-x'=x(1-\gamma^{-1})\sim x\beta^2/2\sim 4.2\text{mm}\)</span>.</li>
 </ul>
-<div id="1c3c4b5e" class="cell" data-execution_count="12">
+<div id="fe7f6b88" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb22-2"><a></a><span class="im">from</span> scipy.constants <span class="im">import</span> c</span>
 <span id="cb22-3"><a></a>beta <span class="op">=</span> <span class="fl">384400e3</span> <span class="op">/</span> (<span class="dv">76</span> <span class="op">*</span> <span class="dv">3600</span>) <span class="op">/</span> c</span>
@@ -433,18 +439,18 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <ul>
 <li>As well as a floating point system, IEEE 754 defines <code>Infinity</code> and <code>NaN</code> (Not a Number)</li>
 </ul>
-<div id="fe9ba82a" class="cell" data-execution_count="13">
+<div id="2920ce98" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a>np.array([<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>]) <span class="op">/</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="35">
 <pre><code>array([ inf, -inf,  nan])</code></pre>
 </div>
 </div>
 <ul>
 <li>They behave as you might guess</li>
 </ul>
-<div id="01c876c6" class="cell" data-execution_count="14">
+<div id="fbf6f8a4" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a></a><span class="dv">2</span> <span class="op">*</span> np.inf, <span class="dv">0</span> <span class="op">*</span> np.inf, np.inf <span class="op">&gt;</span> np.nan</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>(inf, nan, False)</code></pre>
 </div>
 </div>
@@ -454,9 +460,9 @@ Cell <span class="ansi-green-fg">In[6], line 2</span>
 <ul>
 <li>NaNs propagate through subsequent operations</li>
 </ul>
-<div id="0918568f" class="cell" data-execution_count="15">
+<div id="9c82837d" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a></a><span class="dv">2</span> <span class="op">*</span> np.nan</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>nan</code></pre>
 </div>
 </div>
@@ -604,7 +610,7 @@ x_{j+1} &amp;= x_j + k_2 +O(h^3)
 </section>
 <section class="slide level2 center">
 
-<div id="60a6b3b5" class="cell" data-execution_count="16">
+<div id="fe2eef34" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb30-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb30-3"><a></a></span>
@@ -631,7 +637,7 @@ x_{j+1} &amp;= x_j + k_2 +O(h^3)
 </section>
 <section class="slide level2 center">
 
-<div id="15b02c95" class="cell" data-execution_count="17">
+<div id="1c24c4fc" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -705,7 +711,7 @@ m\frac{d \mathbf{v}}{dt} &amp;= \mathbf{f}(\mathbf{x},t)
 <ul>
 <li>Solving using SciPy requires defining a function giving RHS</li>
 </ul>
-<div id="2cd53bae" class="cell" data-execution_count="18">
+<div id="c71fad86" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a></a><span class="kw">def</span> pendulum(t, y): <span class="cf">return</span> [y[<span class="dv">1</span>], <span class="op">-</span>np.sin(y[<span class="dv">0</span>])]</span>
 <span id="cb31-2"><a></a><span class="co"># The pendulum equation: y[0] is theta and y[1] is l</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -713,7 +719,7 @@ m\frac{d \mathbf{v}}{dt} &amp;= \mathbf{f}(\mathbf{x},t)
 <section class="slide level2 center">
 
 <p>Then call <code>solve_ivp</code></p>
-<div id="56aa66cc" class="cell" data-execution_count="19">
+<div id="cc53712b" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a></a><span class="im">from</span> scipy.integrate <span class="im">import</span> solve_ivp</span>
 <span id="cb32-2"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb32-3"><a></a></span>
@@ -733,7 +739,7 @@ m\frac{d \mathbf{v}}{dt} &amp;= \mathbf{f}(\mathbf{x},t)
 <p><span class="math display">\[
 E(\theta, l) = \frac{1}{2}l^2 - \cos\theta
 \]</span></p>
-<div id="bf76b549" class="cell" data-execution_count="20">
+<div id="795b2019" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -811,7 +817,7 @@ p_x = \sqrt{2E-y^2-p_y^2 + \frac{2\lambda}{3}y^3}
 </section>
 <section class="slide level2 center">
 
-<div id="6d8f86f5" class="cell" data-execution_count="21">
+<div id="95092a67" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a></a><span class="kw">def</span> henon_heiles(t, z, 𝜆): </span>
 <span id="cb33-2"><a></a>    x, px, y, py <span class="op">=</span> z</span>
 <span id="cb33-3"><a></a>    <span class="cf">return</span> [px, <span class="op">-</span>x <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> 𝜆 <span class="op">*</span> x <span class="op">*</span> y, py, <span class="op">-</span>y <span class="op">-</span> 𝜆 <span class="op">*</span> (x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> y<span class="op">**</span><span class="dv">2</span>)]</span>
@@ -833,7 +839,7 @@ p_x = \sqrt{2E-y^2-p_y^2 + \frac{2\lambda}{3}y^3}
 <ul>
 <li>Plot a section of phase space with increasing energy, showing transition from regular to chaotic dynamics</li>
 </ul>
-<div id="724992cc" class="cell" data-execution_count="22">
+<div id="bcf40b66" class="cell" data-execution_count="22">
 <div class="cell-output cell-output-display">
 <div>
 <figure>

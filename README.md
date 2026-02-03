@@ -17,4 +17,4 @@ run by Professor Austen Lamacraft at Cavendish Laboratory, University of Cambrid
 
 ## TODO
 
-- [ ] Try out [Quarto Live](https://github.com/r-wasm/quarto-live)
+- [ ] Try out [Quarto Live](https://github.com/r-wasm/quarto-live). See [lectures on dynamic interactions]{https://talks.thecoatlessprofessor.com/stats352-guest-lectures-on-dynamic-interactions-wasm/} for some background

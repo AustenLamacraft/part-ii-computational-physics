@@ -210,7 +210,7 @@
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="../assets/simulation.jpg" class="quarto-figure quarto-figure-center"></p>
+<p><img data-src="../assets/simulation.png" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
 </figure>
 </div>
 <ul>
@@ -282,14 +282,12 @@
 <ul>
 <li><p>Six lectures, followed by one week break for first exercise starting 14th February</p>
 <ul>
-<li>First lecture: Monday 27th January</li>
-<li>Sixth lecture: Wednesday 12th February</li>
-<li><strong>First exercise</strong>: Friday 14th February – Friday 21st February</li>
-<li>Seventh lecture: Monday 24th February</li>
-<li>Eighth lecture: Wednesday 26th February</li>
-<li><strong>Second exercise</strong>: Friday 28th February – Friday 7th March</li>
-<li><strong>Third exercise</strong>: Friday 7th March – Friday 14th March</li>
-<li><strong>Fourth exercise</strong>: Friday 14th March – Friday 21st March (last day of full Lent term)</li>
+<li>First lecture: Monday 26th January</li>
+<li>Eighth lecture: Wednesday 18th February</li>
+<li><strong>First exercise</strong>: Friday 20th February – Friday 27th February</li>
+<li><strong>Second exercise</strong>: Friday 27th February – Friday 6th March</li>
+<li><strong>Third exercise</strong>: Friday 6th March – Friday 13th March</li>
+<li><strong>Fourth exercise</strong>: Friday 13th March – Friday 20th March (last day of full Lent term)</li>
 </ul></li>
 </ul>
 </section>
@@ -298,8 +296,8 @@
 <ul>
 <li><p>You may choose to offer a Computational Physics project for one unit of further work</p></li>
 <li><p>Choose a problem from the project list.&nbsp;Analyse the problem, write and test Python code to investigate it, then write up your work in a report</p></li>
-<li><p>Project list will be published by 24th February</p></li>
-<li><p>Deadline for submission of the project report is <strong>16:00 on the first Monday of Full Easter term (5th May 2025)</strong></p></li>
+<li><p>Project list will be published by 20th February</p></li>
+<li><p>Deadline for submission of the project report is <strong>16:00 on the first Monday of Full Easter term (4th May 2026)</strong></p></li>
 </ul>
 </section></section>
 <section>
@@ -340,13 +338,13 @@ Type "help", "copyright", "credits" or "license" for more information.
 <ul>
 <li>Prompt <code>&gt;&gt;&gt;</code> indicates that you have started the Python interactive shell or <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> and are good to go:</li>
 </ul>
-<div id="9e25929c" class="cell" data-execution_count="1">
+<div id="9ad0ccfa" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="bu">print</span>(<span class="st">"Hello world!"</span>)</span>
 <span id="cb2-2"><a></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Hello world!</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="64">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>3</code></pre>
 </div>
 </div>
@@ -379,10 +377,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 <li><p><em>Magic commands</em> prefixed by <code>%</code> provide additional functionality</p></li>
 <li><p><code>%timeit</code> finds the executation time of a single line statement, which is useful when profiling the performance of code:</p></li>
 </ul>
-<div id="acb6c36c" class="cell" data-execution_count="2">
+<div id="0cfa0b13" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="op">%</span>timeit L <span class="op">=</span> [n <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>62.6 μs ± 3.24 μs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
+<pre><code>61.2 μs ± 3.56 μs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
 </div>
 </div>
 <ul>
@@ -424,14 +422,14 @@ Type "help", "copyright", "credits" or "license" for more information.
 <ul>
 <li>If I make the file <code>hello_world.py</code> containing the function:</li>
 </ul>
-<div id="e2de97f7" class="cell" data-execution_count="3">
+<div id="ce5ba5cf" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="kw">def</span> hello():</span>
 <span id="cb11-2"><a></a>    <span class="bu">print</span>(<span class="st">"Hello world!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>I can run this function by first importing the module:</li>
 </ul>
-<div id="4499781a" class="cell" data-execution_count="4">
+<div id="eebb5bc3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="im">import</span> hello_world</span>
 <span id="cb12-2"><a></a>hello_world.hello()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -448,7 +446,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <ul>
 <li>If you are confident this is not an issue and want more concise code you can do this:</li>
 </ul>
-<div id="4c95b3c1" class="cell" data-execution_count="5">
+<div id="caa398a1" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> hello_world <span class="im">import</span> hello</span>
 <span id="cb14-2"><a></a>hello()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -458,7 +456,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <ul>
 <li>or even import everything with the wildcard <code>*</code>:</li>
 </ul>
-<div id="4c996ba0" class="cell" data-execution_count="6">
+<div id="9d1f0958" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="im">from</span> hello_world <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb16-2"><a></a>hello()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -476,10 +474,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 <li><p>You can import a package in the same way and access all the modules using the same <code>.</code> notation i.e.&nbsp;<code>package.module1</code>, <code>package.module2</code>, etc..</p></li>
 <li><p>Since explicit namespaces are preferred to avoid ambiguity use shorthands for the package or module you are importing:</p></li>
 </ul>
-<div id="416e9705" class="cell" data-execution_count="7">
+<div id="11cc7090" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb18-2"><a></a>np.arange(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="70">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre>
 </div>
 </div>

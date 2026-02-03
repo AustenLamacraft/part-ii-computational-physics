@@ -46,4 +46,4 @@ class IsingModel:
                             cluster.append(neighbour)
                 
     def to_js(self):
-        return to_js(self.spins)
+        return to_js(self.spins[::-1, :].ravel(order="C").tolist()) # flattens the array to be plotted

@@ -1,5 +1,6 @@
 ---
 title: Monte Carlo methods
+# format: live-html
 resources:
   - "../assets/ising.py"
 ---
@@ -411,28 +412,112 @@ class IsingModel:
                             cluster.append(neighbour)
 ```
 
-```{=html}
-<script src = "https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
-```
+Here's a simulation that allows you to compare Glauber dynamics, Block Gibbs sampling and Wolff updates. Change the temperature using the slider. The centre of the slider corresponds to the critical temperature $k_\text{B}T = 2|J|/\log(1+\sqrt{2})\sim 2.269|J|$.
+
 ```{=html}
 <script src="https://cdn.jsdelivr.net/pyodide/v0.22.0/full/pyodide.js"></script>
 ```
-```{=html}
-<script src = "../assets/ising.js"></script>
-```
-::: {#fig-ising}
-::: {#ising-simulation align="center"}
-:::
 
-Glauber dynamics, Block Gibbs sampling and Wolff updates compared. Change the temperature using the slider. The centre of the slider corresponds to the critical temperature $k_\text{B}T = 2|J|/\log(1+\sqrt{2})\sim 2.269|J|$.
-:::
+```{ojs}
+//| echo: false
+async function loadSim() {
+    let pyodide = await loadPyodide();
+    await pyodide.loadPackage("numpy"); 
+  
+    // Code has to be loaded into virtual file system
+    await pyodide.runPythonAsync(`
+    from pyodide.http import pyfetch
+    response = await pyfetch("../assets/ising.py")
+    with open("ising.py", "wb") as f:
+        f.write(await response.bytes())
+        `)
+
+    return pyodide.pyimport("ising")
+  }
+
+L = 128
+ising = await loadSim()
+isingModel = ising.IsingModel(L)
+
+```
+
+```{ojs}
+//| echo: false
+viewof running = Inputs.toggle({label: "Run", value: true})
+
+viewof T = Inputs.range([0.5, 5], {
+  step: 0.05,
+  value: 2.269,
+  label: "Temperature T"
+})
+
+viewof update = Inputs.select(
+  [
+    "Glauber",
+    "Block Gibbs",
+    "Wolff"
+  ],
+  {label: "Update method"}
+)
+
+```
+
+
+```{ojs}
+//| echo: false
+async function* animateIsing() {
+  
+  let sublattice = true
+
+  while (true) {
+    if (!running) {
+        continue;
+    }
+
+    const beta = 1 / T
+
+    if (update == "Glauber") {
+        isingModel.glauber_update(beta)
+      }
+      else if (update === "Block Gibbs") {
+        isingModel.gibbs_update(beta, sublattice)
+        sublattice = !sublattice  
+      }
+      else {
+        isingModel.wolff_update(beta)  
+      }
+
+    yield Plot.plot({
+      width: 450,
+      height: 450,
+      aspectRatio: 1,
+      x: {axis: null},
+      y: {axis: null},
+      color: {domain: [-1, 1]},
+      marks: [
+        Plot.raster(isingModel.to_js(), {
+          width: L,
+          height: L,
+          imageRendering: "pixelated"
+        })
+      ]
+    });
+
+  }
+}
+```
+
+```{ojs}
+//| echo: false
+animateIsing()
+```
 
 # The universe of Monte Carlo methods
 
 Monte Carlo simulation is a vast field with practitioners and specialists across the natural sciences, engineering, machine learning, and statistics. In this section I'll mention a few important topics to give a taste of what's out there. For much more detail take a look at @krauth2006statistical and / or @mackay2003information. The recent set of lectures [Monte Carlo Techniques](https://hef.ru.nl/~tbudd/mct/intro.html) by Timothy Budd also look fantastic.
 
 ```{=html}
-<!-- Probably the biggest single issue is: how do you kow when your MCMC simulation has reached the stationary distribution $\boldsymbol{\pi}$? The pragmatic approach is to monitor the averages of interest (magnetization, say, in the case of the Ising model) over different simulations or over a time interval and see when they stop changing. 
+<!-- Probably the biggest single issue is: how do you know when your MCMC simulation has reached the stationary distribution $\boldsymbol{\pi}$? The pragmatic approach is to monitor the averages of interest (magnetization, say, in the case of the Ising model) over different simulations or over a time interval and see when they stop changing. 
 
 
 We've touched on the issue of the [mixing time](https://en.wikipedia.org/wiki/Markov_chain_mixing_time) in a Markov chain.

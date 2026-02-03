@@ -5,10 +5,10 @@ draft: false
 
 There are __four computing exercises__ to be completed in the last four weeks of full Lent term; one per week. The exercises count for 0.2 units or further work, or roughly 2% of your final mark for the year. Thus each exercise should only take you a few hours. Each of the four exercises is marked out of 5 for a total of 20 marks. Marks will be awarded in proportion to the amount of each exercise you successfully complete. _Successfully complete_ means that at the very least the relevant code should run!
 
-- First exercise: Friday 14th February – Friday 21st February
-- Second exercise: 28th February – Friday 7th March
-- Third exercise: Friday 7th March – Friday 14th March
-- Fourth exercise: Friday 14th March – Friday 21st March (last day of full Lent term)
+- __First exercise__: Friday 20th February – Friday 27th February
+- __Second exercise__: Friday 27th February – Friday 6th March
+- __Third exercise__: Friday 6th March – Friday 13th March
+- __Fourth exercise__: Friday 13th March – Friday 20th March (last day of full Lent term)
 
 You will receive a link to the exercise via email on the first day before noon (i.e. Friday 14th February for the first exercise). The deadline for every exercise is __12 noon__ on the final day (i.e. Friday 21st February for the first exercise).
 
@@ -26,7 +26,7 @@ Please use the [discussions](https://github.com/orgs/Part-II-Computational-Physi
 
 If you're using VS Code, there is a [GitHub Classroom extension](https://marketplace.visualstudio.com/items?itemName=GitHub.classroom) that allows you to view, work on, and submit assignments directly within the editor.
 
-# The exercises
+<!-- # The exercises
 
 ## First exercise: PDEs
 
@@ -44,6 +44,6 @@ If you're using VS Code, there is a [GitHub Classroom extension](https://marketp
 ## Fourth exercise: exact diagonalization
 
 [The fourth exercise](https://classroom.github.com/a/yAW3-xzg) is about using some of the linear algebra techniques from the [linear algebra lecture](../notes/linear.qmd) to study spin chains. Your demonstrator is Sun Woo Kim. The deadline is __12 noon__ on Friday 21st March.
-
+ -->
 
 

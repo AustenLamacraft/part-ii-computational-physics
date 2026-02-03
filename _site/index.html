@@ -310,19 +310,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Feedback
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Please fill out the <a href="https://cambridge.eu.qualtrics.com/jfe/form/SV_1Aditea2hGfPFHg">feedback form</a> before 16th March.</p>
-</div>
-</div>
+<!-- ::: {.callout-warning}
+## Feedback
+
+Please fill out the [feedback form](https://cambridge.eu.qualtrics.com/jfe/form/SV_1Aditea2hGfPFHg) before 16th March.
+::: -->
 <p>These are the materials for the Part II Physics course Computational Physics, taught in Lent Term 2026 at the University of Cambridge.</p>
 <section id="schedule" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Schedule</h1>
@@ -509,7 +501,7 @@ Numpy. Basics of ufuncs and vectorization
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
