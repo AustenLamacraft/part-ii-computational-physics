@@ -17,23 +17,17 @@ format:
 
 - Can we calculate them _efficiently_?
 
-## No lectures next week!
-
-- Next lecture Monday 24th February
-- First exercise starts noon Friday 14th February
-
-
 ## The discrete Fourier transform
 
 - Change of basis in a finite dimensional space
 
-- Mps signal sampled at $N$ regularly spaced time points to representation at $N$ frequency points
+- Maps signal sampled at $N$ regularly spaced time points to representation at $N$ frequency points
 $$
-F_n = \sum_{j=0}^{N-1} f_j e^{-i\eta_n j}
+F_n = \sum_{j=0}^{N-1} f_j e^{-i\eta_n j},\qquad \eta_n\equiv \frac{2\pi n}{N}
 $$ 
-$\eta_n\equiv \frac{2\pi n}{N}$
 
 - $F_n$ contain same information as $f_j$, and $f_j$ can be recovered completely by inverting operation
+- Note that $e^{-i\eta_n j}=e^{-i\eta_{n-N} j}$ so we can extend definition $F_n=F_{N-n}$
 
 ---
 
@@ -265,7 +259,7 @@ $$
 
 - Modern invention of FFT is credited to @cooley1965algorithm. First to discuss complexity
 
-- Divide and conquer approach anticipated by @danielson1942some, for applications in crystallography
+- Divide and conquer approach anticipated in astronomy by [David Wheeler](https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)) in Cambridge and @danielson1942some, for applications in crystallography
 
 - OG is [Carl Friedrich Gauss](https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss) in 1805 (predating even Fourier) in his astronomical studies
 

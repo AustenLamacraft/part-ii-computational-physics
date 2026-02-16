@@ -220,21 +220,15 @@
 <li><p>Can we calculate them <em>efficiently</em>?</p></li>
 </ul>
 </section>
-<section id="no-lectures-next-week" class="slide level2 center">
-<h2>No lectures next week!</h2>
-<ul>
-<li>Next lecture Monday 24th February</li>
-<li>First exercise starts noon Friday 14th February</li>
-</ul>
-</section>
 <section id="the-discrete-fourier-transform" class="slide level2 center">
 <h2>The discrete Fourier transform</h2>
 <ul>
 <li><p>Change of basis in a finite dimensional space</p></li>
-<li><p>Mps signal sampled at <span class="math inline">\(N\)</span> regularly spaced time points to representation at <span class="math inline">\(N\)</span> frequency points <span class="math display">\[
-F_n = \sum_{j=0}^{N-1} f_j e^{-i\eta_n j}
-\]</span> <span class="math inline">\(\eta_n\equiv \frac{2\pi n}{N}\)</span></p></li>
+<li><p>Maps signal sampled at <span class="math inline">\(N\)</span> regularly spaced time points to representation at <span class="math inline">\(N\)</span> frequency points <span class="math display">\[
+F_n = \sum_{j=0}^{N-1} f_j e^{-i\eta_n j},\qquad \eta_n\equiv \frac{2\pi n}{N}
+\]</span></p></li>
 <li><p><span class="math inline">\(F_n\)</span> contain same information as <span class="math inline">\(f_j\)</span>, and <span class="math inline">\(f_j\)</span> can be recovered completely by inverting operation</p></li>
+<li><p>Note that <span class="math inline">\(e^{-i\eta_n j}=e^{-i\eta_{n-N} j}\)</span> so we can extend definition <span class="math inline">\(F_n=F_{N-n}\)</span></p></li>
 </ul>
 </section>
 <section class="slide level2 center">
@@ -458,7 +452,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <h2>History</h2>
 <ul>
 <li><p>Modern invention of FFT is credited to <span class="citation" data-cites="cooley1965algorithm">Cooley and Tukey (<a href="#/references" role="doc-biblioref" onclick="">1965</a>)</span>. First to discuss complexity</p></li>
-<li><p>Divide and conquer approach anticipated by <span class="citation" data-cites="danielson1942some">Danielson and Lanczos (<a href="#/references" role="doc-biblioref" onclick="">1942</a>)</span>, for applications in crystallography</p></li>
+<li><p>Divide and conquer approach anticipated in astronomy by <a href="https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)">David Wheeler</a> in Cambridge and <span class="citation" data-cites="danielson1942some">Danielson and Lanczos (<a href="#/references" role="doc-biblioref" onclick="">1942</a>)</span>, for applications in crystallography</p></li>
 <li><p>OG is <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a> in 1805 (predating even Fourier) in his astronomical studies</p></li>
 <li><p>See <span class="citation" data-cites="cooley1967historical">Cooley, Lewis, and Welch (<a href="#/references" role="doc-biblioref" onclick="">1967</a>)</span> for more on historical background</p></li>
 </ul>
@@ -486,7 +480,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <ul>
 <li>Signal consisting of two sinusoids at 12 Hz and 34 Hz:</li>
 </ul>
-<div id="7e38d02a" class="cell" data-execution_count="1">
+<div id="16e14cc5" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -501,7 +495,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <ul>
 <li>Take FFT and plot vs array index</li>
 </ul>
-<div id="f6085632" class="cell" data-execution_count="2">
+<div id="e1d76370" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>Y<span class="op">=</span>np.fft.fft(y)</span>
 <span id="cb1-2"><a></a>plt.plot(<span class="bu">abs</span>(Y))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -518,7 +512,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <ul>
 <li>Or against real frequency (sample spacing of <span class="math inline">\(dt=0.01\)</span>)</li>
 </ul>
-<div id="fbfe6c0e" class="cell" data-execution_count="3">
+<div id="adbb6e55" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>f<span class="op">=</span>np.fft.fftfreq(fftsize, dt)</span>
 <span id="cb2-2"><a></a><span class="co"># Reordering makes a tidier plot...</span></span>
 <span id="cb2-3"><a></a>Y<span class="op">=</span>np.fft.fftshift(Y)</span>
@@ -540,7 +534,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <ul>
 <li>Fourier transform of real valued data has property <span class="math inline">\(F_n = \left[F_{-n}\right]^*\)</span>:</li>
 </ul>
-<div id="6e7618a2" class="cell" data-execution_count="4">
+<div id="41356c5f" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -555,7 +549,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <ul>
 <li>Signal a pair of sinusoids, but FFT <em>not</em> just <span class="math inline">\(\delta\)</span>-functions</li>
 </ul>
-<div id="5163359e" class="cell" data-execution_count="5">
+<div id="28ee49cc" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -723,7 +717,7 @@ e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}
 <ul>
 <li>Here’s a simple 1D example:</li>
 </ul>
-<div id="089a9f21" class="cell" data-execution_count="6">
+<div id="385845e2" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> split_step_schrodinger(psi_0, dx, dt, V, N, x_0 <span class="op">=</span> <span class="fl">0.</span>, k_0 <span class="op">=</span> <span class="va">None</span>, m <span class="op">=</span> <span class="fl">1.0</span>, non_linear <span class="op">=</span> <span class="va">False</span>):</span>
 <span id="cb3-2"><a></a></span>
 <span id="cb3-3"><a></a>    len_x <span class="op">=</span> psi_0.shape[<span class="dv">0</span>]</span>

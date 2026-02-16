@@ -186,7 +186,7 @@ $$
 
 - All sophistication lies in how model is _defined_ and how _gradients_ are calculated 
 
-- Not a trvial task: GPT and other LLMs have hundreds of _trillions_ of parameters!
+- Not a trvial task: GPT and other LLMs > _1 trillion_ parameters!
 
 - Many more sophisticated optimization methods, but often involve more information about model's dependence on parameters
 
@@ -386,13 +386,11 @@ $$
 
 ## What AD is not
 
-- Often people guess...
-
 $$
 \frac{\partial\mathcal{C}}{\partial \theta_i} \approx \frac{\mathcal{C}(\theta_i+\Delta\theta_i)- \mathcal{C}(\theta_i)}{\Delta \theta_i}
-$$ {#eq-nd}
+$$
 
-- But this is [numerical differentiation](https://en.wikipedia.org/wiki/Numerical_differentiation)
+- This is [numerical differentiation](https://en.wikipedia.org/wiki/Numerical_differentiation)
 
 - Necessary if you only have access to $\mathcal{C}(\theta)$ as a [black box](https://en.wikipedia.org/wiki/Black_box) function
 

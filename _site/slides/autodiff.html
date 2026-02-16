@@ -381,7 +381,7 @@ l_* = \underset{l}{\operatorname{argmax}} \left[\mathsf{NN}_\theta(\mathbf{x})\r
 <h2>Why so simple?</h2>
 <ul>
 <li><p>All sophistication lies in how model is <em>defined</em> and how <em>gradients</em> are calculated</p></li>
-<li><p>Not a trvial task: GPT and other LLMs have hundreds of <em>trillions</em> of parameters!</p></li>
+<li><p>Not a trvial task: GPT and other LLMs &gt; <em>1 trillion</em> parameters!</p></li>
 <li><p>Many more sophisticated optimization methods, but often involve more information about model’s dependence on parameters</p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization">Newton’s method</a> requires knowledge of first <em>and second</em> derivatives at each step: too costly to evaluate</p></li>
 </ul>
@@ -582,14 +582,11 @@ Figure&nbsp;1: <span class="citation" data-cites="nielsen2015neural">Nielsen (<a
 </section>
 <section id="what-ad-is-not" class="slide level2 center">
 <h2>What AD is not</h2>
-<ul>
-<li>Often people guess…</li>
-</ul>
-<p><span id="eq-nd"><span class="math display">\[
+<p><span class="math display">\[
 \frac{\partial\mathcal{C}}{\partial \theta_i} \approx \frac{\mathcal{C}(\theta_i+\Delta\theta_i)- \mathcal{C}(\theta_i)}{\Delta \theta_i}
-\tag{1}\]</span></span></p>
+\]</span></p>
 <ul>
-<li><p>But this is <a href="https://en.wikipedia.org/wiki/Numerical_differentiation">numerical differentiation</a></p></li>
+<li><p>This is <a href="https://en.wikipedia.org/wiki/Numerical_differentiation">numerical differentiation</a></p></li>
 <li><p>Necessary if you only have access to <span class="math inline">\(\mathcal{C}(\theta)\)</span> as a <a href="https://en.wikipedia.org/wiki/Black_box">black box</a> function</p></li>
 <li><p>AD is different: uses knowledge about how function <span class="math inline">\(\mathcal{C}\)</span> is formed by composing many simpler functions</p></li>
 </ul>

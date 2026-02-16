@@ -64,7 +64,7 @@ where $\eta$ is a hyperparameter[^2] called the _learning rate_. Choosing the le
 
 You might find it surprising that such a simple approach plays such an important role in machine learning. All of the sophistication lies in how the model is defined (@sec-nn) and how the gradients are calculated (@sec-backprop): for a complicated function with many parameters [^3] this is a highly nontrivial task. While there are plenty of more sophisticated optimization methods they often involve more information about the model's dependence on its parameters, and this is more costly to evaluate. For example [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization) — which you may have encountered before — requires knowledge of first _and second_ derivatives at each step, and this is normally less practical. 
 
-[^3]: GPT, the model from OpenAI underlying ChatGPT, has _hundreds of trillions_ of parameters!
+[^3]: GPT, the model from OpenAI underlying ChatGPT, has > _1 trillion_ parameters!
 
 Another issue that relates to scale concerns the definition of our cost function @eq-cost as an average over the dataset. For large datasets consisting of high dimensional data (e.g. images) it is usually not practical to calculate the gradient of the cost using the entire dataset. The usual procedure is then to split the data up into batches (usually called _minibatches_, confusingly), and perform each step of gradient descent by evaluating the gradient only on the batch, moving on to a new batch at the next step. Eventually this will lead to all the data in the dataset being used, which is usually known as one _epoch_ of training. Training a model can involve many epochs (passes through the dataset). 
 

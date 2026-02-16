@@ -396,22 +396,11 @@
     ]
   },
   {
-    "objectID": "slides/fourier.html#no-lectures-next-week",
-    "href": "slides/fourier.html#no-lectures-next-week",
-    "title": "Part II Computational Physics",
-    "section": "No lectures next week!",
-    "text": "No lectures next week!\n\nNext lecture Monday 24th February\nFirst exercise starts noon Friday 14th February",
-    "crumbs": [
-      "Slides",
-      "Fast Fourier transform"
-    ]
-  },
-  {
     "objectID": "slides/fourier.html#the-discrete-fourier-transform",
     "href": "slides/fourier.html#the-discrete-fourier-transform",
     "title": "Part II Computational Physics",
     "section": "The discrete Fourier transform",
-    "text": "The discrete Fourier transform\n\nChange of basis in a finite dimensional space\nMps signal sampled at \\(N\\) regularly spaced time points to representation at \\(N\\) frequency points \\[\nF_n = \\sum_{j=0}^{N-1} f_j e^{-i\\eta_n j}\n\\] \\(\\eta_n\\equiv \\frac{2\\pi n}{N}\\)\n\\(F_n\\) contain same information as \\(f_j\\), and \\(f_j\\) can be recovered completely by inverting operation",
+    "text": "The discrete Fourier transform\n\nChange of basis in a finite dimensional space\nMaps signal sampled at \\(N\\) regularly spaced time points to representation at \\(N\\) frequency points \\[\nF_n = \\sum_{j=0}^{N-1} f_j e^{-i\\eta_n j},\\qquad \\eta_n\\equiv \\frac{2\\pi n}{N}\n\\]\n\\(F_n\\) contain same information as \\(f_j\\), and \\(f_j\\) can be recovered completely by inverting operation\nNote that \\(e^{-i\\eta_n j}=e^{-i\\eta_{n-N} j}\\) so we can extend definition \\(F_n=F_{N-n}\\)",
     "crumbs": [
       "Slides",
       "Fast Fourier transform"
@@ -488,7 +477,7 @@
     "href": "slides/fourier.html#history",
     "title": "Part II Computational Physics",
     "section": "History",
-    "text": "History\n\nModern invention of FFT is credited to Cooley and Tukey (1965). First to discuss complexity\nDivide and conquer approach anticipated by Danielson and Lanczos (1942), for applications in crystallography\nOG is Carl Friedrich Gauss in 1805 (predating even Fourier) in his astronomical studies\nSee Cooley, Lewis, and Welch (1967) for more on historical background",
+    "text": "History\n\nModern invention of FFT is credited to Cooley and Tukey (1965). First to discuss complexity\nDivide and conquer approach anticipated in astronomy by David Wheeler in Cambridge and Danielson and Lanczos (1942), for applications in crystallography\nOG is Carl Friedrich Gauss in 1805 (predating even Fourier) in his astronomical studies\nSee Cooley, Lewis, and Welch (1967) for more on historical background",
     "crumbs": [
       "Slides",
       "Fast Fourier transform"
@@ -631,7 +620,7 @@
     "href": "slides/autodiff.html#why-so-simple",
     "title": "Part II Computational Physics",
     "section": "Why so simple?",
-    "text": "Why so simple?\n\nAll sophistication lies in how model is defined and how gradients are calculated\nNot a trvial task: GPT and other LLMs have hundreds of trillions of parameters!\nMany more sophisticated optimization methods, but often involve more information about model’s dependence on parameters\nNewton’s method requires knowledge of first and second derivatives at each step: too costly to evaluate",
+    "text": "Why so simple?\n\nAll sophistication lies in how model is defined and how gradients are calculated\nNot a trvial task: GPT and other LLMs &gt; 1 trillion parameters!\nMany more sophisticated optimization methods, but often involve more information about model’s dependence on parameters\nNewton’s method requires knowledge of first and second derivatives at each step: too costly to evaluate",
     "crumbs": [
       "Slides",
       "Autodiff and neural nets"
@@ -719,7 +708,7 @@
     "href": "slides/autodiff.html#what-ad-is-not",
     "title": "Part II Computational Physics",
     "section": "What AD is not",
-    "text": "What AD is not\n\nOften people guess…\n\n\\[\n\\frac{\\partial\\mathcal{C}}{\\partial \\theta_i} \\approx \\frac{\\mathcal{C}(\\theta_i+\\Delta\\theta_i)- \\mathcal{C}(\\theta_i)}{\\Delta \\theta_i}\n\\tag{1}\\]\n\nBut this is numerical differentiation\nNecessary if you only have access to \\(\\mathcal{C}(\\theta)\\) as a black box function\nAD is different: uses knowledge about how function \\(\\mathcal{C}\\) is formed by composing many simpler functions",
+    "text": "What AD is not\n\\[\n\\frac{\\partial\\mathcal{C}}{\\partial \\theta_i} \\approx \\frac{\\mathcal{C}(\\theta_i+\\Delta\\theta_i)- \\mathcal{C}(\\theta_i)}{\\Delta \\theta_i}\n\\]\n\nThis is numerical differentiation\nNecessary if you only have access to \\(\\mathcal{C}(\\theta)\\) as a black box function\nAD is different: uses knowledge about how function \\(\\mathcal{C}\\) is formed by composing many simpler functions",
     "crumbs": [
       "Slides",
       "Autodiff and neural nets"
@@ -1701,7 +1690,7 @@
     "href": "notes/autodiff.html#footnotes",
     "title": "Automatic differentiation and neural networks",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nThis is a slight exaggeration, but what people often do these days is augment symbolic approaches with neural approaches.↩︎\nThe term parameter is normally reserved for the \\(\\theta\\)’s that appear in the definition of the model. Numbers like the learning rate that describe how the model is trained are usually referred to as hyperparameters.↩︎\nGPT, the model from OpenAI underlying ChatGPT, has hundreds of trillions of parameters!↩︎\nNote that you don’t have to use the same activation function throughout. Typically the output layer of a network used for classification uses the softmax function to output probabilities over the labels.↩︎\nSpiking neural networks are a model in which time plays a more serious role.↩︎",
+    "text": "Footnotes\n\n\nThis is a slight exaggeration, but what people often do these days is augment symbolic approaches with neural approaches.↩︎\nThe term parameter is normally reserved for the \\(\\theta\\)’s that appear in the definition of the model. Numbers like the learning rate that describe how the model is trained are usually referred to as hyperparameters.↩︎\nGPT, the model from OpenAI underlying ChatGPT, has &gt; 1 trillion parameters!↩︎\nNote that you don’t have to use the same activation function throughout. Typically the output layer of a network used for classification uses the softmax function to output probabilities over the labels.↩︎\nSpiking neural networks are a model in which time plays a more serious role.↩︎",
     "crumbs": [
       "Notes",
       "Automatic differentiation and neural networks"
