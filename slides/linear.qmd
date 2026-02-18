@@ -12,8 +12,6 @@ format:
     preview-links: true
 ---
 
-![Please fill out the [feedback form](https://cambridge.eu.qualtrics.com/jfe/form/SV_1Aditea2hGfPFHg)](../assets/II%20Computational%20Physics.png){width=50%}
-
 # Linear algebra
 
 - Numerical linear algebra is a huge topic

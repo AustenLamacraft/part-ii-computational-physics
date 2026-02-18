@@ -192,15 +192,6 @@
     <div class="slides">
 
 
-<section class="slide level2 center">
-
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="../assets/II Computational Physics.png" style="width:50.0%"></p>
-<figcaption>Please fill out the <a href="https://cambridge.eu.qualtrics.com/jfe/form/SV_1Aditea2hGfPFHg">feedback form</a></figcaption>
-</figure>
-</div>
-</section>
 <section>
 <section id="linear-algebra" class="title-slide slide level1 center">
 <h1>Linear algebra</h1>
@@ -215,18 +206,18 @@
 <li><p>Multiplying matrices is easy in NumPy using <a href="https://numpy.org/doc/stable/reference/generated/numpy.matmul.html"><code>np.matmul</code></a></p></li>
 <li><p><code>@</code> operator gives shortcut</p></li>
 </ul>
-<div id="cdc461dd" class="cell" data-execution_count="1">
+<div id="67456b98" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a></a>A <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb1-3"><a></a>B <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb1-4"><a></a>np.matmul(A, B), A <span class="op">@</span> B</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>(array([[0.82408098, 0.90547579, 0.60657341],
-        [1.09327766, 0.9853124 , 0.35397595],
-        [1.19733698, 0.98107844, 0.72151756]]),
- array([[0.82408098, 0.90547579, 0.60657341],
-        [1.09327766, 0.9853124 , 0.35397595],
-        [1.19733698, 0.98107844, 0.72151756]]))</code></pre>
+<pre><code>(array([[1.4758799 , 1.42249684, 1.51688992],
+        [1.1620039 , 1.04449795, 1.43987427],
+        [0.67112498, 0.91171351, 0.92751922]]),
+ array([[1.4758799 , 1.42249684, 1.51688992],
+        [1.1620039 , 1.04449795, 1.43987427],
+        [0.67112498, 0.91171351, 0.92751922]]))</code></pre>
 </div>
 </div>
 </section>
@@ -235,7 +226,7 @@
 <ul>
 <li>You’ll get an error if your matrices don’t match…</li>
 </ul>
-<div id="bb7a1a05" class="cell" data-execution_count="2">
+<div id="1031ae87" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>C <span class="op">=</span> np.random.rand(<span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb3-2"><a></a>D <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">2</span>)</span>
 <span id="cb3-3"><a></a>C <span class="op">@</span> D</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -256,7 +247,7 @@ Cell <span class="ansi-green-fg">In[2], line 3</span>
 <li><p>If either <code>A</code> or <code>B</code> has rank greater than two: treat as a stack of matrices, with each matrix in last two indices</p></li>
 <li><p>Usual broadcasting rules then apply to remaining indices</p></li>
 </ul>
-<div id="f51ab017" class="cell" data-execution_count="3">
+<div id="8f25460b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>C <span class="op">=</span> np.random.rand(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb4-2"><a></a>D <span class="op">=</span> np.random.rand(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb4-3"><a></a>(C <span class="op">@</span> D).shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -284,21 +275,21 @@ Cell <span class="ansi-green-fg">In[2], line 3</span>
 <p><span class="math display">\[
 \left[A\cdot B\right]_{ik} = \sum_{j} A_{ij}B_{jk} = A_{ij}B_{jk}
 \]</span></p>
-<div id="eb8df9ea" class="cell" data-execution_count="4">
+<div id="1b7482c2" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>np.einsum(<span class="st">'ij,jk-&gt;ik'</span>, A, B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array([[0.82408098, 0.90547579, 0.60657341],
-       [1.09327766, 0.9853124 , 0.35397595],
-       [1.19733698, 0.98107844, 0.72151756]])</code></pre>
+<pre><code>array([[1.4758799 , 1.42249684, 1.51688992],
+       [1.1620039 , 1.04449795, 1.43987427],
+       [0.67112498, 0.91171351, 0.92751922]])</code></pre>
 </div>
 </div>
 <p><span class="math display">\[
 \operatorname{tr}\left[A\cdot B\right] = \sum_{i,j} A_{ij}B_{ji} = A_{ij}B_{ji}
 \]</span></p>
-<div id="326adbc8" class="cell" data-execution_count="5">
+<div id="b0bc15e3" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>np.einsum(<span class="st">'ij,ji-&gt;'</span>, A, B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>2.53091093668818</code></pre>
+<pre><code>3.447897067333387</code></pre>
 </div>
 </div>
 </section>
@@ -669,7 +660,7 @@ H\ket{\Psi} = E\ket{\Psi}
 <ul>
 <li>Define function that acts on wavefunction with each <span class="math inline">\(h_{j,j+1}\)</span></li>
 </ul>
-<div id="650c62c2" class="cell" data-execution_count="6">
+<div id="d672743c" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a><span class="co"># by Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 6/2019</span></span>
 <span id="cb10-2"><a></a></span>
 <span id="cb10-3"><a></a><span class="kw">def</span> doApplyHam(psiIn: np.ndarray,</span>
@@ -718,7 +709,7 @@ H\ket{\Psi} = E\ket{\Psi}
 <ul>
 <li>Use this to instantiate a <code>LinearOperator</code> which is passed into eigenvalue solver (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigsh.html#scipy.sparse.linalg.eigsh"><code>scipy.sparse.linalg.eigsh</code></a>)</li>
 </ul>
-<div id="296212f9" class="cell" data-execution_count="7">
+<div id="b996b39e" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="co">"""</span></span>
 <span id="cb11-2"><a></a><span class="co">by Glen Evenbly (c) for www.tensors.net, (v1.2) - last modified 06/2020</span></span>
 <span id="cb11-3"><a></a><span class="co">"""</span></span>
@@ -765,7 +756,7 @@ H\ket{\Psi} = E\ket{\Psi}
 <span id="cb11-44"><a></a><span class="bu">print</span>(<span class="st">'NumSites: </span><span class="sc">%d</span><span class="st">, Time: </span><span class="sc">%1.2f</span><span class="st">, Energy: </span><span class="sc">%e</span><span class="st">, EnErr: </span><span class="sc">%e</span><span class="st">'</span> <span class="op">%</span></span>
 <span id="cb11-45"><a></a>      (Nsites, diag_time, Energy[<span class="dv">0</span>], EnErr))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NumSites: 18, Time: 4.76, Energy: -2.303508e+01, EnErr: 1.065814e-14</code></pre>
+<pre><code>NumSites: 18, Time: 4.23, Energy: -2.303508e+01, EnErr: 1.065814e-14</code></pre>
 </div>
 </div>
 </section>
