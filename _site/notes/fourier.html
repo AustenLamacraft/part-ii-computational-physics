@@ -529,7 +529,7 @@ T(N) = 2T(N/2) +\alpha N
 </section>
 <section id="history" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="history"><span class="header-section-number">2.2</span> History</h2>
-<p>The modern invention of the FFT is credited to <span class="citation" data-cites="cooley1965algorithm">Cooley and Tukey (<a href="#ref-cooley1965algorithm" role="doc-biblioref">1965</a>)</span>. Certainly they were the first to discuss its complexity. The divide and conquer approach was however anticipated by <span class="citation" data-cites="danielson1942some">Danielson and Lanczos (<a href="#ref-danielson1942some" role="doc-biblioref">1942</a>)</span>, who had applications in crystallography in mind, and by unpublished work of <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a> in 1805 (predating even Fourier) in his astronomical studies. See <span class="citation" data-cites="cooley1967historical">Cooley, Lewis, and Welch (<a href="#ref-cooley1967historical" role="doc-biblioref">1967</a>)</span> for more on the historical background.</p>
+<p>The modern invention of the FFT is credited to <span class="citation" data-cites="cooley1965algorithm">Cooley and Tukey (<a href="#ref-cooley1965algorithm" role="doc-biblioref">1965</a>)</span>. Certainly they were the first to discuss its complexity. The divide and conquer approach was however anticipated by <span class="citation" data-cites="danielson1942some">Danielson and Lanczos (<a href="#ref-danielson1942some" role="doc-biblioref">1942</a>)</span> in the analysis of X-ray scattering in liquids, and by <a href="https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)">David Wheeler</a> of the Mathematical Laboratory (now the Computer Lab) in Cambridge, applied to radio astronomy, as recorded in Martin Ryle’s Nobel lecture <span class="citation" data-cites="ryle1975radio">Ryle (<a href="#ref-ryle1975radio" role="doc-biblioref">1975</a>)</span>. The earliest credit goes to <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a> in 1805 (predating even Fourier) in his astronomical studies. See <span class="citation" data-cites="cooley1967historical">Cooley, Lewis, and Welch (<a href="#ref-cooley1967historical" role="doc-biblioref">1967</a>)</span> for more on the historical background.</p>
 </section>
 <section id="fft-in-python" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="fft-in-python"><span class="header-section-number">2.3</span> FFT in Python</h2>
@@ -541,7 +541,7 @@ T(N) = 2T(N/2) +\alpha N
 <li><code>np.fft.ifftshift(A)</code> inverts this.</li>
 </ol>
 <p>Here are some simple examples of their use, applied to a very simple signal consisting of two sinusoids at 12 Hz and 34 Hz:</p>
-<div id="e37e91a6" class="cell" data-execution_count="1">
+<div id="50f6e9cd" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dt<span class="op">=</span><span class="fl">0.01</span></span>
@@ -563,7 +563,7 @@ T(N) = 2T(N/2) +\alpha N
 </div>
 </div>
 <p>Now we can take the FFT and plot vs array index, or against the real frequency (with the given sample spacing of <span class="math inline">\(dt=0.01\)</span>)</p>
-<div id="9cdb78fd" class="cell" data-execution_count="2">
+<div id="8524d0f7" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Y<span class="op">=</span>np.fft.fft(y)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot FFT modulus versus array index</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)<span class="op">;</span> plt.plot(<span class="bu">abs</span>(Y))</span>
@@ -584,7 +584,7 @@ T(N) = 2T(N/2) +\alpha N
 </div>
 </div>
 <p>As we discussed in <a href="#sec-properties" class="quarto-xref">Section&nbsp;1.4</a>, the Fourier transform of real valued data has the property <span class="math inline">\(F_n = \left[F_{-n}\right]^*\)</span>:</p>
-<div id="3adc10c1" class="cell" data-execution_count="3">
+<div id="56efeafb" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)<span class="op">;</span> plt.plot(f,Y.real)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>)<span class="op">;</span> plt.plot(f,Y.imag)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Frequency / Hz"</span>)</span>
@@ -601,7 +601,7 @@ T(N) = 2T(N/2) +\alpha N
 <section id="windowing" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="windowing"><span class="header-section-number">2.4</span> Windowing</h2>
 <p>Note that, even though our signal consists of just a pair of sinusoids, the FFT does <em>not</em> just consist of <span class="math inline">\(\delta\)</span>-functions, which is more obvious on a log-scale:</p>
-<div id="d70b8b90" class="cell" data-execution_count="4">
+<div id="b2e8a4e1" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.magnitude_spectrum(y, Fs<span class="op">=</span><span class="dv">100</span>, scale<span class="op">=</span><span class="st">'dB'</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -687,7 +687,7 @@ e^{xA}e^{xB} = e^{x(A+B) + O(x^2)}.
 e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
 \]</span></p>
 <p>In any case, the practical algorithm suggested by these formulas is implemented for the Schrödinger equation by switching between real space and Fourier space, where the two kinds of evolution are implemented. Here’s a simple 1D example:</p>
-<div id="55cdafa5" class="cell" data-execution_count="5">
+<div id="e871ea79" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_step_schrodinger(psi_0, dx, dt, V, N, x_0 <span class="op">=</span> <span class="fl">0.</span>, k_0 <span class="op">=</span> <span class="va">None</span>, m <span class="op">=</span> <span class="fl">1.0</span>, non_linear <span class="op">=</span> <span class="va">False</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    len_x <span class="op">=</span> psi_0.shape[<span class="dv">0</span>]</span>
@@ -741,7 +741,7 @@ e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
 <span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> psi_x,psi_k,k_x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="fcfb2536" class="cell" data-execution_count="6">
+<div id="529ee9d9" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> oneD_gaussian(x,mean,std,k0):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="op">-</span>((x<span class="op">-</span>mean)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>std<span class="op">**</span><span class="dv">2</span>)<span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>x<span class="op">*</span>k0)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>std<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="fl">0.25</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -750,7 +750,7 @@ e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    V_x[np.where(<span class="bu">abs</span>(x) <span class="op">&lt;</span> <span class="fl">0.5</span>)] <span class="op">=</span> <span class="fl">1.5</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> V_x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d2e04ade" class="cell" data-execution_count="7">
+<div id="2c6f384c" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>N_x <span class="op">=</span> <span class="dv">2</span><span class="op">**</span><span class="dv">11</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> <span class="fl">0.05</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> dx <span class="op">*</span> (np.arange(N_x) <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> N_x)</span>
@@ -765,7 +765,7 @@ e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>psi_x,psi_k,k <span class="op">=</span> split_step_schrodinger(psi_0, dx, dt, V, N_t, x_0 <span class="op">=</span> x[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d7f1501f" class="cell" data-execution_count="8">
+<div id="240939da" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Animation code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation</span>
@@ -824,6 +824,9 @@ Cooley, James W, and John W Tukey. 1965. <span>“An Algorithm for the Machine C
 </div>
 <div id="ref-danielson1942some" class="csl-entry" role="listitem">
 Danielson, Gordon Charles, and Cornelius Lanczos. 1942. <span>“Some Improvements in Practical Fourier Analysis and Their Application to x-Ray Scattering from Liquids.”</span> <em>Journal of the Franklin Institute</em> 233 (5): 435–52.
+</div>
+<div id="ref-ryle1975radio" class="csl-entry" role="listitem">
+Ryle, Martin. 1975. <span>“Radio Telescopes of Large Resolving Power.”</span> <em>Science</em> 188 (4193): 1071–79.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
@@ -907,7 +910,7 @@ Danielson, Gordon Charles, and Cornelius Lanczos. 1942. <span>“Some Improvemen
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

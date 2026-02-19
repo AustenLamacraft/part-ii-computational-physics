@@ -176,7 +176,7 @@ As a practical matter it's probably best to try and ensure that $N$ _is_ a power
 
 ## History
 
-The modern invention of the FFT is credited to  @cooley1965algorithm. Certainly they were the first to discuss its complexity. The divide and conquer approach was however anticipated by @danielson1942some, who had applications in crystallography in mind, and by unpublished work of [Carl Friedrich Gauss](https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss) in 1805 (predating even Fourier) in his astronomical studies. See @cooley1967historical for more on the historical background.
+The modern invention of the FFT is credited to  @cooley1965algorithm. Certainly they were the first to discuss its complexity. The divide and conquer approach was however anticipated by @danielson1942some in the analysis of X-ray scattering in liquids, and by [David Wheeler](https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)) of the Mathematical Laboratory (now the Computer Lab) in Cambridge, applied to radio astronomy, as recorded in Martin Ryle's Nobel lecture @ryle1975radio. The earliest credit goes to [Carl Friedrich Gauss](https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss) in 1805 (predating even Fourier) in his astronomical studies. See @cooley1967historical for more on the historical background.
 
 ## FFT in Python
 

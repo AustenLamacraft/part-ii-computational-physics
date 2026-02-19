@@ -259,7 +259,7 @@ $$
 
 - Modern invention of FFT is credited to @cooley1965algorithm. First to discuss complexity
 
-- Divide and conquer approach anticipated in astronomy by [David Wheeler](https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)) in Cambridge and @danielson1942some, for applications in crystallography
+- Divide and conquer approach anticipated in radio astronomy by [David Wheeler](https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)) in Cambridge (see @ryle1975radio) and @danielson1942some, for applications in crystallography
 
 - OG is [Carl Friedrich Gauss](https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss) in 1805 (predating even Fourier) in his astronomical studies
 

@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.8.24" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+
+<title>Fast Fourier transform – Part II Computational Physics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<!-- htmldependencies:E3FAD763 -->
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn"
+      data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" 
+      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <h1 class="quarto-secondary-nav-title no-breadcrumbs"></h1>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" role="link"
+        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="/index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1"  role="navigation" aria-expanded="true">
+ <span class="menu-text">Notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course outline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/notes/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/notes/getting-going.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting going</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/notes/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy and friends</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/notes/numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Floating point and all that</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/notes/ode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solving differential equations with SciPy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/notes/monte-carlo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Monte Carlo methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/notes/complexity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algorithms and computational complexity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/notes/fourier.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Fast Fourier transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/notes/autodiff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Automatic differentiation and neural networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/notes/linear.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear algebra</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2"  role="navigation" aria-expanded="false">
+ <span class="menu-text">Slides</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/slides/getting-going.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting going</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/slides/numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NumPy and friends</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/slides/numbers-and-odes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Floating point and ODEs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/slides/monte-carlo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Monte Carlo methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/slides/complexity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algorithms and computational complexity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/slides/fourier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fast Fourier transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/slides/autodiff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Autodiff and neural nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/slides/linear.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear algebra</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3"  role="navigation" aria-expanded="false">
+ <span class="menu-text">Exercises and Projects</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/exercises/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="/exercises/projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" ></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <div id="quarto-toc-target"></div>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Fast Fourier transform</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-discrete-fourier-transform" id="toc-the-discrete-fourier-transform"><span class="header-section-number">1</span> The discrete Fourier transform</a>
+  <ul>
+  <li><a href="#ntoinfty-limit" id="toc-ntoinfty-limit"><span class="header-section-number">1.1</span> <span class="math inline">\(N\to\infty\)</span> limit</a></li>
+  <li><a href="#ntoinfty-with-f_j-fjln" id="toc-ntoinfty-with-f_j-fjln"><span class="header-section-number">1.2</span> <span class="math inline">\(N\to\infty\)</span> with <span class="math inline">\(f_j = f(jL/N)\)</span></a></li>
+  <li><a href="#ltoinfty" id="toc-ltoinfty"><span class="header-section-number">1.3</span> <span class="math inline">\(L\to\infty\)</span></a></li>
+  <li><a href="#sec-properties" id="toc-sec-properties"><span class="header-section-number">1.4</span> Some important properties</a></li>
+  <li><a href="#higher-dimensions" id="toc-higher-dimensions"><span class="header-section-number">1.5</span> Higher dimensions</a></li>
+  </ul></li>
+  <li><a href="#the-fast-fourier-transform" id="toc-the-fast-fourier-transform"><span class="header-section-number">2</span> The fast Fourier transform</a>
+  <ul>
+  <li><a href="#complexity" id="toc-complexity"><span class="header-section-number">2.1</span> Complexity</a></li>
+  <li><a href="#history" id="toc-history"><span class="header-section-number">2.2</span> History</a></li>
+  <li><a href="#fft-in-python" id="toc-fft-in-python"><span class="header-section-number">2.3</span> FFT in Python</a></li>
+  <li><a href="#windowing" id="toc-windowing"><span class="header-section-number">2.4</span> Windowing</a></li>
+  </ul></li>
+  <li><a href="#applications-of-the-fft" id="toc-applications-of-the-fft"><span class="header-section-number">3</span> Applications of the FFT</a>
+  <ul>
+  <li><a href="#signal-processing" id="toc-signal-processing"><span class="header-section-number">3.1</span> Signal processing</a></li>
+  <li><a href="#partial-differential-equations" id="toc-partial-differential-equations"><span class="header-section-number">3.2</span> Partial differential equations</a></li>
+  </ul></li>
+  </ul>
+</nav>
+<p>You’ve met Fourier in the context of Fourier <em>series</em>, where a periodic function is represented as an infinite series, and Fourier <em>transforms</em>, where a non-periodic function is represented as an integral. Both representations are infinite, involving all the points on a real interval or an infinite number of terms in a series, so not really suitable for representation on a computer. For that we need a <em>third</em> thing: the discrete Fourier transform (DFT). After defining it, we’ll see there is a divide and conquer type algorithm for calculating it efficiently called the <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">fast Fourier transform</a> (FFT), which opened up an enormous number of applications across science and engineering.</p>
+<section id="the-discrete-fourier-transform" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> The discrete Fourier transform</h1>
+<p>The discrete Fourier transform is a change of basis in a finite dimensional space. You can think of it as taking a signal sampled at a finite number of regularly spaced time points and outputting a representation of the signal at a finite number of frequency points (this is a common application).</p>
+<p>For a vector <span class="math inline">\(x_j = 0,\ldots N-1\)</span>, we define the DFT by <span id="eq-dft"><span class="math display">\[
+F_n = \sum_{j=0}^{N-1} f_j e^{-i\eta_n j},
+\tag{1}\]</span></span> where <span class="math inline">\(\eta_n\equiv \frac{2\pi n}{N}\)</span>, and <span class="math inline">\(n = 0,\ldots N-1\)</span>. The coefficients <span class="math inline">\(F_n\)</span> contain the same information as <span class="math inline">\(f_j\)</span>, and <span class="math inline">\(f_j\)</span> can be recovered completely by inverting the operation. The key to inverting <a href="#eq-dft" class="quarto-xref">Equation 1</a> is the observation <span id="eq-DFTIdent"><span class="math display">\[
+\sum_{n=0}^{N-1} e^{i\eta_n j} = \begin{cases}
+0 &amp; j\neq 0 \mod N\\
+N &amp; j = 0 \mod N.
+\end{cases}
+\tag{2}\]</span></span></p>
+<blockquote>
+<p>Perhaps the slickest way to to see this is to observe that <span class="math display">\[
+z^N-1 = (z-1)(1 + z + z^2 +\cdots z^{N-1})
+\]</span> Can you fill in the rest of the argument?</p>
+</blockquote>
+<p>This gives <span id="eq-IDFT"><span class="math display">\[
+f_j = \frac{1}{N}\sum_{n=0}^{N-1}  F_n e^{i\eta_n j}.
+\tag{3}\]</span></span> A more democratic definition would have <span class="math inline">\(1/\sqrt{N}\)</span> in both definitions <a href="#eq-dft" class="quarto-xref">Equation 1</a> and <a href="#eq-IDFT" class="quarto-xref">Equation 3</a>. This would allow us to regard the DFT as a basis change to an orthonormal basis of vectors <span class="math inline">\(e^{(n)}_j = \frac{e^{i\eta_n j}}{\sqrt{N}}\)</span> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Then both the DFT and its inverse would be unitary transformations.</p>
+<p>We often think of Fourier transforms involving complex exponentials in terms of positive and negative frequency contributions. When <span class="math inline">\(N\)</span> is finite the <span class="math inline">\(\eta_n\)</span> values for <span class="math inline">\(n\)</span> close to <span class="math inline">\(N-1\)</span> can be regarded as the negative frequencies since <span class="math inline">\(e^{-i\eta_n j}=e^{2\pi ij -i\eta_n j}=e^{i\eta_{N - n}j}\)</span>.</p>
+<p>There are a several limits we can consider that connect the DFT with the things you have already met.</p>
+<section id="ntoinfty-limit" class="level2" data-number="1.1">
+<h2 data-number="1.1"><span class="header-section-number">1.1</span> <span class="math inline">\(N\to\infty\)</span> limit</h2>
+<p>In this limit the <span class="math inline">\(\eta_n\)</span> values become dense in the range <span class="math inline">\((-\pi,\pi]\)</span>, with separation <span class="math inline">\(\Delta \eta = 2\pi/N\)</span>, and we replace the sum in the inverse DFT <a href="#eq-IDFT" class="quarto-xref">Equation 3</a> by an integral according to the prescription <span class="math display">\[
+\sum_{n=0}^{N-1} \left(\cdots\right) \xrightarrow{N\to\infty} N \int_{0}^{2\pi} \frac{d\eta}{2\pi}\left(\cdots\right),
+\]</span> giving <span class="math display">\[
+f_j = \int_{0}^{2\pi} \frac{d\eta}{2\pi}\,F(\eta) e^{i\eta j}.
+\]</span></p>
+</section>
+<section id="ntoinfty-with-f_j-fjln" class="level2" data-number="1.2">
+<h2 data-number="1.2"><span class="header-section-number">1.2</span> <span class="math inline">\(N\to\infty\)</span> with <span class="math inline">\(f_j = f(jL/N)\)</span></h2>
+<p>Alternatively, regard the <span class="math inline">\(N\to\infty\)</span> limit as sampling a function <span class="math inline">\(f(x)\)</span> ever more finely in the range (0,L]. Now it’s the DFT, rather than the inverse, that becomes an integral <span class="math display">\[
+\hat f(k) \equiv \int_0^L f(x) e^{-ik_n x}\,dx,
+\]</span> where <span class="math inline">\(k_n =2\pi n/L\)</span>. Note that <span class="math inline">\(k_n x = \eta_n j\)</span>. The pair of transformations is now <span id="eq-FTSeries"><span class="math display">\[
+\begin{align}
+\hat f_k &amp;= \int_0^L f(x) e^{-ik_n x}\,dx\nonumber\\
+f(x) &amp;= \frac{1}{L}\sum_k \hat f_k e^{ik_n x}
+\end{align}
+\tag{4}\]</span></span> This is the conventional form of the Fourier series for a function with period <span class="math inline">\(L\)</span>.</p>
+<p>With this definition <span class="math inline">\(\hat f_k\)</span> has an extra dimension of distance (on account of the integral), which gets removed by the <span class="math inline">\(1/L\)</span> in the inverse transform.</p>
+<p>The analog of the identity <a href="#eq-DFTIdent" class="quarto-xref">Equation 2</a> is <span class="math display">\[
+\frac{1}{L}\sum_k e^{ik x} = \delta_L(x),
+\]</span> where <span class="math inline">\(\delta_L(x)\)</span> is an <span class="math inline">\(L\)</span>-periodic version of the <span class="math inline">\(\delta\)</span>-function.</p>
+</section>
+<section id="ltoinfty" class="level2" data-number="1.3">
+<h2 data-number="1.3"><span class="header-section-number">1.3</span> <span class="math inline">\(L\to\infty\)</span></h2>
+<p>Finally we arrive at the Fourier transform, where we take <span class="math inline">\(L\to\infty\)</span>, so that the inverse transform in <a href="#eq-FTSeries" class="quarto-xref">Equation 4</a> becomes an integral too <span class="math display">\[
+\begin{align}
+\hat{f}(k) &amp; = \int_{-\infty}^\infty f(x) e^{-ik_n x}\,dx\nonumber\\
+f(x) &amp;= \int_{-\infty}^\infty \hat f(k) e^{ik_n x}\,\frac{dk}{2\pi}.
+\label{coll_FTTrans}
+\end{align}
+\]</span></p>
+</section>
+<section id="sec-properties" class="level2" data-number="1.4">
+<h2 data-number="1.4"><span class="header-section-number">1.4</span> Some important properties</h2>
+<p>Here are some properties that hold for all of the above.</p>
+<ol type="1">
+<li><p>If <span class="math inline">\(f_j\)</span> is real then <span class="math inline">\(F_n = \left[F_{-n}\right]^*\)</span>.</p></li>
+<li><p>If <span class="math inline">\(f_j\)</span> is even (odd) <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> , <span class="math inline">\(F_n\)</span> is even (odd).</p></li>
+<li><p>(Ergo) if <span class="math inline">\(f_j\)</span> is real and even, so is <span class="math inline">\(F_n\)</span>.</p></li>
+</ol>
+</section>
+<section id="higher-dimensions" class="level2" data-number="1.5">
+<h2 data-number="1.5"><span class="header-section-number">1.5</span> Higher dimensions</h2>
+<p>The DFT generalizes to higher dimensions straightforwardly. Suppose we have data living in <span class="math inline">\(d\)</span> dimensions with <span class="math inline">\(N_i\)</span> datapoints along dimension <span class="math inline">\(i=1,\dots d\)</span>, then the DFT is <span class="math display">\[
+F_{\mathbf{n}} = \sum_{\mathbf{n}} f_\mathbf{j}e^{-i \boldsymbol{\eta}_\mathbf{n}\cdot \mathbf{j}},
+\]</span> where <span class="math inline">\(\mathbf{j}=(j_1,\ldots j_{d})\)</span> with <span class="math inline">\(j_i = 0,\ldots N_i - 1\)</span> and likewise <span class="math inline">\(\boldsymbol{\eta}_\mathbf{n} = 2\pi (n_1 / N_1, \ldots n_d/ N_d)\)</span> <span class="math inline">\(n_i = 0,\ldots N_i - 1\)</span></p>
+</section>
+</section>
+<section id="the-fast-fourier-transform" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The fast Fourier transform</h1>
+<p>What is the complexity of computing the Fourier transform? <a href="#eq-dft" class="quarto-xref">Equation 1</a> may be regarded as matrix-vector multiplication, where <span class="math inline">\(f_j\)</span> are the <span class="math inline">\(N\)</span> components of a vector and the matrix has elements <span class="math inline">\(Q_{n j}\equiv e^{-i\eta_n j}\)</span>, so that the DFT is written <span class="math display">\[
+\mathbf{F} = Q \cdot \mathbf{f}.
+\]</span> Naively, then, the complexity is <span class="math inline">\(O(N^2)\)</span>.</p>
+<p>Surprisingly, we can do a lot better than this, because <span class="math inline">\(Q\)</span> is not any old matrix but has a great deal of structure. To see this, we follow the divide and conquer pattern of trying to break the problem up into two sub-problems, in this case by separating the <span class="math inline">\(N/2\)</span> even and <span class="math inline">\(N/2\)</span> odd coefficients (assuming <span class="math inline">\(N\)</span> even)</p>
+<p><span class="math display">\[
+f^{\text{e}}_j = f_{2j}\qquad f^{\text{o}}_j = f_{2j+1},\qquad j=0,\ldots N/2 - 1.
+\]</span></p>
+<p>The key idea is that we are going to express the DFT <span class="math inline">\(F_n\)</span> in terms of the DFT of <span class="math inline">\(f^\text{e}_j\)</span> and <span class="math inline">\(f^\text{o}_j\)</span>.</p>
+<p>Before going on, it’s convenient to introduce the <span class="math inline">\(N\)</span>th root of 1 <span class="math inline">\(\omega_N \equiv e^{2\pi i/N}\)</span>, so that <span class="math inline">\(e^{i\eta_n j}=\omega_N^{nj}\)</span> and we can write the Fourier transform as</p>
+<p><span class="math display">\[
+F_n = \sum_{j=0}^{N-1} f_j \omega_N^{-nj}
+\]</span></p>
+<p>Then we notice the following</p>
+<p><span class="math display">\[
+\begin{align}
+F_n &amp;= \sum_{j=0}^{N-1} \omega_N^{-nj} f_j \\
+&amp;=\sum_{j=0}^{N/2-1} \left[\omega_N^{-2nj} f^{\text{e}}_j + \omega_N^{-n(2j+1)}f^{\text{o}}_j\right]\\
+&amp;=\sum_{j=0}^{N/2-1} \left[\omega_{N/2}^{-nj} f^{\text{e}}_j + \omega_N^{-n}\omega_{N/2}^{-nj}f^{\text{o}}_j\right].\\
+\end{align}
+\]</span></p>
+<p>This is already looking like the sum of two DFTs of size <span class="math inline">\(N/2\)</span> but we have to be a bit careful with the indexing, as the original index <span class="math inline">\(n\)</span> takes values <span class="math inline">\(0,\ldots N-1\)</span>. We can write <span class="math inline">\(n\)</span> as</p>
+<p><span class="math display">\[
+n = (N/2)n_0 + n&#39;
+\]</span></p>
+<p>where <span class="math inline">\(n_0=0,1\)</span> and <span class="math inline">\(n&#39;=0,\ldots N/2 - 1\)</span>. If <span class="math inline">\(n\)</span> is a power of 2 then <span class="math inline">\(n_0\)</span> is the most significant bit of <span class="math inline">\(n\)</span> when written in binary and <span class="math inline">\(n&#39;\)</span> are the remaining bits. Since <span class="math inline">\(\omega_{N/2}^{-jn}=\omega_{N/2}^{-jn&#39;}\)</span> we have</p>
+<p><span id="eq-divide-and-conquer"><span class="math display">\[
+\begin{align}
+F_n &amp;= \sum_{j=0}^{N/2-1} \left[\omega_{N/2}^{-n&#39;j} f^{\text{e}}_j + (-1)^{n_0}\omega_N^{-n&#39;} \omega_{N/2}^{-n&#39;j}f^{\text{o}}_j\right]\\
+&amp;= F^\text{e}_{n&#39;} + (-1)^{n_0}\omega_N^{-n&#39;} F^\text{o}_{n&#39;}.
+\end{align}
+\tag{5}\]</span></span></p>
+<p>This is the big payoff: using the properties of the Fourier matrix we have expressed the DFT <span class="math inline">\(F_n\)</span> in terms of the DFTs of two arrays of half the length. If <span class="math inline">\(N\)</span> is a power of 2 we can repeat that process until we get to arrays of length 1, in which case the array and its DFT are the same single number.</p>
+<p>The structure of the FFT is often illustrated in terms of the “Butterfly” diagram, which probably makes more sense after you’ve seen <a href="#eq-divide-and-conquer" class="quarto-xref">Equation 5</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img src="../assets/FFT-butterfly.png" class="img-fluid" style="width:60.0%" /></p>
+<figcaption>Butterfly diagram for the FFT Source:<a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Wikipedia</a></figcaption>
+</figure>
+</div>
+<section id="complexity" class="level2" data-number="2.1">
+<h2 data-number="2.1"><span class="header-section-number">2.1</span> Complexity</h2>
+<p>It should be clear that the FFT is going to beat the naive approach, but let’s analyze the complexity more carefully. If <span class="math inline">\(T(N)\)</span> is time (or number of steps) required to compute the DFT for size <span class="math inline">\(N\)</span> inputs, then calculating <span class="math inline">\(F^\text{e}_{n&#39;}\)</span> and <span class="math inline">\(F^\text{0}_{n&#39;}\)</span> takes time <span class="math inline">\(2T(N/2)\)</span>. Using <a href="#eq-divide-and-conquer" class="quarto-xref">Equation 5</a> to evaluate <span class="math inline">\(F_n\)</span> is a further <span class="math inline">\(N\)</span> steps, so we have <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p><span class="math display">\[
+T(N) = 2T(N/2) +\alpha N
+\]</span></p>
+<p>for some <span class="math inline">\(\alpha\)</span>. This implies <span class="math inline">\(T(N)=\Theta(N\log N)\)</span>.</p>
+<p>What happens when <span class="math inline">\(N\)</span> isn’t a power of 2? You can still use the divide and conquer strategy for any other factor <span class="math inline">\(p\)</span> of <span class="math inline">\(N\)</span>. If the largest prime factor of <span class="math inline">\(N\)</span> is bounded i.e. doesn’t grow with <span class="math inline">\(N\)</span> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, then this still yields <span class="math inline">\(T(N)=\Theta(N\log N)\)</span>. If <span class="math inline">\(N\)</span> is prime you have to use <a href="https://en.wikipedia.org/wiki/Rader%27s_FFT_algorithm">something else</a>.</p>
+<p>As a practical matter it’s probably best to try and ensure that <span class="math inline">\(N\)</span> <em>is</em> a power of two e.g. by choosing the size of your simulation appropriately or padding your data with zeros until its length is a power of 2.</p>
+</section>
+<section id="history" class="level2" data-number="2.2">
+<h2 data-number="2.2"><span class="header-section-number">2.2</span> History</h2>
+<p>The modern invention of the FFT is credited to <span class="citation" data-cites="cooley1965algorithm">Cooley and Tukey (<a href="#ref-cooley1965algorithm" role="doc-biblioref">1965</a>)</span>. Certainly they were the first to discuss its complexity. The divide and conquer approach was however anticipated by <span class="citation" data-cites="danielson1942some">Danielson and Lanczos (<a href="#ref-danielson1942some" role="doc-biblioref">1942</a>)</span> in the analysis of X-ray scattering in liquids, and by <a href="https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)">David Wheeler</a> of the Mathematical Laboratory (now the Computer Lab) in Cambridge, applied to radio astronomy, as recorded in Martin Ryle’s Nobel lecture <span class="citation" data-cites="ryle1975radio">Ryle (<a href="#ref-ryle1975radio" role="doc-biblioref">1975</a>)</span>. The earliest credit goes to <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a> in 1805 (predating even Fourier) in his astronomical studies. See <span class="citation" data-cites="cooley1967historical">Cooley, Lewis, and Welch (<a href="#ref-cooley1967historical" role="doc-biblioref">1967</a>)</span> for more on the historical background.</p>
+</section>
+<section id="fft-in-python" class="level2" data-number="2.3">
+<h2 data-number="2.3"><span class="header-section-number">2.3</span> FFT in Python</h2>
+<p>As usual, you don’t have to go implementing this yourself. The FFT is available in both NumPy (in the <a href="https://numpy.org/doc/stable/reference/routines.fft.html#module-numpy.fft"><code>numpy.fft</code></a> module) and SciPy (in <a href="https://docs.scipy.org/doc/scipy/reference/fft.html#module-scipy.fft"><code>scipy.fft</code></a>), the latter with a more comprehensive set of functions.</p>
+<p><a href="#eq-dft" class="quarto-xref">Equation 1</a> and <a href="#eq-IDFT" class="quarto-xref">Equation 3</a> are the default definitions used in these modules, though you should always check the conventions used in any library implementation. The NumPy documentation provides a careful discussion of the positive and negative frequency components and there are several helper functions available to make your life easier, such as:</p>
+<ol type="1">
+<li><code>np.fft.fftfreq(n, d)</code>, which returns the <em>frequencies</em> (not the angular frequencies) for input size <span class="math inline">\(n\)</span> and sample spacing <span class="math inline">\(d\)</span>.</li>
+<li><code>np.fft.fftshift(A)</code> shifts data so that the zero frequency is in the centre.</li>
+<li><code>np.fft.ifftshift(A)</code> inverts this.</li>
+</ol>
+<p>Here are some simple examples of their use, applied to a very simple signal consisting of two sinusoids at 12 Hz and 34 Hz:</p>
+<div id="50f6e9cd" class="cell" data-execution_count="1">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dt<span class="op">=</span><span class="fl">0.01</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>fftsize<span class="op">=</span><span class="dv">256</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.arange(fftsize)<span class="op">*</span>dt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Generate some fake data at 12 Hz and 34 Hz</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>np.cos(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="dv">12</span><span class="op">*</span>t)<span class="op">+</span><span class="fl">0.5</span><span class="op">*</span>np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span><span class="dv">34</span><span class="op">*</span>t)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.plot(t,y)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Time&quot;</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Text(0.5, 0, &#39;Time&#39;)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img src="fourier_files/figure-html/cell-2-output-2.png" width="582" height="429" /></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we can take the FFT and plot vs array index, or against the real frequency (with the given sample spacing of <span class="math inline">\(dt=0.01\)</span>)</p>
+<div id="8524d0f7" class="cell" data-execution_count="2">
+<div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Y<span class="op">=</span>np.fft.fft(y)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot FFT modulus versus array index</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)<span class="op">;</span> plt.plot(<span class="bu">abs</span>(Y))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now use the correct frequency coordinates</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>f<span class="op">=</span>np.fft.fftfreq(fftsize, dt)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Reordering makes a tidier plot...</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>Y<span class="op">=</span>np.fft.fftshift(Y)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>f<span class="op">=</span>np.fft.fftshift(f)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>)<span class="op">;</span> plt.plot(f, <span class="bu">abs</span>(Y))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Frequency / Hz&quot;</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img src="fourier_files/figure-html/cell-3-output-1.png" width="575" height="429" /></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As we discussed in <a href="#sec-properties" class="quarto-xref">Section 1.4</a>, the Fourier transform of real valued data has the property <span class="math inline">\(F_n = \left[F_{-n}\right]^*\)</span>:</p>
+<div id="56efeafb" class="cell" data-execution_count="3">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)<span class="op">;</span> plt.plot(f,Y.real)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>)<span class="op">;</span> plt.plot(f,Y.imag)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Frequency / Hz&quot;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img src="fourier_files/figure-html/cell-4-output-1.png" width="578" height="429" /></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="windowing" class="level2" data-number="2.4">
+<h2 data-number="2.4"><span class="header-section-number">2.4</span> Windowing</h2>
+<p>Note that, even though our signal consists of just a pair of sinusoids, the FFT does <em>not</em> just consist of <span class="math inline">\(\delta\)</span>-functions, which is more obvious on a log-scale:</p>
+<div id="b2e8a4e1" class="cell" data-execution_count="4">
+<div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.magnitude_spectrum(y, Fs<span class="op">=</span><span class="dv">100</span>, scale<span class="op">=</span><span class="st">&#39;dB&#39;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img src="fourier_files/figure-html/cell-5-output-1.png" width="604" height="429" /></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The reason, as you may guess from your knowledge of Fourier transforms, is that our data is of <em>finite length</em>. This <em>windowing</em> causes the FFT to have non-zero values outside the frequencies present in the signal, a phenomenon called <a href="https://en.wikipedia.org/wiki/Spectral_leakage">spectral leakage</a>. In our case a sharp window means that the FFT is effectively convolved with the Fourier transform of a top hat function i.e. a sinc function. If the window happens to contain a whole number of wavelengths of the signals present, spectral leakage does not occur.</p>
+<p>The effects of windowing can be mitigated by choosing different <a href="https://en.wikipedia.org/wiki/Window_function">window functions</a> — with smooth edges for example — to multiply our data, depending on what you are looking for. The rectangular / top hat window has <em>low dynamic range</em>: it is not great at distinguishing contributions of different amplitude even when their frequencies differ, as leakage from the large peak may obscure the other, smaller ones. On the other hand it has <em>high resolution</em>, meaning that it is good at resolving peaks of similar amplitude that are close in frequency. Expect to be presented with several options (Hamming, Tukey (him again), etc.) when using library functions that perform spectral analysis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img src="../assets/ligo-window.png" class="img-fluid" style="width:80.0%" /></p>
+<figcaption>Importance of windowing LIGO data, from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span>. Without appropriate windowing, the entire power spectrum is dominated by spectral leakage following a <span class="math inline">\(1/f^2\)</span> scaling.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="applications-of-the-fft" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Applications of the FFT</h1>
+<p>The FFT has a mindboggling number of applications ranging from signal processing in experimental data, audio and video signals, to numerical simulation, where <a href="https://en.wikipedia.org/wiki/Spectral_method">spectral methods</a> exploit the FFT as part of the numerical solution of partial differential equations. Here, we’ll look at just a couple of examples.</p>
+<section id="signal-processing" class="level2" data-number="3.1">
+<h2 data-number="3.1"><span class="header-section-number">3.1</span> Signal processing</h2>
+<p>As an example, let’s look at some of the stages in the analysis of time series data from the LIGO and Virgo experiments on <a href="https://en.wikipedia.org/wiki/First_observation_of_gravitational_waves">gravitational wave detection</a> that led to the 2017 Nobel prize in physics. I’m following <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span> closely here, and you should check it out for further details, as well as the <a href="https://github.com/losc-tutorial/Data_Guide/blob/master/Guide_Notebook.ipynb">accompanying notebook</a> that describes how the analysis is performed in Python.</p>
+<p>As illustrated in <a href="#fig-ligo-stages" class="quarto-xref">Figure 1</a> uncovering the signal in the raw data involves a number of processing steps designed to eliminate noise, mostly carried out in the Fourier domain. The guiding principle is that the noise is <em>stationary</em> — meaning that it is described by a random process that does not change in time — while the signal is <em>transient</em>. This idea can be used to reduce noise in the data even though low frequency noise completely dominates the raw measurement (top panel).</p>
+<div id="fig-ligo-stages" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-ligo-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/ligo-stages.png" class="img-fluid" style="width:80.0%" />
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ligo-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure 1: Stages in the analysis of LIGO strain data,from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span>. Note the scale on the <span class="math inline">\(y\)</span>-axis!
+</figcaption>
+</figure>
+</div>
+<p>The first step is windowing, which we have already discussed, designed to reduce spectral leakage. Next, the data is <em>whitened</em>, meaning that the Fourier spectrum is normalized by the spectral density (the power spectrum is made to resemble the power spectrum of white noise) <span class="math display">\[
+\tilde d(f)\longrightarrow \frac{\tilde d(f)}{S_n^{1/2}(f)}.
+\]</span></p>
+<p>The idea behind this step is to prevent high amplitude noise in certain parts of the spectrum from swamping the signal. After this step (third panel, red trace), the low frequency noise has been greatly reduced.</p>
+<p>Finally, the data are bandpass filtered with a pass band [35 Hz, 350 Hz], which removes low frequency seismic noise and high frequency (quantum) noise from the detector. Filtering is the Fourier analog of windowing i.e. multiplying by a function to discard certain parts of the signal. At this point, a transient is revealed in the data (bottom panel).</p>
+<p>The next step is to fit this transient with a model that describes the graviational wave physics. An important check on the correctness of this approach is to then analyze the residual — the difference between the data and the model — and to check whether it is described by a stationary noise process (see <a href="#fig-ligo-residuals" class="quarto-xref">Figure 2</a>). In such a process the phases of the Fourier components are random and uncorrelated, for example.</p>
+<div id="fig-ligo-residuals" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-ligo-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/ligo-residuals.png" class="img-fluid" style="width:80.0%" />
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ligo-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure 2: Residuals from the modelled signal, from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span>
+</figcaption>
+</figure>
+</div>
+<p>Hopefully this short summary has emphasized the vital role played throughout by the processing of signals in the Fourier domain, and therefore the importance of the FFT in analyzing time series data.</p>
+</section>
+<section id="partial-differential-equations" class="level2" data-number="3.2">
+<h2 data-number="3.2"><span class="header-section-number">3.2</span> Partial differential equations</h2>
+<p>We’ll illustrate the role of the FFT in the numerical solution of partial differential equations (PDEs) using one that you all know well: the time-dependent Schrödinger equation</p>
+<p><span id="eq-schrodinger"><span class="math display">\[
+i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m}\nabla^2 \psi + V(\mathbf{r})\psi.
+\tag{6}\]</span></span></p>
+<p>When the potential is absent, the solutions are superpositions of plane waves</p>
+<p><span id="eq-momentum"><span class="math display">\[
+\Psi_\mathbf{k}(\mathbf{r}, t) = \exp\left[-i\frac{\hbar \mathbf{k}^2 t}{2m} +i\mathbf{k}\cdot\mathbf{r}\right].
+\tag{7}\]</span></span></p>
+<p>On the other hand, if the first term on the right hand side of <a href="#eq-schrodinger" class="quarto-xref">Equation 6</a> — representing the kinetic energy — were absent, then the evolution of the wavefunction would be</p>
+<p><span id="eq-position"><span class="math display">\[
+\Psi(\mathbf{r}, t) = \Psi(\mathbf{r}, 0)\exp\left[-iV(\mathbf{r})t/\hbar\right].
+\tag{8}\]</span></span></p>
+<p>The idea behind the <a href="https://en.wikipedia.org/wiki/Split-step_method">split-step method</a> is that the time evolution can be approximated by alternating the two kinds of time evolution represented by <a href="#eq-momentum" class="quarto-xref">Equation 7</a> and <a href="#eq-position" class="quarto-xref">Equation 8</a>. In more formal terms, write <a href="#eq-schrodinger" class="quarto-xref">Equation 6</a> in operator form as</p>
+<p><span class="math display">\[
+i\hbar \frac{\partial \ket{\psi}}{\partial t} = H\ket{\psi} = (T+V)\ket{\psi}
+\]</span></p>
+<p>The solution is <span class="math inline">\(\ket{\psi(t)} = \exp(-iHt/\hbar)\ket{\psi}(0)\)</span>. The exponential of an operator sum <span class="math inline">\(A+B\)</span> obeys the <a href="https://en.wikipedia.org/wiki/Lie_product_formula">Lie product formula</a></p>
+<p><span class="math display">\[
+e^{A+B} = \lim_{n\to\infty}\left( e^{A/n}e^{B/n}\right)^n.
+\]</span></p>
+<p>The logic behind this formula is that when the exponent is small, the failure of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> to commute can be neglected. More precisely, <span class="math display">\[
+e^{xA}e^{xB} = e^{x(A+B) + O(x^2)}.
+\]</span></p>
+<p>It turns out that a more accurate approximation is given by the Suzuki—Trotter formula</p>
+<p><span class="math display">\[
+e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
+\]</span></p>
+<p>In any case, the practical algorithm suggested by these formulas is implemented for the Schrödinger equation by switching between real space and Fourier space, where the two kinds of evolution are implemented. Here’s a simple 1D example:</p>
+<div id="e871ea79" class="cell" data-execution_count="5">
+<div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_step_schrodinger(psi_0, dx, dt, V, N, x_0 <span class="op">=</span> <span class="fl">0.</span>, k_0 <span class="op">=</span> <span class="va">None</span>, m <span class="op">=</span> <span class="fl">1.0</span>, non_linear <span class="op">=</span> <span class="va">False</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    len_x <span class="op">=</span> psi_0.shape[<span class="dv">0</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> x_0 <span class="op">+</span> dx<span class="op">*</span>np.arange(len_x)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    dk_x <span class="op">=</span> (<span class="dv">2</span><span class="op">*</span>np.pi)<span class="op">/</span>(len_x<span class="op">*</span>dx)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> k_0 <span class="op">==</span> <span class="va">None</span>:</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        k_0 <span class="op">=</span> <span class="op">-</span>np.pi<span class="op">/</span>dx</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    k_x <span class="op">=</span> k_0<span class="op">+</span>dk_x<span class="op">*</span>np.arange(len_x)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    psi_x <span class="op">=</span> np.zeros((len_x,N), dtype <span class="op">=</span> np.complex128)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    psi_k <span class="op">=</span> np.zeros((len_x,N), dtype <span class="op">=</span> np.complex128)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    psi_mod_x <span class="op">=</span> np.zeros((len_x), dtype <span class="op">=</span> np.complex128)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    psi_mod_k <span class="op">=</span> np.zeros((len_x), dtype <span class="op">=</span> np.complex128)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    psi_x[:,<span class="dv">0</span>] <span class="op">=</span> psi_0</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> non_linear:</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        V_n <span class="op">=</span> V(x)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        V_n <span class="op">=</span> V(x,psi_0)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _compute_psi_mod(j):</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (dx<span class="op">/</span>np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi))<span class="op">*</span>psi_x[:,j]<span class="op">*</span>np.exp(<span class="op">-</span><span class="ot">1.0j</span><span class="op">*</span>k_x[<span class="dv">0</span>]<span class="op">*</span>x)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _compute_psi(j):</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        psi_x[:,j] <span class="op">=</span> (np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi)<span class="op">/</span>dx)<span class="op">*</span>psi_mod_x<span class="op">*</span>np.exp(<span class="ot">1.0j</span><span class="op">*</span>k_x[<span class="dv">0</span>]<span class="op">*</span>x)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        psi_k[:,j] <span class="op">=</span> psi_mod_k<span class="op">*</span>np.exp(<span class="op">-</span><span class="ot">1.0j</span><span class="op">*</span>x[<span class="dv">0</span>]<span class="op">*</span>dk_x<span class="op">*</span>np.arange(len_x))</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _x_half_step(j,ft <span class="op">=</span> <span class="va">True</span>):</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ft <span class="op">==</span> <span class="va">True</span>:</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            psi_mod_x[:] <span class="op">=</span> np.fft.ifft(psi_mod_k[:])</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> non_linear:</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>            V_n[:] <span class="op">=</span> V(x,psi_x[:,j])</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        psi_mod_x[:] <span class="op">=</span> psi_mod_x[:]<span class="op">*</span>np.exp(<span class="op">-</span><span class="ot">1.0j</span><span class="op">*</span>(dt<span class="op">/</span><span class="fl">2.</span>)<span class="op">*</span>V_n)   </span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _k_full_step():</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        psi_mod_k[:] <span class="op">=</span> np.fft.fft(psi_mod_x[:])</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>        psi_mod_k[:] <span class="op">=</span> psi_mod_k[:]<span class="op">*</span>np.exp(<span class="op">-</span><span class="ot">1.0j</span><span class="op">*</span>k_x<span class="op">**</span><span class="dv">2</span><span class="op">*</span>dt<span class="op">/</span>(<span class="fl">2.</span><span class="op">*</span>m))      </span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _main_loop():</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        psi_mod_x[:] <span class="op">=</span> _compute_psi_mod(<span class="dv">0</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>            _x_half_step(i,ft <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>            _k_full_step()</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>            _x_half_step(i)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>            _compute_psi(i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    _main_loop()</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> psi_x,psi_k,k_x</span></code></pre></div>
+</div>
+<div id="529ee9d9" class="cell" data-execution_count="6">
+<div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> oneD_gaussian(x,mean,std,k0):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="op">-</span>((x<span class="op">-</span>mean)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>std<span class="op">**</span><span class="dv">2</span>)<span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>x<span class="op">*</span>k0)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>std<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="fl">0.25</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> V(x):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    V_x <span class="op">=</span> np.zeros_like(x)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    V_x[np.where(<span class="bu">abs</span>(x) <span class="op">&lt;</span> <span class="fl">0.5</span>)] <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> V_x</span></code></pre></div>
+</div>
+<div id="2c6f384c" class="cell" data-execution_count="7">
+<div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>N_x <span class="op">=</span> <span class="dv">2</span><span class="op">**</span><span class="dv">11</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> <span class="fl">0.05</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> dx <span class="op">*</span> (np.arange(N_x) <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> N_x)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>N_t <span class="op">=</span> <span class="dv">2000</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>p0 <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> np.sqrt(N_t<span class="op">*</span>dt<span class="op">/</span><span class="fl">2.</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>psi_0 <span class="op">=</span> oneD_gaussian(x,x.<span class="bu">max</span>()<span class="op">-</span><span class="fl">10.</span><span class="op">*</span>d, d, <span class="op">-</span>p0)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>psi_x,psi_k,k <span class="op">=</span> split_step_schrodinger(psi_0, dx, dt, V, N_t, x_0 <span class="op">=</span> x[<span class="dv">0</span>])</span></code></pre></div>
+</div>
+<div id="240939da" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Animation code</summary>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>real_psi <span class="op">=</span> np.real(psi_x)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>imag_psi <span class="op">=</span> np.imag(psi_x)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>absl_psi <span class="op">=</span> np.absolute(psi_x)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>abs_psik <span class="op">=</span> np.absolute(psi_k)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">211</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>line1_R <span class="op">=</span> ax1.plot(x,real_psi[:,<span class="dv">0</span>],<span class="st">&#39;b&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>line1_I <span class="op">=</span> ax1.plot(x,imag_psi[:,<span class="dv">0</span>],<span class="st">&#39;r&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>line1_A <span class="op">=</span> ax1.plot(x,absl_psi[:,<span class="dv">0</span>],<span class="st">&#39;k&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>line_V <span class="op">=</span> ax1.plot(x,<span class="fl">0.5</span><span class="op">*</span>V(x),<span class="st">&#39;k&#39;</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)[<span class="dv">0</span>]</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>ax1.set_ylim((real_psi.<span class="bu">min</span>(),real_psi.<span class="bu">max</span>()))</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ax1.set_xlim((x.<span class="bu">min</span>(),x.<span class="bu">max</span>()))</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">212</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>line2 <span class="op">=</span> ax2.plot(k,abs_psik[:,<span class="dv">1</span>],<span class="st">&#39;k&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim((abs_psik.<span class="bu">min</span>(),abs_psik.<span class="bu">max</span>()))</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>ax2.set_xlim((<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nextframe(arg):</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    line1_R.set_data(x,real_psi[:,<span class="dv">10</span><span class="op">*</span>arg])</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    line1_I.set_data(x,imag_psi[:,<span class="dv">10</span><span class="op">*</span>arg])</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    line1_A.set_data(x,absl_psi[:,<span class="dv">10</span><span class="op">*</span>arg])</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    line2.set_data(k,abs_psik[:,<span class="dv">10</span><span class="op">*</span>arg])</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>animate <span class="op">=</span> FuncAnimation(fig, nextframe, frames <span class="op">=</span> <span class="bu">int</span>(N_t<span class="op">/</span><span class="dv">10</span>), interval <span class="op">=</span> <span class="dv">50</span>, repeat <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><video src="../assets/gaussian-barrier.mp4" class="img-fluid" controls=""><a href="../assets/gaussian-barrier.mp4">Video</a></video></p>
+<figcaption>(top) Wavepacket colliding with a top hat barrier. Black line is the modulus, while red and blue are the real and imaginary parts. (bottom) Absolute value of the Fourier transform</figcaption>
+</figure>
+</div>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl">Part II Computational Physics</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU=">Part II Computational Physics</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uZXh0">Automatic differentiation and neural networks</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1wcmV2">Algorithms and computational complexity</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMQ==">Notes</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9pbmRleC5odG1sQ291cnNlLW91dGxpbmU=">Course outline</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9ub3Rlcy9pbnRyby5odG1sSW50cm9kdWN0aW9u">Introduction</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9ub3Rlcy9nZXR0aW5nLWdvaW5nLmh0bWxHZXR0aW5nLWdvaW5n">Getting going</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9ub3Rlcy9udW1weS5odG1sTnVtUHktYW5kLWZyaWVuZHM=">NumPy and friends</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9ub3Rlcy9udW1iZXJzLmh0bWxGbG9hdGluZy1wb2ludC1hbmQtYWxsLXRoYXQ=">Floating point and all that</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9ub3Rlcy9vZGUuaHRtbFNvbHZpbmctZGlmZmVyZW50aWFsLWVxdWF0aW9ucy13aXRoLVNjaVB5">Solving differential equations with SciPy</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9ub3Rlcy9tb250ZS1jYXJsby5odG1sTW9udGUtQ2FybG8tbWV0aG9kcw==">Monte Carlo methods</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9ub3Rlcy9jb21wbGV4aXR5Lmh0bWxBbGdvcml0aG1zLWFuZC1jb21wdXRhdGlvbmFsLWNvbXBsZXhpdHk=">Algorithms and computational complexity</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9ub3Rlcy9mb3VyaWVyLmh0bWxGYXN0LUZvdXJpZXItdHJhbnNmb3Jt">Fast Fourier transform</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9ub3Rlcy9hdXRvZGlmZi5odG1sQXV0b21hdGljLWRpZmZlcmVudGlhdGlvbi1hbmQtbmV1cmFsLW5ldHdvcmtz">Automatic differentiation and neural networks</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9ub3Rlcy9saW5lYXIuaHRtbExpbmVhci1hbGdlYnJh">Linear algebra</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMg==">Slides</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9zbGlkZXMvZ2V0dGluZy1nb2luZy5odG1sR2V0dGluZy1nb2luZw==">Getting going</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9zbGlkZXMvbnVtcHkuaHRtbE51bVB5LWFuZC1mcmllbmRz">NumPy and friends</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9zbGlkZXMvbnVtYmVycy1hbmQtb2Rlcy5odG1sRmxvYXRpbmctcG9pbnQtYW5kLU9ERXM=">Floating point and ODEs</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9zbGlkZXMvbW9udGUtY2FybG8uaHRtbE1vbnRlLUNhcmxvLW1ldGhvZHM=">Monte Carlo methods</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9zbGlkZXMvY29tcGxleGl0eS5odG1sQWxnb3JpdGhtcy1hbmQtY29tcHV0YXRpb25hbC1jb21wbGV4aXR5">Algorithms and computational complexity</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9zbGlkZXMvZm91cmllci5odG1sRmFzdC1Gb3VyaWVyLXRyYW5zZm9ybQ==">Fast Fourier transform</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9zbGlkZXMvYXV0b2RpZmYuaHRtbEF1dG9kaWZmLWFuZC1uZXVyYWwtbmV0cw==">Autodiff and neural nets</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9zbGlkZXMvbGluZWFyLmh0bWxMaW5lYXItYWxnZWJyYQ==">Linear algebra</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOnF1YXJ0by1zaWRlYmFyLXNlY3Rpb24tMw==">Exercises and Projects</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9leGVyY2lzZXMvZXhlcmNpc2VzLmh0bWxFeGVyY2lzZXM=">Exercises</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyOi9leGVyY2lzZXMvcHJvamVjdHMuaHRtbFByb2plY3Rz">Projects</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWJyZWFkY3J1bWJzLU5vdGVz">Notes</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWJyZWFkY3J1bWJzLUZhc3QtRm91cmllci10cmFuc2Zvcm0=">Fast Fourier transform</span></p>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGF0aXRsZQ==">Fast Fourier transform – Part II Computational Physics</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=">Fast Fourier transform – Part II Computational Physics</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZHRpdGxl">Fast Fourier transform – Part II Computational Physics</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGFzaXRlbmFtZQ==">Part II Computational Physics</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw=="></span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZGRkZXNj"></span></p>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-abbott2020guide" class="csl-entry" role="listitem">
+Abbott, Benjamin P, Rich Abbott, Thomas D Abbott, Sheelu Abraham, Fausto Acernese, Kendall Ackley, Carl Adams, et al. 2020. <span>“A Guide to LIGO–Virgo Detector Noise and Extraction of Transient Gravitational-Wave Signals.”</span> <em>Classical and Quantum Gravity</em> 37 (5): 055002.
+</div>
+<div id="ref-cooley1967historical" class="csl-entry" role="listitem">
+Cooley, James W, Peter AW Lewis, and Peter D Welch. 1967. <span>“Historical Notes on the Fast Fourier Transform.”</span> <em>Proceedings of the IEEE</em> 55 (10): 1675–77.
+</div>
+<div id="ref-cooley1965algorithm" class="csl-entry" role="listitem">
+Cooley, James W, and John W Tukey. 1965. <span>“An Algorithm for the Machine Calculation of Complex Fourier Series.”</span> <em>Mathematics of Computation</em> 19 (90): 297–301.
+</div>
+<div id="ref-danielson1942some" class="csl-entry" role="listitem">
+Danielson, Gordon Charles, and Cornelius Lanczos. 1942. <span>“Some Improvements in Practical Fourier Analysis and Their Application to x-Ray Scattering from Liquids.”</span> <em>Journal of the Franklin Institute</em> 233 (5): 435–52.
+</div>
+<div id="ref-ryle1975radio" class="csl-entry" role="listitem">
+Ryle, Martin. 1975. <span>“Radio Telescopes of Large Resolving Power.”</span> <em>Science</em> 188 (4193): 1071–79.
+</div>
+</div>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Orthonormality follows from <a href="#eq-DFTIdent" class="quarto-xref">Equation 2</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>with respect to the middle of the data.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Strictly we should write <span class="math inline">\(T(N) = 2T(N/2) +\Theta(N)\)</span>, where <span class="math inline">\(f(N)=\Theta(g(N))\)</span> means <span class="math inline">\(\lim_{N\to \infty} \frac{f(N)}{g(N)}\)</span> is a finite nonzero number. Thus <span class="math inline">\(\Theta(N)\)</span> means “proportional to <span class="math inline">\(N\)</span> in the large <span class="math inline">\(N\)</span> limit”.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Such numbers are called <em>smooth</em>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id = "quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a  href="/notes/complexity.html" class="pagination-link" aria-label="Algorithms and computational complexity">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Algorithms and computational complexity</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a  href="/notes/autodiff.html" class="pagination-link" aria-label="Automatic differentiation and neural networks">
+        <span class="nav-page-text">Automatic differentiation and neural networks</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+</body>
+
+</html>

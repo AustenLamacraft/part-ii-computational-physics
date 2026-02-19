@@ -114,7 +114,7 @@
     "href": "notes/fourier.html#history",
     "title": "Fast Fourier transform",
     "section": "2.2 History",
-    "text": "2.2 History\nThe modern invention of the FFT is credited to Cooley and Tukey (1965). Certainly they were the first to discuss its complexity. The divide and conquer approach was however anticipated by Danielson and Lanczos (1942), who had applications in crystallography in mind, and by unpublished work of Carl Friedrich Gauss in 1805 (predating even Fourier) in his astronomical studies. See Cooley, Lewis, and Welch (1967) for more on the historical background.",
+    "text": "2.2 History\nThe modern invention of the FFT is credited to Cooley and Tukey (1965). Certainly they were the first to discuss its complexity. The divide and conquer approach was however anticipated by Danielson and Lanczos (1942) in the analysis of X-ray scattering in liquids, and by David Wheeler of the Mathematical Laboratory (now the Computer Lab) in Cambridge, applied to radio astronomy, as recorded in Martin Ryle’s Nobel lecture Ryle (1975). The earliest credit goes to Carl Friedrich Gauss in 1805 (predating even Fourier) in his astronomical studies. See Cooley, Lewis, and Welch (1967) for more on the historical background.",
     "crumbs": [
       "Notes",
       "Fast Fourier transform"
@@ -477,7 +477,7 @@
     "href": "slides/fourier.html#history",
     "title": "Part II Computational Physics",
     "section": "History",
-    "text": "History\n\nModern invention of FFT is credited to Cooley and Tukey (1965). First to discuss complexity\nDivide and conquer approach anticipated in astronomy by David Wheeler in Cambridge and Danielson and Lanczos (1942), for applications in crystallography\nOG is Carl Friedrich Gauss in 1805 (predating even Fourier) in his astronomical studies\nSee Cooley, Lewis, and Welch (1967) for more on historical background",
+    "text": "History\n\nModern invention of FFT is credited to Cooley and Tukey (1965). First to discuss complexity\nDivide and conquer approach anticipated in radio astronomy by David Wheeler in Cambridge (see Ryle (1975)) and Danielson and Lanczos (1942), for applications in crystallography\nOG is Carl Friedrich Gauss in 1805 (predating even Fourier) in his astronomical studies\nSee Cooley, Lewis, and Welch (1967) for more on historical background",
     "crumbs": [
       "Slides",
       "Fast Fourier transform"
@@ -543,7 +543,7 @@
     "href": "slides/fourier.html#references",
     "title": "Part II Computational Physics",
     "section": "",
-    "text": "Abbott, Benjamin P, Rich Abbott, Thomas D Abbott, Sheelu Abraham, Fausto Acernese, Kendall Ackley, Carl Adams, et al. 2020. “A Guide to LIGO–Virgo Detector Noise and Extraction of Transient Gravitational-Wave Signals.” Classical and Quantum Gravity 37 (5): 055002.\n\n\nCooley, James W, Peter AW Lewis, and Peter D Welch. 1967. “Historical Notes on the Fast Fourier Transform.” Proceedings of the IEEE 55 (10): 1675–77.\n\n\nCooley, James W, and John W Tukey. 1965. “An Algorithm for the Machine Calculation of Complex Fourier Series.” Mathematics of Computation 19 (90): 297–301.\n\n\nDanielson, Gordon Charles, and Cornelius Lanczos. 1942. “Some Improvements in Practical Fourier Analysis and Their Application to x-Ray Scattering from Liquids.” Journal of the Franklin Institute 233 (5): 435–52.",
+    "text": "Abbott, Benjamin P, Rich Abbott, Thomas D Abbott, Sheelu Abraham, Fausto Acernese, Kendall Ackley, Carl Adams, et al. 2020. “A Guide to LIGO–Virgo Detector Noise and Extraction of Transient Gravitational-Wave Signals.” Classical and Quantum Gravity 37 (5): 055002.\n\n\nCooley, James W, Peter AW Lewis, and Peter D Welch. 1967. “Historical Notes on the Fast Fourier Transform.” Proceedings of the IEEE 55 (10): 1675–77.\n\n\nCooley, James W, and John W Tukey. 1965. “An Algorithm for the Machine Calculation of Complex Fourier Series.” Mathematics of Computation 19 (90): 297–301.\n\n\nDanielson, Gordon Charles, and Cornelius Lanczos. 1942. “Some Improvements in Practical Fourier Analysis and Their Application to x-Ray Scattering from Liquids.” Journal of the Franklin Institute 233 (5): 435–52.\n\n\nRyle, Martin. 1975. “Radio Telescopes of Large Resolving Power.” Science 188 (4193): 1071–79.",
     "crumbs": [
       "Slides",
       "Fast Fourier transform"

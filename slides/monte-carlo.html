@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
+
+  <title>Part II Computational Physics – monte-carlo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-db84968dd3a81be0f114100d4bbaf104.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section>
+<section id="monte-carlo-methods" class="title-slide slide level1 center">
+<h1>Monte Carlo methods</h1>
+<p>A set of algorithms that use <em>randomness</em> in an essential way</p>
+</section>
+<section id="sampling-from-a-distribution" class="slide level2 center">
+<h2>Sampling from a distribution</h2>
+<ul>
+<li><p>Suppose we have a source of samples of random variable <span class="math inline">\(X\)</span> described by a particular probability density function <span class="math inline">\(p_X\)</span></p></li>
+<li><p>Common shorthand notation is <span class="math inline">\(x\sim p_X\)</span></p></li>
+<li><p>By definition probability of drawing a sample in the region <span class="math inline">\([x, x+dx]\)</span> is <span class="math inline">\(p_X(x)dx\)</span></p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>Now map samples using a function <span class="math inline">\(f\)</span></p></li>
+<li><p>What is the probability density <span class="math inline">\(p_Y\)</span> of <span class="math inline">\(y=f(x)\)</span>?</p></li>
+<li><p>New probability density is defined in same way: probability of <span class="math inline">\(y\)</span> lying in region <span class="math inline">\([y, y+dy]\)</span> is <span class="math inline">\(p_Y(y)dy\)</span></p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>Since <span class="math inline">\(x\)</span> is mapped deterministically to <span class="math inline">\(y\)</span> these two probabilities must be the same <span class="math display">\[
+p_X(x)dx = p_Y(y)dy
+\]</span> or <span class="math display">\[
+p_Y(y)=p_X(x)\Bigg\lvert \frac{dx}{dy}\Bigg\rvert= \frac{p_X(x)}{|f'(x)|},\qquad x=f^{-1}(y)
+\]</span></p></li>
+<li><p>Can create samples from an arbitrary probability distribution by choosing an invertible map <span class="math inline">\(f\)</span> appropriately</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<p><span class="math display">\[
+p_Y(y)=p_X(x)\Bigg\lvert \frac{dx}{dy}\Bigg\rvert= \frac{p_X(x)}{|f'(x)|},\qquad x=f^{-1}(y)
+\]</span></p>
+<ul>
+<li>If <span class="math inline">\(p_X\)</span> is <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">standard uniform distribution</a> on <span class="math inline">\([0,1]\)</span> then <span class="math inline">\(f(x)\)</span> is the inverse of the cummulative probability distribution of <span class="math inline">\(Y\)</span></li>
+</ul>
+<p><span class="math display">\[
+f^{-1}(y) = \int^y_{-\infty} p_Y(y')dy'
+\]</span></p>
+</section>
+<section class="slide level2 center">
+
+<p><span class="math display">\[
+p_Y(y)=p_X(x)\Bigg\lvert \frac{dx}{dy}\Bigg\rvert= \frac{p_X(x)}{|f'(x)|},\qquad x=f^{-1}(y)
+\]</span></p>
+<ul>
+<li>Same approach works in higher dimensions: <span class="math inline">\(\big\lvert \frac{dx}{dy}\big\rvert\)</span> is replaced by the inverse of the Jacobian determinant.</li>
+</ul>
+</section>
+<section id="boxmuller-transform" class="slide level2 center">
+<h2><a href="https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform">Box–Muller transform</a></h2>
+<ul>
+<li>Take two independent samples from a standard uniform distribution <span class="math inline">\(u_{1,2}\)</span> and form <span class="math display">\[
+\begin{align}
+x &amp;= \sqrt{-2\log u_1}\cos(2\pi u_2)\\
+y &amp;= \sqrt{-2\log u_1}\sin(2\pi u_2).
+\end{align}
+\]</span> <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are independent samples from a <a href="https://en.wikipedia.org/wiki/Standard_normal_distribution">standard normal distribution</a>.</li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>Various functions available in <a href="https://numpy.org/doc/stable/reference/random/index.html#module-numpy.random"><code>numpy.random</code></a> module to generate random arrays drawn from a variety of distributions</p></li>
+<li><p>[Box–Muller now retired in favour of <a href="https://en.wikipedia.org/wiki/Ziggurat_algorithm">Ziggurat algorithm</a>]</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy.random <span class="im">as</span> random</span>
+<span id="cb1-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a>mu, sigma <span class="op">=</span> <span class="dv">0</span>, <span class="fl">0.1</span> <span class="co"># mean and standard deviation</span></span>
+<span id="cb1-6"><a></a>s <span class="op">=</span> random.normal(mu, sigma, size<span class="op">=</span><span class="dv">10000</span>)</span>
+<span id="cb1-7"><a></a>count, bins, ignored <span class="op">=</span> plt.hist(s, <span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-8"><a></a>plt.plot(bins, <span class="dv">1</span><span class="op">/</span>(sigma <span class="op">*</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> np.pi)) <span class="op">*</span></span>
+<span id="cb1-9"><a></a>               np.exp( <span class="op">-</span> (bins <span class="op">-</span> mu)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> sigma<span class="op">**</span><span class="dv">2</span>) ),</span>
+<span id="cb1-10"><a></a>         linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb1-11"><a></a>plt.xlabel(<span class="st">"Value"</span>)</span>
+<span id="cb1-12"><a></a>plt.ylabel(<span class="st">"Frequency"</span>)</span>
+<span id="cb1-13"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2 center">
+
+<div id="464588a3" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="monte-carlo_files/figure-revealjs/cell-2-output-1.png" width="812" height="429"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>For complex multivariate (i.e.&nbsp;high dimensional) distributions there is no general recipe to construct an appropriate <span class="math inline">\(f\)</span></p></li>
+<li><p>One very recent application of these ideas is in machine learning models called <a href="https://arxiv.org/abs/1908.09257">normalizing flows</a> that use a mapping <span class="math inline">\(f\)</span> parameterized by a neural network.</p></li>
+<li><p>Workhorse for sampling from complicated distributions is <em>Markov chain Monte Carlo</em></p></li>
+</ul>
+</section></section>
+<section>
+<section id="monte-carlo-method" class="title-slide slide level1 center">
+<h1>Monte Carlo method</h1>
+<ul>
+<li><p>General term for variety of numerical methods that use randomness in some way.</p></li>
+<li><p>Two main classes encountered in physics are:</p>
+<ol type="1">
+<li><p>Interpret a numerical evaluation as an expectation value of some random variable and use sampling to estimate it. <a href="https://en.wikipedia.org/wiki/Monte_Carlo_integration">Monte Carlo integration</a> is an example of this idea.</p></li>
+<li><p>Sampling from a complex probability distribution (which may include taking expectation values). Example: <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov chain Monte Carlo</a>.</p></li>
+</ol></li>
+</ul>
+</section>
+<section id="monte-carlo-integration" class="slide level2 center">
+<h2>Monte Carlo integration</h2>
+<ul>
+<li>Dumb way to find <span class="math inline">\(\pi\)</span></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>max_samples <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb2-2"><a></a>inside <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-3"><a></a>areas <span class="op">=</span> []</span>
+<span id="cb2-4"><a></a><span class="cf">for</span> sample <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, max_samples <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-5"><a></a>    x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-6"><a></a>    y <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-7"><a></a>    </span>
+<span id="cb2-8"><a></a>    <span class="cf">if</span> x <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> y <span class="op">**</span> <span class="dv">2</span> <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<span id="cb2-9"><a></a>        inside <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-10"><a></a>    areas.append(<span class="dv">4</span> <span class="op">*</span> inside <span class="op">/</span> sample)</span>
+<span id="cb2-11"><a></a></span>
+<span id="cb2-12"><a></a>plt.plot(np.arange(<span class="dv">1</span>, max_samples <span class="op">+</span> <span class="dv">1</span>), areas)</span>
+<span id="cb2-13"><a></a>plt.plot(np.arange(<span class="dv">1</span>, max_samples <span class="op">+</span> <span class="dv">1</span>), np.pi <span class="op">*</span> np.ones(max_samples), linestyle<span class="op">=</span><span class="st">'dashed'</span>)</span>
+<span id="cb2-14"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section class="slide level2 center">
+
+<div id="64910735" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="monte-carlo_files/figure-revealjs/cell-3-output-1.png" width="802" height="411"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Important feature of MC: relative error with <span class="math inline">\(N\)</span> samples is typically <span class="math inline">\(\propto N^{-1/2}\)</span> because the variance of a sum of <span class="math inline">\(N\)</span> <a href="https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables">iid</a> variables is <span class="math inline">\(\propto N^{1/2}\)</span></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>Suppose we have a multidimensional integral to evaluate over some domain <span class="math inline">\(D\)</span> of volume <span class="math inline">\(V_D\)</span> <span class="math display">\[
+I(f,D) = \int_D f(\mathbf{x}) d\mathbf{x}
+\]</span></p></li>
+<li><p>If we can sample points uniformly within <span class="math inline">\(D\)</span>, then an estimate for the integral is</p></li>
+</ul>
+<p><span class="math display">\[
+I(f,D) = \frac{V_D}{N}\sum_{i=1}^N f(\mathbf{x}_i)
+\]</span></p>
+</section>
+<section class="slide level2 center">
+
+<p><span class="math display">\[
+I(f,D) = \frac{V_D}{N}\sum_{i=1}^N f(\mathbf{x}_i)
+\]</span></p>
+<ul>
+<li>Why does this work? Uniform distribution has constant probability density <span class="math inline">\(1/V_D\)</span> so average of <span class="math inline">\(f(\mathbf{x}_i)\)</span> with respect to this uniform distribution is just our integral</li>
+</ul>
+<p><span class="math display">\[
+\bar f = \frac{1}{V_D}\int f(\mathbf{x})d\mathbf{x}
+\]</span></p>
+<ul>
+<li>Take many samples to estimate this average</li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>In our simple example <span class="math inline">\(f(\mathbf{x})\)</span> would be a “top hat” function that is one inside the circle</p></li>
+<li><p>Monte Carlo integration comes into its own for high dimensional problems. For low dimensional integrals quadrature methods in <a href="https://docs.scipy.org/doc/scipy/tutorial/integrate.html"><code>scipy.integrate</code></a> are preferable:</p></li>
+</ul>
+<div id="7ac99301" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">from</span> scipy <span class="im">import</span> integrate</span>
+<span id="cb3-2"><a></a>integrate.quadrature(np.cos, <span class="dv">0</span>, np.pi <span class="op">/</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>(0.9999999999999535, 3.96115362732985e-11)</code></pre>
+</div>
+</div>
+<ul>
+<li>As for ODE solvers, there is a lot of detail in the implementation to do with how intervals are chosen, etc.</li>
+</ul>
+</section>
+<section id="importance-sampling" class="slide level2 center">
+<h2>Importance sampling</h2>
+<ul>
+<li><p>If our function <span class="math inline">\(f(\mathbf{x})\)</span> has regions where it is very small, there is not much point in sampling its value there</p></li>
+<li><p>If we can sample from a distribution where samples tend to fall in the region where <span class="math inline">\(f(\mathbf{x})\)</span> is large, it will probably be better to use that</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li>In this case we calculate <em>weighted</em> average using the probability density <span class="math inline">\(p_\text{sample}(\mathbf{x})\)</span> of the sampling distribution</li>
+</ul>
+<p><span class="math display">\[
+I(f,D, p_\text{sample}) = \frac{1}{N}\sum_{i=1}^N \frac{f(\mathbf{x}_i)}{p_\text{sample}(\mathbf{x}_i)}
+\]</span></p>
+<ul>
+<li>This works because the average of each term is just the integral we want</li>
+</ul>
+<p><span class="math display">\[
+\overline{\frac{f(\mathbf{x})}{p_\text{sample}(\mathbf{x})}} = \int \frac{f(\mathbf{x})}{p_\text{sample}(\mathbf{x})} p_\text{sample}(\mathbf{x})d\mathbf{x} = \int f(\mathbf{x})d\mathbf{x}
+\]</span></p>
+</section>
+<section class="slide level2 center">
+
+<p><span class="math display">\[
+I(f,D, p_\text{sample}) = \frac{1}{N}\sum_{i=1}^N \frac{f(\mathbf{x}_i)}{p_\text{sample}(\mathbf{x}_i)}
+\]</span></p>
+<ul>
+<li><p>Benefit of this approach is that it can lead to a drastic reduction in the variance of the estimator</p></li>
+<li><p>Extreme example: if <span class="math inline">\(f(\mathbf{x})\propto p_\text{sample}(\mathbf{x})\)</span>, and even a single sample leads to perfect estimate with no uncertainty!</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>General technique is called <a href="https://en.wikipedia.org/wiki/Importance_sampling">Importance sampling</a></p></li>
+<li><p>In naive form, needs both an explicit form for <span class="math inline">\(p_\text{sample}(\mathbf{x})\)</span> and the ability to generate samples, which is rather restrictive</p></li>
+<li><p>There are many elaborations of this idea, including multiple distributions as well as adaptive sampling to “discover” the right region for sampling</p></li>
+</ul>
+</section>
+<section id="sec-mcmc" class="slide level2 center">
+<h2>Markov chain Monte Carlo</h2>
+<ul>
+<li>Suppose you want to generate configurations at random (i.e.&nbsp;with a uniform distribution) from a “gas” of hard disks</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../assets/hard-spheres.png"></p>
+<figcaption>Coins in a shoe box (gas of hard disks)</figcaption>
+</figure>
+</div>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>First guess: start adding coins at random, and if you get an overlap, try again until you don’t</p></li>
+<li><p>Obviously this will become inefficient as the box fills up, and most attempts fail.</p></li>
+<li><p><em>Worse, it doesn’t in fact yield a uniform distribution!</em></p></li>
+</ul>
+<!-- TODO Why not? See @widom1966random for an explanation -->
+</section>
+<section class="slide level2 center">
+
+<div id="exm-metropolis" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Metropolis algorithm for hard disks)</strong></span> &nbsp;</p>
+<ol type="1">
+<li>Fix the number of disks and an initial configuration (some regular lattice configuration, say).</li>
+<li>Pick a disk at random and attempt (or <em>propose</em>) to move it by a small random amount (i.e.&nbsp;random direction; random small magnitude).</li>
+<li>If this results in the moved disk intersecting another, <em>reject</em> the move, leaving the disk where it is. Otherwise, <em>accept</em> the move.</li>
+<li>Repeat 2. and 3. many times.</li>
+</ol>
+</div>
+</section>
+<section class="slide level2 center">
+
+<p><img data-src="../assets/metropolis.png" alt="Accepted and rejected moves for hard disks. From">.</p>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>Simplest example of the <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis–Hastings algorithm</a>, the first Markov chain Monte Carlo (MCMC) algorithm.</p></li>
+<li><p>Goal of MCMC is to come up with a sequential random process (a <strong>Markov chain</strong>) that generates (usually after many steps) a sample from a particular distribution</p></li>
+</ul>
+</section>
+<section id="markov-chains" class="slide level2 center">
+<h2>Markov chains</h2>
+<p>You know the <a href="https://en.wikipedia.org/wiki/Random_walk">random walk</a>, perhaps as a model for diffusion</p>
+<ul>
+<li><p>At each step make a move in a random direction, independently of your earlier moves</p></li>
+<li><p>After many steps these random moves gives rise to a distribution of possible locations</p></li>
+<li><p>A random walk is the simplest example of a <em>Markov chain</em></p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<p><img data-src="../assets/Random_walk_25000.svg" style="width:60.0%"></p>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>A <a href="https://en.wikipedia.org/wiki/Markov_chain">Markov chain</a> is a sequence of random variables <span class="math inline">\(X_n\)</span>, each having a distribution that is is conditional on the value of the previous one</p></li>
+<li><p>Defined in terms of <strong>transition probabilities</strong> <span class="math inline">\(p(X_{n}=x_n|X_{n-1}=x_{n-1})\)</span> (hence a “chain”)</p></li>
+<li><p>Probability of a particular sequence <span class="math inline">\(X_1=x_1\ldots X_n=x_n\)</span> is therefore</p></li>
+</ul>
+<p><span class="math display">\[
+p(x_n|x_{n-1})p(x_{n-1}|x_{n-2})\cdots p(x_2|x_{1})p^{(1)}(x_1)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X_1\)</span> has no “parent” so is not conditional on any other value</li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>What is <strong>marginal distribution</strong> <span class="math inline">\(p^{(n)}(x_n)\)</span> of the final variable?</p></li>
+<li><p>For a random walk this is easy, as <span class="math inline">\(x_n\)</span> typically represents a displacement that is a sum of iid increments</p></li>
+<li><p>In general, marginal distribution is</p></li>
+</ul>
+<p><span class="math display">\[
+p^{(n)}(x_n)=\sum_{x_{n-1},\ldots x_1}p(x_n|x_{n-1})p(x_{n-1}|x_{n-2})\cdots p(x_2|x_{1})p^{(1)}(x_1)
+\]</span></p>
+<ul>
+<li><p>Sums over all possible values that the random variables might take in the <strong>state space</strong> of the problem</p></li>
+<li><p>Could be finite or infinite in number.</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<p><span class="math display">\[
+p^{(n)}(x_n)=\sum_{x_{n-1},\ldots x_1}p(x_n|x_{n-1})p(x_{n-1}|x_{n-2})\cdots p(x_2|x_{1})p^{(1)}(x_1)
+\]</span></p>
+<ul>
+<li>Marginal distribution results from acting <span class="math inline">\(n-1\)</span> times on the vector of values of <span class="math inline">\(p^{(1)}_j\equiv p^{(1)}(j)\)</span> with <strong>transition matrix</strong> with elements <span class="math inline">\(\mathsf{P}_{jk}=p(j|k)\)</span></li>
+</ul>
+<p><span class="math display">\[
+\mathbf{p}^{(n)} = \mathsf{P}^{n-1}\mathbf{p}^{(1)}.
+\]</span></p>
+<ul>
+<li>In a single step the marginal probabilities are updated as</li>
+</ul>
+<p><span class="math display">\[
+\mathbf{p}^{(n)} = \mathsf{P}\mathbf{p}^{(n-1)}
+\]</span></p>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p><span class="math inline">\(\mathsf{P}\)</span> has some structure:</p>
+<ul>
+<li>Matrix elements are positive, as they represent probabilities, and each row sums to one <span class="math display">\[
+\sum_j \mathsf{P}_{jk} = 1.
+\]</span> (since <span class="math inline">\(\mathsf{P}_{jk}=p(j|k)\)</span>)</li>
+<li>Such matrices are called <a href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<p><span class="math display">\[
+\mathbf{p}^{(n)} = \mathsf{P}\mathbf{p}^{(n-1)}
+\]</span></p>
+<ul>
+<li><p>After many steps <span class="math inline">\(\mathbf{p}^{(n)}\)</span> tends to converge to a <strong>stationary distribution</strong> <span class="math inline">\(p^{(n)}\to\boldsymbol{\pi}\)</span></p></li>
+<li><p>If it exists, this distribution must satisfy</p></li>
+</ul>
+<p><span class="math display">\[
+\boldsymbol{\pi} = \mathsf{P}\boldsymbol{\pi}.
+\]</span></p>
+<ul>
+<li>An eigenvector of <span class="math inline">\(\mathsf{P}\)</span> with eigenvalue one. This property is guaranteed by the <a href="https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem">Perron–Frobenius theorem</a></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<blockquote>
+<p>I would like to generate samples from some <span class="math inline">\(\boldsymbol{\pi}\)</span> Can I find a <span class="math inline">\(\mathsf{P}\)</span> that has <span class="math inline">\(\boldsymbol{\pi}\)</span> as a stationary distribution?</p>
+</blockquote>
+<ul>
+<li><p>If so I can simulate the Markov chain for a long time and end up with a sample from <span class="math inline">\(\boldsymbol{\pi}\)</span>.</p></li>
+<li><p>Trivial answer: <span class="math inline">\(\mathsf{P}_{jk}=\boldsymbol{\pi}_j\)</span>. That is, jump straight to the stationary distribution no matter what starting state</p></li>
+<li><p><strong>But</strong> we are interested in highly complicated distributions over large state spaces</p></li>
+<li><p>What we really want is to approach a complicated distribution by making many transitions with <em>simple</em> distributions</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<p><span class="math display">\[
+\mathsf{P}_{jk}\pi_k = p(j|k)\pi_k = p(j,k)
+\]</span> is the joint distribution of seeing state <span class="math inline">\(k\)</span> followed by state <span class="math inline">\(j\)</span> in the stationary distribution</p>
+<ul>
+<li><p><em>Reversible</em> Markov chain is one where <span class="math inline">\(p(j,k)=p(k,j)\)</span></p></li>
+<li><p>Any transition is equally likely to happen forward in time as backward</p></li>
+<li><p>The condition for reversibility is known as <a href="https://en.wikipedia.org/wiki/Detailed_balance">detailed balance</a></p></li>
+</ul>
+<p><span class="math display">\[
+\mathsf{P}_{jk}\pi_k = \pi_j\mathsf{P}_{kj}.
+\]</span></p>
+</section>
+<section class="slide level2 center">
+
+<p><span class="math display">\[
+\mathsf{P}_{jk}\pi_k = \pi_j\mathsf{P}_{kj}.
+\]</span></p>
+<ul>
+<li><p>Stronger than conditionfor a stationary state: easier to check</p></li>
+<li><p>Metropolis algorithm for hard disks satisfies detailed balance for a uniform distribution</p></li>
+<li><p>When <span class="math inline">\(\boldsymbol{\pi}\)</span> has more structure, designing an appropriate transition matrix is harder</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>Idea is to generalize hard disk approach by separating transition into a <em>proposal</em> distribution <span class="math inline">\(p_\text{prop}(j|k)\)</span> and an <em>acceptance</em> distribution <span class="math inline">\(p_\text{acc}(a=0,1|j\leftarrow k)\)</span> that gives probability of a move from <span class="math inline">\(k\)</span> to <span class="math inline">\(j\)</span> being accepted (<span class="math inline">\(a=1\)</span>) or rejected (<span class="math inline">\(a=0\)</span>)</p></li>
+<li><p>Probability of moving from <span class="math inline">\(k\)</span> to <span class="math inline">\(j\)</span> is then</p></li>
+</ul>
+<p><span class="math display">\[
+p(j|k) = p_\text{acc}(a=1|j\leftarrow k) p_\text{prop}(j|k).
+\]</span></p>
+<ul>
+<li>Substituting this into the detailed balance condition <span class="math display">\[
+\frac{p_\text{acc}(a=1|j\leftarrow k)}{p_\text{acc}(a=1|k\leftarrow j)} = \frac{\pi_j}{\pi_k}\frac{p_\text{prop}(k|j)}{p_\text{prop}(j|k)}.
+\]</span></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<p><span class="math display">\[
+\frac{p_\text{acc}(a=1|j\leftarrow k)}{p_\text{acc}(a=1|k\leftarrow j)} = \frac{\pi_j}{\pi_k}\frac{p_\text{prop}(k|j)}{p_\text{prop}(j|k)}.
+\]</span></p>
+<ul>
+<li><p>Any <span class="math inline">\(p_\text{acc}\)</span> that satisfies this relation for all <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span> will do</p></li>
+<li><p>Metropolis choice is</p></li>
+</ul>
+<p><span class="math display">\[
+p_\text{acc}(a=1|j \leftarrow k) = \min\left(1,  \frac{\pi_j}{\pi_k}\frac{p_\text{prop}(k|j)}{p_\text{prop}(j|k)}\right)
+\]</span></p>
+</section>
+<section class="slide level2 center">
+
+<div id="exm-metropolis-gen" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Metropolis algorithm)</strong></span> &nbsp;</p>
+<ol type="1">
+<li>Starting from state <span class="math inline">\(k\)</span> sample a next state <span class="math inline">\(j\)</span> from the proposal distribution <span class="math inline">\(p_\text{prop}(j|k)\)</span>.</li>
+<li>Accept the proposal with probability <span class="math inline">\(p_\text{acc}(a=1|j \leftarrow k)\)</span> and move to state <span class="math inline">\(j\)</span>. Otherwise reject the proposal and stay in state <span class="math inline">\(k\)</span>.</li>
+<li>Repeat 1. and 2. many times.</li>
+</ol>
+</div>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>MCMC has benefit of being <a href="https://en.wikipedia.org/wiki/Embarrassingly_parallel">embarrassingly parallel</a></p></li>
+<li><p>If you want to average something over <span class="math inline">\(\boldsymbol{\pi}\)</span>, just run the algorithm many times independently and average the results</p></li>
+<li><p>This is perfect for parallel computing</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>To perform a move one has to sample from <span class="math inline">\(p_\text{prop}(j|k)\)</span> <em>and</em> from <span class="math inline">\(p_\text{acc}(a|j \leftarrow k)\)</span></p></li>
+<li><p>Proposal has to be tractable, like the small shift in position for the hard disk case</p></li>
+<li><p>Many of the <span class="math inline">\(j\)</span>s suggested may correspond to very small <span class="math inline">\(\pi_j\)</span>, and therefore a very low acceptance probability</p></li>
+<li><p>For hard disks at high density many proposed moves will give rise to overlap of disks and be rejected</p></li>
+<li><p>Many steps are required to have one successful update of the simulation. This kind of slowdown is a common feature of MCMC methods applied to complex distributions</p></li>
+</ul>
+</section></section>
+<section>
+<section id="sec-statmech" class="title-slide slide level1 center">
+<h1>Statistical mechanics</h1>
+<ul>
+<li><p>Natural source of complex distributions in physics</p></li>
+<li><p>Probability of finding a statistical mechanical system in a microstate <span class="math inline">\(\mathbf{x}\)</span> with energy <span class="math inline">\(\mathcal{E}(\mathbf{x})\)</span> is <span class="math display">\[
+p(\mathbf{x})=\frac{\exp\left[-\beta \mathcal{E}(\mathbf{x})\right]}{Z},
+\]</span> <span class="math inline">\(Z\)</span> is normalizing constant (partition function)</p></li>
+<li><p><em>Central problem</em> of statistical mechanics is computing ensemble averages of physical quantities</p></li>
+<li><p><em>Principal difficulty</em> is intractability of these averages</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>For a classical gas, <span class="math inline">\(\mathbf{x}\)</span> gives position of each gas molecule <span class="math inline">\(\mathbf{x}=(\mathbf{x}_1,\ldots \mathbf{x}_N)\)</span> and average is a <span class="math inline">\(3N\)</span>-dimensional integral</p></li>
+<li><p>Integral is tractable is when gas is noninteracting (ideal) <span class="math display">\[
+\mathcal{E}(\mathbf{x}) = \sum_{n=1}^N \mathcal{E}_1(\mathbf{x}_n)
+\]</span> as it factorizes over the particle coordinates</p></li>
+<li><p>As soon as we introduce interactions things get a lot harder <span class="math display">\[
+\mathcal{E}(\mathbf{x}) = \sum_{n&lt;m}^N \mathcal{E}_2(\mathbf{x}_n,\mathbf{x}_m)
+\]</span></p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>Same issue arises in models involving discrete random variables</p></li>
+<li><p>In <a href="https://en.wikipedia.org/wiki/Ising_model">Ising model</a> a configuration corresponds to fixing values of <span class="math inline">\(N\)</span> “spins” <span class="math inline">\(\sigma_n=\pm 1\)</span> with an energy function of the form</p></li>
+</ul>
+<p><span class="math display">\[
+\mathcal{E}(\sigma)=\sum_n h_n\sigma_n + \sum_{m&lt;n} J_{mn}\sigma_m\sigma_n.
+\]</span></p>
+<ul>
+<li>Coupling between spins causes problems / interest</li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>Most pessimistic assessment is that to calculate an average we are going to have sum over <span class="math inline">\(2^N\)</span> configurations</p></li>
+<li><p>Computing the partition function <span class="math inline">\(Z\)</span> that normalizes the average (or which gives the free energy via <span class="math inline">\(F=-k_\text{B}T\log Z\)</span>) is another such sum</p></li>
+<li><p>Monte Carlo simulation is a much more attractive alternative</p></li>
+<li><p>MCMC can be used to generate samples from <span class="math inline">\(p(\sigma)\)</span> which are then used to estimate the averages of interest (e.g.&nbsp;average energy <span class="math inline">\(\langle\mathcal{E}(\sigma)\rangle\)</span>, average magnetization <span class="math inline">\(\langle\sum_n \sigma_n\rangle\)</span>, etc.)</p></li>
+</ul>
+</section>
+<section id="mcmc-updates-for-the-ising-model" class="slide level2 center">
+<h2>MCMC updates for the Ising model</h2>
+<ul>
+<li><p>Simple proposal: pick each spin in turn in some order and try to flip it.</p></li>
+<li><p>Form of <span class="math inline">\(p(\sigma)\)</span> means that, although we cannot compute the probabilities explicitly, we can calculate <em>ratios</em></p></li>
+<li><p>For two configurations that differ only by <span class="math inline">\(\sigma_n=\pm 1\)</span> we have <span class="math display">\[
+\begin{align}
+\frac{p(\sigma_n=1|\sigma_{m\neq n})}{p(\sigma_n=-1|\sigma_{m\neq n})} &amp;= \exp\left[-2\beta \left(h_n+\sum_{m\neq n} J_{mn}\sigma_m\right)\right]\\
+&amp;\equiv \exp\left[-\beta\Delta \mathcal{E}\right]
+\end{align}
+\]</span> where <span class="math inline">\(\Delta \mathcal{E}\)</span> is the energy difference</p></li>
+</ul>
+</section>
+<section class="slide level2 center">
+
+<ul>
+<li><p>Alternative to Metropolis is <strong>Heat bath algorithm</strong> (or <a href="https://en.wikipedia.org/wiki/Glauber_dynamics">Glauber dynamics</a> or <a href="https://en.wikipedia.org/wiki/Gibbs_sampling">Gibbs sampling</a>)</p></li>
+<li><p>Since we can calculate the influence of the spin’s environment (the “bath”), we can just choose the spin’s orientation with corresponding probabilities</p></li>
+<li><p>Only two probabilities so the ratio is all we need and we get</p></li>
+</ul>
+<p><span class="math display">\[
+p(\sigma_n=\pm 1|\sigma_{m\neq n}) = \frac{1}{1+ e^{\pm\beta \Delta \mathcal{E}}}
+\]</span></p>
+</section>
+<section class="slide level2 center">
+
+<div id="exm-heat-bath" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Heat bath algorithm)</strong></span> &nbsp;</p>
+<ol type="1">
+<li>Pick a spin <span class="math inline">\(n\)</span></li>
+<li>Compute <span class="math inline">\(\Delta E\)</span>, the energy difference between <span class="math inline">\(\sigma_n=\pm 1\)</span>.</li>
+<li>Set <span class="math inline">\(\sigma_n=\pm 1\)</span> with probabilities given above</li>
+<li>Repeat 1-3 many times</li>
+</ol>
+</div>
+</section>
+<section class="slide level2 center">
+
+<div id="91f35d6d" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="kw">class</span> IsingModel:</span>
+<span id="cb5-2"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, L):</span>
+<span id="cb5-3"><a></a>        <span class="va">self</span>.L <span class="op">=</span> L</span>
+<span id="cb5-4"><a></a>        <span class="va">self</span>.spins <span class="op">=</span> np.random.choice(a<span class="op">=</span>[<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>], size<span class="op">=</span>(L, L))</span>
+<span id="cb5-5"><a></a>        stagger <span class="op">=</span> np.empty(<span class="va">self</span>.L, dtype <span class="op">=</span> <span class="bu">bool</span>)</span>
+<span id="cb5-6"><a></a>        stagger[::<span class="dv">2</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb5-7"><a></a>        stagger[<span class="dv">1</span>::<span class="dv">2</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb5-8"><a></a>        <span class="va">self</span>.mask <span class="op">=</span> np.logical_xor(stagger[:, np.newaxis], stagger[np.newaxis, :])</span>
+<span id="cb5-9"><a></a></span>
+<span id="cb5-10"><a></a>    <span class="kw">def</span> gibbs_update(<span class="va">self</span>, beta, sublattice):</span>
+<span id="cb5-11"><a></a>        fields <span class="op">=</span> np.roll(<span class="va">self</span>.spins, <span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="dv">1</span>, <span class="dv">1</span>) <span class="op">+</span> np.roll(<span class="va">self</span>.spins, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb5-12"><a></a>        delta_E <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> fields</span>
+<span id="cb5-13"><a></a>        spin_up_probabilities <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span> beta <span class="op">*</span> delta_E))</span>
+<span id="cb5-14"><a></a>        new_spins <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (np.random.rand(<span class="va">self</span>.L, <span class="va">self</span>.L) <span class="op">&lt;</span> spin_up_probabilities) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb5-15"><a></a>        <span class="va">self</span>.spins <span class="op">=</span> np.choose(np.logical_xor(sublattice, <span class="va">self</span>.mask), [<span class="va">self</span>.spins, new_spins])</span>
+<span id="cb5-16"><a></a></span>
+<span id="cb5-17"><a></a>    <span class="kw">def</span> glauber_update(<span class="va">self</span>, beta):</span>
+<span id="cb5-18"><a></a>        x, y <span class="op">=</span> np.random.randint(<span class="va">self</span>.L, size<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-19"><a></a>        fields <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-20"><a></a>        <span class="cf">for</span> neighbour <span class="kw">in</span> [((x <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), ((x <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), (x, (y <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L), (x, (y <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L)]:</span>
+<span id="cb5-21"><a></a>            fields <span class="op">+=</span> <span class="va">self</span>.spins[neighbour]</span>
+<span id="cb5-22"><a></a>        delta_E <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> fields</span>
+<span id="cb5-23"><a></a>        spin_up_probability <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span> beta <span class="op">*</span> delta_E))        </span>
+<span id="cb5-24"><a></a>        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> spin_up_probability:</span>
+<span id="cb5-25"><a></a>            <span class="va">self</span>.spins[x, y] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb5-26"><a></a>        <span class="cf">else</span>:</span>
+<span id="cb5-27"><a></a>            <span class="va">self</span>.spins[x, y] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb5-28"><a></a></span>
+<span id="cb5-29"><a></a>    <span class="kw">def</span> wolff_update(<span class="va">self</span>, beta):</span>
+<span id="cb5-30"><a></a>        initial_x, initial_y <span class="op">=</span> np.random.randint(<span class="va">self</span>.L, size<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-31"><a></a>        initial_spin <span class="op">=</span> <span class="va">self</span>.spins[initial_x, initial_y]</span>
+<span id="cb5-32"><a></a>        cluster <span class="op">=</span> deque([(initial_x, initial_y)])</span>
+<span id="cb5-33"><a></a>        add_prob <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> beta)</span>
+<span id="cb5-34"><a></a></span>
+<span id="cb5-35"><a></a>        <span class="cf">while</span> <span class="bu">len</span>(cluster) <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb5-36"><a></a>            x, y <span class="op">=</span> cluster.popleft()</span>
+<span id="cb5-37"><a></a>            <span class="cf">if</span> <span class="va">self</span>.spins[x, y] <span class="op">==</span> initial_spin:</span>
+<span id="cb5-38"><a></a>                <span class="va">self</span>.spins[x, y] <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb5-39"><a></a>                <span class="cf">for</span> neighbour <span class="kw">in</span> (((x <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), ((x <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L, y), (x, (y <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L), (x, (y <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="va">self</span>.L)):</span>
+<span id="cb5-40"><a></a>                    <span class="cf">if</span> <span class="va">self</span>.spins[neighbour] <span class="op">==</span> initial_spin:</span>
+<span id="cb5-41"><a></a>                        <span class="cf">if</span> np.random.rand() <span class="op">&lt;</span> add_prob:</span>
+<span id="cb5-42"><a></a>                            cluster.append(neighbour)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2 center">
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js"></script>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="639" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 638;"><span id="cb6-639"><a></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">loadSim</span>() {</span>
+<span id="cb6-640"><a></a>    <span class="kw">let</span> pyodide <span class="op">=</span> <span class="cf">await</span> <span class="fu">loadPyodide</span>()<span class="op">;</span></span>
+<span id="cb6-641"><a></a>    <span class="cf">await</span> pyodide<span class="op">.</span><span class="fu">loadPackage</span>(<span class="st">"numpy"</span>)<span class="op">;</span> </span>
+<span id="cb6-642"><a></a>  </span>
+<span id="cb6-643"><a></a>    <span class="co">// Code has to be loaded into virtual file system</span></span>
+<span id="cb6-644"><a></a>    <span class="cf">await</span> pyodide<span class="op">.</span><span class="fu">runPythonAsync</span>(<span class="vs">`</span></span>
+<span id="cb6-645"><a></a><span class="vs">    from pyodide.http import pyfetch</span></span>
+<span id="cb6-646"><a></a><span class="vs">    response = await pyfetch("../assets/ising.py")</span></span>
+<span id="cb6-647"><a></a><span class="vs">    with open("ising.py", "wb") as f:</span></span>
+<span id="cb6-648"><a></a><span class="vs">        f.write(await response.bytes())</span></span>
+<span id="cb6-649"><a></a><span class="vs">        `</span>)</span>
+<span id="cb6-650"><a></a></span>
+<span id="cb6-651"><a></a>    <span class="cf">return</span> pyodide<span class="op">.</span><span class="fu">pyimport</span>(<span class="st">"ising"</span>)</span>
+<span id="cb6-652"><a></a>  }</span>
+<span id="cb6-653"><a></a></span>
+<span id="cb6-654"><a></a>L <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb6-655"><a></a>ising <span class="op">=</span> <span class="cf">await</span> <span class="fu">loadSim</span>()</span>
+<span id="cb6-656"><a></a>isingModel <span class="op">=</span> ising<span class="op">.</span><span class="fu">IsingModel</span>(L)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="662" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 661;"><span id="cb7-662"><a></a>viewof running <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"Run"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="kw">true</span>})</span>
+<span id="cb7-663"><a></a></span>
+<span id="cb7-664"><a></a>viewof T <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span> {</span>
+<span id="cb7-665"><a></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span></span>
+<span id="cb7-666"><a></a>  <span class="dt">value</span><span class="op">:</span> <span class="fl">2.269</span><span class="op">,</span></span>
+<span id="cb7-667"><a></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Temp"</span></span>
+<span id="cb7-668"><a></a>})</span>
+<span id="cb7-669"><a></a></span>
+<span id="cb7-670"><a></a>viewof update <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb7-671"><a></a>  [</span>
+<span id="cb7-672"><a></a>    <span class="st">"Glauber"</span><span class="op">,</span></span>
+<span id="cb7-673"><a></a>    <span class="st">"Block Gibbs"</span><span class="op">,</span></span>
+<span id="cb7-674"><a></a>    <span class="st">"Wolff"</span></span>
+<span id="cb7-675"><a></a>  ]<span class="op">,</span></span>
+<span id="cb7-676"><a></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Update"</span>}</span>
+<span id="cb7-677"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="683" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 682;"><span id="cb8-683"><a></a><span class="kw">async</span> <span class="kw">function</span><span class="op">*</span> <span class="fu">animateIsing</span>() {</span>
+<span id="cb8-684"><a></a>  </span>
+<span id="cb8-685"><a></a>  <span class="kw">let</span> sublattice <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb8-686"><a></a></span>
+<span id="cb8-687"><a></a>  <span class="cf">while</span> (running) {</span>
+<span id="cb8-688"><a></a></span>
+<span id="cb8-689"><a></a>    <span class="kw">const</span> beta <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> T</span>
+<span id="cb8-690"><a></a></span>
+<span id="cb8-691"><a></a>    <span class="cf">if</span> (update <span class="op">==</span> <span class="st">"Glauber"</span>) {</span>
+<span id="cb8-692"><a></a>        isingModel<span class="op">.</span><span class="fu">glauber_update</span>(beta)</span>
+<span id="cb8-693"><a></a>      }</span>
+<span id="cb8-694"><a></a>      <span class="cf">else</span> <span class="cf">if</span> (update <span class="op">===</span> <span class="st">"Block Gibbs"</span>) {</span>
+<span id="cb8-695"><a></a>        isingModel<span class="op">.</span><span class="fu">gibbs_update</span>(beta<span class="op">,</span> sublattice)</span>
+<span id="cb8-696"><a></a>        sublattice <span class="op">=</span> <span class="op">!</span>sublattice  </span>
+<span id="cb8-697"><a></a>      }</span>
+<span id="cb8-698"><a></a>      <span class="cf">else</span> {</span>
+<span id="cb8-699"><a></a>        isingModel<span class="op">.</span><span class="fu">wolff_update</span>(beta)  </span>
+<span id="cb8-700"><a></a>      }</span>
+<span id="cb8-701"><a></a></span>
+<span id="cb8-702"><a></a>    <span class="kw">yield</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-703"><a></a>      <span class="dt">width</span><span class="op">:</span> <span class="dv">450</span><span class="op">,</span></span>
+<span id="cb8-704"><a></a>      <span class="dt">height</span><span class="op">:</span> <span class="dv">450</span><span class="op">,</span></span>
+<span id="cb8-705"><a></a>      <span class="dt">aspectRatio</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb8-706"><a></a>      <span class="dt">x</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb8-707"><a></a>      <span class="dt">y</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb8-708"><a></a>      <span class="dt">color</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span>]}<span class="op">,</span></span>
+<span id="cb8-709"><a></a>      <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb8-710"><a></a>        Plot<span class="op">.</span><span class="fu">raster</span>(isingModel<span class="op">.</span><span class="fu">to_js</span>()<span class="op">,</span> {</span>
+<span id="cb8-711"><a></a>          <span class="dt">width</span><span class="op">:</span> L<span class="op">,</span></span>
+<span id="cb8-712"><a></a>          <span class="dt">height</span><span class="op">:</span> L<span class="op">,</span></span>
+<span id="cb8-713"><a></a>          <span class="dt">imageRendering</span><span class="op">:</span> <span class="st">"pixelated"</span></span>
+<span id="cb8-714"><a></a>        })</span>
+<span id="cb8-715"><a></a>      ]</span>
+<span id="cb8-716"><a></a>    })<span class="op">;</span></span>
+<span id="cb8-717"><a></a></span>
+<span id="cb8-718"><a></a>  }</span>
+<span id="cb8-719"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="724" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 723;"><span id="cb9-724"><a></a><span class="fu">animateIsing</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImFzeW5jIGZ1bmN0aW9uIGxvYWRTaW0oKSB7XG4gICAgbGV0IHB5b2RpZGUgPSBhd2FpdCBsb2FkUHlvZGlkZSgpO1xuICAgIGF3YWl0IHB5b2RpZGUubG9hZFBhY2thZ2UoXCJudW1weVwiKTsgXG4gIFxuICAgIC8vIENvZGUgaGFzIHRvIGJlIGxvYWRlZCBpbnRvIHZpcnR1YWwgZmlsZSBzeXN0ZW1cbiAgICBhd2FpdCBweW9kaWRlLnJ1blB5dGhvbkFzeW5jKGBcbiAgICBmcm9tIHB5b2RpZGUuaHR0cCBpbXBvcnQgcHlmZXRjaFxuICAgIHJlc3BvbnNlID0gYXdhaXQgcHlmZXRjaChcIi4uL2Fzc2V0cy9pc2luZy5weVwiKVxuICAgIHdpdGggb3BlbihcImlzaW5nLnB5XCIsIFwid2JcIikgYXMgZjpcbiAgICAgICAgZi53cml0ZShhd2FpdCByZXNwb25zZS5ieXRlcygpKVxuICAgICAgICBgKVxuXG4gICAgcmV0dXJuIHB5b2RpZGUucHlpbXBvcnQoXCJpc2luZ1wiKVxuICB9XG5cbkwgPSAxMjhcbmlzaW5nID0gYXdhaXQgbG9hZFNpbSgpXG5pc2luZ01vZGVsID0gaXNpbmcuSXNpbmdNb2RlbChMKVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgcnVubmluZyA9IElucHV0cy50b2dnbGUoe2xhYmVsOiBcIlJ1blwiLCB2YWx1ZTogdHJ1ZX0pXG5cbnZpZXdvZiBUID0gSW5wdXRzLnJhbmdlKFswLjUsIDVdLCB7XG4gIHN0ZXA6IDAuMDUsXG4gIHZhbHVlOiAyLjI2OSxcbiAgbGFiZWw6IFwiVGVtcFwiXG59KVxuXG52aWV3b2YgdXBkYXRlID0gSW5wdXRzLnNlbGVjdChcbiAgW1xuICAgIFwiR2xhdWJlclwiLFxuICAgIFwiQmxvY2sgR2liYnNcIixcbiAgICBcIldvbGZmXCJcbiAgXSxcbiAge2xhYmVsOiBcIlVwZGF0ZVwifVxuKVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJhc3luYyBmdW5jdGlvbiogYW5pbWF0ZUlzaW5nKCkge1xuICBcbiAgbGV0IHN1YmxhdHRpY2UgPSB0cnVlXG5cbiAgd2hpbGUgKHJ1bm5pbmcpIHtcblxuICAgIGNvbnN0IGJldGEgPSAxIC8gVFxuXG4gICAgaWYgKHVwZGF0ZSA9PSBcIkdsYXViZXJcIikge1xuICAgICAgICBpc2luZ01vZGVsLmdsYXViZXJfdXBkYXRlKGJldGEpXG4gICAgICB9XG4gICAgICBlbHNlIGlmICh1cGRhdGUgPT09IFwiQmxvY2sgR2liYnNcIikge1xuICAgICAgICBpc2luZ01vZGVsLmdpYmJzX3VwZGF0ZShiZXRhLCBzdWJsYXR0aWNlKVxuICAgICAgICBzdWJsYXR0aWNlID0gIXN1YmxhdHRpY2UgIFxuICAgICAgfVxuICAgICAgZWxzZSB7XG4gICAgICAgIGlzaW5nTW9kZWwud29sZmZfdXBkYXRlKGJldGEpICBcbiAgICAgIH1cblxuICAgIHlpZWxkIFBsb3QucGxvdCh7XG4gICAgICB3aWR0aDogNDUwLFxuICAgICAgaGVpZ2h0OiA0NTAsXG4gICAgICBhc3BlY3RSYXRpbzogMSxcbiAgICAgIHg6IHtheGlzOiBudWxsfSxcbiAgICAgIHk6IHtheGlzOiBudWxsfSxcbiAgICAgIGNvbG9yOiB7ZG9tYWluOiBbLTEsIDFdfSxcbiAgICAgIG1hcmtzOiBbXG4gICAgICAgIFBsb3QucmFzdGVyKGlzaW5nTW9kZWwudG9fanMoKSwge1xuICAgICAgICAgIHdpZHRoOiBMLFxuICAgICAgICAgIGhlaWdodDogTCxcbiAgICAgICAgICBpbWFnZVJlbmRlcmluZzogXCJwaXhlbGF0ZWRcIlxuICAgICAgICB9KVxuICAgICAgXVxuICAgIH0pO1xuXG4gIH1cbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImFuaW1hdGVJc2luZygpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3J1bm5pbmcnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnVCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd1cGRhdGUnKSJ9XX0=
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../slides";
+    window._ojs.paths.runtimeToRoot = "../..";
+    window._ojs.paths.docToRoot = "..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
