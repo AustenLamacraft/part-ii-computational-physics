@@ -16,7 +16,7 @@ You will receive a link to the exercise via email on the first day before noon (
 
 You will be using [GitHub classroom](https://classroom.github.com/) to submit your work, so you will need a GitHub account if you don't already have one.
 
-If you've never used GitHub before, you can try out the [starter course](https://classroom.github.com/a/9yY2bt88). On clicking this link you will be asked to pick your identifier (CRSid) in order to join the classroom. Let me know if your id is missing.
+If you've never used GitHub before, you can try out the [starter course](https://classroom.github.com/a/kRglu3Oa). On clicking this link you will be asked to pick your identifier (CRSid) in order to join the classroom. Let me know if your id is missing.
 
 Each week I will email you a link to a new exercise. Once you accept the assignment, GitHub will create a repository called `<exercise-name>-<your-username>` in the `Part-II-Computational-Physics` organization on GitHub. This repository will contain the exercise description. Please __change the name of the repo to `<exercise-name>-<CRSid>`__ for ease of marking. Only you and the course admins (the demonstrators and me) can see this repo.
 
