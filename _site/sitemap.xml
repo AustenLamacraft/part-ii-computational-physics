@@ -1,91 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://computational-physics.tripos.org/exercises/exercises.html</loc>
-    <lastmod>2026-02-19T17:41:54.206Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/notes/numpy.html</loc>
-    <lastmod>2023-02-03T19:48:00.057Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/notes/fourier.html</loc>
-    <lastmod>2026-02-19T15:38:11.408Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/notes/complexity.html</loc>
-    <lastmod>2025-02-12T12:27:28.657Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/notes/numbers.html</loc>
-    <lastmod>2023-02-03T19:46:49.278Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/notes/getting-going.html</loc>
-    <lastmod>2025-01-27T09:13:39.268Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/slides/numbers-and-odes.html</loc>
-    <lastmod>2026-02-03T19:00:59.908Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/slides/fourier.html</loc>
-    <lastmod>2026-02-19T15:39:18.802Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/slides/autodiff.html</loc>
-    <lastmod>2026-02-16T09:46:52.475Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/slides/monte-carlo.html</loc>
-    <lastmod>2026-02-03T23:49:46.318Z</lastmod>
+    <loc>https://computational-physics.tripos.org/exercises/projects.html</loc>
+    <lastmod>2026-02-20T15:25:51.191Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/index.html</loc>
-    <lastmod>2026-01-19T15:14:50.432Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/slides/getting-going.html</loc>
-    <lastmod>2026-02-03T19:00:59.908Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/slides/complexity.html</loc>
-    <lastmod>2025-02-12T12:27:17.366Z</lastmod>
-  </url>
-  <url>
-    <loc>https://computational-physics.tripos.org/slides/linear.html</loc>
-    <lastmod>2026-02-18T09:45:37.558Z</lastmod>
+    <lastmod>2026-02-20T11:21:06.783Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/slides/numpy.html</loc>
-    <lastmod>2025-01-29T11:07:34.923Z</lastmod>
+    <lastmod>2026-02-20T11:21:06.843Z</lastmod>
   </url>
   <url>
-    <loc>https://computational-physics.tripos.org/notes/assignments.html</loc>
-    <lastmod>2023-01-14T19:40:30.266Z</lastmod>
+    <loc>https://computational-physics.tripos.org/slides/autodiff.html</loc>
+    <lastmod>2026-02-20T11:21:06.811Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/slides/fourier.html</loc>
+    <lastmod>2026-02-20T11:21:06.811Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/slides/linear.html</loc>
+    <lastmod>2026-02-20T11:21:06.842Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/notes/complexity.html</loc>
+    <lastmod>2026-02-20T11:21:06.792Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/monte-carlo.html</loc>
-    <lastmod>2026-02-03T23:50:06.834Z</lastmod>
+    <lastmod>2026-02-20T11:21:06.803Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/intro.html</loc>
-    <lastmod>2023-04-03T09:04:06.354Z</lastmod>
+    <lastmod>2026-02-20T11:21:06.799Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/autodiff.html</loc>
-    <lastmod>2026-02-16T09:43:02.818Z</lastmod>
+    <lastmod>2026-02-20T11:21:06.788Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/notes/fourier.html</loc>
+    <lastmod>2026-02-20T11:21:06.796Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/linear.html</loc>
-    <lastmod>2023-03-11T10:40:35.004Z</lastmod>
+    <lastmod>2026-02-20T11:21:06.801Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/notes/getting-going.html</loc>
+    <lastmod>2026-02-20T11:21:06.799Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/notes/assignments.html</loc>
+    <lastmod>2026-02-20T11:21:06.786Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/notes/numbers.html</loc>
+    <lastmod>2026-02-20T11:21:06.804Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/notes/numpy.html</loc>
+    <lastmod>2026-02-20T11:21:06.804Z</lastmod>
   </url>
   <url>
     <loc>https://computational-physics.tripos.org/notes/ode.html</loc>
-    <lastmod>2023-02-02T10:06:26.719Z</lastmod>
+    <lastmod>2026-02-20T11:21:06.804Z</lastmod>
   </url>
   <url>
-    <loc>https://computational-physics.tripos.org/exercises/projects.html</loc>
-    <lastmod>2026-01-19T15:06:31.285Z</lastmod>
+    <loc>https://computational-physics.tripos.org/slides/getting-going.html</loc>
+    <lastmod>2026-02-20T11:21:06.811Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/slides/numbers-and-odes.html</loc>
+    <lastmod>2026-02-20T11:21:06.842Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/slides/monte-carlo.html</loc>
+    <lastmod>2026-02-20T11:21:06.842Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/slides/complexity.html</loc>
+    <lastmod>2026-02-20T11:21:06.811Z</lastmod>
+  </url>
+  <url>
+    <loc>https://computational-physics.tripos.org/exercises/exercises.html</loc>
+    <lastmod>2026-02-20T12:07:19.936Z</lastmod>
   </url>
 </urlset>

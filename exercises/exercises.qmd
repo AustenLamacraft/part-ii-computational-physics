@@ -10,29 +10,33 @@ There are __four computing exercises__ to be completed in the last four weeks of
 - __Third exercise__: Friday 6th March – Friday 13th March
 - __Fourth exercise__: Friday 13th March – Friday 20th March (last day of full Lent term)
 
-You will receive a link to the exercise via email on the first day before noon (i.e. Friday 14th February for the first exercise). The deadline for every exercise is __12 noon__ on the final day (i.e. Friday 21st February for the first exercise).
+You will receive a link to the exercise via email on the first day before noon (i.e. Friday 20th February for the first exercise). The deadline for every exercise is __12 noon__ on the final day (i.e. Friday 27th February for the first exercise).
 
 # How to submit
 
-You will be using [GitHub classroom](https://classroom.github.com/) to submit your work, so you will need a GitHub account if you don't already have one.
+You will be using [GitHub classroom](https://classroom.github.com/) to submit your work, so you will need a GitHub account if you don't already have one. 
 
-If you've never used GitHub before, you can try out the [starter course](https://classroom.github.com/a/kRglu3Oa). On clicking this link you will be asked to pick your identifier (CRSid) in order to join the classroom. Let me know if your id is missing.
+Each week I will email you a link to a new exercise. The first time you click on one of the classroom links you will be asked to pick your identifier (CRSid) in order to join the classroom. Let me know if your id is missing. __Please make sure you click the right CRSid!__ If you click someone else's they won't be able to get theirs and I will have to manually reassign them 😡.
 
-Each week I will email you a link to a new exercise. Once you accept the assignment, GitHub will create a repository called `<exercise-name>-<your-username>` in the `Part-II-Computational-Physics` organization on GitHub. This repository will contain the exercise description. Please __change the name of the repo to `<exercise-name>-<CRSid>`__ for ease of marking. Only you and the course admins (the demonstrators and me) can see this repo.
+Once you accept the assignment, GitHub will create a repository called `<exercise-name>-<your-username>` in the `Part-II-Computational-Physics` organization on GitHub. This repository will contain the exercise description. Please __change the name of the repo to `<exercise-name>-<CRSid>`__ for ease of marking. Only you and the course admins (the demonstrators and me) can see this repo.
 
 Note that _there is no explicit "submit" button_. You submit your work by making changes ("commits") to the repository _on GitHub_ (if you make commits to a copy of the repository on your computer, you must "push" them to GitHub). You can make as many commits as you like up until the deadline. Note that you can continue to add commits to the repo after the deadline, but only the last commit before the deadline is counted as the submission.
 
+ The policy on late submission of coursework is described in the [Physics course handbook](https://universityofcambridgecloud.sharepoint.com/sites/PHY_INT_UG/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FPHY%5FINT%5FUG%2FShared%20Documents%2FCurrent%20undergraduates%2FHandbook%2FPhysics%5FCourse%5FHandbook%5F2025%5F2026%20v2%2Epdf&parent=%2Fsites%2FPHY%5FINT%5FUG%2FShared%20Documents%2FCurrent%20undergraduates%2FHandbook) (Section 7). Note in particular that applications for extensions should be made by submitting [this form](https://forms.office.com/pages/responsepage.aspx?id=RQSlSfq9eUut41R7TzmG6Y64hS-YY0NHhP2hmw9lbpdUNFdLU01PRTFXVURORUhBVllUS0QwSkxBRS4u&route=shorturl), not by contacting me directly.
+
 Please use the [discussions](https://github.com/orgs/Part-II-Computational-Physics/discussions) section to ask questions to your demonstrators (about the exercises) and me (about everything else). Treat the discussions as if they are a real life examples class where others can learn from your questions and the answers to them.
 
-If you're using VS Code, there is a [GitHub Classroom extension](https://marketplace.visualstudio.com/items?itemName=GitHub.classroom) that allows you to view, work on, and submit assignments directly within the editor.
+If you've never used GitHub before, you can try out the [starter course](https://classroom.github.com/a/kRglu3Oa). 
 
-<!-- # The exercises
+<!-- If you're using VS Code, there is a [GitHub Classroom extension](https://marketplace.visualstudio.com/items?itemName=GitHub.classroom) that allows you to view, work on, and submit assignments directly within the editor. -->
+
+# The exercises
 
 ## First exercise: PDEs
 
-[The first exercise](https://classroom.github.com/a/Wtp2MN75) concerns solving a simple PDE using different methods. Your demonstrator for this exercise is Arshad Kamal. The deadline is __12 noon__ on Friday 21st February.
+[The first exercise](https://classroom.github.com/a/Rfpx6VIj) concerns solving a simple PDE using different methods. Your demonstrator for this exercise is Arshad Kamal. The deadline is __12 noon__ on Friday 27th February.
 
-## Second exercise: Monte Carlo
+<!-- ## Second exercise: Monte Carlo
 
 [The second exercise](https://classroom.github.com/a/z6tM4QRu) is about Monte Carlo techniques applied to the Ising model. You demonstrator is Cheng-Yu Huang (Kou). The deadline is __12 noon__ on Friday 7th March.
 

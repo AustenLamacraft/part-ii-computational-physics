@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -38,10 +58,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-07234f7cd2b142357b9bcce9cbbe66b7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -70,6 +90,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -96,8 +145,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Part II Computational Physics</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -276,8 +326,22 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#the-report" id="toc-the-report" class="nav-link active" data-scroll-target="#the-report"><span class="header-section-number">1</span> The report</a></li>
-  <li><a href="#sec-submission" id="toc-sec-submission" class="nav-link" data-scroll-target="#sec-submission"><span class="header-section-number">2</span> Submission</a></li>
+  <li><a href="#sec-submission" id="toc-sec-submission" class="nav-link" data-scroll-target="#sec-submission"><span class="header-section-number">2</span> Submission</a>
+  <ul class="collapse">
+  <li><a href="#sec-late-submission" id="toc-sec-late-submission" class="nav-link" data-scroll-target="#sec-late-submission"><span class="header-section-number">2.1</span> Late submission and extensions</a></li>
+  </ul></li>
   <li><a href="#marking" id="toc-marking" class="nav-link" data-scroll-target="#marking"><span class="header-section-number">3</span> Marking</a></li>
+  <li><a href="#sec-projects" id="toc-sec-projects" class="nav-link" data-scroll-target="#sec-projects"><span class="header-section-number">4</span> The projects</a>
+  <ul class="collapse">
+  <li><a href="#percolation" id="toc-percolation" class="nav-link" data-scroll-target="#percolation"><span class="header-section-number">4.1</span> Percolation</a></li>
+  <li><a href="#hierarchical-methods-for-n-body-simulation" id="toc-hierarchical-methods-for-n-body-simulation" class="nav-link" data-scroll-target="#hierarchical-methods-for-n-body-simulation"><span class="header-section-number">4.2</span> Hierarchical methods for <span class="math inline">\(N\)</span>-body simulation</a></li>
+  <li><a href="#cluster-algorithms-for-monte-carlo" id="toc-cluster-algorithms-for-monte-carlo" class="nav-link" data-scroll-target="#cluster-algorithms-for-monte-carlo"><span class="header-section-number">4.3</span> Cluster algorithms for Monte Carlo</a></li>
+  <li><a href="#the-fermipastaulamtsingou-problem" id="toc-the-fermipastaulamtsingou-problem" class="nav-link" data-scroll-target="#the-fermipastaulamtsingou-problem"><span class="header-section-number">4.4</span> The Fermi–Pasta–Ulam–Tsingou problem</a></li>
+  <li><a href="#lenia" id="toc-lenia" class="nav-link" data-scroll-target="#lenia"><span class="header-section-number">4.5</span> Lenia</a></li>
+  <li><a href="#time-evolving-block-decimation-tebd" id="toc-time-evolving-block-decimation-tebd" class="nav-link" data-scroll-target="#time-evolving-block-decimation-tebd"><span class="header-section-number">4.6</span> Time evolving block decimation (TEBD)</a></li>
+  <li><a href="#model-synthesis-wavefunction-collapse" id="toc-model-synthesis-wavefunction-collapse" class="nav-link" data-scroll-target="#model-synthesis-wavefunction-collapse"><span class="header-section-number">4.7</span> Model Synthesis / Wavefunction Collapse</a></li>
+  <li><a href="#physics-informed-neural-networks" id="toc-physics-informed-neural-networks" class="nav-link" data-scroll-target="#physics-informed-neural-networks"><span class="header-section-number">4.8</span> Physics-Informed Neural Networks</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -303,9 +367,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The Computational Physics project — if you choose to submit one — is worth one unit of further work, so roughly 10% of your final mark for the year. It involves choosing a problem from the project list in <strong>?@sec-projects</strong>.&nbsp;You will analyse the problem, write and test Python code to investigate it, then write up your work in a report.&nbsp;Like E1 and E2, you can expect it to involve 40 to 50 hours’ work. This includes reading and research, coding, experimentation and gathering results, and writing your report.</p>
-<p>Students may start their project work once the project list is published by 20th February. Click on the <a href="https://classroom.github.com/a/H82NKbAw">GitHub Classroom link</a> to accept the project as an assignment. The deadline for submission of the project report is <strong>16:00 on the first Monday of Full Easter term (4th May 2026)</strong>. Submissions made after that time will not be marked <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. I suggest you proceed <em>as if the deadline is 16.00 on Friday 1st May</em>, and use the final weekend if you really need to.</p>
-<!-- https://forms.office.com/pages/responsepage.aspx?id=RQSlSfq9eUut41R7TzmG6Y64hS-YY0NHhP2hmw9lbpdUNFdLU01PRTFXVURORUhBVllUS0QwSkxBRS4u&route=shorturl -->
+<p>The Computational Physics project — if you choose to submit one — is worth one unit of further work, so roughly 10% of your final mark for the year. It involves choosing a problem from the project list in <a href="#sec-projects" class="quarto-xref">Section&nbsp;4</a>.&nbsp;You will analyse the problem, write and test Python code to investigate it, then write up your work in a report.&nbsp;Like E1 and E2, you can expect it to involve 40 to 50 hours’ work. This includes reading and research, coding, experimentation and gathering results, and writing your report.</p>
+<p>Students may start their project work once the project list is published by 20th February. Click on the <a href="https://classroom.github.com/a/EubtKrnp">GitHub Classroom link</a> to accept the project as an assignment. The deadline for submission of the project report is <strong>16:00 on the first Monday of Full Easter term (4th May 2026)</strong>. Submissions made after that time will not be marked (see <a href="#sec-late-submission" class="quarto-xref">Section&nbsp;2.1</a>). I suggest you proceed <em>as if the deadline is 16.00 on Friday 1st May</em>, and use the final weekend if you really need to.</p>
 <p>Bear in mind that <strong>everything in your report should be your own work</strong>, and your submission will be treated as a declaration of this fact. The rules regarding cheating and plagiarism in the <a href="https://universityofcambridgecloud.sharepoint.com/sites/PHY_INT_UG/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FPHY%5FINT%5FUG%2FShared%20Documents%2FCurrent%20undergraduates%2FHandbook%2FPhysics%5FCourse%5FHandbook%5F2025%5F2026%20v2%2Epdf&amp;parent=%2Fsites%2FPHY%5FINT%5FUG%2FShared%20Documents%2FCurrent%20undergraduates%2FHandbook">Physics course handbook</a> (Section 6) apply here. It is OK for you to use code that others — that’s what a library is, after all — but in all cases the attribution should be clear.</p>
 <p>Notwithstanding the above, please also use the <a href="https://github.com/orgs/Part-II-Computational-Physics/discussions">discussions</a> to ask each other questions and share knowledge.</p>
 <section id="the-report" class="level1" data-number="1">
@@ -317,8 +380,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="sec-submission" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Submission</h1>
-<p>The submission instructions are the same as for the <a href="../exercises/exercises.html">exercises</a>. Click on the <a href="https://classroom.github.com/a/H82NKbAw">GitHub Classroom link</a> to accept the project as an assignment. Please <strong>change the name of your repo to <code>&lt;project-name&gt;-&lt;CRSid&gt;</code></strong> for ease of marking.</p>
+<p>The submission instructions are the same as for the <a href="../exercises/exercises.html">exercises</a>. Click on the <a href="https://classroom.github.com/a/EubtKrnp">GitHub Classroom link</a> to accept the project as an assignment. Please <strong>change the name of your repo to <code>&lt;project-name&gt;-&lt;CRSid&gt;</code></strong> for ease of marking.</p>
 <p>You should take advantage of the fact that you are using GitHub to <em>regularly commit to your project repository</em> and <em>push the commits to GitHub</em>. That way there is no danger of you accidentally missing the deadline: your last commit to the repository on GitHub will constitute your submission.</p>
+<section id="sec-late-submission" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-late-submission"><span class="header-section-number">2.1</span> Late submission and extensions</h2>
+<p>See the <a href="https://universityofcambridgecloud.sharepoint.com/sites/NST_NaturalSciencesTripos/SitePages/Coursework%20Extensions.aspx">NST rules on late submission</a>: <em>“Students are required to self-certify before a submission deadline or at the point of submission of the work. Retrospective requests will not be accepted. Where a student does not self-certify and does not submit their coursework by the original submission date, zero marks will be awarded. Where a student has self-certified and does not submit their work by the revised submission date, zero marks will be awarded, unless a further extension has been granted by the department or EAMC”</em>. The form for submitting a self-certified extension is <a href="https://forms.office.com/pages/responsepage.aspx?id=RQSlSfq9eUut41R7TzmG6Y64hS-YY0NHhP2hmw9lbpdUNFdLU01PRTFXVURORUhBVllUS0QwSkxBRS4u&amp;route=shorturl">here</a>. <strong>Do not contact me directly with extension requests</strong>.</p>
+</section>
 </section>
 <section id="marking" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Marking</h1>
@@ -331,33 +398,29 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p>Although presentation only enters in the last category, bear in mind that assessors will not be able to get a good sense of what you have done unless your work is presented clearly throughout. In particular, it will make your assessor’s life easier (always a good thing) if there are <strong>sections that clearly refer to the first three points</strong>.</p>
 <p>As a general guide, you should present your work as if your assessor is <strong>completely ignorant</strong> of both the problem and computational approaches to it. Alternatively, present your work as if to yourself before you began working on it.</p>
-<!-- # The projects {#sec-projects}
-
-For all of these projects the basic protocol is the same:
-
-1. Understand the physical problem 
-2. Learn about the available algorithms, including their theoretical complexity / performance
-3. Implement the algorithm(s)
-4. Gather results about the performance of the method
-
-You will need do some research and reading before starting, so follow the links and references[^2]. _But read pragmatically_: look for the algorithm description or pseudo-code and start thinking about how you will translate it into your own code.
-
-[^2]: Most should be freely available (to you) online: don't forget the "CU" in CUP stands for Cambridge University.
-
-## Percolation
-
-[Percolation](https://en.wikipedia.org/wiki/Percolation_theory) is an extremely simple statistical mechanical model that has been used as a testbed for many theoretical concepts and numerical techniques over the decades. 
-
-One of the most popular and efficient algorithms for percolation is  @newman2000efficient. Implement and study this algorithm. You may wish to compare the Newman–Ziff algorithm with other algorithms e.g. @mertens2022exact.
-
-## Hierarchical methods for $N$-body simulation
-
-The [fast multipole method](https://en.wikipedia.org/wiki/Fast_multipole_method) and the [Barnes Hut method](https://en.wikipedia.org/wiki/Barnes%E2%80%93Hut_simulation) are two methods to study pairwise interactions in $N$-body systems that lower the complexity to $O(N\log N)$ from the naive $O(N^2)$. Implement these methods and compare their performance on different tasks.
-
-## Cluster algorithms for Monte Carlo
-
-Study the performance of cluster algorithms for statistical mechanics models such as the Ising model and hard disks — as described in [these lectures](https://hef.ru.nl/~tbudd/mct/lectures/cluster_algorithms.html) — and compare them with the Metropolis algorithm. You should analyze the autocorrelation time of the algorithms and the issue of critical slowing down.
-
+</section>
+<section id="sec-projects" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> The projects</h1>
+<p>For all of these projects the basic protocol is the same:</p>
+<ol type="1">
+<li>Understand the physical problem</li>
+<li>Learn about the available algorithms, including their theoretical complexity / performance</li>
+<li>Implement the algorithm(s)</li>
+<li>Gather results about the performance of the method</li>
+</ol>
+<p>You will need do some research and reading before starting, so follow the links and references<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> given, or find your own. <em>But read pragmatically</em>: look for the algorithm description or pseudo-code and start thinking about how you will translate it into your own code.</p>
+<section id="percolation" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="percolation"><span class="header-section-number">4.1</span> Percolation</h2>
+<p><a href="https://en.wikipedia.org/wiki/Percolation_theory">Percolation</a> is an extremely simple statistical mechanical model that has been used as a testbed for many theoretical concepts and numerical techniques over the decades.</p>
+<p>One of the most popular and efficient algorithms for percolation is <span class="citation" data-cites="newman2000efficient">Newman and Ziff (<a href="#ref-newman2000efficient" role="doc-biblioref">2000</a>)</span>. Implement and study this algorithm. You may wish to compare the Newman–Ziff algorithm with other algorithms e.g. <span class="citation" data-cites="mertens2022exact">Mertens (<a href="#ref-mertens2022exact" role="doc-biblioref">2022</a>)</span>.</p>
+</section>
+<section id="hierarchical-methods-for-n-body-simulation" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="hierarchical-methods-for-n-body-simulation"><span class="header-section-number">4.2</span> Hierarchical methods for <span class="math inline">\(N\)</span>-body simulation</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Fast_multipole_method">fast multipole method</a> and the <a href="https://en.wikipedia.org/wiki/Barnes%E2%80%93Hut_simulation">Barnes Hut method</a> are two methods to study pairwise interactions in <span class="math inline">\(N\)</span>-body systems that lower the complexity to <span class="math inline">\(O(N\log N)\)</span> from the naive <span class="math inline">\(O(N^2)\)</span>. Implement these methods and compare their performance on different tasks.</p>
+</section>
+<section id="cluster-algorithms-for-monte-carlo" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="cluster-algorithms-for-monte-carlo"><span class="header-section-number">4.3</span> Cluster algorithms for Monte Carlo</h2>
+<p>Study the performance of cluster algorithms for statistical mechanics models such as the Ising model and hard disks — as described in <a href="https://hef.ru.nl/~tbudd/mct/lectures/cluster_algorithms.html">these lectures</a> or <span class="citation" data-cites="krauth2006statistical">Krauth (<a href="#ref-krauth2006statistical" role="doc-biblioref">2006</a>)</span> — and compare them with the Metropolis algorithm. You should analyze the autocorrelation time of the algorithms and the issue of critical slowing down.</p>
 <!-- 
 ## Lyapunov exponents
 
@@ -368,37 +431,34 @@ It's probably easier to start with _discrete time_ dynamical systems, moving on 
 
 In an Ising model the lattice variables can take only two values. The idea behind multispin encoding is to use 64 bit data (`uint64` say) to simulate multiple copies of the Ising model, so that a degree of parallelism comes "for free". This requires _bitwise_ operations to be performed on the integers.
 
-Implement and test multispin encoding for the square lattice Ising model. Multispin encoding is introduced in @jacobs1981multi and also described in Section 10.1 of @bottcher2021computational.
-
-## The Fermi–Pasta–Ulam–Tsingou problem
-
-A fundamental problem in statistical physics is: how does a mechanical system thermalize? FPUT studied this question in a model of a chain of masses coupled by weakly anharmonic springs. @Dauxois:2008 is a nice review of the problem, which also includes sample [MATLAB code](http://www.scholarpedia.org/article/Fermi-Pasta-Ulam_nonlinear_lattice_oscillations#MATLAB_Code) that you could use as a starting point. You may have to explore other integration schemes (e.g. [symplectic integrators](https://en.wikipedia.org/wiki/Symplectic_integrator)). 
-
-## Lenia
-
-[Lenia](https://en.wikipedia.org/wiki/Lenia) is a recently invented (discovered?) [cellular automaton](https://en.wikipedia.org/wiki/Cellular_automaton): somewhat similar to [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) but with continuous variables. 
-
-There are lots of resources on Lenia, including the original paper (@chan2018lenia), a [GitHub repo](https://github.com/Chakazul/Lenia), [webpage](https://chakazul.github.io/lenia.html), as well as [this article](https://google-research.github.io/self-organising-systems/particle-lenia/) and [colab notebook](https://colab.research.google.com/github/OpenLenia/Lenia-Tutorial/blob/main/Tutorial_From_Conway_to_Lenia.ipynb) from Google research. Produce your own implementation and investigate its properties!
-
-## Time evolving block decimation (TEBD)
-
-Using [Glen Evenbly's site](https://www.tensors.net/mps) as a starting point, investigate the use of TEBD to solve quantum spin chains (see the [linear algebra lecture](../notes/linear.qmd)). Investigate real and imaginary time dynamics (the latter for finding the ground state), including the evolution of the expectation values of spins, starting from different initial states. See the original paper (@vidal2004efficient) for ideas of what to calculate.
-
-## The Wavefunction Collapse Algorithm
-
-Despite the name, the [wavefunction collapse algorithm](https://en.wikipedia.org/wiki/Model_synthesis) (see also [this GitHub repo](https://github.com/mxgmn/WaveFunctionCollapse)) is not _strictly_ about physics but rather [texture synthesis](https://en.wikipedia.org/wiki/Texture_synthesis): think making landscapes in computer games procedurally. There are potential connections with statistical physics: see [this Twitter thread](https://twitter.com/ExUtumno/status/1119996186663030784)
-
-There is an implementation in Python [here](https://github.com/ikarth/wfc_2019f), but you will need to write your own. [Markov Junior](https://github.com/mxgmn/MarkovJunior) is a newer algorithm by the same author. 
-
-## Language Modeling 
+Implement and test multispin encoding for the square lattice Ising model. Multispin encoding is introduced in @jacobs1981multi and also described in Section 10.1 of @bottcher2021computational. -->
+</section>
+<section id="the-fermipastaulamtsingou-problem" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="the-fermipastaulamtsingou-problem"><span class="header-section-number">4.4</span> The Fermi–Pasta–Ulam–Tsingou problem</h2>
+<p>A fundamental problem in statistical physics is: how does a mechanical system thermalize? FPUT studied this question in a model of a chain of masses coupled by weakly anharmonic springs. <span class="citation" data-cites="Dauxois:2008">Dauxois and Ruffo (<a href="#ref-Dauxois:2008" role="doc-biblioref">2008</a>)</span> is a nice review of the problem, which also includes sample <a href="http://www.scholarpedia.org/article/Fermi-Pasta-Ulam_nonlinear_lattice_oscillations#MATLAB_Code">MATLAB code</a> that you could use as a starting point. You may have to explore other integration schemes (e.g.&nbsp;<a href="https://en.wikipedia.org/wiki/Symplectic_integrator">symplectic integrators</a>).</p>
+</section>
+<section id="lenia" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="lenia"><span class="header-section-number">4.5</span> Lenia</h2>
+<p><a href="https://en.wikipedia.org/wiki/Lenia">Lenia</a> is a recently invented (discovered?) <a href="https://en.wikipedia.org/wiki/Cellular_automaton">cellular automaton</a>: somewhat similar to <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway’s Game of Life</a> but with continuous variables.</p>
+<p>There are lots of resources on Lenia, including the original paper (<span class="citation" data-cites="chan2018lenia">Chan (<a href="#ref-chan2018lenia" role="doc-biblioref">2018</a>)</span>), a <a href="https://github.com/Chakazul/Lenia">GitHub repo</a>, <a href="https://chakazul.github.io/lenia.html">webpage</a>, as well as <a href="https://google-research.github.io/self-organising-systems/particle-lenia/">this article</a> and <a href="https://colab.research.google.com/github/OpenLenia/Lenia-Tutorial/blob/main/Tutorial_From_Conway_to_Lenia.ipynb">colab notebook</a> from Google research. Produce your own implementation and investigate its properties!</p>
+</section>
+<section id="time-evolving-block-decimation-tebd" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="time-evolving-block-decimation-tebd"><span class="header-section-number">4.6</span> Time evolving block decimation (TEBD)</h2>
+<p>Using <a href="https://www.tensors.net/mps">Glen Evenbly’s site</a> as a starting point, investigate the use of TEBD to solve quantum spin chains (see the <a href="../notes/linear.html">linear algebra lecture</a>). Investigate real and imaginary time dynamics (the latter for finding the ground state), including the evolution of the expectation values of spins, starting from different initial states. See the original paper (<span class="citation" data-cites="vidal2004efficient">Vidal (<a href="#ref-vidal2004efficient" role="doc-biblioref">2004</a>)</span>) for ideas of what to calculate.</p>
+</section>
+<section id="model-synthesis-wavefunction-collapse" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="model-synthesis-wavefunction-collapse"><span class="header-section-number">4.7</span> Model Synthesis / Wavefunction Collapse</h2>
+<p>Despite the name, this is not about quantum mechanics but rather constraint-solving or <a href="https://en.wikipedia.org/wiki/Texture_synthesis">texture synthesis</a>: think artificial landscapes in computer games. Model synthesis and wavefunction collapse are in fact variants of the same basic idea, as explained on <a href="https://en.wikipedia.org/wiki/Model_synthesis">this wikipedia page</a> (see also <a href="https://github.com/mxgmn/WaveFunctionCollapse">this GitHub repo</a>). There are potential connections with statistical physics: see <a href="https://twitter.com/ExUtumno/status/1119996186663030784">this Twitter thread</a>. When does the algorithm fail to find a solution?</p>
+<p>There is an implementation in Python <a href="https://github.com/ikarth/wfc_2019f">here</a>, but you will need to write your own. <a href="https://github.com/mxgmn/MarkovJunior">Markov Junior</a> is a newer algorithm by the same author.</p>
+<!-- ## Language Modeling 
 
 By following along [this YouTube video series](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ) and the associated GitHub repository [makemore](https://github.com/karpathy/makemore), investigate ngram and neural network approaches to language modeling. The video descriptions contains exercises to get you going. Think of a fun / interesting exercise and complete it!
 
-As well as the lecture and exercise on neural nets, the 3Blue1Brown [series on deep learning](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) and [Michael Nielsen's online book](http://neuralnetworksanddeeplearning.com/index.html) are two additional useful resources.
-
-## Physics-Informed Neural Networks
-
-This project explores the use of Physics-Informed Neural Networks (PINNs) (@raissi2019physics) for solving partial differential equations (PDEs) in physics. It could begin with ordinary differential equations (ODEs) in a deep learning framework such as  PyTorch, JAX, or TensorFlow before progressing to more complex PDEs, such as the wave equation, diffusion equation, and Schrödinger equation. A PDE project related to Part II physics lectures, or another relevant topic can be chosen and implemented. The project could analyse PINNs' ability to enforce physical laws through loss functions and compare their performance to traditional numerical solvers, such as finite differences and finite elements. The project could explore PINN structure, exploring different architectures, assessing computational efficiency, and optimising training using methods like Adam. Extensions could apply PINNs to more advanced physics topics such as wave equations in general relativity, fluid dynamics, and Maxwell’s equations. The review (@karniadakis2021physics) is a good introduction to the general area. -->
+As well as the lecture and exercise on neural nets, the 3Blue1Brown [series on deep learning](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) and [Michael Nielsen's online book](http://neuralnetworksanddeeplearning.com/index.html) are two additional useful resources. -->
+</section>
+<section id="physics-informed-neural-networks" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="physics-informed-neural-networks"><span class="header-section-number">4.8</span> Physics-Informed Neural Networks</h2>
+<p>This project explores the use of Physics-Informed Neural Networks (PINNs) (<span class="citation" data-cites="raissi2019physics">Raissi, Perdikaris, and Karniadakis (<a href="#ref-raissi2019physics" role="doc-biblioref">2019</a>)</span>) for solving partial differential equations (PDEs) in physics. It could begin with ordinary differential equations (ODEs) in a deep learning framework such as PyTorch, JAX, or TensorFlow before progressing to more complex PDEs, such as the wave equation, diffusion equation, and Schrödinger equation. A PDE project related to Part II physics lectures, or another relevant topic can be chosen and implemented. The project could analyse PINNs’ ability to enforce physical laws through loss functions and compare their performance to traditional numerical solvers, such as finite differences and finite elements. The project could explore PINN structure, exploring different architectures, assessing computational efficiency, and optimising training using methods like Adam. Extensions could apply PINNs to more advanced topics such as wave equations in general relativity, fluid dynamics, and Maxwell’s equations. The review (<span class="citation" data-cites="karniadakis2021physics">Karniadakis et al. (<a href="#ref-karniadakis2021physics" role="doc-biblioref">2021</a>)</span>) is a good introduction to the general area.</p>
 <!-- ## Schrödinger's smoke
 
 [Schrödinger's smoke](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) is a recent arithm for the simulation of incompressible fluids. The original paper (@chern2016schrodinger) describes the algorithm in Section 2: it is based on the split-step method and FFT as discussed in the [FFT lecture](../notes/fourier.qmd).
@@ -617,13 +677,40 @@ Watts–Strogatz model
 61. Multi-spin encoding for the Ising model -->
 
 
+
+</section>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-chan2018lenia" class="csl-entry" role="listitem">
+Chan, Bert Wang-Chak. 2018. <span>“Lenia-Biology of Artificial Life.”</span> <em>arXiv Preprint arXiv:1812.05433</em>.
+</div>
+<div id="ref-Dauxois:2008" class="csl-entry" role="listitem">
+Dauxois, T., and S. Ruffo. 2008. <span>“<span>F</span>ermi-<span>P</span>asta-<span>U</span>lam Nonlinear Lattice Oscillations.”</span> <em>Scholarpedia</em> 3 (8): 5538. <a href="https://doi.org/10.4249/scholarpedia.5538">https://doi.org/10.4249/scholarpedia.5538</a>.
+</div>
+<div id="ref-karniadakis2021physics" class="csl-entry" role="listitem">
+Karniadakis, George Em, Ioannis G Kevrekidis, Lu Lu, Paris Perdikaris, Sifan Wang, and Liu Yang. 2021. <span>“Physics-Informed Machine Learning.”</span> <em>Nature Reviews Physics</em> 3 (6): 422–40.
+</div>
+<div id="ref-krauth2006statistical" class="csl-entry" role="listitem">
+Krauth, Werner. 2006. <em>Statistical Mechanics: Algorithms and Computations</em>. Vol. 13. OUP Oxford.
+</div>
+<div id="ref-mertens2022exact" class="csl-entry" role="listitem">
+Mertens, Stephan. 2022. <span>“Exact Site-Percolation Probability on the Square Lattice.”</span> <em>Journal of Physics A: Mathematical and Theoretical</em> 55 (33): 334002.
+</div>
+<div id="ref-newman2000efficient" class="csl-entry" role="listitem">
+Newman, MEJ, and Robert M Ziff. 2000. <span>“Efficient Monte Carlo Algorithm and High-Precision Results for Percolation.”</span> <em>Physical Review Letters</em> 85 (19): 4104.
+</div>
+<div id="ref-raissi2019physics" class="csl-entry" role="listitem">
+Raissi, Maziar, Paris Perdikaris, and George E Karniadakis. 2019. <span>“Physics-Informed Neural Networks: A Deep Learning Framework for Solving Forward and Inverse Problems Involving Nonlinear Partial Differential Equations.”</span> <em>Journal of Computational Physics</em> 378: 686–707.
+</div>
+<div id="ref-vidal2004efficient" class="csl-entry" role="listitem">
+Vidal, Guifré. 2004. <span>“Efficient Simulation of One-Dimensional Quantum Many-Body Systems.”</span> <em>Physical Review Letters</em> 93 (4): 040502.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>See the <a href="https://www.natsci.tripos.cam.ac.uk/exams/late">NST rules on late submission</a>. For the avoidance of doubt, the project is a piece of work for which the submission date is specified in Examination Regulations (Ordinances), and therefore the final paragraph applies.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Most should be freely available (to you) online: don’t forget the “CU” in CUP stands for Cambridge University…<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
