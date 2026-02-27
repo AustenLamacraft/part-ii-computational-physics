@@ -36,10 +36,11 @@ If you've never used GitHub before, you can try out the [starter course](https:/
 
 [The first exercise](https://classroom.github.com/a/Rfpx6VIj) concerns solving a simple PDE using different methods. Your demonstrator for this exercise is Arshad Kamal. The deadline is __12 noon__ on Friday 27th February.
 
-<!-- ## Second exercise: Monte Carlo
+## Second exercise: Monte Carlo
 
-[The second exercise](https://classroom.github.com/a/z6tM4QRu) is about Monte Carlo techniques applied to the Ising model. You demonstrator is Cheng-Yu Huang (Kou). The deadline is __12 noon__ on Friday 7th March.
+[The second exercise](https://classroom.github.com/a/vhDAeJQi) is about Monte Carlo techniques applied to the Ising model. You demonstrator is Bogdan Rajkov. The deadline is __12 noon__ on Friday 6th March.
 
+<!-- 
 
 ## Third exercise: automatic differentiation
 
