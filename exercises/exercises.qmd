@@ -46,11 +46,9 @@ If you've never used GitHub before, you can try out the [starter course](https:/
 
 [The third exercise](https://classroom.github.com/a/9WKeJCx7) is about using automatic differentiation to train a simple neural network. Your demonstrator is Thorbjørn Clausen. The deadline is __12 noon__ on Friday 13th March.
 
-<!-- 
-
 ## Fourth exercise: exact diagonalization
 
-[The fourth exercise](https://classroom.github.com/a/yAW3-xzg) is about using some of the linear algebra techniques from the [linear algebra lecture](../notes/linear.qmd) to study spin chains. Your demonstrator is Sun Woo Kim. The deadline is __12 noon__ on Friday 21st March.
- -->
+[The fourth exercise](https://classroom.github.com/a/jNcuMJnP) is about using some of the linear algebra techniques from the [linear algebra lecture](../notes/linear.qmd) to study spin chains. Your demonstrator is Vedant Motamarri. The deadline is __12 noon__ on Friday 20th March.
+ 
 
 

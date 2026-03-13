@@ -282,6 +282,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#first-exercise-pdes" id="toc-first-exercise-pdes" class="nav-link" data-scroll-target="#first-exercise-pdes"><span class="header-section-number">2.1</span> First exercise: PDEs</a></li>
   <li><a href="#second-exercise-monte-carlo" id="toc-second-exercise-monte-carlo" class="nav-link" data-scroll-target="#second-exercise-monte-carlo"><span class="header-section-number">2.2</span> Second exercise: Monte Carlo</a></li>
   <li><a href="#third-exercise-automatic-differentiation" id="toc-third-exercise-automatic-differentiation" class="nav-link" data-scroll-target="#third-exercise-automatic-differentiation"><span class="header-section-number">2.3</span> Third exercise: automatic differentiation</a></li>
+  <li><a href="#fourth-exercise-exact-diagonalization" id="toc-fourth-exercise-exact-diagonalization" class="nav-link" data-scroll-target="#fourth-exercise-exact-diagonalization"><span class="header-section-number">2.4</span> Fourth exercise: exact diagonalization</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -340,12 +341,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="third-exercise-automatic-differentiation" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="third-exercise-automatic-differentiation"><span class="header-section-number">2.3</span> Third exercise: automatic differentiation</h2>
 <p><a href="https://classroom.github.com/a/9WKeJCx7">The third exercise</a> is about using automatic differentiation to train a simple neural network. Your demonstrator is Thorbjørn Clausen. The deadline is <strong>12 noon</strong> on Friday 13th March.</p>
-<!-- 
-
-## Fourth exercise: exact diagonalization
-
-[The fourth exercise](https://classroom.github.com/a/yAW3-xzg) is about using some of the linear algebra techniques from the [linear algebra lecture](../notes/linear.qmd) to study spin chains. Your demonstrator is Sun Woo Kim. The deadline is __12 noon__ on Friday 21st March.
- -->
+</section>
+<section id="fourth-exercise-exact-diagonalization" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="fourth-exercise-exact-diagonalization"><span class="header-section-number">2.4</span> Fourth exercise: exact diagonalization</h2>
+<p><a href="https://classroom.github.com/a/jNcuMJnP">The fourth exercise</a> is about using some of the linear algebra techniques from the <a href="../notes/linear.html">linear algebra lecture</a> to study spin chains. Your demonstrator is Vedant Motamarri. The deadline is <strong>12 noon</strong> on Friday 20th March. –&gt;</p>
 
 
 </section>
@@ -425,7 +424,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

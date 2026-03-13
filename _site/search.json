@@ -33,6 +33,28 @@
     ]
   },
   {
+    "objectID": "exercises/exercises.html#third-exercise-automatic-differentiation",
+    "href": "exercises/exercises.html#third-exercise-automatic-differentiation",
+    "title": "Exercises",
+    "section": "2.3 Third exercise: automatic differentiation",
+    "text": "2.3 Third exercise: automatic differentiation\nThe third exercise is about using automatic differentiation to train a simple neural network. Your demonstrator is Thorbjørn Clausen. The deadline is 12 noon on Friday 13th March.",
+    "crumbs": [
+      "Exercises and Projects",
+      "Exercises"
+    ]
+  },
+  {
+    "objectID": "exercises/exercises.html#fourth-exercise-exact-diagonalization",
+    "href": "exercises/exercises.html#fourth-exercise-exact-diagonalization",
+    "title": "Exercises",
+    "section": "2.4 Fourth exercise: exact diagonalization",
+    "text": "2.4 Fourth exercise: exact diagonalization\nThe fourth exercise is about using some of the linear algebra techniques from the linear algebra lecture to study spin chains. Your demonstrator is Vedant Motamarri. The deadline is 12 noon on Friday 20th March. –&gt;",
+    "crumbs": [
+      "Exercises and Projects",
+      "Exercises"
+    ]
+  },
+  {
     "objectID": "notes/numpy.html",
     "href": "notes/numpy.html",
     "title": "NumPy and friends",
@@ -1969,17 +1991,6 @@
     "crumbs": [
       "Exercises and Projects",
       "Projects"
-    ]
-  },
-  {
-    "objectID": "exercises/exercises.html#third-exercise-automatic-differentiation",
-    "href": "exercises/exercises.html#third-exercise-automatic-differentiation",
-    "title": "Exercises",
-    "section": "2.3 Third exercise: automatic differentiation",
-    "text": "2.3 Third exercise: automatic differentiation\nThe third exercise is about using automatic differentiation to train a simple neural network. Your demonstrator is Thorbjørn Clausen. The deadline is 12 noon on Friday 13th March.",
-    "crumbs": [
-      "Exercises and Projects",
-      "Exercises"
     ]
   }
 ]
