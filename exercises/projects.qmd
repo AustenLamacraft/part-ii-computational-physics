@@ -32,6 +32,8 @@ You should take advantage of the fact that you are using GitHub to _regularly co
 
 See the [NST rules on late submission](https://universityofcambridgecloud.sharepoint.com/sites/NST_NaturalSciencesTripos/SitePages/Coursework%20Extensions.aspx): _"Students are required to self-certify before a submission deadline or at the point of submission of the work. Retrospective requests will not be accepted. Where a student does not self-certify and does not submit their coursework by the original submission date, zero marks will be awarded. Where a student has self-certified and does not submit their work by the revised submission date, zero marks will be awarded, unless a further extension has been granted by the department or EAMC"_. The form for submitting a self-certified extension is [here](https://forms.office.com/pages/responsepage.aspx?id=RQSlSfq9eUut41R7TzmG6Y64hS-YY0NHhP2hmw9lbpdUNFdLU01PRTFXVURORUhBVllUS0QwSkxBRS4u&route=shorturl). __Do not contact me directly with extension requests__.
 
+Late submissions are made in exactly the same way as ordinary submissions. __Your last commit to your repo before the (extended) deadline will be your submission__.
+
 # Marking
 
 The credit for the project is one unit of further work (like TP1, TP2, E1, E2, etc.). The projects are marked out of ten in the four categories:

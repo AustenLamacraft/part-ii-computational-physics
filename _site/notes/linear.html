@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Linear algebra – Part II Computational Physics</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -59,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -89,15 +91,14 @@ div.csl-indent {
 <link href="../notes/autodiff.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -127,7 +128,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -181,8 +182,9 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Part II Computational Physics</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -461,7 +463,7 @@ window.Quarto = {
 </div>
 </div>
 <p>This is great for people already familiar with the Einstein convention (like you): it’s very explicit.</p>
-<p>If I have multiple tensor contractions to do there is the interesting question of the order in which they should be evaluated. That is: how should the loops be nested? As we saw in the <a href="../notes/complexity.html#polynomial-complexity">lecture on complexity</a> evaluating <span class="math inline">\(M_1 M_2\cdots M_n \mathbf{v}\)</span> should be performed as <span class="math inline">\(O(N^2)\)</span> matrix-vector multiplications, rather than <span class="math inline">\(O(N^3)\)</span> matrix-matrix multiplications followed by a matrix-vector multiplication. In general, however, there is no efficient algorithm to find the best way to perform a specified set of contractions (<span class="citation" data-cites="chi1997optimizing">Chi-Chung, Sadayappan, and Wenger (<a href="#ref-chi1997optimizing" role="doc-biblioref">1997</a>)</span>). <code>einsum</code> can use a “greedy” algorithm (contracting the pair of tensors with the lowest cost at each step) to find a candidate scheme, but there is no guarantee this is optimal. Information on the contraction order used is provided by <a href="https://numpy.org/doc/stable/reference/generated/numpy.einsum_path.html"><code>np.einsum_path</code></a>.</p>
+<p>If I have multiple tensor contractions to do there is the interesting question of the order in which they should be evaluated. That is: how should the loops be nested? As we saw in the <a href="../notes/complexity.html#polynomial-complexity">lecture on complexity</a> evaluating <span class="math inline">\(M_1 M_2\cdots M_n \mathbf{v}\)</span> should be performed as <span class="math inline">\(O(N^2)\)</span> matrix-vector multiplications, rather than <span class="math inline">\(O(N^3)\)</span> matrix-matrix multiplications followed by a matrix-vector multiplication. In general, however, there is no efficient algorithm to find the best way to perform a specified set of contractions (<span class="citation" data-cites="chi1997optimizing">Chi-Chung et al. (<a href="#ref-chi1997optimizing" role="doc-biblioref">1997</a>)</span>). <code>einsum</code> can use a “greedy” algorithm (contracting the pair of tensors with the lowest cost at each step) to find a candidate scheme, but there is no guarantee this is optimal. Information on the contraction order used is provided by <a href="https://numpy.org/doc/stable/reference/generated/numpy.einsum_path.html"><code>np.einsum_path</code></a>.</p>
 <p>Many matrix operations, such as inversion (<a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.inv.html"><code>np.linalg.inv</code></a>), calculation of the determinant (<a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.det.html"><code>np.linalg.det</code></a>) or eigenvalues and eigenvectors (<a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html"><code>np.linalg.eig</code></a> or <a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigh.html#numpy.linalg.eigh"><code>np.linalg.eigh</code></a> for hermitian problems) inherit their complexity from the <span class="math inline">\(O(N^3)\)</span> complexity of matrix multiplication, so can be a major bottleneck in calculations</p>
 </section>
 <section id="the-power-method-and-pagerank" class="level1" data-number="2">
@@ -726,15 +728,15 @@ H\ket{\Psi} = E\ket{\Psi}
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-chi1997optimizing" class="csl-entry" role="listitem">
 Chi-Chung, Lam, P Sadayappan, and Rephael Wenger. 1997. <span>“On Optimizing a Class of Multi-Dimensional Loops with Reduction for Parallel Execution.”</span> <em>Parallel Processing Letters</em> 7 (02): 157–68.
 </div>
 <div id="ref-gupta2013wtf" class="csl-entry" role="listitem">
-Gupta, Pankaj, Ashish Goel, Jimmy Lin, Aneesh Sharma, Dong Wang, and Reza Zadeh. 2013. <span>“Wtf: The Who to Follow Service at Twitter.”</span> In <em>Proceedings of the 22nd International Conference on World Wide Web</em>, 505–14.
+Gupta, Pankaj, Ashish Goel, Jimmy Lin, Aneesh Sharma, Dong Wang, and Reza Zadeh. 2013. <span>“Wtf: The Who to Follow Service at Twitter.”</span> <em>Proceedings of the 22nd International Conference on World Wide Web</em>, 505–14.
 </div>
 <div id="ref-page1999pagerank" class="csl-entry" role="listitem">
-Page, Lawrence, Sergey Brin, Rajeev Motwani, and Terry Winograd. 1999. <span>“The PageRank Citation Ranking: Bringing Order to the Web.”</span> Stanford InfoLab.
+Page, Lawrence, Sergey Brin, Rajeev Motwani, and Terry Winograd. 1999. <em>The PageRank Citation Ranking: Bringing Order to the Web.</em> Stanford InfoLab.
 </div>
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
@@ -817,7 +819,7 @@ Page, Lawrence, Sergey Brin, Rajeev Motwani, and Terry Winograd. 1999. <span>“
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

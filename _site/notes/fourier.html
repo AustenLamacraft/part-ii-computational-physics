@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Fast Fourier transform – Part II Computational Physics</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -59,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -89,15 +91,14 @@ div.csl-indent {
 <link href="../notes/complexity.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -127,7 +128,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -181,8 +182,9 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Part II Computational Physics</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -529,7 +531,7 @@ T(N) = 2T(N/2) +\alpha N
 </section>
 <section id="history" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="history"><span class="header-section-number">2.2</span> History</h2>
-<p>The modern invention of the FFT is credited to <span class="citation" data-cites="cooley1965algorithm">Cooley and Tukey (<a href="#ref-cooley1965algorithm" role="doc-biblioref">1965</a>)</span>. Certainly they were the first to discuss its complexity. The divide and conquer approach was however anticipated by <span class="citation" data-cites="danielson1942some">Danielson and Lanczos (<a href="#ref-danielson1942some" role="doc-biblioref">1942</a>)</span> in the analysis of X-ray scattering in liquids, and by <a href="https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)">David Wheeler</a> of the Mathematical Laboratory (now the Computer Lab) in Cambridge, applied to radio astronomy, as recorded in Martin Ryle’s Nobel lecture <span class="citation" data-cites="ryle1975radio">Ryle (<a href="#ref-ryle1975radio" role="doc-biblioref">1975</a>)</span>. The earliest credit goes to <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a> in 1805 (predating even Fourier) in his astronomical studies. See <span class="citation" data-cites="cooley1967historical">Cooley, Lewis, and Welch (<a href="#ref-cooley1967historical" role="doc-biblioref">1967</a>)</span> for more on the historical background.</p>
+<p>The modern invention of the FFT is credited to <span class="citation" data-cites="cooley1965algorithm">Cooley and Tukey (<a href="#ref-cooley1965algorithm" role="doc-biblioref">1965</a>)</span>. Certainly they were the first to discuss its complexity. The divide and conquer approach was however anticipated by <span class="citation" data-cites="danielson1942some">Danielson and Lanczos (<a href="#ref-danielson1942some" role="doc-biblioref">1942</a>)</span> in the analysis of X-ray scattering in liquids, and by <a href="https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)">David Wheeler</a> of the Mathematical Laboratory (now the Computer Lab) in Cambridge, applied to radio astronomy, as recorded in Martin Ryle’s Nobel lecture <span class="citation" data-cites="ryle1975radio">Ryle (<a href="#ref-ryle1975radio" role="doc-biblioref">1975</a>)</span>. The earliest credit goes to <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a> in 1805 (predating even Fourier) in his astronomical studies. See <span class="citation" data-cites="cooley1967historical">Cooley et al. (<a href="#ref-cooley1967historical" role="doc-biblioref">1967</a>)</span> for more on the historical background.</p>
 </section>
 <section id="fft-in-python" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="fft-in-python"><span class="header-section-number">2.3</span> FFT in Python</h2>
@@ -617,7 +619,7 @@ T(N) = 2T(N/2) +\alpha N
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/ligo-window.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Importance of windowing LIGO data, from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span>. Without appropriate windowing, the entire power spectrum is dominated by spectral leakage following a <span class="math inline">\(1/f^2\)</span> scaling.</figcaption>
+<figcaption>Importance of windowing LIGO data, from <span class="citation" data-cites="abbott2020guide"><span class="nocase">Abbott et al.</span> (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span>. Without appropriate windowing, the entire power spectrum is dominated by spectral leakage following a <span class="math inline">\(1/f^2\)</span> scaling.</figcaption>
 </figure>
 </div>
 </section>
@@ -627,7 +629,7 @@ T(N) = 2T(N/2) +\alpha N
 <p>The FFT has a mindboggling number of applications ranging from signal processing in experimental data, audio and video signals, to numerical simulation, where <a href="https://en.wikipedia.org/wiki/Spectral_method">spectral methods</a> exploit the FFT as part of the numerical solution of partial differential equations. Here, we’ll look at just a couple of examples.</p>
 <section id="signal-processing" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="signal-processing"><span class="header-section-number">3.1</span> Signal processing</h2>
-<p>As an example, let’s look at some of the stages in the analysis of time series data from the LIGO and Virgo experiments on <a href="https://en.wikipedia.org/wiki/First_observation_of_gravitational_waves">gravitational wave detection</a> that led to the 2017 Nobel prize in physics. I’m following <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span> closely here, and you should check it out for further details, as well as the <a href="https://github.com/losc-tutorial/Data_Guide/blob/master/Guide_Notebook.ipynb">accompanying notebook</a> that describes how the analysis is performed in Python.</p>
+<p>As an example, let’s look at some of the stages in the analysis of time series data from the LIGO and Virgo experiments on <a href="https://en.wikipedia.org/wiki/First_observation_of_gravitational_waves">gravitational wave detection</a> that led to the 2017 Nobel prize in physics. I’m following <span class="citation" data-cites="abbott2020guide"><span class="nocase">Abbott et al.</span> (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span> closely here, and you should check it out for further details, as well as the <a href="https://github.com/losc-tutorial/Data_Guide/blob/master/Guide_Notebook.ipynb">accompanying notebook</a> that describes how the analysis is performed in Python.</p>
 <p>As illustrated in <a href="#fig-ligo-stages" class="quarto-xref">Figure&nbsp;1</a> uncovering the signal in the raw data involves a number of processing steps designed to eliminate noise, mostly carried out in the Fourier domain. The guiding principle is that the noise is <em>stationary</em> — meaning that it is described by a random process that does not change in time — while the signal is <em>transient</em>. This idea can be used to reduce noise in the data even though low frequency noise completely dominates the raw measurement (top panel).</p>
 <div id="fig-ligo-stages" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -635,7 +637,7 @@ T(N) = 2T(N/2) +\alpha N
 <img src="../assets/ligo-stages.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ligo-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Stages in the analysis of LIGO strain data,from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span>. Note the scale on the <span class="math inline">\(y\)</span>-axis!
+Figure&nbsp;1: Stages in the analysis of LIGO strain data,from <span class="citation" data-cites="abbott2020guide"><span class="nocase">Abbott et al.</span> (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span>. Note the scale on the <span class="math inline">\(y\)</span>-axis!
 </figcaption>
 </figure>
 </div>
@@ -651,7 +653,7 @@ Figure&nbsp;1: Stages in the analysis of LIGO strain data,from <span class="cita
 <img src="../assets/ligo-residuals.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ligo-residuals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Residuals from the modelled signal, from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span>
+Figure&nbsp;2: Residuals from the modelled signal, from <span class="citation" data-cites="abbott2020guide"><span class="nocase">Abbott et al.</span> (<a href="#ref-abbott2020guide" role="doc-biblioref">2020</a>)</span>
 </figcaption>
 </figure>
 </div>
@@ -812,9 +814,9 @@ e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}.
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-abbott2020guide" class="csl-entry" role="listitem">
-Abbott, Benjamin P, Rich Abbott, Thomas D Abbott, Sheelu Abraham, Fausto Acernese, Kendall Ackley, Carl Adams, et al. 2020. <span>“A Guide to LIGO–Virgo Detector Noise and Extraction of Transient Gravitational-Wave Signals.”</span> <em>Classical and Quantum Gravity</em> 37 (5): 055002.
+<span class="nocase">Abbott, Benjamin P, Rich Abbott, Thomas D Abbott, et al.</span> 2020. <span>“A Guide to LIGO–Virgo Detector Noise and Extraction of Transient Gravitational-Wave Signals.”</span> <em>Classical and Quantum Gravity</em> 37 (5): 055002.
 </div>
 <div id="ref-cooley1967historical" class="csl-entry" role="listitem">
 Cooley, James W, Peter AW Lewis, and Peter D Welch. 1967. <span>“Historical Notes on the Fast Fourier Transform.”</span> <em>Proceedings of the IEEE</em> 55 (10): 1675–77.
@@ -910,7 +912,7 @@ Ryle, Martin. 1975. <span>“Radio Telescopes of Large Resolving Power.”</span
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

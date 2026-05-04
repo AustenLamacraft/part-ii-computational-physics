@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.24">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
 
   <title>Part II Computational Physics – fourier</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -97,7 +100,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -114,7 +116,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-db84968dd3a81be0f114100d4bbaf104.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-43c786d1c8ecd919271c820feae20d09.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -454,7 +456,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <li><p>Modern invention of FFT is credited to <span class="citation" data-cites="cooley1965algorithm">Cooley and Tukey (<a href="#/references" role="doc-biblioref" onclick="">1965</a>)</span>. First to discuss complexity</p></li>
 <li><p>Divide and conquer approach anticipated in radio astronomy by <a href="https://en.wikipedia.org/wiki/David_Wheeler_(computer_scientist)">David Wheeler</a> in Cambridge (see <span class="citation" data-cites="ryle1975radio">Ryle (<a href="#/references" role="doc-biblioref" onclick="">1975</a>)</span>) and <span class="citation" data-cites="danielson1942some">Danielson and Lanczos (<a href="#/references" role="doc-biblioref" onclick="">1942</a>)</span>, for applications in crystallography</p></li>
 <li><p>OG is <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a> in 1805 (predating even Fourier) in his astronomical studies</p></li>
-<li><p>See <span class="citation" data-cites="cooley1967historical">Cooley, Lewis, and Welch (<a href="#/references" role="doc-biblioref" onclick="">1967</a>)</span> for more on historical background</p></li>
+<li><p>See <span class="citation" data-cites="cooley1967historical">Cooley et al. (<a href="#/references" role="doc-biblioref" onclick="">1967</a>)</span> for more on historical background</p></li>
 </ul>
 </section>
 <section id="fft-in-python" class="slide level2 center">
@@ -585,7 +587,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="../assets/ligo-window.png" style="width:80.0%"></p>
-<figcaption>Importance of windowing LIGO data, from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span>. Without appropriate windowing, entire power spectrum is dominated by spectral leakage</figcaption>
+<figcaption>Importance of windowing LIGO data, from <span class="citation" data-cites="abbott2020guide"><span class="nocase">Abbott et al.</span> (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span>. Without appropriate windowing, entire power spectrum is dominated by spectral leakage</figcaption>
 </figure>
 </div>
 </section></section>
@@ -601,7 +603,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <h2>Signal processing</h2>
 <ul>
 <li><p>Time series data from LIGO and Virgo experiments on <a href="https://en.wikipedia.org/wiki/First_observation_of_gravitational_waves">gravitational wave detection</a> that led to the 2017 Nobel prize in physics</p></li>
-<li><p>See <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> for details, as well as <a href="https://github.com/losc-tutorial/Data_Guide/blob/master/Guide_Notebook.ipynb">accompanying notebook</a> that describes how analysis is performed in Python</p></li>
+<li><p>See <span class="citation" data-cites="abbott2020guide"><span class="nocase">Abbott et al.</span> (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> for details, as well as <a href="https://github.com/losc-tutorial/Data_Guide/blob/master/Guide_Notebook.ipynb">accompanying notebook</a> that describes how analysis is performed in Python</p></li>
 </ul>
 </section>
 <section class="slide level2 center">
@@ -609,7 +611,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="../assets/ligo-stages.png" style="width:60.0%"></p>
-<figcaption>Stages in analysis of LIGO strain data,from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span>. Note scale on <span class="math inline">\(y\)</span>-axis!</figcaption>
+<figcaption>Stages in analysis of LIGO strain data,from <span class="citation" data-cites="abbott2020guide"><span class="nocase">Abbott et al.</span> (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span>. Note scale on <span class="math inline">\(y\)</span>-axis!</figcaption>
 </figure>
 </div>
 </section>
@@ -653,7 +655,7 @@ T(N) = 2T(N/2) +\Theta(N)
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="../assets/ligo-residuals.png" style="width:60.0%"></p>
-<figcaption>Residuals from the modelled signal, from <span class="citation" data-cites="abbott2020guide">Abbott et al. (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></figcaption>
+<figcaption>Residuals from the modelled signal, from <span class="citation" data-cites="abbott2020guide"><span class="nocase">Abbott et al.</span> (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></figcaption>
 </figure>
 </div>
 </section>
@@ -785,9 +787,9 @@ e^{xA/2}e^{xB}e^{xA/2} = e^{x(A+B) + O(x^3)}
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-abbott2020guide" class="csl-entry" role="listitem">
-Abbott, Benjamin P, Rich Abbott, Thomas D Abbott, Sheelu Abraham, Fausto Acernese, Kendall Ackley, Carl Adams, et al. 2020. <span>“A Guide to LIGO–Virgo Detector Noise and Extraction of Transient Gravitational-Wave Signals.”</span> <em>Classical and Quantum Gravity</em> 37 (5): 055002.
+<span class="nocase">Abbott, Benjamin P, Rich Abbott, Thomas D Abbott, et al.</span> 2020. <span>“A Guide to LIGO–Virgo Detector Noise and Extraction of Transient Gravitational-Wave Signals.”</span> <em>Classical and Quantum Gravity</em> 37 (5): 055002.
 </div>
 <div id="ref-cooley1967historical" class="csl-entry" role="listitem">
 Cooley, James W, Peter AW Lewis, and Peter D Welch. 1967. <span>“Historical Notes on the Fast Fourier Transform.”</span> <em>Proceedings of the IEEE</em> 55 (10): 1675–77.
@@ -1088,7 +1090,7 @@ Ryle, Martin. 1975. <span>“Radio Telescopes of Large Resolving Power.”</span
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/computational-physics\.tripos\.org");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }
