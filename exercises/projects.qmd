@@ -17,16 +17,16 @@ Your report will take the form of repository submitted to GitHub classroom (see 
 
 When the cells in the notebook are executed, all analysis and figures should be reproduced _quickly_. Execution should not cause long runs of simulation code, for example. While you should feel free to use other (open source) libraries in your code, please limit your report notebook to the standard libraries we have used in the computational physics course (NumPy, SciPy, Matplotlib).
 
-Please see [Keeping Laboratory Notes and
-Writing Formal Reports](https://www-teach.phy.cam.ac.uk/dms/dms_getFile.php?node=54292) for further guidance. There is no prescription on the length of your report, except that it should provide a comprehensive account of the work you have done.
+Please see [Keeping Laboratory Notes and Writing Formal Reports](https://www-teach.phy.cam.ac.uk/dms/dms_getFile.php?node=54292) for further guidance. There is no prescription on the length of your report, except that it should provide a comprehensive account of the work you have done. For a guide to the presentation of Python code, see [PEP 8](https://peps.python.org/pep-0008/) and [this explanation](https://realpython.com/python-pep8/).
 
-For a guide to the presentation of Python code, see [PEP 8](https://peps.python.org/pep-0008/) and [this explanation](https://realpython.com/python-pep8/).
+If you generate large data files that you wish to include, you may find you run into GitHub's [restrictions on file sizes](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github). GitHub blocks files larger than 100 MiB. For larger files you can use [Git Large File Storage](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage). The free tier gives you 2 GB, which should be enough.
+
 
 # Submission {#sec-submission}
 
 The submission instructions are the same as for the [exercises](exercises.qmd). Click on the [GitHub Classroom link](https://classroom.github.com/a/EubtKrnp) to accept the project as an assignment. Please __change the name of your repo to `<project-name>-<CRSid>`__ for ease of marking. 
 
-You should take advantage of the fact that you are using GitHub to _regularly commit to your project repository_ and _push the commits to GitHub_. That way there is no danger of you accidentally missing the deadline: your last commit to the repository on GitHub will constitute your submission. 
+You should take advantage of the fact that you are using GitHub to __regularly commit to your project repository__ and __push the commits to GitHub__. That way there is no danger of you accidentally missing the deadline: your last commit to the repository on GitHub will constitute your submission. 
 
 ## Late submission and extensions {#sec-late-submission}
 
