@@ -117,7 +117,13 @@ As well as the lecture and exercise on neural nets, the 3Blue1Brown [series on d
 
 This project explores the use of Physics-Informed Neural Networks (PINNs) (@raissi2019physics) for solving partial differential equations (PDEs) in physics. It could begin with ordinary differential equations (ODEs) in a deep learning framework such as  PyTorch, JAX, or TensorFlow before progressing to more complex PDEs, such as the wave equation, diffusion equation, and Schrödinger equation. A PDE project related to Part II physics lectures, or another relevant topic can be chosen and implemented. The project could analyse PINNs' ability to enforce physical laws through loss functions and compare their performance to traditional numerical solvers, such as finite differences and finite elements. The project could explore PINN structure, exploring different architectures, assessing computational efficiency, and optimising training using methods like Adam. Extensions could apply PINNs to more advanced topics such as wave equations in general relativity, fluid dynamics, and Maxwell’s equations. The review (@karniadakis2021physics) is a good introduction to the general area.
 
-<!-- ## Schrödinger's smoke
+<!-- ## Project ideas for 2027
+
+1. [Fast Algorithm for 2D Rigidity Percolation](https://journals.aps.org/prx/abstract/10.1103/sv88-j2wj)
+
+2. [Aureole effect](https://en.wikipedia.org/wiki/Aureole_effect) in light scattering. Possible techniques include [specular manifold sampling](https://rgl.epfl.ch/publications/Zeltner2020Specular). I have not found any evidence of this effect having been simulated before, somewhat surprisingly.
+
+ ## Schrödinger's smoke
 
 [Schrödinger's smoke](https://cseweb.ucsd.edu/~alchern/projects/SchrodingersSmoke/) is a recent arithm for the simulation of incompressible fluids. The original paper (@chern2016schrodinger) describes the algorithm in Section 2: it is based on the split-step method and FFT as discussed in the [FFT lecture](../notes/fourier.qmd).
  
